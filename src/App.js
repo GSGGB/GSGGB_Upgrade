@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Chapters from "./react-components/Chapters";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
+class App extends Component {
+    constructor(props){
+          super(props);
+    }
+
+    state = {
+        cart: [],
+        username:
+            localStorage.getItem("username") !== null
+                ? localStorage.getItem("username")
+                : "visitor",
+        accountType:
+            localStorage.getItem("accountType") !== null
+                ? localStorage.getItem("accountType")
+                : "Visitor",
+        loggedIn: "false"
+    };
+
+    render() {
+        return (
+            <div>
+                <BrowserRouter>
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                localStorage.getItem("loggedIn") === "true"
+                                ? <Redirect to="/home"/>
+                                : <Chapters state={this.state} />
+                            )}
+                        />
+
+                    </Switch>
+                </BrowserRouter>
+            </div>
+        );
+    }
 }
 
 export default App;
