@@ -17,11 +17,11 @@ class Chapters extends Component {
                   <Row>
                     <Col md={6}>
                       <Image id="gsggb-logo" alt="logo" src={gsggb_logo} />
+                      <h2 className = "logo-name">GSGGB</h2>
                     </Col>
-                    <Col md={6}>
+                    <Col md={6} className="text-center">
                       <div>
-                        <h1 className="chapters-title">GSGGB Chapters</h1>
-                        <br/>
+                        <h1 className="chapters-title">Our Chapters</h1>
                         <Button className="chapters-button" id="uoft-button">
                           <Image id="uoft-logo" alt="logo" src={uoft_logo} />
                           University of Toronto
@@ -37,7 +37,7 @@ class Chapters extends Component {
                       <br/>
                       <div>
                         <Button className="chapters-button" id="queens-button">
-                          <Image id="mcmaster-logo" alt="logo" src={queens_logo} />
+                          <Image id="queens-logo" alt="logo" src={queens_logo} />
                           Queen's University
                         </Button>
                       </div>

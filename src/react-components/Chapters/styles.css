@@ -4,10 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: -webkit-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  background: -o-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  background: -moz-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  background: linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+  background-image: url("./static/chromosome-background.png");
+  font-family: Tahoma, Geneva, sans-serif;
 }
 
 .chapters-box{
@@ -18,41 +16,51 @@
   margin-right: 200px;
   padding: 50px;
   border-radius: 10px;
-  background-color: white;
 }
 
 #gsggb-logo{
   display: block;
   width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 50px;
+  margin: auto;
+  padding-top: 90px;
+}
+
+.logo-name{
+  color: ghostwhite;
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 #uoft-logo{
-  width: 64px;
+  width: 75px;
+  margin-right: 10px;
 }
 
 #mcmaster-logo{
-  width: 64px;
+  width: 80px;
+  margin-top: 5px;
+  margin-right: 10px;
 }
 
 #queens-logo{
-  width: 64px;
+  width: 70px;
+  margin-right: 18px;
 }
 
 .chapters-title{
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color:ghostwhite;
 }
 
 .chapters-button{
   display: block;
-  width: 300px;
+  width: 400px;
+  height: 70px;
   text-align: center;
-  font-size: 18px;
-  font-weight: bold;
   color: #696969;
+  font-size: 20px !important;
 }
 
 #uoft-button{
