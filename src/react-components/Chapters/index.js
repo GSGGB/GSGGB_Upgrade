@@ -7,13 +7,6 @@ import "./styles.css";
 import logo from "./static/logo.png";
 
 class Chapters extends Component {
-    constructor(props) {
-        super(props);
-        this.userRouteChange = this.userRouteChange.bind(this);
-        this.visitorRouteChange = this.visitorRouteChange.bind(this);
-        this.registerRouteChange = this.registerRouteChange.bind(this);
-    }
-
     render() {
         return (
             <div className="login-page">
@@ -43,11 +36,6 @@ class Chapters extends Component {
                                             id="user-name"
                                             type="text"
                                             placeholder="Type your username"
-                                            onChange={e => {
-                                                this.setState({
-                                                    username: e.target.value
-                                                });
-                                            }}
                                             required
                                         />
                                     </Form.Group>
@@ -60,31 +48,23 @@ class Chapters extends Component {
                                             id="user-pass"
                                             type="password"
                                             placeholder="Type your password"
-                                            onChange={e =>
-                                                this.setState({
-                                                    password: e.target.value
-                                                })
-                                            }
                                             required
                                         />
                                     </Form.Group>
 
                                     <Button
                                         id="user-button"
-                                        onClick={this.userRouteChange}
                                     >
                                         LOGIN
                                     </Button>
                                     <hr></hr>
                                     <Button
                                         id="visitor-button"
-                                        onClick={this.visitorRouteChange}
                                     >
                                         CONTINUE AS A VISITOR
                                     </Button>
                                     <Button
                                         id="create-account-button"
-                                        onClick={this.registerRouteChange}
                                     >
                                         CREATE ACCOUNT
                                     </Button>
