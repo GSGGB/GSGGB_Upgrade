@@ -4,43 +4,37 @@ import "./App.css";
 
 import Chapters from "./react-components/Chapters";
 import Login from "./react-components/Login";
+import Home from "./react-components/Home";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
-
-    state = {
-        cart: [],
-        username:
-            localStorage.getItem("username") !== null
-                ? localStorage.getItem("username")
-                : "visitor",
-        accountType:
-            localStorage.getItem("accountType") !== null
-                ? localStorage.getItem("accountType")
-                : "Visitor",
-        loggedIn: "false"
-    };
-
     render() {
-        return (
-            <div>
-                <BrowserRouter>
-                    <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                localStorage.getItem("loggedIn") === "true"
-                                ? <Redirect to="/home"/>
-                                : <Chapters state={this.state} />
-                            )}
-                        />
+      return (
+        <div>
+          <BrowserRouter>
+            <Switch>
+              <Route
+                  exact path="/"
+                  render={() => (<Chapters />
+                  )}
+              />
 
-                    </Switch>
-                </BrowserRouter>
-            </div>
-        );
+              <Route
+                  exact path="/login"
+                  render={() => (<Login />
+                  )}
+              />
+
+              <Route
+                  exact path="/home"
+                  render={() => (<Home />
+                  )}
+              />
+            </Switch>
+          </BrowserRouter>
+        </div>
+      );
     }
 }
 

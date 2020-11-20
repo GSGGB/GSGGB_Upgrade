@@ -1,0 +1,98 @@
+body, html{
+  overflow-x: hidden;
+  height: 100%;
+  margin: 0;
+}
+
+/* Banner section */
+.banner-section{
+  background-color: #FEFBEA;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+#banner{
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* About section */
+.about-section{
+  padding-top: 100px;
+  padding-bottom: 25px;
+  background-color: white;
+}
+
+#first-row{
+  margin-bottom: 100px;
+}
+
+#second-row{
+  margin-top: 100px;
+}
+
+.section-title{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #323232;
+  display: inline-block;
+}
+
+.section-subtitle{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #4c4c4c;
+}
+
+.title-separator{
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+#team-photo{
+  width: 500px;
+  margin-left: 50px;
+  float: right;
+  display: inline-block;
+}
+
+#conference-photo{
+  width: 500px;
+  margin-left: 50px;
+  float: right;
+  display: inline-block;
+}
+
+.paragraph{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: black;
+}
+
+/* Announcements section */
+.announcements-section{
+  padding-top: 100px;
+  padding-bottom: 75px;
+  background-color: white;
+}
+
+.announcement-modal-header{
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#add-announcement-button{
+  float: right;
+  display: inline-block;
+}
+
+#announcement-button{
+  float: right;
+  margin-top: 25px;
+}
