@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
 import "./App.css";
 
 import Chapters from "./react-components/Chapters";
+import Login from "./react-components/Login";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -32,7 +33,7 @@ class App extends Component {
                             render={() => (
                                 localStorage.getItem("loggedIn") === "true"
                                 ? <Redirect to="/home"/>
-                                : <Login state={this.state} />
+                                : <Chapters state={this.state} />
                             )}
                         />
 

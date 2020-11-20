@@ -1,0 +1,11 @@
+
+/* Decrease padding-top size of logo in mobile screens */
+@media (max-width: 1200px){
+  #gsggb-logo-chapters {
+    padding-top: 0px;
+  }
+
+  .logo-name {
+    margin-bottom: 70px;
+  }
+}

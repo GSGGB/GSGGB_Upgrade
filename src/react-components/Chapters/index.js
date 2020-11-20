@@ -3,6 +3,7 @@ import { withRouter, BrowserRouter } from "react-router-dom";
 import { Row, Col, Image, Button } from "react-bootstrap";
 
 import "./styles.css";
+import "./styles-mobile.css";
 import gsggb_logo from "./static/gsggb-logo.png";
 import uoft_logo from "./static/uoft-logo.png";
 import mcmaster_logo from "./static/mcmaster-logo.png";
@@ -15,11 +16,11 @@ class Chapters extends Component {
               <BrowserRouter forceRefresh={true}>
                 <div className="chapters-layout">
                   <Row>
-                    <Col md={6}>
-                      <Image id="gsggb-logo" alt="logo" src={gsggb_logo} />
+                    <Col xl={6}>
+                      <Image id="gsggb-logo-chapters" alt="logo" src={gsggb_logo} />
                       <h2 className="logo-name">GSGGB</h2>
                     </Col>
-                    <Col md={6} className="text-center">
+                    <Col xl={6} className="text-center">
                       <div>
                         <h1 className="chapters-title">Our Chapters</h1>
                         <Button className="chapters-button" id="uoft-button">

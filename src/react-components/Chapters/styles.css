@@ -19,7 +19,6 @@
   border-radius: 10px;
 }
 
-
 .chapters-title{
   text-align: center;
   margin-bottom: 40px;
@@ -29,7 +28,7 @@
 /* End of Chapters Page */
 
 /* Logos */
-#gsggb-logo{
+#gsggb-logo-chapters{
   display: block;
   width: 300px;
   margin: auto;
