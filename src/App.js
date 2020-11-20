@@ -32,7 +32,7 @@ class App extends Component {
                             render={() => (
                                 localStorage.getItem("loggedIn") === "true"
                                 ? <Redirect to="/home"/>
-                                : <Chapters state={this.state} />
+                                : <Login state={this.state} />
                             )}
                         />
 

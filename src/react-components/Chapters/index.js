@@ -13,31 +13,31 @@ class Chapters extends Component {
         return (
             <div className="chapters-page">
               <BrowserRouter forceRefresh={true}>
-                <div className="chapters-box">
+                <div className="chapters-layout">
                   <Row>
                     <Col md={6}>
                       <Image id="gsggb-logo" alt="logo" src={gsggb_logo} />
-                      <h2 className = "logo-name">GSGGB</h2>
+                      <h2 className="logo-name">GSGGB</h2>
                     </Col>
                     <Col md={6} className="text-center">
                       <div>
                         <h1 className="chapters-title">Our Chapters</h1>
                         <Button className="chapters-button" id="uoft-button">
-                          <Image id="uoft-logo" alt="logo" src={uoft_logo} />
+                          <Image id="uoft-logo" alt="UofT Logo" src={uoft_logo} />
                           University of Toronto
                         </Button>
                       </div>
                       <br/>
                       <div>
                         <Button className="chapters-button" id="mcmaster-button">
-                          <Image id="mcmaster-logo" alt="logo" src={mcmaster_logo} />
+                          <Image id="mcmaster-logo" alt="McMaster Logo" src={mcmaster_logo} />
                           McMaster University
                         </Button>
                       </div>
                       <br/>
                       <div>
                         <Button className="chapters-button" id="queens-button">
-                          <Image id="queens-logo" alt="logo" src={queens_logo} />
+                          <Image id="queens-logo" alt="Queen's Logo" src={queens_logo} />
                           Queen's University
                         </Button>
                       </div>

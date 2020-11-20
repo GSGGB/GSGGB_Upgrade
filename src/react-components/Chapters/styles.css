@@ -1,3 +1,4 @@
+/* Chapters Page */
 .chapters-page{
   width: 100%;
   min-height: 100vh;
@@ -8,7 +9,7 @@
   font-family: Tahoma, Geneva, sans-serif;
 }
 
-.chapters-box{
+.chapters-layout{
   width: 100%;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -18,17 +19,21 @@
   border-radius: 10px;
 }
 
+
+.chapters-title{
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: ghostwhite;
+}
+/* End of Chapters Page */
+
+/* Logos */
 #gsggb-logo{
   display: block;
   width: 300px;
   margin: auto;
   padding-top: 90px;
-}
-
-.logo-name{
-  color: ghostwhite;
-  text-align: center;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 #uoft-logo{
@@ -47,13 +52,14 @@
   margin-right: 18px;
 }
 
-.chapters-title{
-  text-align: center;
-  margin-bottom: 40px;
-  font-weight: bold;
+.logo-name{
   color: ghostwhite;
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
+/* End of Logos */
 
+/* Button for GSGGB Chapters */
 .chapters-button{
   display: block;
   width: 400px;
@@ -75,3 +81,4 @@
 #queens-button{
   background-color: #BF2446;
 }
+/* End of "Button for GSGGB Chapters" */
