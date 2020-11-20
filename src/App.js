@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
 
 import Chapters from "./react-components/Chapters";
 import Login from "./react-components/Login";
+
+import Header from "./react-components/Header";
+import Footer from "./react-components/Footer";
 import Home from "./react-components/Home";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,21 +18,26 @@ class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route
-                  exact path="/"
-                  render={() => (<Chapters />
-                  )}
+                exact path="/"
+                render={() => (<Chapters />
+                )}
               />
 
               <Route
-                  exact path="/login"
-                  render={() => (<Login />
-                  )}
+                exact path="/login"
+                render={() => (<Login />
+                )}
               />
 
               <Route
-                  exact path="/home"
-                  render={() => (<Home />
-                  )}
+                exact path="/home"
+                render={() => (
+                  <div>
+                    <Header />
+                    <Home />
+                    <Footer />
+                  </div>
+                )}
               />
             </Switch>
           </BrowserRouter>
