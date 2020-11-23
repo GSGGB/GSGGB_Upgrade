@@ -7,7 +7,7 @@ import Login from "./react-components/Login";
 
 import Header from "./react-components/Header";
 import Footer from "./react-components/Footer";
-import Home from "./react-components/Home";
+import HomePage from "./react-components/Home";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -34,7 +34,7 @@ class App extends Component {
                 render={() => (
                   <div>
                     <Header />
-                    <Home />
+                    <HomePage />
                     <Footer />
                   </div>
                 )}

@@ -1,11 +1,13 @@
+/* Homepage settings */
 body, html{
   overflow-x: hidden;
   height: 100%;
   margin: 0;
 }
+/* End of Homepage settings section */
 
-/* Banner section */
-.banner-section{
+/* Banner */
+.banner{
   background-color: #FEFBEA;
   padding-left: 100px;
   padding-right: 100px;
@@ -13,25 +15,26 @@ body, html{
   padding-bottom: 25px;
 }
 
-#banner{
+#banner-photo{
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+/* End of Banner */
 
-/* About section */
-.about-section{
+/* About Us */
+.about-us{
   padding-top: 100px;
   padding-bottom: 25px;
   background-color: white;
 }
 
-#first-row{
+#our-purpose{
   margin-bottom: 100px;
 }
 
-#second-row{
+#our-mission{
   margin-top: 100px;
 }
 
@@ -42,7 +45,7 @@ body, html{
   display: inline-block;
 }
 
-.section-subtitle{
+.about-us-subheader{
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #4c4c4c;
@@ -53,46 +56,24 @@ body, html{
   margin-bottom: 50px;
 }
 
-#team-photo{
+#team-photo, #conference-photo{
   width: 500px;
   margin-left: 50px;
   float: right;
   display: inline-block;
 }
 
-#conference-photo{
-  width: 500px;
-  margin-left: 50px;
-  float: right;
-  display: inline-block;
-}
-
-.paragraph{
+.description{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: black;
 }
+/* End of About Us */
 
-/* Announcements section */
-.announcements-section{
+/* Announcements */
+.announcements{
   padding-top: 100px;
   padding-bottom: 75px;
   background-color: white;
 }
-
-.announcement-modal-header{
-  font-family: Arial, Helvetica, sans-serif;
-  color: black;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-#add-announcement-button{
-  float: right;
-  display: inline-block;
-}
-
-#announcement-button{
-  float: right;
-  margin-top: 25px;
-}
+/* End of Announcements */

@@ -1,10 +1,12 @@
+/* Footer */
 .footer-section{
-  padding-top: 75px;
+  padding-top: 40px;
   background-color: ghostwhite;
   text-align: center;
 }
 
-.icon {
+/* Social Media Icons */
+.social-media-icon {
   padding: 12px;
   padding-top: 7px;
   font-size: 18px;
@@ -12,33 +14,36 @@
   text-align: center;
   border-radius: 50%;
   margin-right: 10px;
+  color: white;
 }
 
-.icon:hover{
+.social-media-icon:hover{
   opacity: 0.7;
 }
 
 #facebook {
     background: #3B5998;
-    color: white;
 }
 
 #instagram {
   background: #d6249f;
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
   box-shadow: 0px 3px 10px rgba(0,0,0,.25);
-  color: white;
 }
 
-/* Twitter */
 #twitter {
     background: #55ACEE;
-    color: white;
 }
+/* End of Social Media Icons */
 
-.copyright-title{
+/* Copyright */
+.copyright-text{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
+/* End of Copyright */
+/* End of Footer */

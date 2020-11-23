@@ -17,7 +17,7 @@ class Footer extends Component {
                   rel="noopener noreferrer"
                   target="_blank"
               >
-                <span className="icon" id="facebook">
+                <span className="social-media-icon" id="facebook">
                   <FaFacebookF />
                 </span>
               </a>
@@ -26,7 +26,7 @@ class Footer extends Component {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <span className="icon" id="instagram">
+                <span className="social-media-icon" id="instagram">
                   <FaInstagram />
                 </span>
               </a>
@@ -35,12 +35,12 @@ class Footer extends Component {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <span className="icon" id="twitter">
+                <span className="social-media-icon" id="twitter">
                   <FaTwitter />
                 </span>
               </a>
-              <p className="copyright-title">
-                © Copyright{" "}
+              <p className="copyright-text">
+                Copyright © 2020{" "}
                 <b>
                   Global Society for Genetics and Genome
                   Biology.

@@ -1,4 +1,4 @@
-/* Chapters Page */
+/* Chapters */
 .chapters-page{
   width: 100%;
   min-height: 100vh;
@@ -25,7 +25,6 @@
   font-weight: bold;
   color: ghostwhite;
 }
-/* End of Chapters Page */
 
 /* Logos */
 #gsggb-logo-chapters{
@@ -81,3 +80,4 @@
   background-color: #BF2446;
 }
 /* End of "Button for GSGGB Chapters" */
+/* End of Chapters */

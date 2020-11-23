@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Image, Row, Col, Modal, ModalBody } from "react-bootstrap";
+import { Image, Row, Col, Modal, ModalBody} from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 
 import "./styles.css";
+import "./styles-mobile.css";
 import banner from "./static/banner.jpg";
 import teamPhoto from "./static/team-photo.jpg";
 import conferencePhoto from "./static/conference-photo.jpg";
 
-class Home extends Component {
+class HomePage extends Component {
     constructor(props) {
       super(props);
       this.myRef = React.createRef();
@@ -31,23 +32,23 @@ class Home extends Component {
     render() {
         return (
           <BrowserRouter forceRefresh={true}>
-            <div className="banner-section">
-              <Image id="banner" alt="banner" src={banner} />
+            <div className="banner">
+              <Image id="banner-photo" alt="GSGGB Banner" src={banner} />
             </div>
-            <div className="about-section" id="about">
+            <div className="about-us">
               <div className="container">
-                <h2 className="about-title">About Us</h2>
+                <h2 className="section-title" id = "about-us">About Us</h2>
                 <hr className="title-separator"></hr>
-                <Row id="first-row">
+                <Row id="our-purpose">
                   <Col>
                     <Image
                       id="team-photo"
-                      alt="team-photo"
+                      alt="GSGGB Team Photo"
                       src={teamPhoto}
                     />
-                    <h4 className="about-subtitle">Our Purpose</h4>
+                    <h4 className="about-us-subheader">Our Purpose</h4>
                     <br/>
-                    <p className="paragraph">
+                    <p className="description">
                       Founded in 2016 at the University of
                       Toronto, GSGGB - Global Society for Genetics
                       and Genome Biology, is an international
@@ -62,16 +63,16 @@ class Home extends Component {
                     </p>
                   </Col>
                 </Row>
-                <Row id="second-row">
+                <Row id="our-mission">
                   <Col>
                     <Image
                       id="conference-photo"
-                      alt="conference-photo"
+                      alt="GSGGB Conference Photo"
                       src={conferencePhoto}
                     />
-                    <h4 className="about-subtitle">Our Mission</h4>
+                    <h4 className="about-us-subheader">Our Mission</h4>
                     <br/>
-                    <p className="paragraph">
+                    <p className="description">
                       GSGGB focuses mainly on educating both its
                       members and the public about genetic
                       diseases. We strive to raise awareness about
@@ -92,7 +93,7 @@ class Home extends Component {
               </div>
             </div>
 
-            <div className="announcements-section" id="announcements">
+            <div className="announcements" id = "announcements">
               <div className="container">
                 <h2 className="section-title">Announcements</h2>
                 <hr className="title-separator"></hr>
@@ -114,4 +115,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default HomePage;

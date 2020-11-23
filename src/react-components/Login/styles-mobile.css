@@ -6,3 +6,10 @@
     margin-bottom: 60px;
   }
 }
+
+/* Make the buttons responsive on mobile screens */
+@media (max-width: 960px){
+  #login-button, #homepage-button {
+    width: 100%;
+  }
+}

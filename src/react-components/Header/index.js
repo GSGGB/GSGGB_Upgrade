@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, BrowserRouter } from "react-router-dom";
-import { Navbar, Nav, Image } from "react-bootstrap";
+import { Navbar, Nav, Image, NavDropdown} from "react-bootstrap";
 
 import "./styles.css";
 import logo from "./static/logo.png";
@@ -18,7 +18,7 @@ class Header extends Component {
         <div className="header">
           <BrowserRouter>
             <div className="container">
-              <Navbar collapseOnSelect expand="lg" id="nav-bar">
+              <Navbar collapseOnSelect expand="lg" className="navbar">
                 <Navbar.Brand>
                   <Image id="small-logo" alt="logo" src={logo} />
                 </Navbar.Brand>
@@ -31,39 +31,51 @@ class Header extends Component {
                       variant="pills"
                       activeKey={location.pathname}
                   >
-                    <Nav.Item as="li">
-                        <Nav.Link href="/home">
-                            <span className="navbar-item">
-                                HOME
-                            </span>
+                    <NavDropdown title = "HOME" id="dropdown">
+                        <NavDropdown.Item href = "/home" id="dropdown-item">
+                            HOME
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href = "/home#about-us" id="dropdown-item">
+                            ABOUT US
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href = "/home#announcements" id="dropdown-item">
+                            ANNOUNCEMENTS
+                        </NavDropdown.Item>
+                    </NavDropdown>
+                    <Nav.Item>
+                        <Nav.Link href="/events" className="navbar-item">
+                            EVENTS
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item as="li">
-                        <Nav.Link href="/home#about">
-                            <span className="navbar-item">
-                                ABOUT US
-                            </span>
+                    <NavDropdown title = "TEAM" id="dropdown">
+                        <NavDropdown.Item href = "/team#2019-2020" id="dropdown-item">
+                            2019 - 2020 STAFF
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href = "/team#2018-2019" id="dropdown-item">
+                            2018 - 2019 STAFF
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href = "/team#2017-2018" id="dropdown-item">
+                            2017 - 2018 STAFF
+                        </NavDropdown.Item>
+                    </NavDropdown>
+                    <Nav.Item>
+                        <Nav.Link href="/sponsors" className="navbar-item">
+                            SPONSORS
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item as="li">
-                        <Nav.Link href="/home#announcements">
-                            <span className="navbar-item">
-                                ANNOUNCEMENTS
-                            </span>
+                    <Nav.Item>
+                        <Nav.Link href="/conference" className="navbar-item">
+                            CONFERENCE
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item as="li">
-                        <Nav.Link href="/events">
-                            <span className="navbar-item">
-                                EVENTS
-                            </span>
+                    <Nav.Item>
+                        <Nav.Link href="/get-involved" className="navbar-item">
+                            GET INVOLVED
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item as="li">
-                        <Nav.Link href="/blog">
-                            <span className="navbar-item">
-                                BLOG
-                            </span>
+                    <Nav.Item>
+                        <Nav.Link href="/contact-us" className="navbar-item">
+                            CONTACT US
                         </Nav.Link>
                     </Nav.Item>
                   </Nav>

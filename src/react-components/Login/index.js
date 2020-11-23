@@ -55,9 +55,12 @@ class Login extends Component {
                                     required
                                   />
                                 </Form.Group>
-
+                                <hr></hr>
                                 <Button id="login-button">
                                   LOGIN
+                                </Button>
+                                <Button id="homepage-button">
+                                  BACK TO HOMEPAGE
                                 </Button>
                             </Form>
                           </Col>
