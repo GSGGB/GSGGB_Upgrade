@@ -1,10 +1,9 @@
-/* Homepage settings */
+/* Homepage */
 body, html{
   overflow-x: hidden;
   height: 100%;
   margin: 0;
 }
-/* End of Homepage settings section */
 
 /* Banner */
 .banner{
@@ -77,3 +76,4 @@ body, html{
   background-color: white;
 }
 /* End of Announcements */
+/* End of Homepage */
