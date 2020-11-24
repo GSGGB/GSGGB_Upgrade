@@ -37,7 +37,7 @@ class HomePage extends Component {
             </div>
             <div className="about-us">
               <div className="container">
-                <h2 className="section-title" id = "about-us">About Us</h2>
+                <h2 className="section-title" id="about-us">About Us</h2>
                 <hr className="title-separator"></hr>
                 <Row id="our-purpose">
                   <Col>
