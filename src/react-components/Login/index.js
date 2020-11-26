@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, BrowserRouter } from "react-router-dom";
+import { withRouter, BrowserRouter, Link } from "react-router-dom";
 import { Row, Col, Image, Form, Button } from "react-bootstrap";
 import { FaExclamationCircle } from "react-icons/fa";
 
@@ -55,13 +55,15 @@ class Login extends Component {
                                     required
                                   />
                                 </Form.Group>
-                                <hr></hr>
                                 <Button id="login-button">
                                   LOGIN
                                 </Button>
-                                <Button id="homepage-button">
-                                  BACK TO HOMEPAGE
-                                </Button>
+                                <hr />
+                                <Link to="/home">
+                                  <Button id="homepage-button">
+                                    BACK TO HOMEPAGE
+                                  </Button>
+                                </Link>
                             </Form>
                           </Col>
                         </Row>

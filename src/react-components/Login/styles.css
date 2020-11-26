@@ -73,16 +73,18 @@
   margin-top: 25px;
   margin-bottom: 10px;
   border: None;
-  background-color: #74E0D0;
+  width: 100%;
 }
 
 #login-button{
-  width: 50%;
+  background: -webkit-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+  background: -o-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+  background: -moz-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+  background: linear-gradient(-135deg, #ACDBCB, #FBB5A9);
 }
 
 #homepage-button{
-  width: 45%;
-  float: right;
+  background-color: #74E0D0;
 }
 /* End of Login Buttons */
 /* End of Login Components */
