@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
-import { Image, Row, Col, Modal, ModalBody, Card, Button } from "react-bootstrap";
-import ModalHeader from "react-bootstrap/ModalHeader";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Image, Row, Col, Modal, Button } from "react-bootstrap";
 
 import "./styles.css";
 import "./styles-mobile.css";
