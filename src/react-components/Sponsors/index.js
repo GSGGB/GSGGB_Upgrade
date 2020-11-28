@@ -5,7 +5,7 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 
 import "./styles.css";
 import "./styles-mobile.css";
-import { Platinum, Gold, Silver, Bronze, Partners, Special } from './sponsors.js';
+import { PLATINUM, GOLD, SILVER, BRONZE, PARTNERS, SPECIAL } from './sponsors.js';
 
 const Sponsors = () => {
 
@@ -26,31 +26,31 @@ const Sponsors = () => {
                   <br />
                   <h3 className="platinum-subtitle">Platinum</h3>
                     <Row>
-                      {Platinum.map(renderSponsors)}
+                      {PLATINUM.map(renderSponsors)}
                     </Row>
                   <br />
                   <h3 className="gold-subtitle">Gold</h3>
                     <Row>
-                      {Gold.map(renderSponsors)}
+                      {GOLD.map(renderSponsors)}
                     </Row>
                   <br />
                   <h3 className="silver-subtitle">Silver</h3>
                     <Row>
-                      {Silver.map(renderSponsors)}
+                      {SILVER.map(renderSponsors)}
                     </Row>
                   <br />
                   <h3 className="bronze-subtitle">Bronze</h3>
                     <Row>
-                      {Bronze.map(renderSponsors)}
+                      {BRONZE.map(renderSponsors)}
                     </Row>
                   <br />
                   <h3 className="partner-subtitle">Partners</h3>
                     <Row>
-                      {Partners.map(renderSponsors)}
+                      {PARTNERS.map(renderSponsors)}
                     </Row>
                   <h3 className="orange-subtitle">Special Thank You</h3>
                      <Row>
-                      {Special.map(renderSponsors)}
+                      {SPECIAL.map(renderSponsors)}
                     </Row>
                   <br />
                </div>

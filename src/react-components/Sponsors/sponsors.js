@@ -1,5 +1,5 @@
 /* PLATINUM SPONSORS */
-export const Platinum = [
+export const PLATINUM = [
   {name: "peros",
    image: "../sponsors/peros.png",
    link: "http://www.peros.fr/"
@@ -11,7 +11,7 @@ export const Platinum = [
 ]
 
 /* GOLD SPONSORS */
-export const Gold = [
+export const GOLD = [
   {name: "utsu",
    image: "../sponsors/utsu.png",
    link: "http://utsu.ca/"
@@ -27,7 +27,7 @@ export const Gold = [
 ]
 
 /* SILVER SPONSORS */
-export const Silver = [
+export const SILVER = [
   {name: "physiology",
    image: "../sponsors/physiology.jpg",
    link: "https://www.physiology.utoronto.ca/"
@@ -43,7 +43,7 @@ export const Silver = [
 ]
 
 /* BRONZE SPONSORS */
-export const Bronze = [
+export const BRONZE = [
   {name: "assu",
    image: "../sponsors/assu.jpg",
    link: "https://assu.ca"
@@ -55,7 +55,7 @@ export const Bronze = [
 ]
 
 /* PARNTER SPONSORS */
-export const Partners = [
+export const PARTNERS = [
   {name: "partner-landscape",
    image: "../sponsors/ssscr.jpg",
    link: "http://ssscr.sa.utoronto.ca/"
@@ -83,7 +83,7 @@ export const Partners = [
 ]
 
 /* SPECIAL THANK YOU */
-export const Special = [
+export const SPECIAL = [
   {name: "rare-disease-foundation",
    image: "../sponsors/rare-disease-foundation.jpg",
    link: "https://www.rarediseasefoundation.org/"

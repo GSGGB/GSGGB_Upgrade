@@ -98,9 +98,9 @@ const Team = () => {
                   <hr className="divider" />
                   <h3 className="team-name">Alumni</h3>
                     <br />
-                    <p className="description">You can click <a href="https://www.gsggb.org/team2019-2020">here</a> to learn more about our previous GSGGB executives from the 2019 - 2020 academic year.</p>
-                    <p className="description">You can click <a href="https://www.gsggb.org/team2018-2019">here</a> to learn more about our previous GSGGB executives from the 2018 - 2019 academic year.</p>
-                    <p className="description">You can click <a href="https://www.gsggb.org/team2017-2018">here</a> to learn more about our previous GSGGB executives from the 2017 - 2018 academic year.</p>
+                    <p className="learn-more">You can click <a href="https://www.gsggb.org/team2019-2020">here</a> to learn more about our previous GSGGB executives from the 2019 - 2020 academic year.</p>
+                    <p className="learn-more">You can click <a href="https://www.gsggb.org/team2018-2019">here</a> to learn more about our previous GSGGB executives from the 2018 - 2019 academic year.</p>
+                    <p className="learn-more">You can click <a href="https://www.gsggb.org/team2017-2018">here</a> to learn more about our previous GSGGB executives from the 2017 - 2018 academic year.</p>
                </div>
             </div>
           </BrowserRouter>

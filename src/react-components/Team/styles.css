@@ -117,13 +117,13 @@ html {
     margin-bottom: 20px;
 }
 
-.biography, .description{
+.biography, .learn-more{
     font-family: Tahoma, Geneva, sans-serif;
     font-size: 16px;
     color: black;
 }
 
-.description{
+.learn-more{
   text-align: center;
 }
 
