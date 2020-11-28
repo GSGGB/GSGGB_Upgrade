@@ -1,0 +1,19 @@
+
+/* Centralize the executive photo, name and description in modals on mobile screens */
+/* Increase the padding between the photo and the name */
+@media (max-width: 992px){
+  .enlarged-executive-photo{
+    padding: 12px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .name{
+    text-align: center;
+  }
+
+  .position{
+    text-align: center;
+  }
+}

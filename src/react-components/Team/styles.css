@@ -1,0 +1,134 @@
+/* Team */
+html {
+    scroll-behavior: smooth;
+}
+
+.grid-container{
+  display: grid;
+  justify-content: space-evenly;
+}
+
+.team{
+  padding-top: 20px;
+  padding-bottom: 25px;
+  background-color: white;
+}
+
+/* Team Sections */
+.team-subtitle{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 38px;
+    text-align: center;
+    color: black;
+    margin-bottom: 60px;
+    margin-top: 30px;
+}
+
+.team-name{
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+/* End of Team Sections */
+
+/* Team Executive Buttons */
+.executive-photo{
+    border-radius: 60%;
+    width: 190px;
+    height: 190px;
+    cursor: pointer;
+    border: none !important;
+    outline-color: transparent !important;
+    background: none !important;
+    display: block;
+}
+
+.executive-photo:focus{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.executive-photo:hover {
+     opacity: 0.7;
+}
+
+.executive-name{
+    color: black;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    margin-left: 30px;
+}
+
+.executive-position{
+    color: white;
+    text-align: center;
+}
+/* End of Team Executive Buttons */
+
+/* Anchor Links */
+#conference:before, #marketing:before, #affairs:before{
+   content: "";
+   display: block;
+   height: 150px;
+   margin-top: -150px;
+}
+
+#affairs:before, #mentorship:before, #events:before ,#jigg:before, #tech-and-innovations:before{
+   content: "";
+   display: block;
+   height: 130px;
+   margin-top: -130px;
+}
+
+#senior-staff:before{
+  content: "";
+  display: block;
+  height: 160px;
+  margin-top: -160px;
+}
+/* End of Anchor Links */
+
+/* Team Executives Modals */
+.enlarged-executive-photo{
+    border-radius: 50%;
+    width: 225px;
+	  height: 225px;
+    margin-top: 20px;
+}
+
+.name{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+.position{
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #4c4c4c;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.divider{
+    border-width: 1px;
+    border-color: #4c4c4c;
+    margin-bottom: 20px;
+}
+
+.biography, .description{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 16px;
+    color: black;
+}
+
+.description{
+  text-align: center;
+}
+
+.modal-header {
+    border-bottom: 0px !important;
+}
+/* End of Team Executives Modals */
+/* End of Team */
