@@ -1,11 +1,11 @@
 /* PLATINUM SPONSORS */
 export const PLATINUM = [
   {name: "peros",
-   image: "../sponsors/peros.png",
+   image: require("./static/sponsors/peros.png"),
    link: "http://www.peros.fr/"
   },
   {name: "trillium",
-   image: "../sponsors/trillium.jpg",
+   image: require("./static/sponsors/trillium.jpg"),
    link: "https://trilliumtherapeutics.com/trillium-home/default.aspx"
   }
 ]
