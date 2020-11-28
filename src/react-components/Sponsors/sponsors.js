@@ -56,11 +56,11 @@ export const BRONZE = [
 
 /* PARNTER SPONSORS */
 export const PARTNERS = [
-  {name: "partner-landscape",
+  {name: "ssscr",
    image: require("./static/sponsors/ssscr.jpg"),
    link: "http://ssscr.sa.utoronto.ca/"
   },
-  {name: "partner-square",
+  {name: "stem-fellowship-uoft",
    image: require("./static/sponsors/stem-fellowship-uoft.png"),
    link: "https://www.facebook.com/stemfellowshipuoft/"
   },

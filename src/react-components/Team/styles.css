@@ -15,12 +15,18 @@ html {
   background-color: white;
 }
 
-.white-background{
+.white-background-section{
     background-color: white;
+    font-family: Tahoma, Geneva, sans-serif;
 }
 
-.whitesmoke-background{
+.cloud-background-section{
     background-color: whitesmoke;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.section-separator{
+    margin: 0px;
 }
 
 /* Team Sections */

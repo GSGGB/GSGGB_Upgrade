@@ -1,14 +1,16 @@
 /* "Our Sponsors" */
 .page-title{
-    font-family: Georgia, serif;
+    font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
     color: black;
+    text-align: center;
 }
 
 /* "Thank-you..." */
 .page-subtitle{
-    font-family: Georgia, serif;
+    font-family: Tahoma, Geneva, sans-serif;
     color: #4c4c4c;
+    text-align: center;
 }
 
 /* 1 hr only */
@@ -27,40 +29,47 @@
     text-align: center;
 }
 
+.white-background-section{
+    background-color: white;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.cloud-background-section{
+    background-color: whitesmoke;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+#logo-spacing{
+    display: grid;
+}
 
 /* Sponsors title for each section */
-.platinum-subtitle{
-    font-family: Georgia, serif;
+.platinum-header{
     font-weight: bold;
     color: #7F7679;
 }
 
-.gold-subtitle{
-    font-family: Georgia, serif;
+.gold-header{
     font-weight: bold;
     color: #D4AF37;
 }
 
-.silver-subtitle{
-    font-family: Georgia, serif;
+.silver-header{
     font-weight: bold;
     color: #C0C0C0;
 }
 
-.bronze-subtitle{
-    font-family: Georgia, serif;
+.bronze-header{
     font-weight: bold;
     color: #CD7F32;
 }
 
-.partner-subtitle{
-    font-family: Georgia, serif;
+.partner-header{
     font-weight: bold;
     color: black;
 }
 
-.orange-subtitle{
-    font-family: Georgia, serif;
+.orange-header{
     font-weight: bold;
     color: darkorange;
 }
@@ -134,13 +143,13 @@
 
 
 /* PARTNER SECTION */
-.partner-landscape-logo{
+.ssscr-logo{
     width: 225px;
     height: 150px;
     margin-bottom: 50px;
 }
 
-.partner-square-logo, .carrm-logo, .heart-logo, .wbc-logo, .bioethics-logo{
+.stem-fellowship-uoft-logo, .carrm-logo, .heart-logo, .wbc-logo, .bioethics-logo{
     width: 150px;
     height: 150px;
     margin-bottom: 50px;

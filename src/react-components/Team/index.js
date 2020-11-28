@@ -52,68 +52,117 @@ const Team = () => {
 
     return (
           <BrowserRouter forceRefresh={true}>
-          <div className="team">
-              <div class="container">
+              <div class="white-background-section">
                   <div>
-                    <h3 className="team-name" id="senior-staff">Senior Staff</h3>
-                    <Row className="grid-container team-members">
-                      {SENIOR_STAFF.map(renderExec)}
-                    </Row>
+                      <br /><br /><br />
+                      <h3 className="team-name" id="senior-staff">Senior Staff</h3>
+                      <br />
+                      <Row className="grid-container team-members">
+                        {SENIOR_STAFF.map(renderExec)}
+                      </Row>
                   </div>
+              </div>
+
+              <div class="cloud-background-section">
                   <div>
-                    <h3 className="team-name" id="conference">Conference</h3>
-                    <Row className="grid-container team-members">
-                      {CONFERENCE.map(renderExec)}
-                    </Row>
+                      <hr class="section-separator" />
+                      <br /><br />
+                      <h3 className="team-name" id="conference">Conference</h3>
+                      <br />
+                      <Row className="grid-container team-members">
+                        {CONFERENCE.map(renderExec)}
+                      </Row>
                   </div>
+              </div>
+
+              <div class="white-background-section">
                   <div>
-                    <h3 className="team-name" id="marketing">Marketing</h3>
-                    <Row className="grid-container team-members">
-                      {MARKETING.map(renderExec)}
-                    </Row>
+                      <hr class="section-separator" />
+                      <br /><br />
+                      <h3 className="team-name" id="marketing">Marketing</h3>
+                      <br />
+                      <Row className="grid-container team-members">
+                        {MARKETING.map(renderExec)}
+                      </Row>
                   </div>
+              </div>
+
+              <div class="cloud-background-section">
                   <div>
-                    <h3 className="team-name" id="affairs">Affairs</h3>
-                    <Row className="grid-container team-members">
-                      {AFFAIRS.map(renderExec)}
-                    </Row>
+                      <hr class="section-separator" />
+                      <br /><br />
+                      <h3 className="team-name" id="affairs">Affairs</h3>
+                      <br />
+                      <Row className="grid-container team-members">
+                        {AFFAIRS.map(renderExec)}
+                      </Row>
                   </div>
+              </div>
+
+              <div class="white-background-section">
                   <div>
-                    <h3 className="team-name" id="mentorship">Mentorship</h3>
-                    <Row className="grid-container team-members">
-                      {MENTORSHIP.map(renderExec)}
-                    </Row>
+                      <hr class="section-separator" />
+                      <br /><br />
+                      <h3 className="team-name" id="mentorship">Mentorship</h3>
+                      <br />
+                      <Row className="grid-container team-members">
+                        {MENTORSHIP.map(renderExec)}
+                      </Row>
                   </div>
+              </div>
+
+              <div class="cloud-background-section">
                   <div>
-                    <h3 className="team-name" id="events">Events</h3>
-                    <Row className="grid-container team-members">
-                      {EVENTS.map(renderExec)}
-                    </Row>
+                      <hr class="section-separator" />
+                      <br /><br />
+                      <h3 className="team-name" id="events">Events</h3>
+                      <br />
+                      <Row className="grid-container team-members">
+                        {EVENTS.map(renderExec)}
+                      </Row>
                   </div>
+              </div>
+
+              <div class="white-background-section">
                   <div>
-                    <h3 className="team-name" id="tech-and-innovations">Technology &amp; Innovations</h3>
-                    <Row className="grid-container team-members">
-                      {TECH_INNOVATIONS.map(renderExec)}
-                    </Row>
+                      <hr class="section-separator" />
+                      <br /><br />
+                      <h3 className="team-name" id="tech-and-innovations">Technology &amp; Innovations</h3>
+                      <br />
+                      <Row className="grid-container team-members">
+                        {TECH_INNOVATIONS.map(renderExec)}
+                      </Row>
                   </div>
+              </div>
+
+              <div class="cloud-background-section">
                   <div>
-                    <h3 className="team-name" id="jigg">JIGG</h3>
-                    <Row className="grid-container team-members">
-                      {JIGG.map(renderExec)}
-                    </Row>
+                      <hr class="section-separator" />
+                      <br /><br />
+                      <h3 className="team-name" id="jigg">JIGG</h3>
+                      <br />
+                      <Row className="grid-container team-members">
+                        {JIGG.map(renderExec)}
+                      </Row>
+                      <br />
                   </div>
-                  <hr className="divider" />
+              </div>
+
+              <div class="white-background-section">
                   <div>
-                    <h3 className="team-name">Alumni</h3>
-                    <br />
-                    <p className="learn-more">You can click <a href="https://www.gsggb.org/team2019-2020">here</a> to learn more about our previous GSGGB executives from the 2019 - 2020 academic year.</p>
-                    <p className="learn-more">You can click <a href="https://www.gsggb.org/team2018-2019">here</a> to learn more about our previous GSGGB executives from the 2018 - 2019 academic year.</p>
-                    <p className="learn-more">You can click <a href="https://www.gsggb.org/team2017-2018">here</a> to learn more about our previous GSGGB executives from the 2017 - 2018 academic year.</p>
+                      <hr class="section-separator" />
+                      <br /><br />
+                      <h3 className="team-name">Alumni</h3>
+                      <br />
+                      <p className="learn-more">You can click <a href="https://www.gsggb.org/team2019-2020">here</a> to learn more about our previous GSGGB executives from the 2019 - 2020 academic year.</p>
+                      <p className="learn-more">You can click <a href="https://www.gsggb.org/team2018-2019">here</a> to learn more about our previous GSGGB executives from the 2018 - 2019 academic year.</p>
+                      <p className="learn-more">You can click <a href="https://www.gsggb.org/team2017-2018">here</a> to learn more about our previous GSGGB executives from the 2017 - 2018 academic year.</p>
+                      <br />
                   </div>
-               </div>
-            </div>
-          </BrowserRouter>
-        );
+              </div>
+
+      </BrowserRouter>
+    );
 }
 
 export default Team;

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
-import { Image, Row, Col, Modal, ModalBody, Card, Button } from "react-bootstrap";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Image, Row, Col} from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 
 import "./styles.css";
@@ -21,39 +21,76 @@ const Sponsors = () => {
 
     return (
           <BrowserRouter forceRefresh={true}>
-          <div>
-              <div class="container">
-                  <br />
-                  <h3 className="platinum-subtitle">Platinum</h3>
+            <div class="white-background-section">
+                <div class="container" id="logo-spacing">
+                    <br /><br />
+                    <h2 class="page-title">Our Sponsors</h2>
+                    <br />
+                    <h4 class="page-subtitle">Thank-you to our sponsors for supporting GSGGB and its chapters!</h4>
+                    <br />
+                    <hr class="title-separator" />
+                    <br />
+                    <h4 class="platinum-header">PLATINUM: Awarded to sponsors with a contribution of $1000 or more.</h4>
+                    <br />
                     <Row>
                       {PLATINUM.map(renderSponsors)}
                     </Row>
-                  <br />
-                  <h3 className="gold-subtitle">Gold</h3>
+                </div>
+            </div>
+            <div class="cloud-background-section">
+                <div class="container" id="logo-spacing">
+                    <hr class="section-separator" />
+                    <br /><br />
+                    <h4 class="gold-header">GOLD: Awarded to sponsors with a contribution of $500 or more.</h4>
+                    <br />
                     <Row>
                       {GOLD.map(renderSponsors)}
                     </Row>
-                  <br />
-                  <h3 className="silver-subtitle">Silver</h3>
+                </div>
+            </div>
+            <div class="white-background-section">
+                <div class="container" id="logo-spacing">
+                    <hr class="section-separator" />
+                    <br /><br />
+                    <h4 class="silver-header">SILVER: Awarded to sponsors with a contribution of $250 or more.</h4>
+                    <br />
                     <Row>
                       {SILVER.map(renderSponsors)}
                     </Row>
-                  <br />
-                  <h3 className="bronze-subtitle">Bronze</h3>
+                </div>
+            </div>
+            <div class="cloud-background-section">
+                <div class="container" id="logo-spacing">
+                    <hr class="section-separator" />
+                    <br /><br />
+                    <h4 class="bronze-header">BRONZE: Awarded to sponsors with a contribution of $100 or more.</h4>
+                    <br />
                     <Row>
                       {BRONZE.map(renderSponsors)}
                     </Row>
-                  <br />
-                  <h3 className="partner-subtitle">Partners</h3>
+                </div>
+            </div>
+            <div class="white-background-section">
+                <div class="container" id="logo-spacing">
+                    <hr class="section-separator" />
+                    <br /><br />
+                    <h4 class="partner-header">Thanks to our U of T club partners for their support!</h4>
+                    <br />
                     <Row>
                       {PARTNERS.map(renderSponsors)}
                     </Row>
-                  <h3 className="orange-subtitle">Special Thank You</h3>
-                     <Row>
-                      {SPECIAL.map(renderSponsors)}
+                </div>
+            </div>
+            <div class="cloud-background-section">
+                <div class="container" id="logo-spacing">
+                    <hr class="section-separator" />
+                    <br /><br />
+                    <h4 class="orange-header">A special thank-you to the Rare Disease Foundation for our partnership!</h4>
+                    <br />
+                    <Row>
+                     {SPECIAL.map(renderSponsors)}
                     </Row>
-                  <br />
-               </div>
+                </div>
             </div>
           </BrowserRouter>
         );
