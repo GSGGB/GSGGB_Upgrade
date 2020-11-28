@@ -7,7 +7,7 @@ export const SENIOR_STAFF = [
    firstname: "Aisha",
    id: "aishaf-1"
   },
-  {name: "Farbod Khourami",
+  {name: "Farbod Khorrami",
    image: require("./static/team-photos/farbod.jpg"),
    position: "Co-President",
    biography: "Farbod Khorrami is a fourth-year undergraduate student, and he is one of the Co-Presidents of GSGGB. He double majors in neuroscience and physiology (as he is very interested in neuroanatomy and function of the human brain and neurodegenerative diseases of the nervous system). Currently, he is involved in research on Parkinson’s Disease and its pathology in Dr Kovacs’s lab at Toronto Western Hospital. Other than that, he is a research volunteer in the Renal Physiology Lab at Toronto General Hospital and the Co-President of the UofT chapter of SciNapse (Undergraduate Science Case Competition). He plans to apply to medical school and become a medical doctor. To become familiar with different areas of research, he joined Allevio Pain Clinic as a research assistant. Neuroscience and orthopedics are his main interests and he hopes to pursue a career in these two fields. Along with the rest of the team, he looks forward to meeting all of the genetics enthusiasts!",

@@ -23,7 +23,7 @@ body, html{
 /* End of Banner */
 
 /* About Us */
-.about-us{
+.about-us-section{
   padding-top: 100px;
   padding-bottom: 25px;
   background-color: white;
@@ -69,8 +69,14 @@ body, html{
 }
 /* End of About Us */
 
+/* Anchor Links */
+h2{
+  scroll-margin-top: 20rem;
+}
+/* End of Anchor Links */
+
 /* Announcements */
-.announcements{
+.announcements-section{
   padding-top: 100px;
   padding-bottom: 75px;
   background-color: white;

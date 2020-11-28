@@ -20,7 +20,8 @@ const Team = () => {
               <Image className="executive-photo" src={exec.image} key={exec.firstname} />
             </Button>
             <div>
-              <h4 className="executive-name">{exec.firstname}</h4>
+              <h3 className="executive-name">{exec.name}</h3>
+              <h5 className="executive-position">{exec.position}</h5>
             </div>
           </div>
 
@@ -53,53 +54,62 @@ const Team = () => {
           <BrowserRouter forceRefresh={true}>
           <div className="team">
               <div class="container">
-                  <br />
-                  <h3 className="team-name" id="senior-staff">Senior Staff</h3>
-                    <Row className="grid-container team-subtitle">
-                    {SENIOR_STAFF.map(renderExec)}
+                  <div>
+                    <h3 className="team-name" id="senior-staff">Senior Staff</h3>
+                    <Row className="grid-container team-members">
+                      {SENIOR_STAFF.map(renderExec)}
                     </Row>
-                  <br />
-                  <h3 className="team-name" id="conference">Conference</h3>
-                  <Row className="grid-container team-subtitle">
-                    {CONFERENCE.map(renderExec)}
-                  </Row>
-                  <br />
-                  <h3 className="team-name" id="marketing">Marketing</h3>
-                  <Row className="grid-container team-subtitle">
-                    {MARKETING.map(renderExec)}
-                  </Row>
-                  <br />
-                  <h3 className="team-name" id="affairs">Affairs</h3>
-                  <Row className="grid-container team-subtitle">
-                    {AFFAIRS.map(renderExec)}
-                  </Row>
-                  <br />
-                  <h3 className="team-name" id="mentorship">Mentorship</h3>
-                  <Row className="grid-container team-subtitle">
-                    {MENTORSHIP.map(renderExec)}
-                  </Row>
-                  <br />
-                  <h3 className="team-name" id="events">Events</h3>
-                  <Row className="grid-container team-subtitle">
-                    {EVENTS.map(renderExec)}
-                  </Row>
-                  <br />
-                  <h3 className="team-name" id="tech-and-innovations">Technology &amp; Innovations</h3>
-                  <Row className="grid-container team-subtitle">
-                    {TECH_INNOVATIONS.map(renderExec)}
-                  </Row>
-                  <br />
-                  <h3 className="team-name" id="jigg">JIGG</h3>
-                  <Row className="grid-container team-subtitle">
-                    {JIGG.map(renderExec)}
-                  </Row>
-                  <br />
+                  </div>
+                  <div>
+                    <h3 className="team-name" id="conference">Conference</h3>
+                    <Row className="grid-container team-members">
+                      {CONFERENCE.map(renderExec)}
+                    </Row>
+                  </div>
+                  <div>
+                    <h3 className="team-name" id="marketing">Marketing</h3>
+                    <Row className="grid-container team-members">
+                      {MARKETING.map(renderExec)}
+                    </Row>
+                  </div>
+                  <div>
+                    <h3 className="team-name" id="affairs">Affairs</h3>
+                    <Row className="grid-container team-members">
+                      {AFFAIRS.map(renderExec)}
+                    </Row>
+                  </div>
+                  <div>
+                    <h3 className="team-name" id="mentorship">Mentorship</h3>
+                    <Row className="grid-container team-members">
+                      {MENTORSHIP.map(renderExec)}
+                    </Row>
+                  </div>
+                  <div>
+                    <h3 className="team-name" id="events">Events</h3>
+                    <Row className="grid-container team-members">
+                      {EVENTS.map(renderExec)}
+                    </Row>
+                  </div>
+                  <div>
+                    <h3 className="team-name" id="tech-and-innovations">Technology &amp; Innovations</h3>
+                    <Row className="grid-container team-members">
+                      {TECH_INNOVATIONS.map(renderExec)}
+                    </Row>
+                  </div>
+                  <div>
+                    <h3 className="team-name" id="jigg">JIGG</h3>
+                    <Row className="grid-container team-members">
+                      {JIGG.map(renderExec)}
+                    </Row>
+                  </div>
                   <hr className="divider" />
-                  <h3 className="team-name">Alumni</h3>
+                  <div>
+                    <h3 className="team-name">Alumni</h3>
                     <br />
                     <p className="learn-more">You can click <a href="https://www.gsggb.org/team2019-2020">here</a> to learn more about our previous GSGGB executives from the 2019 - 2020 academic year.</p>
                     <p className="learn-more">You can click <a href="https://www.gsggb.org/team2018-2019">here</a> to learn more about our previous GSGGB executives from the 2018 - 2019 academic year.</p>
                     <p className="learn-more">You can click <a href="https://www.gsggb.org/team2017-2018">here</a> to learn more about our previous GSGGB executives from the 2017 - 2018 academic year.</p>
+                  </div>
                </div>
             </div>
           </BrowserRouter>

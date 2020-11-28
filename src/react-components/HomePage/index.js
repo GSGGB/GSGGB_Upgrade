@@ -35,7 +35,7 @@ class HomePage extends Component {
             <div className="banner">
               <Image id="banner-photo" alt="GSGGB Banner" src={banner} />
             </div>
-            <div className="about-us">
+            <div className="about-us-section">
               <div className="container">
                 <h2 className="section-title" id="about-us">About Us</h2>
                 <hr className="title-separator"></hr>
@@ -93,9 +93,9 @@ class HomePage extends Component {
               </div>
             </div>
 
-            <div className="announcements" id = "announcements">
+            <div className="announcements-section">
               <div className="container">
-                <h2 className="section-title">Announcements</h2>
+                <h2 className="section-title" id="announcements">Announcements</h2>
                 <hr className="title-separator"></hr>
                 <span>{this.state.announcements}</span>
               </div>

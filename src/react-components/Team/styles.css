@@ -4,6 +4,7 @@ html {
 }
 
 .grid-container{
+  font-family: Tahoma, Geneva, sans-serif;
   display: grid;
   justify-content: space-evenly;
 }
@@ -14,9 +15,16 @@ html {
   background-color: white;
 }
 
+.white-background{
+    background-color: white;
+}
+
+.whitesmoke-background{
+    background-color: whitesmoke;
+}
+
 /* Team Sections */
-.team-subtitle{
-    font-family: Tahoma, Geneva, sans-serif;
+.team-members{
     font-size: 38px;
     text-align: center;
     color: black;
@@ -54,39 +62,29 @@ html {
 }
 
 .executive-name{
+    font-family: Tahoma, Geneva, sans-serif;
     color: black;
     margin-top: 15px;
-    margin-bottom: 20px;
-    font-size: 24px;
+    margin-bottom: 10px;
+    font-size: 20px;
     margin-left: 30px;
 }
 
 .executive-position{
-    color: white;
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #4c4c4c;
     text-align: center;
+    margin-left: 30px;
+    font-size: 18px;
+    margin-bottom: 40px;
+    font-style: italic;
+
 }
 /* End of Team Executive Buttons */
 
 /* Anchor Links */
-#conference:before, #marketing:before, #affairs:before{
-   content: "";
-   display: block;
-   height: 150px;
-   margin-top: -150px;
-}
-
-#affairs:before, #mentorship:before, #events:before ,#jigg:before, #tech-and-innovations:before{
-   content: "";
-   display: block;
-   height: 130px;
-   margin-top: -130px;
-}
-
-#senior-staff:before{
-  content: "";
-  display: block;
-  height: 160px;
-  margin-top: -160px;
+h3{
+  scroll-margin-top: 10rem;
 }
 /* End of Anchor Links */
 
