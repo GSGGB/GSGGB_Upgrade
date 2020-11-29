@@ -1,7 +1,6 @@
 
-/* Centralize the executive photo, name and description in modals on mobile screens */
-/* Increase the padding between the photo and the name */
 @media (max-width: 992px){
+  /* Increase the padding between the photo and the name */
   .enlarged-executive-photo{
     padding: 12px;
     display: block;
@@ -9,24 +8,18 @@
     margin-right: auto;
   }
 
-  .name{
+  /* Remove bottom margin from the column containing the enlarged executive photo*/
+  .photo-column{
+    margin-bottom: 0px;
+  }
+
+  /* Centralize the executive photo, name and description in modals on mobile screens */
+  .name, .position, .biography{
     text-align: center;
   }
 
-  .position{
-    text-align: center;
-  }
-
-  .executive-name, .executive-position{
-    margin-left: 0px;
-  }
-}
-
-@media (max-width: 765px){
-  .executive-photo{
-    display: block;
-    width: 180px;
-    height: 180px;
-    margin-right: 25px;
+  /* Centralize the executive photo, name and description (non-modal) on mobile screens */
+  .executive-photo,.executive-name, .executive-position{
+    margin-right: 15px;
   }
 }

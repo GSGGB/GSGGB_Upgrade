@@ -33,7 +33,7 @@ const Team = () => {
             <Modal.Body>
               <div className="container">
                 <Row>
-                  <Col lg={4}>
+                  <Col lg={4} className="photo-column">
                     <Image className="enlarged-executive-photo" src={exec.image} />
                   </Col>
                   <Col lg={8}>
@@ -60,8 +60,8 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {SENIOR_STAFF.map(renderExec)}
                       </Row>
-                      <br />
                   </div>
+                  <br />
               </div>
 
               <div class="cloud-background-section">
@@ -73,8 +73,8 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {CONFERENCE.map(renderExec)}
                       </Row>
-                      <br />
                   </div>
+                  <br />
               </div>
 
               <div class="white-background-section">
@@ -86,8 +86,8 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {MARKETING.map(renderExec)}
                       </Row>
-                      <br />
                   </div>
+                  <br />
               </div>
 
               <div class="cloud-background-section">
@@ -99,8 +99,8 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {AFFAIRS.map(renderExec)}
                       </Row>
-                      <br />
                   </div>
+                  <br />
               </div>
 
               <div class="white-background-section">
@@ -112,8 +112,8 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {MENTORSHIP.map(renderExec)}
                       </Row>
-                      <br />
                   </div>
+                  <br />
               </div>
 
               <div class="cloud-background-section">
@@ -125,8 +125,8 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {EVENTS.map(renderExec)}
                       </Row>
-                      <br />
                   </div>
+                  <br />
               </div>
 
               <div class="white-background-section">
@@ -138,8 +138,8 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {TECH_INNOVATIONS.map(renderExec)}
                       </Row>
-                      <br />
                   </div>
+                  <br />
               </div>
 
               <div class="cloud-background-section">
@@ -151,8 +151,8 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {JIGG.map(renderExec)}
                       </Row>
-                      <br />
                   </div>
+                  <br />
               </div>
 
               <div class="white-background-section">
