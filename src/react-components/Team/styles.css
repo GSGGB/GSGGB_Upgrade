@@ -9,12 +9,6 @@ html {
   justify-content: space-evenly;
 }
 
-.team{
-  padding-top: 20px;
-  padding-bottom: 25px;
-  background-color: white;
-}
-
 .white-background-section{
     background-color: white;
     font-family: Tahoma, Geneva, sans-serif;
@@ -55,7 +49,6 @@ html {
     border: none !important;
     outline-color: transparent !important;
     background: none !important;
-    display: block;
 }
 
 .executive-photo:focus{
@@ -106,6 +99,7 @@ h3{
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
     color: black;
+    text-align: center;
 }
 
 .position{
@@ -113,6 +107,7 @@ h3{
     color: #4c4c4c;
     margin-bottom: 20px;
     font-style: italic;
+    text-align: center;
 }
 
 .divider{
@@ -125,6 +120,7 @@ h3{
     font-family: Tahoma, Geneva, sans-serif;
     font-size: 16px;
     color: black;
+    text-align: center;
 }
 
 .learn-more{

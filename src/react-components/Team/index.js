@@ -60,6 +60,7 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {SENIOR_STAFF.map(renderExec)}
                       </Row>
+                      <br />
                   </div>
               </div>
 
@@ -72,6 +73,7 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {CONFERENCE.map(renderExec)}
                       </Row>
+                      <br />
                   </div>
               </div>
 
@@ -84,6 +86,7 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {MARKETING.map(renderExec)}
                       </Row>
+                      <br />
                   </div>
               </div>
 
@@ -96,6 +99,7 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {AFFAIRS.map(renderExec)}
                       </Row>
+                      <br />
                   </div>
               </div>
 
@@ -108,6 +112,7 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {MENTORSHIP.map(renderExec)}
                       </Row>
+                      <br />
                   </div>
               </div>
 
@@ -120,6 +125,7 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {EVENTS.map(renderExec)}
                       </Row>
+                      <br />
                   </div>
               </div>
 
@@ -132,6 +138,7 @@ const Team = () => {
                       <Row className="grid-container team-members">
                         {TECH_INNOVATIONS.map(renderExec)}
                       </Row>
+                      <br />
                   </div>
               </div>
 

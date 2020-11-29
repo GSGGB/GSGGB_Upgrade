@@ -16,4 +16,17 @@
   .position{
     text-align: center;
   }
+
+  .executive-name, .executive-position{
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 765px){
+  .executive-photo{
+    display: block;
+    width: 180px;
+    height: 180px;
+    margin-right: 25px;
+  }
 }
