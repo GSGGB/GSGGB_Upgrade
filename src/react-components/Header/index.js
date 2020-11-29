@@ -34,18 +34,18 @@ class Header extends Component {
                       activeKey={location.pathname}
                   >
                     <NavDropdown title = "HOME" id="dropdown">
-                        <NavDropdown.Item href = "/home#about-us" id="dropdown-item">
-                            ABOUT US
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href = "/home#announcements" id="dropdown-item">
-                            ANNOUNCEMENTS
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href = "/home#latest-research" id="dropdown-item">
-                            LATEST RESEARCH
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href = "/home#contact-us" id="dropdown-item">
-                            CONTACT US
-                        </NavDropdown.Item>
+                          <NavDropdown.Item href = "/home#about-us" id="dropdown-item">
+                              ABOUT US
+                          </NavDropdown.Item>
+                          <NavDropdown.Item href = "/home#announcements" id="dropdown-item">
+                              ANNOUNCEMENTS
+                          </NavDropdown.Item>
+                          <NavDropdown.Item href = "/home#latest-research" id="dropdown-item">
+                              LATEST RESEARCH
+                          </NavDropdown.Item>
+                          <NavDropdown.Item href = "/home#contact-us" id="dropdown-item">
+                              CONTACT US
+                          </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title = "TEAM" id="dropdown">
                         <NavDropdown.Item href = "/team#senior-staff" id="dropdown-item">
@@ -73,6 +73,7 @@ class Header extends Component {
                             JIGG
                         </NavDropdown.Item>
                     </NavDropdown>
+
                     <Nav.Item>
                         <Nav.Link href="/events" className="navbar-item">
                             EVENTS
