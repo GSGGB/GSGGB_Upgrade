@@ -33,10 +33,8 @@ const Team = () => {
             <Modal.Body>
               <div className="container">
                 <Row>
-                  <Col lg={4} className="photo-column">
+                  <Col lg={12}>
                     <Image className="enlarged-executive-photo" src={exec.image} />
-                  </Col>
-                  <Col lg={8}>
                     <h3 class="name">{exec.name}</h3>
                     <h5 class="position">{exec.position}</h5>
                     <hr class="divider" />
