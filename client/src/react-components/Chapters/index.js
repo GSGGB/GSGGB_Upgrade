@@ -10,6 +10,11 @@ import mcmaster_logo from "./static/mcmaster-logo.png";
 import queens_logo from "./static/queens-logo.png";
 
 class Chapters extends Component {
+  constructor(props) {
+      super(props);
+      this.props.history.push("/login");
+  }
+
   render() {
     return (
         <div className="chapters-page">

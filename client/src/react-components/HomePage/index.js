@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Image, Row, Col, Modal, ModalBody} from "react-bootstrap";
+import { Image, Row, Col, Button, Form, Modal, ModalBody} from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 
 import "./styles.css";
@@ -12,9 +12,7 @@ import conferencePhoto from "./static/conference-photo.jpg";
 class HomePage extends Component {
     constructor(props) {
       super(props);
-      this.myRef = React.createRef();
-      this.username = localStorage.getItem("username");
-      this.accountType = localStorage.getItem("accountType");
+      this.props.history.push("/home");
       this.num = 0;
     }
 
@@ -24,10 +22,6 @@ class HomePage extends Component {
       announcementModalHeader: "",
       announcementModalForm: "",
     };
-
-    closeModal() {
-      this.setState({ displayModal: false });
-    }
 
     render() {
         return (
@@ -94,24 +88,75 @@ class HomePage extends Component {
             </div>
 
             <div className="announcements-section">
+                    <div className="container">
+                        <h2 className="section-title" id="announcements">Announcements</h2>
+                        <Button
+                            id="add-announcement-button"
+                            variant="info"
+                            onClick={() => this.newAnnouncementForm()}
+                        >
+                            Add announcement
+                        </Button>
+                        <hr className="title-separator"></hr>
+                        <span>{this.state.announcements}</span>
+                    </div>
+                </div>
+                <Modal
+                    show={this.state.displayModal}
+                    onHide={() => this.closeModal()}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                >
+                    <ModalHeader closeButton>{this.state.announcementModalHeader}</ModalHeader>
+                    <ModalBody>{this.state.announcementModalForm}</ModalBody>
+                </Modal>
+
+            <div className="latest-research-section">
               <div className="container">
-                <h2 className="section-title" id="announcements">Announcements</h2>
+                <h2 className="section-title" id="latest-research">Latest Research</h2>
                 <hr className="title-separator"></hr>
-                <span>{this.state.announcements}</span>
+
               </div>
             </div>
-            <Modal
-              show={this.state.displayModal}
-              onHide={() => this.closeModal()}
-              size="lg"
-              aria-labelledby="contained-modal-title-vcenter"
-              centered
-              >
-              <ModalHeader closeButton>{this.state.announcementModalHeader}</ModalHeader>
-              <ModalBody>{this.state.announcementModalForm}</ModalBody>
-            </Modal>
+
+            <div className="contact-us-section">
+              <div className="container">
+                <h2 className="section-title" id="contact-us">Contact Us</h2>
+                <hr className="title-separator"></hr>
+
+              </div>
+            </div>
+
           </BrowserRouter>
         );
+    }
+
+    getAnnouncements() {
+        // the URL for the request
+        const url = "/announcementsDatabase";
+
+        // Since this is a GET request, simply call fetch on the URL
+        fetch(url)
+            .then(res => {
+                if (res.status === 200) {
+                    // return a promise that resolves with the JSON body
+                    return res.json();
+                } else {
+                    alert("Could not get announcements");
+                }
+            })
+            .then(json => {
+                // the resolved promise with the JSON body
+                console.log(json)
+                this.setState({announcements : []})
+                for (let announcement of json.announcements) {
+                    this.addAnnouncement(announcement._id, announcement.userId, announcement.paragraph)
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 }
 
