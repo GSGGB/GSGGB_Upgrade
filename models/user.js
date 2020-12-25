@@ -2,7 +2,6 @@
 'use strict';
 
 const mongoose = require('mongoose')
-const validator = require('validator')
 const bcrypt = require('bcryptjs')
 
 // Making a Mongoose model a little differently: a Mongoose Schema

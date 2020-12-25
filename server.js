@@ -11,7 +11,6 @@ const { mongoose } = require("./db/mongoose");
 mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
-const { Student } = require("./models/student");
 const { User } = require("./models/user");
 
 // to validate object IDs
@@ -39,6 +38,7 @@ app.use(
     })
 );
 
+
 // A route to login and create a session
 app.post("/userDatabase/login", (req, res) => {
     const username = req.body.username;
@@ -64,6 +64,7 @@ app.post("/userDatabase/login", (req, res) => {
         });
 });
 
+
 // A route to logout a user
 app.get("/userDatabase/logout", (req, res) => {
     // Remove the session
@@ -80,6 +81,7 @@ app.get("/userDatabase/logout", (req, res) => {
     });
 });
 
+
 // A route to check if a use is logged in on the session cookie
 app.get("/userDatabase/check-session", (req, res) => {
     if (req.session.user) {
@@ -87,6 +89,31 @@ app.get("/userDatabase/check-session", (req, res) => {
     } else {
         res.status(401).send();
     }
+});
+
+
+/** User resource routes **/
+// a POST route to *create* a user account
+app.post("/userDatabase", (req, res) => {
+    // Create a new user using the User mongoose model
+    const user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password,
+        accountType: req.body.accountType
+    });
+
+    // Save user to the database
+    user.save().then(
+        (result) => {
+            res.send(result);
+        },
+        (error) => {
+            res.status(400).send(error); // 400 for bad request
+        }
+    );
 });
 
 

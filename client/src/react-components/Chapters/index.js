@@ -28,23 +28,31 @@ class Chapters extends Component {
                             <Col xl={6} className="text-center">
                                 <div>
                                     <h1 className="chapters-title">Our Chapters</h1>
-                                    <Link to="/home">
-                                        <Button className="chapters-button" id="uoft-button">
-                                            <Image id="uoft-logo" alt="UofT Logo" src={uoft_logo} />
-                                            University of Toronto
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        className="chapters-button"
+                                        id="uoft-button"
+                                        onClick={() => this.props.history.push("/home")}
+                                    >
+                                        <Image id="uoft-logo" alt="UofT Logo" src={uoft_logo} />
+                                        University of Toronto
+                                    </Button>
                                 </div>
                                 <br/>
                                 <div>
-                                    <Button className="chapters-button" id="mcmaster-button">
+                                    <Button
+                                        className="chapters-button"
+                                        id="mcmaster-button"
+                                    >
                                         <Image id="mcmaster-logo" alt="McMaster Logo" src={mcmaster_logo} />
                                         McMaster University
                                     </Button>
                                 </div>
                                 <br/>
                                 <div>
-                                    <Button className="chapters-button" id="queens-button">
+                                    <Button
+                                        className="chapters-button"
+                                        id="queens-button"
+                                    >
                                         <Image id="queens-logo" alt="Queen's Logo" src={queens_logo} />
                                         Queen's University
                                     </Button>
