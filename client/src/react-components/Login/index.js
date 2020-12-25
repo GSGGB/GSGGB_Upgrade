@@ -46,55 +46,55 @@ class Login extends Component {
                                       try again.
                                 </div>
 
-                              <Form>
-                                  <Form.Group>
-                                    <Form.Label id="login-label">
-                                       Username
-                                    </Form.Label>
+                                <Form>
+                                    <Form.Group>
+                                      <Form.Label id="login-label">
+                                         Username
+                                      </Form.Label>
 
-                                    <Form.Control
-                                        name="username"
-                                        id="username"
-                                        type="text"
-                                        placeholder="Username"
-                                        onChange={e => updateLoginCredentials(this, e.target)}
-                                        required
-                                    />
-                                  </Form.Group>
+                                      <Form.Control
+                                          name="username"
+                                          id="username"
+                                          type="text"
+                                          placeholder="Username"
+                                          onChange={e => updateLoginCredentials(this, e.target)}
+                                          required
+                                      />
+                                    </Form.Group>
 
-                                  <Form.Group>
-                                    <Form.Label id="login-label">
-                                       Password
-                                    </Form.Label>
+                                    <Form.Group>
+                                      <Form.Label id="login-label">
+                                         Password
+                                      </Form.Label>
 
-                                    <Form.Control
-                                        name="password"
-                                        id="password"
-                                        type="password"
-                                        placeholder="Password"
-                                        onChange={e => updateLoginCredentials(this, e.target)}
-                                        required
-                                    />
-                                  </Form.Group>
-                                  <Button
-                                      id="login-button"
-                                      onClick={() => login(this, app)}
-                                  >
-                                      LOGIN
-                                  </Button>
-                                  <hr />
-                                  <Button
-                                      id="homepage-button"
-                                      onClick={() => returnToHomePage(this)}
-                                  >
-                                      RETURN TO HOMEPAGE
-                                  </Button>
-                              </Form>
+                                      <Form.Control
+                                          name="password"
+                                          id="password"
+                                          type="password"
+                                          placeholder="Password"
+                                          onChange={e => updateLoginCredentials(this, e.target)}
+                                          required
+                                      />
+                                    </Form.Group>
+                                    <Button
+                                        id="login-button"
+                                        onClick={() => login(this, app)}
+                                    >
+                                        LOGIN
+                                    </Button>
+                                    <hr />
+                                    <Button
+                                        id="homepage-button"
+                                        onClick={() => returnToHomePage(this)}
+                                    >
+                                        RETURN TO HOMEPAGE
+                                    </Button>
+                                </Form>
                             </Col>
-                          </Row>
-                      </div>
-                  </BrowserRouter>
-              </div>
+                        </Row>
+                    </div>
+                </BrowserRouter>
+            </div>
         );
     }
 }

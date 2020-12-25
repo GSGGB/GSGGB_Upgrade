@@ -4,15 +4,15 @@ html {
 }
 
 .grid-container{
-  font-family: Tahoma, Geneva, sans-serif;
-  display: grid;
-  justify-content: space-evenly;
+    font-family: Tahoma, Geneva, sans-serif;
+    display: grid;
+    justify-content: space-evenly;
 }
 
 .team{
-  padding-top: 20px;
-  padding-bottom: 25px;
-  background-color: white;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    background-color: white;
 }
 
 .white-background-section{

@@ -9,15 +9,15 @@ import { PLATINUM, GOLD, SILVER, BRONZE, PARTNERS, SPECIAL } from './sponsors.js
 
 const Sponsors = () => {
 
-  const renderSponsors = (sponsor) => {
-    return (
-      <Col sm>
-          <div class="img-center">
-            <a href={sponsor.link} target="_blank"><Image className={`${sponsor.name}-logo`} src={sponsor.image} /></a>
-          </div>
-      </Col>
-    );
-  };
+    const renderSponsors = (sponsor) => {
+      return (
+        <Col sm>
+            <div class="img-center">
+                <a href={sponsor.link} target="_blank"><Image className={`${sponsor.name}-logo`} src={sponsor.image} /></a>
+            </div>
+        </Col>
+      );
+    };
 
     return (
           <BrowserRouter forceRefresh={true}>
@@ -33,7 +33,7 @@ const Sponsors = () => {
                     <h4 class="platinum-header">PLATINUM: Awarded to sponsors with a contribution of $1000 or more.</h4>
                     <br />
                     <Row>
-                      {PLATINUM.map(renderSponsors)}
+                        {PLATINUM.map(renderSponsors)}
                     </Row>
                 </div>
             </div>
@@ -44,7 +44,7 @@ const Sponsors = () => {
                     <h4 class="gold-header">GOLD: Awarded to sponsors with a contribution of $500 or more.</h4>
                     <br />
                     <Row>
-                      {GOLD.map(renderSponsors)}
+                        {GOLD.map(renderSponsors)}
                     </Row>
                 </div>
             </div>
@@ -55,7 +55,7 @@ const Sponsors = () => {
                     <h4 class="silver-header">SILVER: Awarded to sponsors with a contribution of $250 or more.</h4>
                     <br />
                     <Row>
-                      {SILVER.map(renderSponsors)}
+                        {SILVER.map(renderSponsors)}
                     </Row>
                 </div>
             </div>
@@ -66,7 +66,7 @@ const Sponsors = () => {
                     <h4 class="bronze-header">BRONZE: Awarded to sponsors with a contribution of $100 or more.</h4>
                     <br />
                     <Row>
-                      {BRONZE.map(renderSponsors)}
+                        {BRONZE.map(renderSponsors)}
                     </Row>
                 </div>
             </div>
@@ -77,7 +77,7 @@ const Sponsors = () => {
                     <h4 class="partner-header">Thanks to our U of T club partners for their support!</h4>
                     <br />
                     <Row>
-                      {PARTNERS.map(renderSponsors)}
+                        {PARTNERS.map(renderSponsors)}
                     </Row>
                 </div>
             </div>
@@ -88,7 +88,7 @@ const Sponsors = () => {
                     <h4 class="orange-header">A special thank-you to the Rare Disease Foundation for our partnership!</h4>
                     <br />
                     <Row>
-                     {SPECIAL.map(renderSponsors)}
+                        {SPECIAL.map(renderSponsors)}
                     </Row>
                 </div>
             </div>

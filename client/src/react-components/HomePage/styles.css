@@ -1,85 +1,85 @@
 /* Homepage */
 body, html{
-  overflow-x: hidden;
-  height: 100%;
-  margin: 0;
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
 }
 
 /* Banner */
 .banner{
-  background-color: #FEFBEA;
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-top: 25px;
-  padding-bottom: 25px;
+    background-color: #FEFBEA;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 #banner-photo{
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 /* End of Banner */
 
 /* About Us */
 .about-us-section{
-  padding-top: 100px;
-  padding-bottom: 25px;
-  background-color: white;
+    padding-top: 100px;
+    padding-bottom: 25px;
+    background-color: white;
 }
 
 #our-purpose{
-  margin-bottom: 100px;
+    margin-bottom: 100px;
 }
 
 #our-mission{
-  margin-top: 100px;
+    margin-top: 100px;
 }
 
 .section-title{
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #323232;
-  display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #323232;
+    display: inline-block;
 }
 
 .about-us-subheader{
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #4c4c4c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #4c4c4c;
 }
 
 .title-separator{
-  margin-top: 20px;
-  margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 #team-photo, #conference-photo{
-  width: 500px;
-  margin-left: 50px;
-  float: right;
-  display: inline-block;
+    width: 500px;
+    margin-left: 50px;
+    float: right;
+    display: inline-block;
 }
 
 .description{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: black;
 }
 /* End of About Us */
 
 /* Anchor Links */
 h2{
-  scroll-margin-top: 20rem;
+    scroll-margin-top: 20rem;
 }
 /* End of Anchor Links */
 
 /* Announcements */
 .announcements-section{
-  padding-top: 100px;
-  padding-bottom: 75px;
-  background-color: white;
+    padding-top: 100px;
+    padding-bottom: 75px;
+    background-color: white;
 }
 /* End of Announcements */
 /* End of Homepage */

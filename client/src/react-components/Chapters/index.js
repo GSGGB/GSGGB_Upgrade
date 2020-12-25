@@ -10,52 +10,52 @@ import mcmaster_logo from "./static/mcmaster-logo.png";
 import queens_logo from "./static/queens-logo.png";
 
 class Chapters extends Component {
-  constructor(props) {
-      super(props);
-      this.props.history.push("/login");
-  }
+    constructor(props) {
+        super(props);
+        this.props.history.push("/");
+    }
 
-  render() {
-    return (
-        <div className="chapters-page">
-          <BrowserRouter forceRefresh={true}>
-            <div className="chapters-layout">
-              <Row>
-                <Col xl={6}>
-                  <Image id="gsggb-logo-chapters" alt="logo" src={gsggb_logo} />
-                  <h2 className="logo-name">GSGGB</h2>
-                </Col>
-                <Col xl={6} className="text-center">
-                  <div>
-                    <h1 className="chapters-title">Our Chapters</h1>
-                    <Link to="/home">
-                      <Button className="chapters-button" id="uoft-button">
-                        <Image id="uoft-logo" alt="UofT Logo" src={uoft_logo} />
-                        University of Toronto
-                      </Button>
-                    </Link>
-                  </div>
-                  <br/>
-                  <div>
-                    <Button className="chapters-button" id="mcmaster-button">
-                      <Image id="mcmaster-logo" alt="McMaster Logo" src={mcmaster_logo} />
-                      McMaster University
-                    </Button>
-                  </div>
-                  <br/>
-                  <div>
-                    <Button className="chapters-button" id="queens-button">
-                      <Image id="queens-logo" alt="Queen's Logo" src={queens_logo} />
-                      Queen's University
-                    </Button>
-                  </div>
-                </Col>
-              </Row>
+    render() {
+        return (
+            <div className="chapters-page">
+                <BrowserRouter forceRefresh={true}>
+                    <div className="chapters-layout">
+                        <Row>
+                            <Col xl={6}>
+                                <Image id="gsggb-logo-chapters" alt="logo" src={gsggb_logo} />
+                                <h2 className="logo-name">GSGGB</h2>
+                            </Col>
+                            <Col xl={6} className="text-center">
+                                <div>
+                                    <h1 className="chapters-title">Our Chapters</h1>
+                                    <Link to="/home">
+                                        <Button className="chapters-button" id="uoft-button">
+                                            <Image id="uoft-logo" alt="UofT Logo" src={uoft_logo} />
+                                            University of Toronto
+                                        </Button>
+                                    </Link>
+                                </div>
+                                <br/>
+                                <div>
+                                    <Button className="chapters-button" id="mcmaster-button">
+                                        <Image id="mcmaster-logo" alt="McMaster Logo" src={mcmaster_logo} />
+                                        McMaster University
+                                    </Button>
+                                </div>
+                                <br/>
+                                <div>
+                                    <Button className="chapters-button" id="queens-button">
+                                        <Image id="queens-logo" alt="Queen's Logo" src={queens_logo} />
+                                        Queen's University
+                                    </Button>
+                                </div>
+                            </Col>
+                        </Row>
+                        </div>
+                </BrowserRouter>
             </div>
-          </BrowserRouter>
-        </div>
-    );
-  }
+        );
+    }
 }
 
 export default withRouter(Chapters);

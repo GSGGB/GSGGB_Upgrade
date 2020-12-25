@@ -1,83 +1,83 @@
 /* Chapters */
 .chapters-page{
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("./static/chromosome-background.png");
-  font-family: Tahoma, Geneva, sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./static/chromosome-background.png");
+    font-family: Tahoma, Geneva, sans-serif;
 }
 
 .chapters-layout{
-  width: 100%;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: 200px;
-  margin-right: 200px;
-  padding: 50px;
-  border-radius: 10px;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding: 50px;
+    border-radius: 10px;
 }
 
 .chapters-title{
-  text-align: center;
-  margin-bottom: 40px;
-  font-weight: bold;
-  color: ghostwhite;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: ghostwhite;
 }
 
 /* Logos */
 #gsggb-logo-chapters{
-  display: block;
-  width: 300px;
-  margin: auto;
-  padding-top: 90px;
+    display: block;
+    width: 300px;
+    margin: auto;
+    padding-top: 90px;
 }
 
 #uoft-logo{
-  width: 75px;
-  margin-right: 10px;
+    width: 75px;
+    margin-right: 10px;
 }
 
 #mcmaster-logo{
-  width: 80px;
-  margin-top: 5px;
-  margin-right: 10px;
+    width: 80px;
+    margin-top: 5px;
+    margin-right: 10px;
 }
 
 #queens-logo{
-  width: 70px;
-  margin-right: 18px;
+    width: 70px;
+    margin-right: 18px;
 }
 
 .logo-name{
-  color: ghostwhite;
-  text-align: center;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    color: ghostwhite;
+    text-align: center;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 /* End of Logos */
 
 /* Button for GSGGB Chapters */
 .chapters-button{
-  display: block;
-  width: 400px;
-  height: 70px;
-  text-align: center;
-  color: #696969;
-  font-size: 20px !important;
-  border-style: none !important;
+    display: block;
+    width: 400px;
+    height: 70px;
+    text-align: center;
+    color: #696969;
+    font-size: 20px !important;
+    border-style: none !important;
 }
 
 #uoft-button{
-  background-color: #012B5D;
+    background-color: #012B5D;
 }
 
 #mcmaster-button{
-  background-color: #7A003B;
+    background-color: #7A003B;
 }
 
 #queens-button{
-  background-color: #BF2446;
+    background-color: #BF2446;
 }
 /* End of "Button for GSGGB Chapters" */
 /* End of Chapters */

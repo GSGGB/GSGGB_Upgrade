@@ -1,15 +1,15 @@
 
 /* Decrease padding-top size of logo in mobile screens */
 @media (max-width: 1200px){
-  #gsggb-logo-login {
-    padding-top: 10px;
-    margin-bottom: 60px;
-  }
+    #gsggb-logo-login {
+        padding-top: 10px;
+        margin-bottom: 60px;
+    }
 }
 
 /* Make the buttons responsive on mobile screens */
 @media (max-width: 960px){
-  #login-button, #homepage-button {
-    width: 100%;
-  }
+    #login-button, #homepage-button {
+        width: 100%;
+    }
 }

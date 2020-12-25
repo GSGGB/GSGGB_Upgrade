@@ -1,79 +1,79 @@
 /* SENIOR STAFF */
 export const SENIOR_STAFF = [
-  {name: "Aisha Faruqui",
-   image: require("./static/team-photos/aisha.jpg"),
-   position: "Co-President",
-   biography: "Aisha Faruqui is a fourth year undergrad student pursuing majors in neuroscience and ecology & evolutionary biology. She previously held an NSERC award to research proteins involved with DNA repair and Huntington’s Disease in the Pearson Lab at the Hospital for Sick Children. In the past year, Aisha has conducted independent research projects in the Rollinson Lab and Sled lab, where she investigated the evolution of temperature-dependent sex determination and lizard neuroanatomy, respectively. After graduating, Aisha hopes to enroll in an MD/PhD program to pursue Indigenous health. Being a passionate supporter of arts programs, Aisha teaches piano and has been the pianist for the Hart House Jazz Ensemble since her first year at U of T. She loves cats, camping, biking, snowboarding, bug-collecting, bird watching, and meeting new people. Aisha has a passion for supporting others and she loves meeting new people - feel free to reach out at aisha.faruqui@mail.utoronto.ca!",
-   firstname: "Aisha",
-   id: "aishaf-1"
-  },
-  {name: "Farbod Khorrami",
-   image: require("./static/team-photos/farbod.jpg"),
-   position: "Co-President",
-   biography: "Farbod Khorrami is a fourth-year undergraduate student, and he is one of the Co-Presidents of GSGGB. He double majors in neuroscience and physiology (as he is very interested in neuroanatomy and function of the human brain and neurodegenerative diseases of the nervous system). Currently, he is involved in research on Parkinson’s Disease and its pathology in Dr Kovacs’s lab at Toronto Western Hospital. Other than that, he is a research volunteer in the Renal Physiology Lab at Toronto General Hospital and the Co-President of the UofT chapter of SciNapse (Undergraduate Science Case Competition). He plans to apply to medical school and become a medical doctor. To become familiar with different areas of research, he joined Allevio Pain Clinic as a research assistant. Neuroscience and orthopedics are his main interests and he hopes to pursue a career in these two fields. Along with the rest of the team, he looks forward to meeting all of the genetics enthusiasts!",
-   firstname: "Farbod",
-   id: "farbodk"
-  },
-  {name: "Emma Sullivan",
-   image: require("./static/team-photos/emma.jpg"),
-   position: "Vice President",
-   biography: "Emma is a fourth year undergraduate student at the University of Toronto, double majoring in cell and molecular biology and health and disease. She has just completed a project student position in Dr. Ronald Cohn’s lab at Sickkids, studying CRISPR/Cas9 applications in a rare inherited disorder, Pelizaeus Merzbacher disease. In the future, she hopes to direct her passion for genetic diseases to work in pediatric oncology (as a physician scientist). Outside of academics, she teaches swimming lessons, volunteers as a kitchen worker for the food insecure in Toronto, likes to read, do (Zoom) yoga with friends and find new restaurants in the city. Emma is looking forward to working with the GSGGB team for a third year to expand the genetics and genome biology community at UofT!",
-   firstname:"Emma",
-   id: "emmas"
-  }
+    {name: "Aisha Faruqui",
+     image: require("./static/team-photos/aisha.jpg"),
+     position: "Co-President",
+     biography: "Aisha Faruqui is a fourth year undergrad student pursuing majors in neuroscience and ecology & evolutionary biology. She previously held an NSERC award to research proteins involved with DNA repair and Huntington’s Disease in the Pearson Lab at the Hospital for Sick Children. In the past year, Aisha has conducted independent research projects in the Rollinson Lab and Sled lab, where she investigated the evolution of temperature-dependent sex determination and lizard neuroanatomy, respectively. After graduating, Aisha hopes to enroll in an MD/PhD program to pursue Indigenous health. Being a passionate supporter of arts programs, Aisha teaches piano and has been the pianist for the Hart House Jazz Ensemble since her first year at U of T. She loves cats, camping, biking, snowboarding, bug-collecting, bird watching, and meeting new people. Aisha has a passion for supporting others and she loves meeting new people - feel free to reach out at aisha.faruqui@mail.utoronto.ca!",
+     firstname: "Aisha",
+     id: "aishaf-1"
+    },
+    {name: "Farbod Khorrami",
+     image: require("./static/team-photos/farbod.jpg"),
+     position: "Co-President",
+     biography: "Farbod Khorrami is a fourth-year undergraduate student, and he is one of the Co-Presidents of GSGGB. He double majors in neuroscience and physiology (as he is very interested in neuroanatomy and function of the human brain and neurodegenerative diseases of the nervous system). Currently, he is involved in research on Parkinson’s Disease and its pathology in Dr Kovacs’s lab at Toronto Western Hospital. Other than that, he is a research volunteer in the Renal Physiology Lab at Toronto General Hospital and the Co-President of the UofT chapter of SciNapse (Undergraduate Science Case Competition). He plans to apply to medical school and become a medical doctor. To become familiar with different areas of research, he joined Allevio Pain Clinic as a research assistant. Neuroscience and orthopedics are his main interests and he hopes to pursue a career in these two fields. Along with the rest of the team, he looks forward to meeting all of the genetics enthusiasts!",
+     firstname: "Farbod",
+     id: "farbodk"
+    },
+    {name: "Emma Sullivan",
+     image: require("./static/team-photos/emma.jpg"),
+     position: "Vice President",
+     biography: "Emma is a fourth year undergraduate student at the University of Toronto, double majoring in cell and molecular biology and health and disease. She has just completed a project student position in Dr. Ronald Cohn’s lab at Sickkids, studying CRISPR/Cas9 applications in a rare inherited disorder, Pelizaeus Merzbacher disease. In the future, she hopes to direct her passion for genetic diseases to work in pediatric oncology (as a physician scientist). Outside of academics, she teaches swimming lessons, volunteers as a kitchen worker for the food insecure in Toronto, likes to read, do (Zoom) yoga with friends and find new restaurants in the city. Emma is looking forward to working with the GSGGB team for a third year to expand the genetics and genome biology community at UofT!",
+     firstname:"Emma",
+     id: "emmas"
+    }
 ]
 
 /* CONFERENCE */
 export const CONFERENCE = [
-  {name: "Lucie Perillat",
-   image: require("./static/team-photos/lucie.jpg"),
-   position: "Conference Committee Co-Leader",
-   biography: "Lucie is a third-year undergraduate student at the University of Toronto. She is specializing in molecular genetics, majoring in neuroscience and minoring in science and society. Her goal is to pursue a PhD, participate in academic translational research and work on rare pediatric genetic diseases (more specifically on neurodegenerative and neuromuscular diseases). This has been her goal, since she was 13 years old, when she first visited the Généthon research center and did a week-long job shadowing at Atlantic Gene Therapies (France). She has been working in Dr. Ronald Cohn’s lab at SickKids since January 2020 and helping a PhD candidate make cell and animal models for the rare immunodeficiency disorder STAT1 gain-of-function. In her spare time, you can find Lucie outside with her camera or playing underwater hockey. Lucie is looking forward to participating in the organization of the GSGGB conference and raising awareness about rare genetic diseases.",
-   firstname: "Lucie",
-   id: "luciep"
-  },
-  {name: "Decaran Li",
-   image: require("./static/team-photos/decaran.jpg"),
-   position: "Conference Committee Co-Leader",
-   biography: "Decaran Li is a third-year student at the University of Toronto, majoring in Physiology and English. She volunteered with GSGGB in her first year; and she has stayed with the society since because of the team’s passion behind raising awareness for genetic diseases. During her second year, she was a work study student at Dr. David Guttman’s Genome Biology lab where she learned about Pseudomonas syringae and the methods of plant pathogen research. This is her second term as a Conference Co-Leader. Despite this unprecedented time, she is grateful and excited for what the Conference team has planned for 2020-21. Her goal for this year’s Conference is to inform through innovative and effective methods, hopefully to also challenge the limits of the online delivery system. During her free time, she enjoys sketching, spending time with her pupper, watching movies and video editing. She hopes to become a humanitarian aid worker in the future with her favourite charitable organizations such as MSF and World Vision.",
-   firstname: "Decaran",
-   id: "decaranl"
-  },
-  {name: "Nitya Gulati",
-   image: require("./static/team-photos/nitya.jpg"),
-   position: "Event Coordinator",
-   biography: "Nitya Gulati is a fourth year student who is currently pursuing a double major in Molecular Genetics and Neuroscience. She is the communications coordinator in the conference committee this year. She is very interested in the fields of gene expression, neurodegenerative disorders and rare genetic disorders. Currently, she is working in Dr. Ronald Cohn’s lab as a research student. Her project involves clinically interpreting novel variants in Niemann-Pick Type C disease. Previously, she was involved in a research project at Dr Michael Fehlings’ lab, which focused on treating chronic spinal cord injury in the C6-C7 region using stem cells in rodent models. Nitya is always excited to meet people with similar interests, inculcate knowledge and skills from their experiences! This is her third year with GSGGB, and Nitya is extremely excited to organize a wonderful and memorable conference, as well as events this year! She is honoured to be a part of GSGGB and is looking forward to working with the amazing team!",
-   firstname: "Nitya",
-   id: "nityag"
-  },
-  {name: "Niharikaa Aiyar",
-   image: require("./static/team-photos/niharikaa.jpg"),
-   position: "Outreach Officer",
-   biography: "Niharikaa Aiyar is a fourth year undergraduate student who is pursuing a double major in Neuroscience and Cell and Molecular Biology. She is very interested in neurodegenerative diseases and how the human brain functions. Niharikaa is currently working as a work-study student in Dr. David Guttman’s lab and is involved in a project related to effector-triggered immunity elicited by different strains of Pseudomonas syringae, in tomato plants. She has previously been a research student in the lab of Dr. Michael Fehlings, where she was involved in a project related to bioengineering stem cells to optimise regeneration in traumatic spinal cord injury in the C6-C7 region. In the future, Niharikaa hopes to pursue an MD and help those who are suffering from chronic diseases. This is her second term as part of the Conference Committee, and she is excited to be a part of this team and deliver a memorable virtual conference during this unprecedented time. She also looks forward to meeting new people through all the virtual events GSGGB has planned for this year!",
-   firstname: "Niharikaa",
-   id: "niharikaaa"
-  },
-  {name: "Areeb Rashid Jafrani",
-   image: require("./static/team-photos/areeb.jpg"),
-   position: "Communications Officer",
-   biography: "Areeb Jafrani is the communications officer for the conference committee in the Global Society for Genetics and Genome Biology. He is a graduate student in the Department of Laboratory Medicine and Pathobiology at the University of Toronto. Areeb aspires to become a physician scientist. He is also a research student in Dr. Gabor Kovacs’ Laboratory at the Krembil Research Institute, where he studies a wide array of different neurodegenerative disorders including, but not limited to, Alzheimer’s disease and Parkinson’s. He has won many academic awards and scholarships at the university.",
-   firstname:"Areeb",
-   id: "areebj"
-   },
-   {name: "Raissa Shrestha",
-    image: require("./static/team-photos/raissa.jpg"),
-    position: "Event Coordinator",
-    biography: "Raissa is a third-year student at the University of Toronto. She is pursuing a major in Cell & Systems Biology and a double minor in Immunology and Statistics. In the future, she is aiming to pursue a career in the field of Biostatistics and Epidemiology. Raissa joined the GSGGB team last year as an event coordinator for the conference committee and is very happy to be part of the team in 2020-21 as well. She is looking forward to contributing towards GSGGB’s mission of spreading awareness on rare genetic diseases and learning more about the field (such as its recent advances). Beyond school, she enjoys photography, listening to music and a good pun.",
-    firstname:"Raissa",
-    id: "raissas"
+    {name: "Lucie Perillat",
+     image: require("./static/team-photos/lucie.jpg"),
+     position: "Conference Committee Co-Leader",
+     biography: "Lucie is a third-year undergraduate student at the University of Toronto. She is specializing in molecular genetics, majoring in neuroscience and minoring in science and society. Her goal is to pursue a PhD, participate in academic translational research and work on rare pediatric genetic diseases (more specifically on neurodegenerative and neuromuscular diseases). This has been her goal, since she was 13 years old, when she first visited the Généthon research center and did a week-long job shadowing at Atlantic Gene Therapies (France). She has been working in Dr. Ronald Cohn’s lab at SickKids since January 2020 and helping a PhD candidate make cell and animal models for the rare immunodeficiency disorder STAT1 gain-of-function. In her spare time, you can find Lucie outside with her camera or playing underwater hockey. Lucie is looking forward to participating in the organization of the GSGGB conference and raising awareness about rare genetic diseases.",
+     firstname: "Lucie",
+     id: "luciep"
     },
-    {name: "Sasha Bourdine",
-     image: require("./static/team-photos/sasha.jpg"),
-     position: "Social Media Coordinator",
-     biography: "Sasha Bourdine is a second year student from Boston, MA studying at the University of Toronto. She is currently specializing in Biological Physics and minoring in Mathematics. She joined GSGGB in her first year as a Social Media Coordinator for GSGGB’s Conference Committee and is looking forward to another year of working with the team. Through her role as Social Media Coordinator, she hopes to engage students throughout the STEM community. Sasha is interested in pursuing research across a variety of topics, ranging from cancer development to virology, with applications in drug development and medicine. In her free time, Sasha loves swimming, taking pictures and traveling. By working as a part of GSGGB, Sasha hopes to learn more about the current state of genetic and molecular research and spread awareness about different genetic diseases.",
-     firstname:"Sasha",
-     id: "sashab"
-    }
+    {name: "Decaran Li",
+     image: require("./static/team-photos/decaran.jpg"),
+     position: "Conference Committee Co-Leader",
+     biography: "Decaran Li is a third-year student at the University of Toronto, majoring in Physiology and English. She volunteered with GSGGB in her first year; and she has stayed with the society since because of the team’s passion behind raising awareness for genetic diseases. During her second year, she was a work study student at Dr. David Guttman’s Genome Biology lab where she learned about Pseudomonas syringae and the methods of plant pathogen research. This is her second term as a Conference Co-Leader. Despite this unprecedented time, she is grateful and excited for what the Conference team has planned for 2020-21. Her goal for this year’s Conference is to inform through innovative and effective methods, hopefully to also challenge the limits of the online delivery system. During her free time, she enjoys sketching, spending time with her pupper, watching movies and video editing. She hopes to become a humanitarian aid worker in the future with her favourite charitable organizations such as MSF and World Vision.",
+     firstname: "Decaran",
+     id: "decaranl"
+    },
+    {name: "Nitya Gulati",
+     image: require("./static/team-photos/nitya.jpg"),
+     position: "Event Coordinator",
+     biography: "Nitya Gulati is a fourth year student who is currently pursuing a double major in Molecular Genetics and Neuroscience. She is the communications coordinator in the conference committee this year. She is very interested in the fields of gene expression, neurodegenerative disorders and rare genetic disorders. Currently, she is working in Dr. Ronald Cohn’s lab as a research student. Her project involves clinically interpreting novel variants in Niemann-Pick Type C disease. Previously, she was involved in a research project at Dr Michael Fehlings’ lab, which focused on treating chronic spinal cord injury in the C6-C7 region using stem cells in rodent models. Nitya is always excited to meet people with similar interests, inculcate knowledge and skills from their experiences! This is her third year with GSGGB, and Nitya is extremely excited to organize a wonderful and memorable conference, as well as events this year! She is honoured to be a part of GSGGB and is looking forward to working with the amazing team!",
+     firstname: "Nitya",
+     id: "nityag"
+    },
+    {name: "Niharikaa Aiyar",
+     image: require("./static/team-photos/niharikaa.jpg"),
+     position: "Outreach Officer",
+     biography: "Niharikaa Aiyar is a fourth year undergraduate student who is pursuing a double major in Neuroscience and Cell and Molecular Biology. She is very interested in neurodegenerative diseases and how the human brain functions. Niharikaa is currently working as a work-study student in Dr. David Guttman’s lab and is involved in a project related to effector-triggered immunity elicited by different strains of Pseudomonas syringae, in tomato plants. She has previously been a research student in the lab of Dr. Michael Fehlings, where she was involved in a project related to bioengineering stem cells to optimise regeneration in traumatic spinal cord injury in the C6-C7 region. In the future, Niharikaa hopes to pursue an MD and help those who are suffering from chronic diseases. This is her second term as part of the Conference Committee, and she is excited to be a part of this team and deliver a memorable virtual conference during this unprecedented time. She also looks forward to meeting new people through all the virtual events GSGGB has planned for this year!",
+     firstname: "Niharikaa",
+     id: "niharikaaa"
+    },
+    {name: "Areeb Rashid Jafrani",
+     image: require("./static/team-photos/areeb.jpg"),
+     position: "Communications Officer",
+     biography: "Areeb Jafrani is the communications officer for the conference committee in the Global Society for Genetics and Genome Biology. He is a graduate student in the Department of Laboratory Medicine and Pathobiology at the University of Toronto. Areeb aspires to become a physician scientist. He is also a research student in Dr. Gabor Kovacs’ Laboratory at the Krembil Research Institute, where he studies a wide array of different neurodegenerative disorders including, but not limited to, Alzheimer’s disease and Parkinson’s. He has won many academic awards and scholarships at the university.",
+     firstname:"Areeb",
+     id: "areebj"
+     },
+     {name: "Raissa Shrestha",
+      image: require("./static/team-photos/raissa.jpg"),
+      position: "Event Coordinator",
+      biography: "Raissa is a third-year student at the University of Toronto. She is pursuing a major in Cell & Systems Biology and a double minor in Immunology and Statistics. In the future, she is aiming to pursue a career in the field of Biostatistics and Epidemiology. Raissa joined the GSGGB team last year as an event coordinator for the conference committee and is very happy to be part of the team in 2020-21 as well. She is looking forward to contributing towards GSGGB’s mission of spreading awareness on rare genetic diseases and learning more about the field (such as its recent advances). Beyond school, she enjoys photography, listening to music and a good pun.",
+      firstname:"Raissa",
+      id: "raissas"
+      },
+      {name: "Sasha Bourdine",
+       image: require("./static/team-photos/sasha.jpg"),
+       position: "Social Media Coordinator",
+       biography: "Sasha Bourdine is a second year student from Boston, MA studying at the University of Toronto. She is currently specializing in Biological Physics and minoring in Mathematics. She joined GSGGB in her first year as a Social Media Coordinator for GSGGB’s Conference Committee and is looking forward to another year of working with the team. Through her role as Social Media Coordinator, she hopes to engage students throughout the STEM community. Sasha is interested in pursuing research across a variety of topics, ranging from cancer development to virology, with applications in drug development and medicine. In her free time, Sasha loves swimming, taking pictures and traveling. By working as a part of GSGGB, Sasha hopes to learn more about the current state of genetic and molecular research and spread awareness about different genetic diseases.",
+       firstname:"Sasha",
+       id: "sashab"
+      }
 ]
 
 /* MARKETING */
@@ -117,118 +117,118 @@ export const MARKETING = [
 
 /* AFFAIRS */
 export const AFFAIRS = [
-  {name: "Irisjade Ong",
-   image: require("./static/team-photos/irisjade.jpg"),
-   position: "Affairs Leader & Treasurer",
-   biography: "Irisjade Ong is a second-year student at the University of Toronto who is specializing in immunology. She joined GSGGB last year and has enjoyed working in GSGGB. This year, she continues to enjoy working with people in the club. In the future, she wishes to continue her educational journey and pursue a Masters Degree. Her research interests are antibiotic-resistance, virology, oncology, bacteriology, genetics and stem cell development. To relieve stress, Irisjade enjoys listening to music, playing mahjong, watching YouTube videos, watching anime, reading manga and taking walks. She hopes that GSGGB will continue for many years to come to spread awareness of genetic disorders and host conferences, as well as workshops, that will benefit students in the community. Likewise, Irisjade wishes to see and meet many new people in the upcoming GSGGB events!",
-   firstname: "Irisjade",
-   id: "irisjadeo"
-  },
-  {name: "Jenny Huang",
-   image: require("./static/team-photos/jennyh.jpg"),
-   position: "Affairs Executive",
-   biography: "Jenny is a fourth-year undergraduate student in the Pharmacology and Biomedical Toxicology Specialist Program at the University of Toronto. This is her second year on the GSGGB affairs team. She is interested in the development of new therapeutics to assist those with genetic diseases and understand how genetics may increase individual susceptibility to adverse drug reactions. Jenny is currently a research project student at the McFarlane Lab, studying auxin-cell wall crosstalk and conducting a systematic review on IBD under the supervision of Dr. Ahmed El-Sherbeni. Her hobbies include photography and reading graphic novels.",
-   firstname: "Jenny",
-   id: "jennyh"
-  },
-  {name: "Jocelyn Tan",
-   image: require("./static/team-photos/jocelyn.jpg"),
-   position: "Affairs Executive",
-   biography: "Jocelyn is a fourth-year undergraduate student at the University of Toronto. She is specializing in Pharmacology and is currently a research project student in Dr. Walter Swardfager’s Lab at the Sunnybrook Research Institute. Her current project focuses on meta-analysis of blood biomarkers for Parkinson’s Disease and blood-brain barrier breakdown. She joined GSGGB in her third year after becoming interested in how genetics alter drug efficacy and adverse reactions in personalized medicine. Outside of UofT, she works part-time as a pharmacy assistant at Shoppers Drug Mart. Her hobbies outside of academics include reading books, watching Netflix, and listening to Kpop.",
-   firstname: "Jocelyn",
-   id: "jocelynt"
-  }
+    {name: "Irisjade Ong",
+     image: require("./static/team-photos/irisjade.jpg"),
+     position: "Affairs Leader & Treasurer",
+     biography: "Irisjade Ong is a second-year student at the University of Toronto who is specializing in immunology. She joined GSGGB last year and has enjoyed working in GSGGB. This year, she continues to enjoy working with people in the club. In the future, she wishes to continue her educational journey and pursue a Masters Degree. Her research interests are antibiotic-resistance, virology, oncology, bacteriology, genetics and stem cell development. To relieve stress, Irisjade enjoys listening to music, playing mahjong, watching YouTube videos, watching anime, reading manga and taking walks. She hopes that GSGGB will continue for many years to come to spread awareness of genetic disorders and host conferences, as well as workshops, that will benefit students in the community. Likewise, Irisjade wishes to see and meet many new people in the upcoming GSGGB events!",
+     firstname: "Irisjade",
+     id: "irisjadeo"
+    },
+    {name: "Jenny Huang",
+     image: require("./static/team-photos/jennyh.jpg"),
+     position: "Affairs Executive",
+     biography: "Jenny is a fourth-year undergraduate student in the Pharmacology and Biomedical Toxicology Specialist Program at the University of Toronto. This is her second year on the GSGGB affairs team. She is interested in the development of new therapeutics to assist those with genetic diseases and understand how genetics may increase individual susceptibility to adverse drug reactions. Jenny is currently a research project student at the McFarlane Lab, studying auxin-cell wall crosstalk and conducting a systematic review on IBD under the supervision of Dr. Ahmed El-Sherbeni. Her hobbies include photography and reading graphic novels.",
+     firstname: "Jenny",
+     id: "jennyh"
+    },
+    {name: "Jocelyn Tan",
+     image: require("./static/team-photos/jocelyn.jpg"),
+     position: "Affairs Executive",
+     biography: "Jocelyn is a fourth-year undergraduate student at the University of Toronto. She is specializing in Pharmacology and is currently a research project student in Dr. Walter Swardfager’s Lab at the Sunnybrook Research Institute. Her current project focuses on meta-analysis of blood biomarkers for Parkinson’s Disease and blood-brain barrier breakdown. She joined GSGGB in her third year after becoming interested in how genetics alter drug efficacy and adverse reactions in personalized medicine. Outside of UofT, she works part-time as a pharmacy assistant at Shoppers Drug Mart. Her hobbies outside of academics include reading books, watching Netflix, and listening to Kpop.",
+     firstname: "Jocelyn",
+     id: "jocelynt"
+    }
 ]
 
 /* MENTORSHIP */
 export const MENTORSHIP = [
-  {name: "Ronesh Sukhdeo",
-   image: require("./static/team-photos/ronesh.jpg"),
-   position: "Mentorship Leader",
-   biography: "Ronesh is a third year undergraduate student at the University of Toronto, double majoring in molecular genetics and applications of fundamental genetics. Embodying mentorship throughout his high school journey, Ronesh is thrilled to continue improving a new mentorship program that is centered around bridging the gap between high school and post-secondary education. In addition, he is a research student employing genetic techniques in Aaron Reinke’s lab at the MaRS Discovery building to study host-pathogen interactions and trans-generational immunity to Microsporidia infection. Currently, his project is based on studying the evolution of all known Microsporidian parasites. After graduation, he hopes to continue pursuing his passion for genetics and infectious diseases. While COVID has disrupted his other hobbies of playing table tennis and singing in a choir, he can be found taking a break by playing this neat game called Rocket League (super competitive and fun!)",
-   firstname: "Ronesh",
-   id: "roneshs"
-  },
-  {name: "Lina Li",
-   image: require("./static/team-photos/lina.jpg"),
-   position: "Mentorship Associate",
-   biography: "Lina Li is a second-year undergraduate student at the University of Toronto, specializing in laboratory medicine and pathobiology. She joined GSGGB in 2019 as a mentorship associate and continues to be part of the mentorship team. She is currently involved in genetic research with Dr. Zhenya Ivakine, studying mutations in the NPC1 gene. She is excited for this upcoming year and really enjoys cooperating with other members of the club. She looks forward to running the mentorship program, helping high school students navigate through their final year of high school and answering questions about university. In her free time, she likes to play volleyball, listen to music and hang out with her friends.",
-   firstname: "Lina",
-   id: "linal"
-  },
-  {name: "Gabrielle Lim",
-   image: require("./static/team-photos/gabrielle.jpg"),
-   position: "Mentorship Associate",
-   biography: "Gabrielle is a fourth-year student pursuing a double major in Neuroscience and Ecology and evolutionary biology, and a minor in Immunology. She is interested and passionate about evolutionary mechanisms, and how its implications intertwine with other scientific domains, such as developmental biology. She wishes to pursue a career in research. Over the summer, she conducted an independent research project on the “Squamate neuroanatomy” in the Sled lab. She loves volunteering and has spent several months volunteering with nonprofits, such as Terre De Paix. She is also a hospice palliative care volunteer. Gabrielle is always delighted to meet new people with similar interests, and is always more than happy to provide advice, or just have a good laugh!",
-   firstname: "Gabrielle",
-   id: "gabriellel"
-  }
+    {name: "Ronesh Sukhdeo",
+     image: require("./static/team-photos/ronesh.jpg"),
+     position: "Mentorship Leader",
+     biography: "Ronesh is a third year undergraduate student at the University of Toronto, double majoring in molecular genetics and applications of fundamental genetics. Embodying mentorship throughout his high school journey, Ronesh is thrilled to continue improving a new mentorship program that is centered around bridging the gap between high school and post-secondary education. In addition, he is a research student employing genetic techniques in Aaron Reinke’s lab at the MaRS Discovery building to study host-pathogen interactions and trans-generational immunity to Microsporidia infection. Currently, his project is based on studying the evolution of all known Microsporidian parasites. After graduation, he hopes to continue pursuing his passion for genetics and infectious diseases. While COVID has disrupted his other hobbies of playing table tennis and singing in a choir, he can be found taking a break by playing this neat game called Rocket League (super competitive and fun!)",
+     firstname: "Ronesh",
+     id: "roneshs"
+    },
+    {name: "Lina Li",
+     image: require("./static/team-photos/lina.jpg"),
+     position: "Mentorship Associate",
+     biography: "Lina Li is a second-year undergraduate student at the University of Toronto, specializing in laboratory medicine and pathobiology. She joined GSGGB in 2019 as a mentorship associate and continues to be part of the mentorship team. She is currently involved in genetic research with Dr. Zhenya Ivakine, studying mutations in the NPC1 gene. She is excited for this upcoming year and really enjoys cooperating with other members of the club. She looks forward to running the mentorship program, helping high school students navigate through their final year of high school and answering questions about university. In her free time, she likes to play volleyball, listen to music and hang out with her friends.",
+     firstname: "Lina",
+     id: "linal"
+    },
+    {name: "Gabrielle Lim",
+     image: require("./static/team-photos/gabrielle.jpg"),
+     position: "Mentorship Associate",
+     biography: "Gabrielle is a fourth-year student pursuing a double major in Neuroscience and Ecology and evolutionary biology, and a minor in Immunology. She is interested and passionate about evolutionary mechanisms, and how its implications intertwine with other scientific domains, such as developmental biology. She wishes to pursue a career in research. Over the summer, she conducted an independent research project on the “Squamate neuroanatomy” in the Sled lab. She loves volunteering and has spent several months volunteering with nonprofits, such as Terre De Paix. She is also a hospice palliative care volunteer. Gabrielle is always delighted to meet new people with similar interests, and is always more than happy to provide advice, or just have a good laugh!",
+     firstname: "Gabrielle",
+     id: "gabriellel"
+    }
 ]
 
 /* EVENTS */
 export const EVENTS = [
-  {name: "Jacky Chen",
-   image: require("./static/team-photos/jacky.jpg"),
-   position: "Events Leader",
-   biography: "Jacky is a second-year Master of Science candidate at the University of Toronto. With an undergraduate background in immunology and human biology, he is currently pursuing the studies of novel immunotherapies for advanced soft tissue sarcomas at the Andrulis Wunder Lab. Being a part of GSGGB has not only allowed Jacky to share his fondness for genetics with fellow students, but also learn from the pristine guest speakers. Outside of academics, he enjoys longboarding, hiking, and soccer.",
-   firstname: "Jacky",
-   id: "jackyc"
-  },
-  {name: "Sakshi Shinghal",
-   image: require("./static/team-photos/sakshi.jpg"),
-   position: "Academic Events Coordinator",
-   biography: "Sakshi is a recent graduate with a degree in Genetics and Genome Biology. She's interested in how highly complex genetic problems could be solved by harnessing computational power. She plans to pursue a PhD in population genetics after graduation. In university, she worked in Professor Nicholas Provart's lab to help build a gene visualisation tool that allows researchers to display their information visually in an accessible way. She also spent time volunteering in the Agrawal lab. She’s currently working at a precision medicine company in Bangalore, India. When she's not at work, you can probably find her counting fish under the sea. Joining GSGGB gave her the opportunity to meet with other people who shared her passion for genetics and learn a host of new skills. As academic events coordinator, she had the opportunity to participate in a host of fascinating panels, such as R coding workshops and panel discussions with graduate students in genetics.",
-   firstname: "Sakshi",
-   id: "sakshis"
-  },
-  {name: "Setareh Malekian",
-   image: require("./static/team-photos/setareh.jpg"),
-   position: "Events Executive",
-   biography: "Setareh is a third year student who is specializing in physiology. She became interested in the field of genetics through courses such as BIO130 and HMB265. She hopes to be involved in synthetic biology research in the future and harvest the power of nature to make advances in the medical field. As a member of the events team, she looks forward to connecting with the life science student body at UofT and raising awareness about rare genetic diseases and the field of genetics.",
-   firstname: "Setareh",
-   id: "setarehm"
-  }
+    {name: "Jacky Chen",
+     image: require("./static/team-photos/jacky.jpg"),
+     position: "Events Leader",
+     biography: "Jacky is a second-year Master of Science candidate at the University of Toronto. With an undergraduate background in immunology and human biology, he is currently pursuing the studies of novel immunotherapies for advanced soft tissue sarcomas at the Andrulis Wunder Lab. Being a part of GSGGB has not only allowed Jacky to share his fondness for genetics with fellow students, but also learn from the pristine guest speakers. Outside of academics, he enjoys longboarding, hiking, and soccer.",
+     firstname: "Jacky",
+     id: "jackyc"
+    },
+    {name: "Sakshi Shinghal",
+     image: require("./static/team-photos/sakshi.jpg"),
+     position: "Academic Events Coordinator",
+     biography: "Sakshi is a recent graduate with a degree in Genetics and Genome Biology. She's interested in how highly complex genetic problems could be solved by harnessing computational power. She plans to pursue a PhD in population genetics after graduation. In university, she worked in Professor Nicholas Provart's lab to help build a gene visualisation tool that allows researchers to display their information visually in an accessible way. She also spent time volunteering in the Agrawal lab. She’s currently working at a precision medicine company in Bangalore, India. When she's not at work, you can probably find her counting fish under the sea. Joining GSGGB gave her the opportunity to meet with other people who shared her passion for genetics and learn a host of new skills. As academic events coordinator, she had the opportunity to participate in a host of fascinating panels, such as R coding workshops and panel discussions with graduate students in genetics.",
+     firstname: "Sakshi",
+     id: "sakshis"
+    },
+    {name: "Setareh Malekian",
+     image: require("./static/team-photos/setareh.jpg"),
+     position: "Events Executive",
+     biography: "Setareh is a third year student who is specializing in physiology. She became interested in the field of genetics through courses such as BIO130 and HMB265. She hopes to be involved in synthetic biology research in the future and harvest the power of nature to make advances in the medical field. As a member of the events team, she looks forward to connecting with the life science student body at UofT and raising awareness about rare genetic diseases and the field of genetics.",
+     firstname: "Setareh",
+     id: "setarehm"
+    }
 ]
 
 /* TECHNOLOGY & INNOVATIONS */
 export const TECH_INNOVATIONS = [
-  {name: "Jedid Ahn",
-   image: require("./static/team-photos/jed.jpg"),
-   position: "Tech & Innovations Leader",
-   biography: "Jedid Ahn is a fifth year undergraduate student at the University of Toronto, specializing in bioinformatics & computational biology and majoring in computer science. He is serving as the Technology & Innovations Team Leader for the 2020-2021 academic school year after a previous stint as the Co-President of GSGGB in 2019-2020. This year, he will be coordinating virtual bioinformatics seminar series, coding workshops, and the creation of a new organizational website. After graduation, he hopes to pursue a Master’s degree in computer science with a concentration in healthcare. He is looking forward to meeting other science enthusiasts and working with bright and innovative minds to raise awareness of genetic disorders!",
-   firstname: "Jed",
-   id: "jeda"
-  },
-  {name: "Justin Cheung",
-   image: require("./static/team-photos/justin.jpg"),
-   position: "Webmaster / Web Developer",
-   biography: "Justin is a graduand at the University of Toronto, majoring in mathematics and minoring in both Statistics and Linguistics. He joined GSGGB in September 2018 as a Tech & Innovations executive, and is currently taking up the role of webmaster. He is interested in the vast application of data science, one example being how data science techniques and applied statistics are utilized in the field of genetics and genomics to make inferences and gain insights from raw genetic data, which possibly leads to new and groundbreaking discoveries. After graduation, he aspires to pursue a Masters degree in data science and work as a data scientist / analyst. In his free time, he enjoys practicing card tricks, drawing and listening to music. He looks forward to working with the current team of GSGGB executives, and using technology to raise awareness of genetic diseases and educate people on current genetic research through our various events (including but not limited to fundraising events and workshops).",
-   firstname: "Justin",
-   id: "justinc"
-  },
-  {name: "Advait Sridhar",
-   image: require("./static/team-photos/advait.jpg"),
-   position: "Workshop Organizer",
-   biography: "Advait is a third year student who is majoring in Fundamental Genetics and its Applications and double minoring in Immunology and Biology. He joined GSGGB’s mentorship program in his first year and became the first year representative for the society, later becoming the workshop organizer as part of the tech & innovations team. Through these workshops, he hopes to involve as many UofT life science students as possible in the fields of quantitative biology and genetics. He is passionate about future advances in biotechnology and wants to be involved with the latest developments in gene therapy and synthetic biology. His hobbies outside of academics include distance running, watching movies, and reading books.",
-   firstname: "Advait",
-   id: "advaits"
-  }
+    {name: "Jedid Ahn",
+     image: require("./static/team-photos/jed.jpg"),
+     position: "Tech & Innovations Leader",
+     biography: "Jedid Ahn is a fifth year undergraduate student at the University of Toronto, specializing in bioinformatics & computational biology and majoring in computer science. He is serving as the Technology & Innovations Team Leader for the 2020-2021 academic school year after a previous stint as the Co-President of GSGGB in 2019-2020. This year, he will be coordinating virtual bioinformatics seminar series, coding workshops, and the creation of a new organizational website. After graduation, he hopes to pursue a Master’s degree in computer science with a concentration in healthcare. He is looking forward to meeting other science enthusiasts and working with bright and innovative minds to raise awareness of genetic disorders!",
+     firstname: "Jed",
+     id: "jeda"
+    },
+    {name: "Justin Cheung",
+     image: require("./static/team-photos/justin.jpg"),
+     position: "Webmaster / Web Developer",
+     biography: "Justin is a graduand at the University of Toronto, majoring in mathematics and minoring in both Statistics and Linguistics. He joined GSGGB in September 2018 as a Tech & Innovations executive, and is currently taking up the role of webmaster. He is interested in the vast application of data science, one example being how data science techniques and applied statistics are utilized in the field of genetics and genomics to make inferences and gain insights from raw genetic data, which possibly leads to new and groundbreaking discoveries. After graduation, he aspires to pursue a Masters degree in data science and work as a data scientist / analyst. In his free time, he enjoys practicing card tricks, drawing and listening to music. He looks forward to working with the current team of GSGGB executives, and using technology to raise awareness of genetic diseases and educate people on current genetic research through our various events (including but not limited to fundraising events and workshops).",
+     firstname: "Justin",
+     id: "justinc"
+    },
+    {name: "Advait Sridhar",
+     image: require("./static/team-photos/advait.jpg"),
+     position: "Workshop Organizer",
+     biography: "Advait is a third year student who is majoring in Fundamental Genetics and its Applications and double minoring in Immunology and Biology. He joined GSGGB’s mentorship program in his first year and became the first year representative for the society, later becoming the workshop organizer as part of the tech & innovations team. Through these workshops, he hopes to involve as many UofT life science students as possible in the fields of quantitative biology and genetics. He is passionate about future advances in biotechnology and wants to be involved with the latest developments in gene therapy and synthetic biology. His hobbies outside of academics include distance running, watching movies, and reading books.",
+     firstname: "Advait",
+     id: "advaits"
+    }
 ]
 
 /* JIGG */
 export const JIGG = [
-  {name: "Aisha Faruqui",
-   image: require("./static/team-photos/aisha.jpg"),
-   position: "JIGG Editor In Chief",
-   biography: "Aisha Faruqui is a fourth year undergrad student pursuing majors in neuroscience and ecology & evolutionary biology. She previously held an NSERC award to research proteins involved with DNA repair and Huntington’s Disease in the Pearson Lab at the Hospital for Sick Children. In the past year, Aisha has conducted independent research projects in the Rollinson Lab and Sled lab, where she investigated the evolution of temperature-dependent sex determination and lizard neuroanatomy, respectively. After graduating, Aisha hopes to enroll in an MD/PhD program to pursue Indigenous health. Being a passionate supporter of arts programs, Aisha teaches piano and has been the pianist for the Hart House Jazz Ensemble since her first year at U of T. She loves cats, camping, biking, snowboarding, bug-collecting, bird watching, and meeting new people. Aisha has a passion for supporting others and she loves meeting new people - feel free to reach out at aisha.faruqui@mail.utoronto.ca !",
-   firstname: "Aisha",
-   id: "aishaf-2"
-  },
-  {name: "Pamela Alamilla",
-   image: require("./static/team-photos/pamela.jpg"),
-   position: "JIGG Editor",
-   biography: "Pamela Alamilla is a second-year student at the University of Toronto, majoring in Fundamental Genetics and Molecular Cell Biology and minoring in Immunology. In 2019, she interned in the lab of Dr. Jeff Wrana at the Lunenfeld-Tanenbaum Research Institute, where she assisted researchers in studying the role of the Hippo pathway in development and cancer. Her research interests include molecular genetics, virology, microbiology, and bioinformatics, which she intends to study further in graduate school. Pamela currently works as an Assistant Surgical Technician in the Surgical Skills Centre at Mount Sinai Hospital. Outside of school, you can find her writing science articles for the Varsity, reading, drawing, and playing her guitar. She speaks English, French, and Spanish.",
-   firstname: "Pamela",
-   id: "pamelaa"
-  }
+    {name: "Aisha Faruqui",
+     image: require("./static/team-photos/aisha.jpg"),
+     position: "JIGG Editor In Chief",
+     biography: "Aisha Faruqui is a fourth year undergrad student pursuing majors in neuroscience and ecology & evolutionary biology. She previously held an NSERC award to research proteins involved with DNA repair and Huntington’s Disease in the Pearson Lab at the Hospital for Sick Children. In the past year, Aisha has conducted independent research projects in the Rollinson Lab and Sled lab, where she investigated the evolution of temperature-dependent sex determination and lizard neuroanatomy, respectively. After graduating, Aisha hopes to enroll in an MD/PhD program to pursue Indigenous health. Being a passionate supporter of arts programs, Aisha teaches piano and has been the pianist for the Hart House Jazz Ensemble since her first year at U of T. She loves cats, camping, biking, snowboarding, bug-collecting, bird watching, and meeting new people. Aisha has a passion for supporting others and she loves meeting new people - feel free to reach out at aisha.faruqui@mail.utoronto.ca !",
+     firstname: "Aisha",
+     id: "aishaf-2"
+    },
+    {name: "Pamela Alamilla",
+     image: require("./static/team-photos/pamela.jpg"),
+     position: "JIGG Editor",
+     biography: "Pamela Alamilla is a second-year student at the University of Toronto, majoring in Fundamental Genetics and Molecular Cell Biology and minoring in Immunology. In 2019, she interned in the lab of Dr. Jeff Wrana at the Lunenfeld-Tanenbaum Research Institute, where she assisted researchers in studying the role of the Hippo pathway in development and cancer. Her research interests include molecular genetics, virology, microbiology, and bioinformatics, which she intends to study further in graduate school. Pamela currently works as an Assistant Surgical Technician in the Surgical Skills Centre at Mount Sinai Hospital. Outside of school, you can find her writing science articles for the Varsity, reading, drawing, and playing her guitar. She speaks English, French, and Spanish.",
+     firstname: "Pamela",
+     id: "pamelaa"
+    }
 ]

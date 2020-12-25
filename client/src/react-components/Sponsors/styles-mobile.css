@@ -16,16 +16,16 @@
     .physiology-logo, .csb-logo, .newcollege-logo, .assu-logo, .oztrekk-logo,
     .ssscr-logo, .stem-fellowship-uoft-logo, .carrm-logo, .heart-logo,
     .wbc-logo, .bioethics-logo, .rare-disease-foundation-logo{
-      justify-content: center;
+        justify-content: center;
     }
 
     .platinum-header, .gold-header, .silver-header, .bronze-header,
     .partner-header, .orange-header{
-      text-align: center;
+        text-align: center;
     }
 
     .newcollege-logo{
-      margin-top: 30px;
+        margin-top: 30px;
     }
 
 }

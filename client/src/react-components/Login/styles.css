@@ -1,90 +1,90 @@
 /* Login */
 .login-page{
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: -webkit-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  background: -o-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  background: -moz-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  background: linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  font-family: Tahoma, Geneva, sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: -webkit-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+    background: -o-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+    background: -moz-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+    background: linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+    font-family: Tahoma, Geneva, sans-serif;
 }
 
 .login-form{
-  width: 100%;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: 200px;
-  margin-right: 200px;
-  padding: 50px;
-  border-radius: 10px;
-  background-color: white;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: white;
 }
 
 #login-label{
-  font-size: 18px;
-  font-weight: bold;
-  color: #696969;
+    font-size: 18px;
+    font-weight: bold;
+    color: #696969;
 }
 
 /* Logo */
 #gsggb-logo-login{
-  display: block;
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
-  padding-top: 75px;
+    display: block;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    padding-top: 75px;
 }
 /* End of Logo*/
 
 /* Login Components */
 .login-header{
-  text-align: center;
-  margin-bottom: 50px;
-  font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: bold;
 }
 
 #login-error{
-  display: none;
-  margin-bottom: 20px;
+    display: none;
+    margin-bottom: 20px;
 }
 
 #username, #password{
-  font-size: 16px;
-  display: inline-block;
-  width: 100%;
-  height: 50px;
-  padding-left: 20px;
-  margin-bottom: 20px;
-  border: None;
-  border-bottom: 2px solid #adadad;
+    font-size: 16px;
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    border: None;
+    border-bottom: 2px solid #adadad;
 }
 
 /* Login Buttons */
 #login-button, #homepage-button{
-  font-size: 16px;
-  font-weight: bold;
-  height: 50px;
-  color: white;
-  border-radius: 25px;
-  margin-top: 25px;
-  margin-bottom: 10px;
-  border: None;
-  width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    height: 50px;
+    color: white;
+    border-radius: 25px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border: None;
+    width: 100%;
 }
 
 #login-button{
-  background: -webkit-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  background: -o-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  background: -moz-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
-  background: linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+    background: -webkit-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+    background: -o-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+    background: -moz-linear-gradient(-135deg, #ACDBCB, #FBB5A9);
+    background: linear-gradient(-135deg, #ACDBCB, #FBB5A9);
 }
 
 #homepage-button{
-  background-color: #74E0D0;
+    background-color: #74E0D0;
 }
 /* End of Login Buttons */
 /* End of Login Components */
