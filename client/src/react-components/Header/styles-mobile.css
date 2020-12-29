@@ -1,0 +1,7 @@
+
+/* Remove log out button margin on mobile screens */
+@media (max-width: 1200px){
+    #logout-button {
+        margin-left: 0px;
+    }
+}

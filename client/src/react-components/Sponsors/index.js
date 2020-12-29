@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Image, Row, Col} from "react-bootstrap";
-import ModalHeader from "react-bootstrap/ModalHeader";
 
 import "./styles.css";
 import "./styles-mobile.css";
@@ -13,7 +12,9 @@ const Sponsors = () => {
       return (
         <Col sm>
             <div class="img-center">
-                <a href={sponsor.link} target="_blank"><Image className={`${sponsor.name}-logo`} src={sponsor.image} /></a>
+                <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
+                    <Image className={`${sponsor.name}-logo`} src={sponsor.image} />
+                </a>
             </div>
         </Col>
       );

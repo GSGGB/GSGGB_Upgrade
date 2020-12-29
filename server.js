@@ -54,7 +54,7 @@ app.post("/userDatabase/login", (req, res) => {
                 req.session.user = user._id;
                 req.session.username = user.username;
                 res.send({
-                    currentUser: user.username,
+                    username: user.username,
                     accountType: user.accountType
                 });
             }
@@ -72,11 +72,7 @@ app.get("/userDatabase/logout", (req, res) => {
         if (error) {
             res.status(500).send(error);
         } else {
-          res.send({
-              currentUser: null,
-              accountType: null,
-              loggedIn: "false"
-          });
+            res.send();
         }
     });
 });
@@ -85,7 +81,7 @@ app.get("/userDatabase/logout", (req, res) => {
 // A route to check if a use is logged in on the session cookie
 app.get("/userDatabase/check-session", (req, res) => {
     if (req.session.user) {
-        res.send({ currentUser: req.session.username });
+        res.send({ username: req.session.username });
     } else {
         res.status(401).send();
     }

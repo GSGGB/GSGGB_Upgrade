@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { withRouter, BrowserRouter } from "react-router-dom";
-import { Navbar, Nav, Image, NavDropdown} from "react-bootstrap";
+import { Navbar, Nav, Image, NavDropdown, Button } from "react-bootstrap";
+
+// Importing actions/required methods
+import { logout } from "../../actions/user";
 
 import "./styles.css";
+import "./styles-mobile.css";
 import logo from "./static/logo.png";
 
 class Header extends Component {
@@ -11,8 +15,29 @@ class Header extends Component {
         this.myRef = React.createRef();
     }
 
+
+    addLogoutButton() {
+        const loggedIn = sessionStorage.getItem("loggedIn");
+
+        if (loggedIn === "true") {
+            return (
+                <Nav.Item as="li">
+                    <Button
+                        id="logout-button"
+                        variant="outline-info"
+                        onClick={() => logout(this)}
+                    >
+                        LOG OUT
+                    </Button>
+                </Nav.Item>
+              )
+        }
+    }
+
+
     render() {
       const { location } = this.props;
+      const logoutButton = this.addLogoutButton();
 
       return (
           <div className="header sticky-top">
@@ -99,6 +124,7 @@ class Header extends Component {
                                           JIGG
                                       </Nav.Link>
                                   </Nav.Item>
+                                  <span>{logoutButton}</span>
                               </Nav>
                           </Navbar.Collapse>
                       </Navbar>

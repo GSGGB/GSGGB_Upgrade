@@ -1,7 +1,7 @@
 // Functions to help with user actions.
 
 // A function to check if a user is logged in on the session cookie.
-export const readCookie = (app) => {
+export const readCookie = () => {
     const url = "/userDatabase/check-session";
 
     fetch(url)
@@ -11,8 +11,8 @@ export const readCookie = (app) => {
             }
         })
         .then(json => {
-            if (json && json.currentUser) {
-                app.setState({ currentUser: json.currentUser });
+            if (json && json.username) {
+                sessionStorage.setItem("username", json.username)
             }
         })
         .catch(error => {
@@ -33,7 +33,7 @@ export const updateLoginCredentials = (loginComp, field) => {
 
 
 // A function to send a POST request with the user to be logged in.
-export const login = (loginComp, app) => {
+export const login = (loginComp) => {
     const loginError = document.querySelector("#login-error");
     loginError.style.display = "none";
 
@@ -55,12 +55,10 @@ export const login = (loginComp, app) => {
             }
         })
         .then(json => {
-            if (json.currentUser !== undefined) {
-                app.setState({
-                  currentUser: json.currentUser,
-                  accountType: json.accountType,
-                  loggedIn: "true"
-                });
+            if (json.username !== undefined) {
+                sessionStorage.setItem("username", json.username)
+                sessionStorage.setItem("accountType", json.accountType)
+                sessionStorage.setItem("loggedIn", "true")
 
                 loginError.style.display = "none";
 
@@ -69,8 +67,10 @@ export const login = (loginComp, app) => {
                     path = `/home`;
                 }
                 else if (json.accountType === "Administrator") {
-                    path = `/adminDashboard`;
+                    path = `/home`; // Temporary.
                 }
+
+                console.log("Successfully logged in.")
                 loginComp.props.history.push(path);
             }
             else{
@@ -93,15 +93,16 @@ export const returnToHomePage = (loginComp) => {
 
 
 // A function to send a GET request to logout the current user
-export const logout = (app) => {
+export const logout = (headerComp) => {
     const url = "/userDatabase/logout";
 
     fetch(url)
         .then(res => {
-            app.setState({
-                currentUser: null,
-                accuntType: null
-            });
+            sessionStorage.setItem("username", "visitor")
+            sessionStorage.setItem("accountType", "Visitor")
+            sessionStorage.setItem("loggedIn", "false")
+            console.log("Successfully logged out.")
+            headerComp.props.history.push("/");
         })
         .catch(error => {
             console.log(error);

@@ -17,18 +17,28 @@ import "./App.css";
 class App extends Component {
     constructor(props){
         super(props);
-        readCookie(this); // Check if a user is already logged in.
+        readCookie(); // Check if a user is already logged in.
     }
 
-    // Global state: Current user information.
+    // User information.
     state = {
-        currentUser: null,
-        accountType: null,
-        loggedIn: "false"
+        username:
+            sessionStorage.getItem("username") !== null
+                ? sessionStorage.getItem("username")
+                : "visitor",
+        accountType:
+            sessionStorage.getItem("accountType") !== null
+                ? sessionStorage.getItem("accountType")
+                : "Visitor",
+        loggedIn:
+            sessionStorage.getItem("loggedIn") !== null
+                ? sessionStorage.getItem("loggedIn")
+                : "false"
     }
+
 
     render() {
-        const { currentUser, accountType, loggedIn } = this.state;
+        const loggedIn = this.state.loggedIn;
 
         return (
           <div>

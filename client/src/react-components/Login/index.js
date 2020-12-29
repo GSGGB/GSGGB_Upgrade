@@ -22,10 +22,7 @@ class Login extends Component {
         password: ""
     }
 
-
     render() {
-        const { app } = this.props;
-
         return (
             <div className="login-page">
                 <BrowserRouter forceRefresh={true}>
@@ -78,7 +75,7 @@ class Login extends Component {
                                     </Form.Group>
                                     <Button
                                         id="login-button"
-                                        onClick={() => login(this, app)}
+                                        onClick={() => login(this)}
                                     >
                                         LOGIN
                                     </Button>

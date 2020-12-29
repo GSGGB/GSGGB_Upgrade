@@ -42,6 +42,10 @@
 .dropdown-menu{
     padding: 0px !important;
 }
+
+#logout-button{
+    margin-left: 20px;
+}
 /* End of Navbar Content and Dropdown Menu */
 
 /* Navbar Item and Dropdown Menu Hover Behaviour */

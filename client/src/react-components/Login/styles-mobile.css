@@ -1,5 +1,5 @@
 
-/* Decrease padding-top size of logo in mobile screens */
+/* Decrease padding-top size of logo on mobile screens */
 @media (max-width: 1200px){
     #gsggb-logo-login {
         padding-top: 10px;

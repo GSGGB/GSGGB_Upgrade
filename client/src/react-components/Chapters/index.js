@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, BrowserRouter, Link } from "react-router-dom";
+import { withRouter, BrowserRouter } from "react-router-dom";
 import { Row, Col, Image, Button } from "react-bootstrap";
 
 import "./styles.css";
