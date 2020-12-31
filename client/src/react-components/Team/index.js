@@ -7,7 +7,7 @@ import "./styles-mobile.css";
 import { SENIOR_STAFF, CONFERENCE, MARKETING, AFFAIRS, MENTORSHIP, EVENTS, TECH_INNOVATIONS, JIGG } from './executives.js';
 
 const Team = () => {
-  
+
     const [modalId, setModalId] = React.useState("");
     const handleClose = () => setModalId("");
 
@@ -64,7 +64,7 @@ const Team = () => {
 
             <div class="cloud-background-section">
                 <div>
-                    <hr class="section-separator" />
+                    <hr class="team-section-separator" />
                     <br /><br />
                     <h3 className="team-name" id="conference">Conference</h3>
                     <br />
@@ -77,7 +77,7 @@ const Team = () => {
 
             <div class="white-background-section">
                 <div>
-                    <hr class="section-separator" />
+                    <hr class="team-section-separator" />
                     <br /><br />
                     <h3 className="team-name" id="marketing">Marketing</h3>
                     <br />
@@ -90,7 +90,7 @@ const Team = () => {
 
             <div class="cloud-background-section">
                 <div>
-                    <hr class="section-separator" />
+                    <hr class="team-section-separator" />
                     <br /><br />
                     <h3 className="team-name" id="affairs">Affairs</h3>
                     <br />
@@ -103,7 +103,7 @@ const Team = () => {
 
             <div class="white-background-section">
                 <div>
-                    <hr class="section-separator" />
+                    <hr class="team-section-separator" />
                     <br /><br />
                     <h3 className="team-name" id="mentorship">Mentorship</h3>
                     <br />
@@ -116,7 +116,7 @@ const Team = () => {
 
             <div class="cloud-background-section">
                 <div>
-                    <hr class="section-separator" />
+                    <hr class="team-section-separator" />
                     <br /><br />
                     <h3 className="team-name" id="events">Events</h3>
                     <br />
@@ -129,7 +129,7 @@ const Team = () => {
 
             <div class="white-background-section">
                 <div>
-                    <hr class="section-separator" />
+                    <hr class="team-section-separator" />
                     <br /><br />
                     <h3 className="team-name" id="tech-and-innovations">Technology &amp; Innovations</h3>
                     <br />
@@ -142,7 +142,7 @@ const Team = () => {
 
             <div class="cloud-background-section">
                 <div>
-                    <hr class="section-separator" />
+                    <hr class="team-section-separator" />
                     <br /><br />
                     <h3 className="team-name" id="jigg">JIGG</h3>
                     <br />
@@ -155,7 +155,7 @@ const Team = () => {
 
             <div class="white-background-section">
                 <div>
-                    <hr class="section-separator" />
+                    <hr class="team-section-separator" />
                     <br /><br />
                     <h3 className="team-name">Alumni</h3>
                     <br />

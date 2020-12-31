@@ -1,11 +1,6 @@
 /* Team */
-html {
-    scroll-behavior: smooth;
-}
-
 .grid-container{
     font-family: Tahoma, Geneva, sans-serif;
-    display: grid;
     justify-content: space-evenly;
 }
 
@@ -25,7 +20,7 @@ html {
     font-family: Tahoma, Geneva, sans-serif;
 }
 
-.section-separator{
+.team-section-separator{
     margin: 0px;
 }
 
@@ -55,7 +50,6 @@ html {
     border: none !important;
     outline-color: transparent !important;
     background: none !important;
-    display: block;
 }
 
 .executive-photo:focus{

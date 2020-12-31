@@ -22,7 +22,7 @@ class Announcement extends Component {
     }
 
     render() {
-      const headshot = "./static/headshots/" + this.state.firstName + ".jpg";
+      const headshot = this.state.firstName + ".jpg";
       const fullName = this.state.firstName + " " + this.state.lastName;
       const announcementDate = this.state.date.toLocaleString('en-US', this.state.options);
 

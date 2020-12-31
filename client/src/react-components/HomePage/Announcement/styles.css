@@ -1,6 +1,6 @@
 .announcement{
   margin-bottom: 25px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Tahoma, Geneva, sans-serif;
   font-size: 16px;
   color: black;
 }
@@ -10,7 +10,7 @@
 }
 
 .headshot{
-  width: 20px;
+  width: 30px;
   margin-right: 10px;
   border-radius: 20%;
 }

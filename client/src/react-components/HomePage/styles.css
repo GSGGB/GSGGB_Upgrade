@@ -38,19 +38,19 @@ body, html{
 }
 
 .section-title{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
     color: #323232;
     display: inline-block;
 }
 
 .about-us-subheader{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
     color: #4c4c4c;
 }
 
-.title-separator{
+.homepage-separator{
     margin-top: 20px;
     margin-bottom: 50px;
 }
@@ -63,7 +63,7 @@ body, html{
 }
 
 .description{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Tahoma, Geneva, sans-serif;
     font-size: 16px;
     color: black;
 }
@@ -80,6 +80,10 @@ h2{
     padding-top: 100px;
     padding-bottom: 75px;
     background-color: white;
+}
+
+#add-announcement-button{
+    float: right;
 }
 /* End of Announcements */
 /* End of Homepage */

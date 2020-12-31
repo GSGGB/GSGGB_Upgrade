@@ -29,7 +29,7 @@ const Sponsors = () => {
                     <br />
                     <h4 class="page-subtitle">Thank-you to our sponsors for supporting GSGGB and its chapters!</h4>
                     <br />
-                    <hr class="title-separator" />
+                    <hr class="sponsors-title-separator" />
                     <br />
                     <h4 class="platinum-header">PLATINUM: Awarded to sponsors with a contribution of $1000 or more.</h4>
                     <br />
@@ -40,7 +40,7 @@ const Sponsors = () => {
             </div>
             <div class="cloud-background-section">
                 <div class="container" id="logo-spacing">
-                    <hr class="section-separator" />
+                    <hr class="sponsors-section-separator" />
                     <br /><br />
                     <h4 class="gold-header">GOLD: Awarded to sponsors with a contribution of $500 or more.</h4>
                     <br />
@@ -51,7 +51,7 @@ const Sponsors = () => {
             </div>
             <div class="white-background-section">
                 <div class="container" id="logo-spacing">
-                    <hr class="section-separator" />
+                    <hr class="sponsors-section-separator" />
                     <br /><br />
                     <h4 class="silver-header">SILVER: Awarded to sponsors with a contribution of $250 or more.</h4>
                     <br />
@@ -62,7 +62,7 @@ const Sponsors = () => {
             </div>
             <div class="cloud-background-section">
                 <div class="container" id="logo-spacing">
-                    <hr class="section-separator" />
+                    <hr class="sponsors-section-separator" />
                     <br /><br />
                     <h4 class="bronze-header">BRONZE: Awarded to sponsors with a contribution of $100 or more.</h4>
                     <br />
@@ -73,7 +73,7 @@ const Sponsors = () => {
             </div>
             <div class="white-background-section">
                 <div class="container" id="logo-spacing">
-                    <hr class="section-separator" />
+                    <hr class="sponsors-section-separator" />
                     <br /><br />
                     <h4 class="partner-header">Thanks to our U of T club partners for their support!</h4>
                     <br />
@@ -84,7 +84,7 @@ const Sponsors = () => {
             </div>
             <div class="cloud-background-section">
                 <div class="container" id="logo-spacing">
-                    <hr class="section-separator" />
+                    <hr class="sponsors-section-separator" />
                     <br /><br />
                     <h4 class="orange-header">A special thank-you to the Rare Disease Foundation for our partnership!</h4>
                     <br />

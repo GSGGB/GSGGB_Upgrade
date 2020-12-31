@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Image, Row, Col, Button, Modal, ModalBody, Form } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import "./styles.css";
 import "./styles-mobile.css";
@@ -35,10 +37,11 @@ class HomePage extends Component {
         if ((accountType === "Editor" || accountType === "Administrator") && loggedIn === "true") {
             return (
                 <Button
+                    id="add-announcement-button"
                     variant="outline-info"
                     onClick={() => this.setState({ displayAnnouncementModal: true })}
                 >
-                    Add announcement
+                    <FontAwesomeIcon icon={faPlus} size={20}/>
                 </Button>
             )
         }
@@ -51,12 +54,12 @@ class HomePage extends Component {
         return (
             <BrowserRouter forceRefresh={true}>
                 <div className="banner">
-                  <Image id="banner-photo" alt="GSGGB Banner" src={banner} />
+                    <Image id="banner-photo" alt="GSGGB Banner" src={banner} />
                 </div>
                 <div className="about-us-section">
                     <div className="container">
                         <h2 className="section-title" id="about-us">About Us</h2>
-                        <hr className="title-separator"></hr>
+                        <hr className="homepage-separator"></hr>
                         <Row id="our-purpose">
                             <Col>
                                 <Image
@@ -115,7 +118,7 @@ class HomePage extends Component {
                   <div className="container">
                       <h2 className="section-title" id="announcements">Announcements</h2>
                       <span>{announcementButton}</span>
-                      <hr className="title-separator"></hr>
+                      <hr className="homepage-separator"></hr>
                       <span>{this.state.announcements}</span>
                   </div>
               </div>
@@ -156,7 +159,7 @@ class HomePage extends Component {
               <div className="latest-research-section">
                   <div className="container">
                       <h2 className="section-title" id="latest-research">Latest Research</h2>
-                      <hr className="title-separator"></hr>
+                      <hr className="homepage-separator"></hr>
 
                   </div>
               </div>
@@ -164,7 +167,7 @@ class HomePage extends Component {
               <div className="contact-us-section">
                   <div className="container">
                       <h2 className="section-title" id="contact-us">Contact Us</h2>
-                      <hr className="title-separator"></hr>
+                      <hr className="homepage-separator"></hr>
 
                   </div>
               </div>
