@@ -3,12 +3,12 @@ import { withRouter, BrowserRouter } from "react-router-dom";
 import { Row, Col, Image, Form, Button } from "react-bootstrap";
 import { FaExclamationCircle } from "react-icons/fa";
 
-// Importing actions/required methods
-import { updateLoginCredentials, login, returnToHomePage } from "../../actions/user";
-
 import "./styles.css";
 import "./styles-mobile.css";
 import gsggb_logo from "./static/gsggb-logo.png";
+
+// Importing user actions/required methods.
+import { updateLoginCredentials, login, returnToHomePage } from "../../actions/user";
 
 class Login extends Component {
     constructor(props) {
@@ -45,33 +45,33 @@ class Login extends Component {
 
                                 <Form>
                                     <Form.Group>
-                                      <Form.Label id="login-label">
-                                         Username
-                                      </Form.Label>
+                                        <Form.Label id="login-label">
+                                           Username
+                                        </Form.Label>
 
-                                      <Form.Control
-                                          name="username"
-                                          id="username"
-                                          type="text"
-                                          placeholder="Username"
-                                          onChange={e => updateLoginCredentials(this, e.target)}
-                                          required
-                                      />
+                                        <Form.Control
+                                            name="username"
+                                            id="username"
+                                            type="text"
+                                            placeholder="Username"
+                                            onChange={e => updateLoginCredentials(this, e.target)}
+                                            required
+                                        />
                                     </Form.Group>
 
                                     <Form.Group>
-                                      <Form.Label id="login-label">
-                                         Password
-                                      </Form.Label>
+                                        <Form.Label id="login-label">
+                                           Password
+                                        </Form.Label>
 
-                                      <Form.Control
-                                          name="password"
-                                          id="password"
-                                          type="password"
-                                          placeholder="Password"
-                                          onChange={e => updateLoginCredentials(this, e.target)}
-                                          required
-                                      />
+                                        <Form.Control
+                                            name="password"
+                                            id="password"
+                                            type="password"
+                                            placeholder="Password"
+                                            onChange={e => updateLoginCredentials(this, e.target)}
+                                            required
+                                        />
                                     </Form.Group>
                                     <Button
                                         id="login-button"

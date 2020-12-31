@@ -4,34 +4,42 @@ import { Toast } from "react-bootstrap";
 
 import "./styles.css";
 
+import { retrieveAccountDetails } from "../../../actions/user";
+
 class Announcement extends Component {
     constructor(props) {
         super(props);
         this.myRef = React.createRef();
+        retrieveAccountDetails(this, this.props.userId);
     }
 
     state = {
-      date: new Date(),
-      options: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+        date: new Date(),
+        options: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
+        firstName: "",
+        lastName: "",
+        execPosition: ""
     }
 
     render() {
-      let newDate = this.state.date.toLocaleString('en-US', this.state.options);
+      const headshot = "./static/headshots/" + this.state.firstName + ".jpg";
+      const fullName = this.state.firstName + " " + this.state.lastName;
+      const announcementDate = this.state.date.toLocaleString('en-US', this.state.options);
 
       return (
           <BrowserRouter forceRefresh={true}>
-          <div className="announcement">
-            <Toast>
-              <Toast.Header closeButton="false">
-                <img src={this.props.profilePic} className="profile-pic" alt="profile-pic" />
-                <strong className="mr-auto">{this.props.fullName + " - " + this.props.userType}</strong>
-                <small>{newDate}</small>
-              </Toast.Header>
-              <Toast.Body>
-                {this.props.paragraph}
-              </Toast.Body>
-            </Toast>
-          </div>
+              <div className="announcement">
+                  <Toast>
+                      <Toast.Header closeButton="false">
+                        <img src={`/headshots/${headshot}`} className="headshot" alt="headshot" />
+                        <strong className="mr-auto">{fullName + " - " + this.state.execPosition}</strong>
+                        <small>{announcementDate}</small>
+                      </Toast.Header>
+                      <Toast.Body>
+                          {this.props.announcementContent}
+                      </Toast.Body>
+                  </Toast>
+              </div>
           </BrowserRouter>
       );
     }

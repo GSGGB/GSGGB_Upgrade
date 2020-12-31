@@ -11,39 +11,44 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 1,
-        trim: true,
+        trim: true
     },
     lastName: {
         type: String,
         required: true,
         minlength: 1,
-        trim: true,
+        trim: true
     },
     email: {
         type: String,
         required: true,
         unique: true,
         minlength: 3,
-        trim: true,
+        trim: true
     },
     username: {
         type: String,
         required: true,
         unique: true,
         minlength: 1,
-        trim: true,
+        trim: true
     },
     password: {
         type: String,
         required: true,
         minlength: 1,
-        trim: true,
+        trim: true
     },
     accountType: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
+    execPosition: {
+        type: String,
+        required: true,
+        trim: true
+    }
 });
 
 // An example of Mongoose middleware.

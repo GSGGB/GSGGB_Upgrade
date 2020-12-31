@@ -12,6 +12,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
 const { User } = require("./models/user");
+const { Announcement } = require("./models/announcement");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -39,7 +40,8 @@ app.use(
 );
 
 
-// A route to login and create a session
+/** Start of user resource routes **/
+// A POST route to login and create a session.
 app.post("/userDatabase/login", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -65,7 +67,7 @@ app.post("/userDatabase/login", (req, res) => {
 });
 
 
-// A route to logout a user
+// A GET route to logout a user.
 app.get("/userDatabase/logout", (req, res) => {
     // Remove the session
     req.session.destroy(error => {
@@ -78,7 +80,7 @@ app.get("/userDatabase/logout", (req, res) => {
 });
 
 
-// A route to check if a use is logged in on the session cookie
+// A GET route to check if a use is logged in on the session cookie.
 app.get("/userDatabase/check-session", (req, res) => {
     if (req.session.user) {
         res.send({ username: req.session.username });
@@ -87,9 +89,7 @@ app.get("/userDatabase/check-session", (req, res) => {
     }
 });
 
-
-/** User resource routes **/
-// a POST route to *create* a user account
+// A POST route to create a user account.
 app.post("/userDatabase", (req, res) => {
     // Create a new user using the User mongoose model
     const user = new User({
@@ -98,7 +98,8 @@ app.post("/userDatabase", (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password,
-        accountType: req.body.accountType
+        accountType: req.body.accountType,
+        execPosition: req.body.execPosition
     });
 
     // Save user to the database
@@ -112,6 +113,61 @@ app.post("/userDatabase", (req, res) => {
     );
 });
 
+// A GET route to *retrieve* a user account's details.
+app.get("/userDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    // Check if the username we want exists
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    User.findById(id)
+        .then((user) => {
+            if (!user) {
+                res.status(404).send();
+            } else {
+                res.send(user);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(error);
+        });
+});
+/** End of user resource routes **/
+
+/** Start of announcement resource routes **/
+// A GET route to get all announcements.
+app.get("/announcementDatabase", (req, res) => {
+    Announcement.find().then(
+        (announcements) => {
+            res.send({ announcements }); // can wrap in object if want to add more properties
+        },
+        (error) => {
+            res.status(500).send(error); // server error
+        }
+    );
+});
+
+// A POST route to create an announcement.
+app.post("/announcementDatabase", (req, res) => {
+    const announcement = new Announcement({
+        userId: req.session.user,
+        content: req.body.content
+    });
+
+    // Save announcement to the database.
+    announcement.save().then(
+        (result) => {
+            res.send(result);
+        },
+        (error) => {
+            res.status(400).send(error); // 400 for bad request
+        }
+    );
+});
+/** End of announcement resource routes **/
 
 /*** Webpage routes below **********************************/
 // Serve the build

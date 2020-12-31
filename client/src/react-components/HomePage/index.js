@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Image, Row, Col, Button, Modal, ModalBody} from "react-bootstrap";
+import { Image, Row, Col, Button, Modal, ModalBody, Form } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 
 import "./styles.css";
@@ -9,17 +9,22 @@ import banner from "./static/banner.jpg";
 import teamPhoto from "./static/team-photo.jpg";
 import conferencePhoto from "./static/conference-photo.jpg";
 
+// Importing announcement actions/required methods.
+import { getAnnouncements, updateContent, addAnnouncement } from "../../actions/announcement";
+
 class HomePage extends Component {
     constructor(props) {
         super(props);
         this.props.history.push("/home");
+        getAnnouncements(this);
     }
 
     state = {
         announcements: [],
-        displayModal: false,
-        announcementModalHeader: "",
-        announcementModalForm: "",
+        displayAnnouncementModal: false,
+        announcementContent: "",
+        displayResearchModal: false,
+        researchContent: ""
     };
 
 
@@ -30,9 +35,8 @@ class HomePage extends Component {
         if ((accountType === "Editor" || accountType === "Administrator") && loggedIn === "true") {
             return (
                 <Button
-                    id="add-announcement-button"
                     variant="outline-info"
-                    onClick={() => this.newAnnouncementForm()}
+                    onClick={() => this.setState({ displayAnnouncementModal: true })}
                 >
                     Add announcement
                 </Button>
@@ -116,14 +120,37 @@ class HomePage extends Component {
                   </div>
               </div>
               <Modal
-                  show={this.state.displayModal}
-                  onHide={() => this.closeModal()}
+                  show={this.state.displayAnnouncementModal}
+                  onHide={() => this.setState({ displayAnnouncementModal: false })}
                   size="lg"
                   aria-labelledby="contained-modal-title-vcenter"
                   centered
               >
-                  <ModalHeader closeButton>{this.state.announcementModalHeader}</ModalHeader>
-                  <ModalBody>{this.state.announcementModalForm}</ModalBody>
+                  <ModalHeader closeButton>
+                      <h4>Add new announcement</h4>
+                  </ModalHeader>
+                  <ModalBody>
+                      <Form>
+                          <Form.Group>
+                              <Form.Control
+                                  name="announcementContent"
+                                  id="announcementContent"
+                                  as="textarea"
+                                  placeholder="Add announcement content here..."
+                                  rows="5"
+                                  onChange={e => updateContent(this, e.target)}
+                                  required
+                              />
+                          </Form.Group>
+                          <Button
+                              variant="outline-info"
+                              type="submit"
+                              onClick={() => addAnnouncement(this)}
+                              >
+                                  CREATE
+                          </Button>
+                      </Form>
+                  </ModalBody>
               </Modal>
 
               <div className="latest-research-section">
@@ -143,33 +170,6 @@ class HomePage extends Component {
               </div>
           </BrowserRouter>
         );
-    }
-
-    getAnnouncements() {
-        // the URL for the request
-        const url = "/announcementsDatabase";
-
-        // Since this is a GET request, simply call fetch on the URL
-        fetch(url)
-            .then(res => {
-                if (res.status === 200) {
-                    // return a promise that resolves with the JSON body
-                    return res.json();
-                } else {
-                    alert("Could not get announcements");
-                }
-            })
-            .then(json => {
-                // the resolved promise with the JSON body
-                console.log(json)
-                this.setState({announcements : []})
-                for (let announcement of json.announcements) {
-                    this.addAnnouncement(announcement._id, announcement.userId, announcement.paragraph)
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
     }
 }
 

@@ -32,13 +32,21 @@ export const updateLoginCredentials = (loginComp, field) => {
 };
 
 
+// A function to redirect back to homepage.
+export const returnToHomePage = (loginComp) => {
+    let path = `/home`;
+    loginComp.props.history.push(path);
+};
+
+
 // A function to send a POST request with the user to be logged in.
 export const login = (loginComp) => {
     const loginError = document.querySelector("#login-error");
     loginError.style.display = "none";
 
-    // Create our request constructor with all the parameters we need
-    const request = new Request("/userDatabase/login", {
+    const url = "/userDatabase/login";
+
+    const request = new Request(url, {
         method: "post",
         body: JSON.stringify(loginComp.state),
         headers: {
@@ -85,13 +93,6 @@ export const login = (loginComp) => {
 };
 
 
-// A function to redirect back to homepage.
-export const returnToHomePage = (loginComp) => {
-    let path = `/home`;
-    loginComp.props.history.push(path);
-};
-
-
 // A function to send a GET request to logout the current user
 export const logout = (headerComp) => {
     const url = "/userDatabase/logout";
@@ -108,3 +109,28 @@ export const logout = (headerComp) => {
             console.log(error);
         });
 };
+
+
+// A function to retrieve user account details including first name, last name, and executive position to include in announcement.
+export const retrieveAccountDetails = (announcementComp, userId) => {
+  const url = "/userDatabase/" + userId;
+
+  fetch(url)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          } else {
+              alert("Could not get user");
+          }
+      })
+      .then(json => {
+          announcementComp.setState({
+              firstName: json.firstName,
+              lastName: json.lastName,
+              execPosition: json.execPosition
+          })
+      })
+      .catch(error => {
+          console.log(error);
+      });
+}
