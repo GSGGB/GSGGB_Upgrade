@@ -3,6 +3,7 @@ body, html{
     overflow-x: hidden;
     height: 100%;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 /* Banner */
@@ -42,6 +43,7 @@ body, html{
     font-weight: bold;
     color: #323232;
     display: inline-block;
+    scroll-margin-top: 10rem;
 }
 
 .about-us-subheader{

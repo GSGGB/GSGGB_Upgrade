@@ -38,6 +38,7 @@
     font-size: 40px;
     font-weight: bold;
     text-align: center;
+    scroll-margin-top: 10rem;
 }
 /* End of Team Sections */
 
@@ -81,12 +82,6 @@
 
 }
 /* End of Team Executive Buttons */
-
-/* Anchor Links */
-h3{
-  scroll-margin-top: 10rem;
-}
-/* End of Anchor Links */
 
 /* Team Executives Modals */
 .enlarged-executive-photo{
