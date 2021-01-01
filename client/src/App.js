@@ -23,16 +23,16 @@ class App extends Component {
     // User information.
     state = {
         username:
-            sessionStorage.getItem("username") !== null
-                ? sessionStorage.getItem("username")
+            localStorage.getItem("username") !== null
+                ? localStorage.getItem("username")
                 : "visitor",
         accountType:
-            sessionStorage.getItem("accountType") !== null
-                ? sessionStorage.getItem("accountType")
+            localStorage.getItem("accountType") !== null
+                ? localStorage.getItem("accountType")
                 : "Visitor",
         loggedIn:
-            sessionStorage.getItem("loggedIn") !== null
-                ? sessionStorage.getItem("loggedIn")
+            localStorage.getItem("loggedIn") !== null
+                ? localStorage.getItem("loggedIn")
                 : "false"
     }
 

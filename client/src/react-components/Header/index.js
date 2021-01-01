@@ -16,8 +16,8 @@ class Header extends Component {
     }
 
 
-    addLogoutButton() {
-        const loggedIn = sessionStorage.getItem("loggedIn");
+    logoutButton() {
+        const loggedIn = localStorage.getItem("loggedIn");
 
         if (loggedIn === "true") {
             return (
@@ -37,7 +37,7 @@ class Header extends Component {
 
     render() {
       const { location } = this.props;
-      const logoutButton = this.addLogoutButton();
+      const logoutButton = this.logoutButton();
 
       return (
           <div className="header sticky-top">

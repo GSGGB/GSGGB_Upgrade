@@ -22,3 +22,11 @@
 .toast-header > button{
   display: none !important;
 }
+
+#modify-announcement-button{
+    margin-left: 20px;
+}
+
+#delete-announcement-button{
+    float: right;
+}

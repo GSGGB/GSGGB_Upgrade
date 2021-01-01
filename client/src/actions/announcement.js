@@ -30,12 +30,12 @@ export const getAnnouncements = (homepageComp) => {
             }
         })
         .then(json => {
-            console.log(json)
             homepageComp.setState({announcements: []})
             for (let announcement of json.announcements) {
                 const newAnnouncement = <Announcement
                                             userId={announcement.userId}
                                             announcementContent={announcement.content}
+                                            announcementDate={announcement.date}
                                         ></Announcement>
                 homepageComp.setState({
                     announcements: [newAnnouncement].concat(homepageComp.state.announcements)
@@ -78,6 +78,7 @@ export const addAnnouncement = (homepageComp) => {
             const newAnnouncement = <Announcement
                                         userId={json.userId}
                                         announcementContent={json.content}
+                                        announcementDate={json.date}
                                     ></Announcement>
             homepageComp.setState({
                 announcements: [newAnnouncement].concat(homepageComp.state.announcements)

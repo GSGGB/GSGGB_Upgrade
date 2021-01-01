@@ -12,6 +12,11 @@ const AnnouncementSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 1
+    },
+    date: {
+        type: String,
+        required: true,
+        minlength: 1
     }
 })
 

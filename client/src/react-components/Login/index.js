@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { withRouter, BrowserRouter } from "react-router-dom";
 import { Row, Col, Image, Form, Button } from "react-bootstrap";
-import { FaExclamationCircle } from "react-icons/fa";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 import "./styles.css";
 import "./styles-mobile.css";
@@ -38,7 +39,7 @@ class Login extends Component {
                                     className="alert alert-danger text-center"
                                     id="login-error"
                                 >
-                                <FaExclamationCircle />
+                                      <FontAwesomeIcon icon={faExclamationCircle} size={25}/>
                                       &nbsp; Invalid username or password. Please
                                       try again.
                                 </div>

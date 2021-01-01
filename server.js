@@ -154,7 +154,8 @@ app.get("/announcementDatabase", (req, res) => {
 app.post("/announcementDatabase", (req, res) => {
     const announcement = new Announcement({
         userId: req.session.user,
-        content: req.body.content
+        content: req.body.content,
+        date: new Date()
     });
 
     // Save announcement to the database.

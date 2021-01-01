@@ -31,10 +31,13 @@ class HomePage extends Component {
 
 
     addAnnouncementButton() {
-        const accountType = sessionStorage.getItem("accountType");
-        const loggedIn = sessionStorage.getItem("loggedIn");
+        const accountType = localStorage.getItem("accountType");
+        const loggedIn = localStorage.getItem("loggedIn");
 
-        if ((accountType === "Editor" || accountType === "Administrator") && loggedIn === "true") {
+        if (
+          loggedIn === "true" &&
+          (accountType === "Editor" || accountType === "Administrator")
+        ) {
             return (
                 <Button
                     id="add-announcement-button"
@@ -49,7 +52,7 @@ class HomePage extends Component {
 
 
     render() {
-        const announcementButton = this.addAnnouncementButton();
+        const addAnnouncementButton = this.addAnnouncementButton();
 
         return (
             <BrowserRouter forceRefresh={true}>
@@ -117,7 +120,7 @@ class HomePage extends Component {
               <div className="announcements-section">
                   <div className="container">
                       <h2 className="section-title" id="announcements">Announcements</h2>
-                      <span>{announcementButton}</span>
+                      <span>{addAnnouncementButton}</span>
                       <hr className="homepage-separator"></hr>
                       <span>{this.state.announcements}</span>
                   </div>

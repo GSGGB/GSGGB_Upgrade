@@ -12,7 +12,7 @@ export const readCookie = () => {
         })
         .then(json => {
             if (json && json.username) {
-                sessionStorage.setItem("username", json.username)
+                localStorage.setItem("username", json.username)
             }
         })
         .catch(error => {
@@ -63,10 +63,10 @@ export const login = (loginComp) => {
             }
         })
         .then(json => {
-            if (json.username !== undefined) {
-                sessionStorage.setItem("username", json.username)
-                sessionStorage.setItem("accountType", json.accountType)
-                sessionStorage.setItem("loggedIn", "true")
+            if (json !== undefined && json.username !== undefined) {
+                localStorage.setItem("username", json.username)
+                localStorage.setItem("accountType", json.accountType)
+                localStorage.setItem("loggedIn", "true")
 
                 loginError.style.display = "none";
 
@@ -78,7 +78,6 @@ export const login = (loginComp) => {
                     path = `/home`; // Temporary.
                 }
 
-                console.log("Successfully logged in.")
                 loginComp.props.history.push(path);
             }
             else{
@@ -99,10 +98,9 @@ export const logout = (headerComp) => {
 
     fetch(url)
         .then(res => {
-            sessionStorage.setItem("username", "visitor")
-            sessionStorage.setItem("accountType", "Visitor")
-            sessionStorage.setItem("loggedIn", "false")
-            console.log("Successfully logged out.")
+            localStorage.setItem("username", "visitor")
+            localStorage.setItem("accountType", "Visitor")
+            localStorage.setItem("loggedIn", "false")
             headerComp.props.history.push("/");
         })
         .catch(error => {
@@ -111,7 +109,7 @@ export const logout = (headerComp) => {
 };
 
 
-// A function to retrieve user account details including first name, last name, and executive position to include in announcement.
+// A function to retrieve user account details by their userId, including first name, last name, username, and executive position.
 export const retrieveAccountDetails = (announcementComp, userId) => {
   const url = "/userDatabase/" + userId;
 
@@ -127,6 +125,7 @@ export const retrieveAccountDetails = (announcementComp, userId) => {
           announcementComp.setState({
               firstName: json.firstName,
               lastName: json.lastName,
+              username: json.username,
               execPosition: json.execPosition
           })
       })
