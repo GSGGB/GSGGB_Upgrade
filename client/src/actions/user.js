@@ -109,7 +109,8 @@ export const logout = (headerComp) => {
 };
 
 
-// A function to retrieve user account details by their userId, including first name, last name, username, and executive position.
+// A function to retrieve user account details by their userId,
+// including first name, last name, username, and executive position.
 export const retrieveAccountDetails = (announcementComp, userId) => {
   const url = "/userDatabase/" + userId;
 

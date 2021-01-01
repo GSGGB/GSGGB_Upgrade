@@ -138,16 +138,38 @@ app.get("/userDatabase/:id", (req, res) => {
 /** End of user resource routes **/
 
 /** Start of announcement resource routes **/
-// A GET route to get all announcements.
+// A GET route to get ALL announcements.
 app.get("/announcementDatabase", (req, res) => {
     Announcement.find().then(
         (announcements) => {
-            res.send({ announcements }); // can wrap in object if want to add more properties
+            res.send({ announcements });
         },
         (error) => {
-            res.status(500).send(error); // server error
+            res.status(500).send(error); // Server error, could not get.
         }
     );
+});
+
+// A GET route to get an announcement by their id.
+app.get("/announcementsDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Announcement.findById(id)
+        .then((announcement) => {
+            if (!announcement) {
+                res.status(404).send();
+            } else {
+                res.send(announcement);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not get.
+        });
 });
 
 // A POST route to create an announcement.
@@ -164,9 +186,56 @@ app.post("/announcementDatabase", (req, res) => {
             res.send(result);
         },
         (error) => {
-            res.status(400).send(error); // 400 for bad request
+            res.status(400).send(error); // 400 for bad request.
         }
     );
+});
+
+// A PATCH route to edit an announcement by their id.
+app.patch("/announcementsDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    const { content } = req.body;
+    const body = { content };
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Announcement.findByIdAndUpdate(id, { $set: body })
+        .then((announcement) => {
+            if (!announcement) {
+                res.status(404).send();
+            } else {
+                res.send(announcement);
+            }
+        })
+        .catch((error) => {
+            res.status(400).send(); // 400 for bad request.
+        });
+});
+
+// A DELETE route to delete an announcement by their id.
+app.delete("/announcementsDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Announcement.findByIdAndRemove(id)
+        .then((announcement) => {
+            if (!announcement) {
+                res.status(404).send();
+            } else {
+                res.send(announcement);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not delete.
+        });
 });
 /** End of announcement resource routes **/
 

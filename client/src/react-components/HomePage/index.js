@@ -12,13 +12,13 @@ import teamPhoto from "./static/team-photo.jpg";
 import conferencePhoto from "./static/conference-photo.jpg";
 
 // Importing announcement actions/required methods.
-import { getAnnouncements, updateContent, addAnnouncement } from "../../actions/announcement";
+import { updateAnnouncementContent, getAllAnnouncements, addAnnouncement } from "../../actions/announcement";
 
 class HomePage extends Component {
     constructor(props) {
         super(props);
         this.props.history.push("/home");
-        getAnnouncements(this);
+        getAllAnnouncements(this);
     }
 
     state = {
@@ -29,7 +29,7 @@ class HomePage extends Component {
         researchContent: ""
     };
 
-
+    // Add announcement button for editors and administrators only.
     addAnnouncementButton() {
         const accountType = localStorage.getItem("accountType");
         const loggedIn = localStorage.getItem("loggedIn");
@@ -59,6 +59,7 @@ class HomePage extends Component {
                 <div className="banner">
                     <Image id="banner-photo" alt="GSGGB Banner" src={banner} />
                 </div>
+
                 <div className="about-us-section">
                     <div className="container">
                         <h2 className="section-title" id="about-us">About Us</h2>
@@ -117,64 +118,64 @@ class HomePage extends Component {
                     </div>
                 </div>
 
-              <div className="announcements-section">
-                  <div className="container">
-                      <h2 className="section-title" id="announcements">Announcements</h2>
-                      <span>{addAnnouncementButton}</span>
-                      <hr className="homepage-separator"></hr>
-                      <span>{this.state.announcements}</span>
-                  </div>
-              </div>
-              <Modal
-                  show={this.state.displayAnnouncementModal}
-                  onHide={() => this.setState({ displayAnnouncementModal: false })}
-                  size="lg"
-                  aria-labelledby="contained-modal-title-vcenter"
-                  centered
-              >
-                  <ModalHeader closeButton>
-                      <h4>Add new announcement</h4>
-                  </ModalHeader>
-                  <ModalBody>
-                      <Form>
-                          <Form.Group>
-                              <Form.Control
-                                  name="announcementContent"
-                                  id="announcementContent"
-                                  as="textarea"
-                                  placeholder="Add announcement content here..."
-                                  rows="5"
-                                  onChange={e => updateContent(this, e.target)}
-                                  required
-                              />
-                          </Form.Group>
-                          <Button
-                              variant="outline-info"
-                              type="submit"
-                              onClick={() => addAnnouncement(this)}
-                              >
-                                  CREATE
-                          </Button>
-                      </Form>
-                  </ModalBody>
-              </Modal>
+                <div className="announcements-section">
+                    <div className="container">
+                        <h2 className="section-title" id="announcements">Announcements</h2>
+                        <span>{addAnnouncementButton}</span>
+                        <hr className="homepage-separator"></hr>
+                        <div class="announcement-toasts">{this.state.announcements}</div>
+                    </div>
+                </div>
+                <Modal
+                    show={this.state.displayAnnouncementModal}
+                    onHide={() => this.setState({ displayAnnouncementModal: false })}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                >
+                    <ModalHeader closeButton>
+                        <h4>Add new announcement</h4>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Form>
+                            <Form.Group>
+                                <Form.Control
+                                    name="announcementContent"
+                                    id="announcementContent"
+                                    as="textarea"
+                                    placeholder="Add announcement content here..."
+                                    rows="5"
+                                    onChange={e => updateAnnouncementContent(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <Button
+                                variant="outline-info"
+                                type="submit"
+                                onClick={() => addAnnouncement(this)}
+                                >
+                                    CREATE
+                            </Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
 
-              <div className="latest-research-section">
-                  <div className="container">
-                      <h2 className="section-title" id="latest-research">Latest Research</h2>
-                      <hr className="homepage-separator"></hr>
+                <div className="latest-research-section">
+                    <div className="container">
+                        <h2 className="section-title" id="latest-research">Latest Research</h2>
+                        <hr className="homepage-separator"></hr>
 
-                  </div>
-              </div>
+                    </div>
+                </div>
 
-              <div className="contact-us-section">
-                  <div className="container">
-                      <h2 className="section-title" id="contact-us">Contact Us</h2>
-                      <hr className="homepage-separator"></hr>
+                <div className="contact-us-section">
+                    <div className="container">
+                        <h2 className="section-title" id="contact-us">Contact Us</h2>
+                        <hr className="homepage-separator"></hr>
 
-                  </div>
-              </div>
-          </BrowserRouter>
+                    </div>
+                </div>
+            </BrowserRouter>
         );
     }
 }

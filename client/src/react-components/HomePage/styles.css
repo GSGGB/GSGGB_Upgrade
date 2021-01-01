@@ -85,5 +85,10 @@ h2{
 #add-announcement-button{
     float: right;
 }
+
+.announcement-toasts{
+    height: 600px;
+    overflow-y: auto;
+}
 /* End of Announcements */
 /* End of Homepage */

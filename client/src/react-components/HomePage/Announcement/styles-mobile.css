@@ -1,0 +1,12 @@
+
+/* Make the conference, banner and team photos responsive on mobile screens */
+/* Decrease the top padding for both the About Us and Announcements sections*/
+@media (max-width: 992px){
+    .toast-header{
+        height: 75px;
+    }
+
+    #delete-announcement-button{
+        margin-left: 20px;
+    }
+}

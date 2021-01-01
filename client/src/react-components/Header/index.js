@@ -15,7 +15,7 @@ class Header extends Component {
         this.myRef = React.createRef();
     }
 
-
+    // Logout button for editors and administrators only.
     logoutButton() {
         const loggedIn = localStorage.getItem("loggedIn");
 
