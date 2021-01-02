@@ -32,9 +32,9 @@ class Announcement extends Component {
 
     // Edit announcement button for editors and administrators only.
     editAnnouncementButton(){
-        const username = localStorage.getItem("username");
-        const accountType = localStorage.getItem("accountType");
-        const loggedIn = localStorage.getItem("loggedIn");
+        const username = sessionStorage.getItem("username");
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
 
         if (loggedIn === "true"){
             if (
@@ -57,9 +57,9 @@ class Announcement extends Component {
 
     // Delete announcement button for editors and administrators only.
     deleteAnnouncementButton(){
-        const username = localStorage.getItem("username");
-        const accountType = localStorage.getItem("accountType");
-        const loggedIn = localStorage.getItem("loggedIn");
+        const username = sessionStorage.getItem("username");
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
 
         if (loggedIn === "true"){
             if (

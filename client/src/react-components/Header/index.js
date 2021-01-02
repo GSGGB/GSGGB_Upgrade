@@ -17,7 +17,7 @@ class Header extends Component {
 
     // Logout button for editors and administrators only.
     logoutButton() {
-        const loggedIn = localStorage.getItem("loggedIn");
+        const loggedIn = sessionStorage.getItem("loggedIn");
 
         if (loggedIn === "true") {
             return (

@@ -12,7 +12,7 @@ export const readCookie = () => {
         })
         .then(json => {
             if (json && json.username) {
-                localStorage.setItem("username", json.username)
+                sessionStorage.setItem("username", json.username)
             }
         })
         .catch(error => {
@@ -64,9 +64,9 @@ export const login = (loginComp) => {
         })
         .then(json => {
             if (json !== undefined && json.username !== undefined) {
-                localStorage.setItem("username", json.username)
-                localStorage.setItem("accountType", json.accountType)
-                localStorage.setItem("loggedIn", "true")
+                sessionStorage.setItem("username", json.username)
+                sessionStorage.setItem("accountType", json.accountType)
+                sessionStorage.setItem("loggedIn", "true")
 
                 loginError.style.display = "none";
 
@@ -98,9 +98,9 @@ export const logout = (headerComp) => {
 
     fetch(url)
         .then(res => {
-            localStorage.setItem("username", "visitor")
-            localStorage.setItem("accountType", "Visitor")
-            localStorage.setItem("loggedIn", "false")
+            sessionStorage.setItem("username", "visitor")
+            sessionStorage.setItem("accountType", "Visitor")
+            sessionStorage.setItem("loggedIn", "false")
             headerComp.props.history.push("/");
         })
         .catch(error => {

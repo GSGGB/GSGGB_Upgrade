@@ -13,6 +13,24 @@ class Footer extends Component {
                     <Row>
                         <Col>
                             <a
+                                href="mailto:info@gsggb.org"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <span className="social-media-icon" id="email">
+                                    <FaEnvelope />
+                                </span>
+                            </a>
+                            <a
+                              href="https://www.instagram.com/uoftgsggb/"
+                              rel="noopener noreferrer"
+                              target="_blank"
+                            >
+                                <span className="social-media-icon" id="instagram">
+                                    <FaInstagram />
+                                </span>
+                            </a>
+                            <a
                                 href="https://www.facebook.com/GSGGB/"
                                 rel="noopener noreferrer"
                                 target="_blank"
@@ -28,24 +46,6 @@ class Footer extends Component {
                             >
                                 <span className="social-media-icon" id="twitter">
                                     <FaTwitter />
-                                </span>
-                            </a>
-                            <a
-                              href="https://www.instagram.com/uoftgsggb/"
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                                <span className="social-media-icon" id="instagram">
-                                    <FaInstagram />
-                                </span>
-                            </a>
-                            <a
-                                href="mailto:info@gsggb.org"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                <span className="social-media-icon" id="email">
-                                    <FaEnvelope />
                                 </span>
                             </a>
                             <p className="copyright-text">

@@ -35,8 +35,8 @@ class HomePage extends Component {
 
     // Add announcement button for editors and administrators only.
     addAnnouncementButton() {
-        const accountType = localStorage.getItem("accountType");
-        const loggedIn = localStorage.getItem("loggedIn");
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
 
         if (
           loggedIn === "true" &&
@@ -56,8 +56,8 @@ class HomePage extends Component {
 
     // Add research button for editors and administrators only.
     addResearchButton() {
-        const accountType = localStorage.getItem("accountType");
-        const loggedIn = localStorage.getItem("loggedIn");
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
 
         if (
           loggedIn === "true" &&

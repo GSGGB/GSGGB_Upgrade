@@ -31,9 +31,9 @@ class Research extends Component {
 
     // Edit research post button for editors and administrators only.
     editResearchButton(){
-        const username = localStorage.getItem("username");
-        const accountType = localStorage.getItem("accountType");
-        const loggedIn = localStorage.getItem("loggedIn");
+        const username = sessionStorage.getItem("username");
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
 
         if (loggedIn === "true"){
             if (
@@ -56,9 +56,9 @@ class Research extends Component {
 
     // Delete research post button for editors and administrators only.
     deleteResearchButton(){
-        const username = localStorage.getItem("username");
-        const accountType = localStorage.getItem("accountType");
-        const loggedIn = localStorage.getItem("loggedIn");
+        const username = sessionStorage.getItem("username");
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
 
         if (loggedIn === "true"){
             if (
