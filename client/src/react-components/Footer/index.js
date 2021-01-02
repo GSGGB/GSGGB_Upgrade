@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter, BrowserRouter } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaEnvelope, FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 import "./styles.css";
 
@@ -18,16 +18,7 @@ class Footer extends Component {
                                 target="_blank"
                             >
                                 <span className="social-media-icon" id="facebook">
-                                  <FaFacebookF />
-                                </span>
-                            </a>
-                            <a
-                              href="https://www.instagram.com/uoftgsggb/"
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                                <span className="social-media-icon" id="instagram">
-                                  <FaInstagram />
+                                    <FaFacebookF />
                                 </span>
                             </a>
                             <a
@@ -39,8 +30,26 @@ class Footer extends Component {
                                     <FaTwitter />
                                 </span>
                             </a>
+                            <a
+                              href="https://www.instagram.com/uoftgsggb/"
+                              rel="noopener noreferrer"
+                              target="_blank"
+                            >
+                                <span className="social-media-icon" id="instagram">
+                                    <FaInstagram />
+                                </span>
+                            </a>
+                            <a
+                                href="mailto:info@gsggb.org"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <span className="social-media-icon" id="email">
+                                    <FaEnvelope />
+                                </span>
+                            </a>
                             <p className="copyright-text">
-                                Copyright © 2020{" "}
+                                Copyright © 2021{" "}
                                 <b>
                                     Global Society for Genetics and Genome
                                     Biology.

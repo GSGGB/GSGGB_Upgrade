@@ -80,7 +80,7 @@ h2{
 /* Announcements */
 .announcements-section{
     padding-top: 100px;
-    padding-bottom: 75px;
+    padding-bottom: 25px;
     background-color: white;
 }
 
@@ -93,4 +93,23 @@ h2{
     overflow-y: auto;
 }
 /* End of Announcements */
+
+/* Latest Research */
+.latest-research-section{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: white;
+}
+
+#add-research-button{
+    float: right;
+}
+
+.research-posts{
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+/* End of Latest Research */
+
 /* End of Homepage */

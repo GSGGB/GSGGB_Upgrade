@@ -1,0 +1,15 @@
+.researchPost{
+    margin-bottom: 25px;
+}
+
+.headshot{
+    width: 30px;
+    margin-right: 10px;
+    border-radius: 20%;
+}
+
+#edit-research-button, #delete-research-button{
+    display: inline-block;
+    float: right;
+    margin-bottom: 20px;
+}

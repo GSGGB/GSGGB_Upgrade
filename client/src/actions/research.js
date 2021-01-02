@@ -1,10 +1,10 @@
 import React from "react";
-import Announcement from "../react-components/HomePage/Announcement";
+import Research from "../react-components/HomePage/Research";
 
-// Functions to help with announcements.
+// Functions to help with research posts.
 
-// A function to update announcement content.
-export const updateAnnouncementContent = (comp, field) => {
+// A function to update the research post URL.
+export const updateResearchURL = (comp, field) => {
     const value = field.value;
     const name = field.name;
 
@@ -14,9 +14,9 @@ export const updateAnnouncementContent = (comp, field) => {
 };
 
 
-// A function to get all announcements in the database.
-export const getAllAnnouncements = (homepageComp) => {
-    const url = "/announcementDatabase";
+// A function to get all research posts in the database.
+export const getAllResearchPosts = (homepageComp) => {
+    const url = "/researchDatabase";
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -25,21 +25,20 @@ export const getAllAnnouncements = (homepageComp) => {
                 // Return a promise that resolves with the JSON body.
                 return res.json();
             } else {
-                alert("Could not get announcements");
+                alert("Could not get research posts");
             }
         })
         .then(json => {
-            homepageComp.setState({announcements: []})
-            for (let announcement of json.announcements) {
-                const newAnnouncement = <Announcement
+            homepageComp.setState({researchPosts: []})
+            for (let researchPost of json.researchPosts) {
+                const newResearchPost = <Research
                                             homepageComp={homepageComp}
-                                            announcementId={announcement._id}
-                                            userId={announcement.userId}
-                                            content={announcement.content}
-                                            date={announcement.date}
-                                        ></Announcement>
+                                            researchId={researchPost._id}
+                                            userId={researchPost.userId}
+                                            url={researchPost.url}
+                                        ></Research>
                 homepageComp.setState({
-                    announcements: [newAnnouncement].concat(homepageComp.state.announcements)
+                    researchPosts: [newResearchPost].concat(homepageComp.state.researchPosts)
                 })
             }
         })
@@ -48,9 +47,9 @@ export const getAllAnnouncements = (homepageComp) => {
         });
 }
 
-// A function to get a specific announcement by their id to update.
-export const getAnnouncementById = (announcementComp, id) => {
-    const url = "/announcementDatabase/" + id;
+// A function to get a specific research post by their id to update.
+export const getResearchPostById = (researchComp, id) => {
+    const url = "/researchDatabase/" + id;
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -59,13 +58,13 @@ export const getAnnouncementById = (announcementComp, id) => {
                 // Return a promise that resolves with the JSON body.
                 return res.json();
             } else {
-                alert("Could not get announcement");
+                alert("Could not get research post");
             }
         })
         .then(json => {
-            announcementComp.setState({
+            researchComp.setState({
                 displayModal: true,
-                existingContent: json.content
+                existingURL: json.url
             });
         })
         .catch(error => {
@@ -74,17 +73,17 @@ export const getAnnouncementById = (announcementComp, id) => {
 }
 
 
-// A function to add an announcement.
-export const addAnnouncement = (homepageComp) => {
-    const announcement = {
-        content: homepageComp.state.announcementContent
+// A function to add a research post.
+export const addResearchPost = (homepageComp) => {
+    const researchPost = {
+        url: homepageComp.state.researchURL
     };
 
-    const url = "/announcementDatabase";
+    const url = "/researchDatabase";
 
     const request = new Request(url, {
         method: "post",
-        body: JSON.stringify(announcement),
+        body: JSON.stringify(researchPost),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -97,19 +96,18 @@ export const addAnnouncement = (homepageComp) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                alert("Could not add announcement");
+                alert("Could not add research post");
             }
         })
         .then(json => {
-            const newAnnouncement = <Announcement
+            const newResearchPost = <Research
                                         homepageComp={homepageComp}
-                                        announcementId={json._id}
+                                        researchId={json._id}
                                         userId={json.userId}
-                                        content={json.content}
-                                        date={json.date}
-                                    ></Announcement>
+                                        url={json.url}
+                                    ></Research>
             homepageComp.setState({
-                announcements: [newAnnouncement].concat(homepageComp.state.announcements)
+                researchPosts: [newResearchPost].concat(homepageComp.state.researchPosts)
             })
         })
         .catch(error => {
@@ -118,16 +116,16 @@ export const addAnnouncement = (homepageComp) => {
 }
 
 
-export const editAnnouncement = (announcementComp, homepageComp, id) => {
-    const url = "/announcementDatabase/" + id;
+export const editResearchPost = (researchComp, homepageComp, id) => {
+    const url = "/researchDatabase/" + id;
 
-    const updatedAnnouncement = {
-        content: announcementComp.state.updatedContent
+    const updatedResearchPost = {
+        url: researchComp.state.updatedURL
     }
 
     const request = new Request(url, {
         method: "PATCH",
-        body: JSON.stringify(updatedAnnouncement),
+        body: JSON.stringify(updatedResearchPost),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -140,16 +138,16 @@ export const editAnnouncement = (announcementComp, homepageComp, id) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                console.log("Could not update announcement");
+                console.log("Could not update research post");
             }
         })
 
-    getAllAnnouncements(homepageComp);
+    getAllResearchPosts(homepageComp);
 }
 
 
-export const deleteAnnouncement = (homepageComp, id) => {
-    const url = "/announcementDatabase/" + id;
+export const deleteResearchPost = (homepageComp, id) => {
+    const url = "/researchDatabase/" + id;
 
     const request = new Request(url, {
         method: "delete",
@@ -165,14 +163,14 @@ export const deleteAnnouncement = (homepageComp, id) => {
             // Handle response we get from the API.
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
-                console.log("Successfully deleted announcement");
+                console.log("Successfully deleted research post");
             } else {
-                console.log("Failed to delete announcement");
+                console.log("Failed to delete research post");
             }
         })
         .catch(error => {
             console.log(error);
         });
 
-    getAllAnnouncements(homepageComp);
+    getAllResearchPosts(homepageComp);
 }

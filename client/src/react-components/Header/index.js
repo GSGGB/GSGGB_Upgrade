@@ -68,9 +68,6 @@ class Header extends Component {
                                       <NavDropdown.Item href = "/home#latest-research" id="dropdown-item">
                                           LATEST RESEARCH
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/home#contact-us" id="dropdown-item">
-                                          CONTACT US
-                                      </NavDropdown.Item>
                                   </NavDropdown>
                                   <NavDropdown title = "TEAM" id="dropdown">
                                       <NavDropdown.Item href = "/team#senior-staff" id="dropdown-item">

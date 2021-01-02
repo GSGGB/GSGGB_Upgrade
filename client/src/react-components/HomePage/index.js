@@ -13,20 +13,24 @@ import conferencePhoto from "./static/conference-photo.jpg";
 
 // Importing announcement actions/required methods.
 import { updateAnnouncementContent, getAllAnnouncements, addAnnouncement } from "../../actions/announcement";
+// Importing research post actions/required methods.
+import { updateResearchURL, getAllResearchPosts, addResearchPost } from "../../actions/research";
 
 class HomePage extends Component {
     constructor(props) {
         super(props);
         this.props.history.push("/home");
         getAllAnnouncements(this);
+        getAllResearchPosts(this);
     }
 
     state = {
         announcements: [],
         displayAnnouncementModal: false,
         announcementContent: "",
+        researchPosts: [],
         displayResearchModal: false,
-        researchContent: ""
+        researchURL: ""
     };
 
     // Add announcement button for editors and administrators only.
@@ -50,9 +54,31 @@ class HomePage extends Component {
         }
     }
 
+    // Add research button for editors and administrators only.
+    addResearchButton() {
+        const accountType = localStorage.getItem("accountType");
+        const loggedIn = localStorage.getItem("loggedIn");
+
+        if (
+          loggedIn === "true" &&
+          (accountType === "Editor" || accountType === "Administrator")
+        ) {
+            return (
+                <Button
+                    id="add-research-button"
+                    variant="outline-info"
+                    onClick={() => this.setState({ displayResearchModal: true })}
+                >
+                    <FontAwesomeIcon icon={faPlus} size={20}/>
+                </Button>
+            )
+        }
+    }
+
 
     render() {
         const addAnnouncementButton = this.addAnnouncementButton();
+        const addResearchButton = this.addResearchButton();
 
         return (
             <BrowserRouter forceRefresh={true}>
@@ -123,7 +149,7 @@ class HomePage extends Component {
                         <h2 className="section-title" id="announcements">Announcements</h2>
                         <span>{addAnnouncementButton}</span>
                         <hr className="homepage-separator"></hr>
-                        <div class="announcement-toasts">{this.state.announcements}</div>
+                        <div className="announcement-toasts">{this.state.announcements}</div>
                     </div>
                 </div>
                 <Modal
@@ -163,18 +189,47 @@ class HomePage extends Component {
                 <div className="latest-research-section">
                     <div className="container">
                         <h2 className="section-title" id="latest-research">Latest Research</h2>
+                        <span>{addResearchButton}</span>
                         <hr className="homepage-separator"></hr>
-
+                        <div className="research-posts">
+                            <Row>{this.state.researchPosts}</Row>
+                        </div>
                     </div>
                 </div>
+                <Modal
+                    show={this.state.displayResearchModal}
+                    onHide={() => this.setState({ displayResearchModal: false })}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                >
+                    <ModalHeader closeButton>
+                        <h4>Add new research post (Facebook URL)</h4>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Form>
+                            <Form.Group>
+                                <Form.Control
+                                    name="researchURL"
+                                    id="researchURL"
+                                    as="textarea"
+                                    placeholder="Add Facebook URL here..."
+                                    rows="1"
+                                    onChange={e => updateResearchURL(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <Button
+                                variant="outline-info"
+                                type="submit"
+                                onClick={() => addResearchPost(this)}
+                                >
+                                    CREATE
+                            </Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
 
-                <div className="contact-us-section">
-                    <div className="container">
-                        <h2 className="section-title" id="contact-us">Contact Us</h2>
-                        <hr className="homepage-separator"></hr>
-
-                    </div>
-                </div>
             </BrowserRouter>
         );
     }

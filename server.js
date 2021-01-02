@@ -13,6 +13,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 // import the mongoose models
 const { User } = require("./models/user");
 const { Announcement } = require("./models/announcement");
+const { Research } = require("./models/research");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -137,6 +138,7 @@ app.get("/userDatabase/:id", (req, res) => {
 });
 /** End of user resource routes **/
 
+
 /** Start of announcement resource routes **/
 // A GET route to get ALL announcements.
 app.get("/announcementDatabase", (req, res) => {
@@ -151,7 +153,7 @@ app.get("/announcementDatabase", (req, res) => {
 });
 
 // A GET route to get an announcement by their id.
-app.get("/announcementsDatabase/:id", (req, res) => {
+app.get("/announcementDatabase/:id", (req, res) => {
     const id = req.params.id;
 
     if (!ObjectID.isValid(id)) {
@@ -192,7 +194,7 @@ app.post("/announcementDatabase", (req, res) => {
 });
 
 // A PATCH route to edit an announcement by their id.
-app.patch("/announcementsDatabase/:id", (req, res) => {
+app.patch("/announcementDatabase/:id", (req, res) => {
     const id = req.params.id;
 
     const { content } = req.body;
@@ -217,7 +219,7 @@ app.patch("/announcementsDatabase/:id", (req, res) => {
 });
 
 // A DELETE route to delete an announcement by their id.
-app.delete("/announcementsDatabase/:id", (req, res) => {
+app.delete("/announcementDatabase/:id", (req, res) => {
     const id = req.params.id;
 
     if (!ObjectID.isValid(id)) {
@@ -238,6 +240,108 @@ app.delete("/announcementsDatabase/:id", (req, res) => {
         });
 });
 /** End of announcement resource routes **/
+
+
+/** Start of research post resource routes **/
+// A GET route to get ALL research posts.
+app.get("/researchDatabase", (req, res) => {
+    Research.find().then(
+        (researchPosts) => {
+            res.send({ researchPosts });
+        },
+        (error) => {
+            res.status(500).send(error); // Server error, could not get.
+        }
+    );
+});
+
+// A GET route to get a research post by their id.
+app.get("/researchDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Research.findById(id)
+        .then((researchPost) => {
+            if (!researchPost) {
+                res.status(404).send();
+            } else {
+                res.send(researchPost);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not get.
+        });
+});
+
+// A POST route to create a research post.
+app.post("/researchDatabase", (req, res) => {
+    const researchPost = new Research({
+        userId: req.session.user,
+        url: req.body.url
+    });
+
+    // Save announcement to the database.
+    researchPost.save().then(
+        (result) => {
+            res.send(result);
+        },
+        (error) => {
+            res.status(400).send(error); // 400 for bad request.
+        }
+    );
+});
+
+// A PATCH route to edit a research post by their id.
+app.patch("/researchDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    const { url } = req.body;
+    const body = { url };
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Research.findByIdAndUpdate(id, { $set: body })
+        .then((researchPost) => {
+            if (!researchPost) {
+                res.status(404).send();
+            } else {
+                res.send(researchPost);
+            }
+        })
+        .catch((error) => {
+            res.status(400).send(); // 400 for bad request.
+        });
+});
+
+// A DELETE route to delete a research post by their id.
+app.delete("/researchDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Research.findByIdAndRemove(id)
+        .then((researchPost) => {
+            if (!researchPost) {
+                res.status(404).send();
+            } else {
+                res.send(researchPost);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not delete.
+        });
+});
+/** End of research posts resource routes **/
 
 /*** Webpage routes below **********************************/
 // Serve the build

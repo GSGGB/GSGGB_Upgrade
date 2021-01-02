@@ -1,37 +1,36 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Toast, Button, Modal, ModalBody, Form } from "react-bootstrap";
+import { Col, Card, Button, Modal, ModalBody, Form } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
+import { FacebookProvider, EmbeddedPost } from 'react-facebook';
 import { confirmAlert } from 'react-confirm-alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import "./styles.css";
-import "./styles-mobile.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import { retrieveAccountDetails } from "../../../actions/user";
-import { updateAnnouncementContent, getAnnouncementById, editAnnouncement, deleteAnnouncement } from "../../../actions/announcement";
+import { updateResearchURL, getResearchPostById, editResearchPost, deleteResearchPost } from "../../../actions/research";
 
-class Announcement extends Component {
+class Research extends Component {
     constructor(props) {
         super(props);
         this.myRef = React.createRef();
     }
 
     state = {
-        options: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: "Canada/Toronto"},
         displayModal: false,
-        existingContent: "",
-        updatedContent: "",
+        existingURL: "",
+        updatedURL: "",
         firstName: "",
         lastName: "",
         username: "",
         execPosition: ""
     }
 
-    // Edit announcement button for editors and administrators only.
-    editAnnouncementButton(){
+    // Edit research post button for editors and administrators only.
+    editResearchButton(){
         const username = localStorage.getItem("username");
         const accountType = localStorage.getItem("accountType");
         const loggedIn = localStorage.getItem("loggedIn");
@@ -43,10 +42,10 @@ class Announcement extends Component {
             ){
                 return (
                     <Button
-                        id="edit-announcement-button"
+                        id="edit-research-button"
                         variant="outline-info"
                         size="sm"
-                        onClick={() => getAnnouncementById(this, this.props.announcementId)}
+                        onClick={() => getResearchPostById(this, this.props.researchId)}
                     >
                         <FontAwesomeIcon icon={faEdit} size={4}/>
                     </Button>
@@ -55,8 +54,8 @@ class Announcement extends Component {
         }
     }
 
-    // Delete announcement button for editors and administrators only.
-    deleteAnnouncementButton(){
+    // Delete research post button for editors and administrators only.
+    deleteResearchButton(){
         const username = localStorage.getItem("username");
         const accountType = localStorage.getItem("accountType");
         const loggedIn = localStorage.getItem("loggedIn");
@@ -68,16 +67,16 @@ class Announcement extends Component {
             ){
                 return (
                     <Button
-                        id="delete-announcement-button"
+                        id="delete-research-button"
                         variant="outline-info"
                         size="sm"
                         onClick={() => {
                             confirmAlert({
-                                message: 'Please confirm deletion of this announcement.',
+                                message: 'Please confirm deletion of this research post.',
                                 buttons: [
                                     {
                                       label: 'Yes',
-                                      onClick: () => deleteAnnouncement(this.props.homepageComp, this.props.announcementId)
+                                      onClick: () => deleteResearchPost(this.props.homepageComp, this.props.researchId)
                                     },
                                     {
                                       label: 'No'
@@ -97,25 +96,25 @@ class Announcement extends Component {
         retrieveAccountDetails(this, this.props.userId);
         const headshot = this.state.firstName + ".jpg";
         const fullName = this.state.firstName + " " + this.state.lastName;
-        const announcementDate = this.props.date.toLocaleString('en-US', this.state.options);
 
-        const editAnnouncementButton = this.editAnnouncementButton(this.state.username);
-        const deleteAnnouncementButton = this.deleteAnnouncementButton(this.state.username);
+        const editResearchButton = this.editResearchButton(this.state.username);
+        const deleteResearchButton = this.deleteResearchButton(this.state.username);
 
         return (
             <BrowserRouter forceRefresh={true}>
-                <div className="announcement">
-                    <Toast>
-                        <Toast.Header closeButton="false">
-                            <img src={`/headshots/${headshot}`} className="headshot" alt="headshot" />
-                            <strong className="mr-auto">{fullName + " - " + this.state.execPosition}</strong>
-                            <small>{announcementDate}</small>
-                            <span>{editAnnouncementButton}{deleteAnnouncementButton}</span>
-                        </Toast.Header>
-                        <Toast.Body>
-                            {this.props.content}
-                        </Toast.Body>
-                    </Toast>
+                <Col xl={6}>
+                    <Card className="researchPost">
+                        <Card.Body>
+                            <Card.Subtitle className="mb-2 text-muted">
+                                <img src={`/headshots/${headshot}`} className="headshot" alt="headshot" />
+                                <strong className="mr-auto">{fullName + " - " + this.state.execPosition}</strong>
+                                <span>{deleteResearchButton}{editResearchButton}</span>
+                            </Card.Subtitle>
+                            <FacebookProvider appId="807067446817483">
+                                <EmbeddedPost href={this.props.url}/>
+                            </FacebookProvider>
+                        </Card.Body>
+                    </Card>
                     <Modal
                         show={this.state.displayModal}
                         onHide={() => this.setState({ displayModal: false })}
@@ -124,36 +123,36 @@ class Announcement extends Component {
                         centered
                     >
                         <ModalHeader closeButton>
-                            <h4>Edit announcement</h4>
+                            <h4>Edit research post (Facebook URL)</h4>
                         </ModalHeader>
                         <ModalBody>
                             <Form>
                                 <Form.Group>
                                     <Form.Control
-                                        name="updatedContent"
-                                        id="updatedContent"
+                                        name="updatedURL"
+                                        id="updatedURL"
                                         as="textarea"
-                                        placeholder="Edit announcement content here..."
-                                        defaultValue={this.state.existingContent}
-                                        rows="5"
-                                        onChange={e => updateAnnouncementContent(this, e.target)}
+                                        placeholder="Edit Facebook URL here..."
+                                        defaultValue={this.state.existingURL}
+                                        rows="1"
+                                        onChange={e => updateResearchURL(this, e.target)}
                                         required
                                     />
                                 </Form.Group>
                                 <Button
                                     variant="outline-info"
                                     type="submit"
-                                    onClick={() => editAnnouncement(this, this.props.homepageComp, this.props.announcementId)}
+                                    onClick={() => editResearchPost(this, this.props.homepageComp, this.props.researchId)}
                                     >
                                         UPDATE
                                 </Button>
                             </Form>
                         </ModalBody>
                     </Modal>
-                </div>
+                </Col>
             </BrowserRouter>
         );
     }
 }
 
-export default Announcement;
+export default Research;
