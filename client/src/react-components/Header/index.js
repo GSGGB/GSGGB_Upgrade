@@ -15,15 +15,24 @@ class Header extends Component {
         this.myRef = React.createRef();
     }
 
+    state = {
+        backgroundColor: "",
+        fontSize: ""
+    }
+
     componentDidMount() {
         const header = document.querySelector(".header");
         const logo = document.querySelector("#small-logo");
         const navbarDropdowns = document.querySelectorAll("#dropdown");
-        const navbarDropdownItems = document.querySelectorAll("#dropdown-item");
         const navbarItems = document.querySelectorAll(".navbar-item");
 
         window.addEventListener("scroll", () => {
              if (document.body.scrollTop < window.innerHeight){
+                this.setState({
+                    backgroundColor: "#FEFBEA",
+                    fontSize: "18px"
+                });
+
                 header.style.backgroundColor = "#FEFBEA";
                 header.style.boxShadow = "0 0 0 0";
 
@@ -34,33 +43,30 @@ class Header extends Component {
                     dropdown.style.backgroundColor = "#FEFBEA";
                 })
 
-                navbarDropdownItems.forEach(function(item){
-                    item.style.backgroundColor = "#FEFBEA";
-                })
-
                 navbarItems.forEach(function(item){
                     item.style.fontSize = "18px";
                     item.style.backgroundColor = "#FEFBEA";
                 })
             }
             else {
-                header.style.backgroundColor = "ghostwhite";
+              this.setState({
+                  backgroundColor: "whitesmoke",
+                  fontSize: "16px"
+              });
+
+                header.style.backgroundColor = "whitesmoke";
                 header.style.boxShadow = "0 1px 0 0 #DADADA";
 
                 logo.style.width = "125px";
 
                 navbarDropdowns.forEach(function(dropdown){
                     dropdown.style.fontSize = "16px";
-                    dropdown.style.backgroundColor = "ghostwhite";
-                })
-
-                navbarDropdownItems.forEach(function(item){
-                    item.style.backgroundColor = "ghostwhite";
+                    dropdown.style.backgroundColor = "whitesmoke";
                 })
 
                 navbarItems.forEach(function(item){
                     item.style.fontSize = "16px";
-                    item.style.backgroundColor = "ghostwhite";
+                    item.style.backgroundColor = "whitesmoke";
                 })
             }
         }, true);
@@ -110,39 +116,83 @@ class Header extends Component {
                                   activeKey={location.pathname}
                               >
                                   <NavDropdown title = "HOME" id="dropdown">
-                                      <NavDropdown.Item href = "/home#about-us" id="dropdown-item">
+                                      <NavDropdown.Item href = "/home#about-us" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           ABOUT US
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/home#announcements" id="dropdown-item">
+                                      <NavDropdown.Item href = "/home#announcements" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           ANNOUNCEMENTS
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/home#latest-research" id="dropdown-item">
+                                      <NavDropdown.Item href = "/home#latest-research" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           LATEST RESEARCH
                                       </NavDropdown.Item>
                                   </NavDropdown>
                                   <NavDropdown title = "TEAM" id="dropdown">
-                                      <NavDropdown.Item href = "/team#senior-staff" id="dropdown-item">
+                                      <NavDropdown.Item href = "/team#senior-staff" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           SENIOR STAFF
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/team#conference" id="dropdown-item">
+                                      <NavDropdown.Item href = "/team#conference" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           CONFERENCE
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/team#marketing" id="dropdown-item">
+                                      <NavDropdown.Item href = "/team#marketing" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           MARKETING
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/team#affairs" id="dropdown-item">
+                                      <NavDropdown.Item href = "/team#affairs" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           AFFAIRS
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/team#mentorship" id="dropdown-item">
+                                      <NavDropdown.Item href = "/team#mentorship" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           MENTORSHIP
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/team#events" id="dropdown-item">
+                                      <NavDropdown.Item href = "/team#events" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           EVENTS
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/team#tech-and-innovations" id="dropdown-item">
+                                      <NavDropdown.Item href = "/team#tech-and-innovations" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           TECH &amp; INNOVATIONS
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/team#jigg" id="dropdown-item">
+                                      <NavDropdown.Item href = "/team#jigg" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
                                           JIGG
                                       </NavDropdown.Item>
                                   </NavDropdown>

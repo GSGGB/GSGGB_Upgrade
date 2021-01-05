@@ -63,7 +63,7 @@ nav a:hover{
 
 #dropdown-item:hover{
   	transform: none;
-    background-color: #fae257;
+    background-color: white !important;
 }
 /* End of Navbar Item and Dropdown Menu Hover Behaviour */
 

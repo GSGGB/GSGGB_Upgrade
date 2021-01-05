@@ -1,6 +1,18 @@
 
-/* Remove log out button margin on mobile screens */
+/* Mobile screens */
 @media (max-width: 1200px){
+    #small-logo{
+        width: 125px !important;
+    }
+
+    .navbar-item, #dropdown{
+        font-size: 16px !important;
+    }
+
+    #dropdown-item{
+        font-size: 16px !important;
+    }
+
     #logout-button {
         margin-left: 0px;
     }
