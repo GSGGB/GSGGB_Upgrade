@@ -15,6 +15,57 @@ class Header extends Component {
         this.myRef = React.createRef();
     }
 
+    componentDidMount() {
+        const header = document.querySelector(".header");
+        const logo = document.querySelector("#small-logo");
+        const navbarDropdowns = document.querySelectorAll("#dropdown");
+        const navbarDropdownItems = document.querySelectorAll("#dropdown-item");
+        const navbarItems = document.querySelectorAll(".navbar-item");
+
+        window.addEventListener("scroll", () => {
+             if (document.body.scrollTop < window.innerHeight){
+                header.style.backgroundColor = "#FEFBEA";
+                header.style.boxShadow = "0 0 0 0";
+
+                logo.style.width = "175px";
+
+                navbarDropdowns.forEach(function(dropdown){
+                    dropdown.style.fontSize = "18px";
+                    dropdown.style.backgroundColor = "#FEFBEA";
+                })
+
+                navbarDropdownItems.forEach(function(item){
+                    item.style.backgroundColor = "#FEFBEA";
+                })
+
+                navbarItems.forEach(function(item){
+                    item.style.fontSize = "18px";
+                    item.style.backgroundColor = "#FEFBEA";
+                })
+            }
+            else {
+                header.style.backgroundColor = "ghostwhite";
+                header.style.boxShadow = "0 1px 0 0 #DADADA";
+
+                logo.style.width = "125px";
+
+                navbarDropdowns.forEach(function(dropdown){
+                    dropdown.style.fontSize = "16px";
+                    dropdown.style.backgroundColor = "ghostwhite";
+                })
+
+                navbarDropdownItems.forEach(function(item){
+                    item.style.backgroundColor = "ghostwhite";
+                })
+
+                navbarItems.forEach(function(item){
+                    item.style.fontSize = "16px";
+                    item.style.backgroundColor = "ghostwhite";
+                })
+            }
+        }, true);
+    }
+
     // Logout button for editors and administrators only.
     logoutButton() {
         const loggedIn = sessionStorage.getItem("loggedIn");
@@ -40,8 +91,8 @@ class Header extends Component {
       const logoutButton = this.logoutButton();
 
       return (
-          <div className="header sticky-top">
-              <BrowserRouter>
+          <BrowserRouter>
+              <div className="header">
                   <div className="container">
                       <Navbar collapseOnSelect expand="lg">
                           <Navbar.Brand>
@@ -126,8 +177,8 @@ class Header extends Component {
                           </Navbar.Collapse>
                       </Navbar>
                   </div>
-              </BrowserRouter>
-          </div>
+              </div>
+          </BrowserRouter>
         );
     }
 }
