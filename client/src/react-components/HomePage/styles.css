@@ -57,7 +57,7 @@ body, html{
     margin-bottom: 50px;
 }
 
-#team-photo, #conference-photo{
+#team-photo-homepage, #conference-photo{
     width: 500px;
     margin-left: 50px;
     float: right;

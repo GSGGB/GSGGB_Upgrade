@@ -8,7 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import "./styles.css";
 import "./styles-mobile.css";
 import banner from "./static/banner.jpg";
-import teamPhoto from "./static/team-photo.jpg";
+import teamPhotoHomepage from "./static/team-photo-homepage.jpg";
 import conferencePhoto from "./static/conference-photo.jpg";
 
 // Importing announcement actions/required methods.
@@ -86,6 +86,8 @@ class HomePage extends Component {
                     <Image id="banner-photo" alt="GSGGB Banner" src={banner} />
                 </div>
 
+                <br/><br/>
+
                 <div className="about-us-section">
                     <div className="container">
                         <h2 className="section-title" id="about-us">About Us</h2>
@@ -93,9 +95,9 @@ class HomePage extends Component {
                         <Row id="our-purpose">
                             <Col>
                                 <Image
-                                    id="team-photo"
+                                    id="team-photo-homepage"
                                     alt="GSGGB Team Photo"
-                                    src={teamPhoto}
+                                    src={teamPhotoHomepage}
                                 />
                                 <h4 className="about-us-subheader">Our Purpose</h4>
                                 <br/>

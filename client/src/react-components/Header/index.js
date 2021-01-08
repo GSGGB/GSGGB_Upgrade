@@ -20,6 +20,7 @@ class Header extends Component {
         fontSize: ""
     }
 
+    // Manipulate DOM depending on scroll position.
     componentDidMount() {
         const header = document.querySelector(".header");
         const logo = document.querySelector("#small-logo");

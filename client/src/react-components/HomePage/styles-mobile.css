@@ -2,7 +2,7 @@
 /* Make the conference, banner and team photos responsive on mobile screens */
 /* Decrease the top padding for both the About Us and Announcements sections*/
 @media (max-width: 992px){
-    #conference-photo, #team-photo{
+    #team-photo-homepage, #conference-photo{
         width: 100%;
         margin-bottom: 30px;
     }
