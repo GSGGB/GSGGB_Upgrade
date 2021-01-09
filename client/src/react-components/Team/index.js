@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Image, Row, Col, Modal, Button } from "react-bootstrap";
+import { Image, Row, Col, Modal, Button, Card, Carousel } from "react-bootstrap";
+import { FaLinkedin, FaEnvelope, FaInfo } from "react-icons/fa";
 
 import "./styles.css";
 import "./styles-mobile.css";
-import { SENIOR_STAFF, CONFERENCE, MARKETING, AFFAIRS, MENTORSHIP, EVENTS, TECH_INNOVATIONS, JIGG } from './executives.js';
-import conHall from "./static/team-banner.jpg";
+import { SENIOR_STAFF, CONFERENCE, MARKETING, AFFAIRS, MENTORSHIP, EVENTS, TECH_INNOVATIONS, JIGG, ALUMNI } from './executives.js';
+import teamPhoto1819 from "./static/team-photo-18-19.jpg";
+import teamPhoto1718 from "./static/team-photo-17-18.jpg";
 
 class Team extends Component {
     constructor(props) {
@@ -27,38 +29,69 @@ class Team extends Component {
 
     renderExec(exec) {
         return (
-          <Col md={4}>
-              <div>
-                  <Button className="executive-photo" onClick={() =>
+          <Col>
+              <Card className="executive-card mx-auto">
+                  <Card.Img className="executive-photo" src={exec.image} key={exec.firstname} />
+                  <Card.Body>
+                  <Card.Title className="executive-name">{exec.name}</Card.Title>
+                  <Card.Text className="executive-position">{exec.position}</Card.Text>
+
+                  <Button className="view-biography" onClick={() =>
                       this.setState({
                           modalId: `modal${exec.id}`
                       })
                   }>
-                      <Image className="executive-photo" src={exec.image} key={exec.firstname} />
+                      <span className="card-icon" id="biography">
+                          <FaInfo />
+                      </span>
                   </Button>
-                  <div>
-                      <h3 className="executive-name">{exec.name}</h3>
-                      <h5 className="executive-position">{exec.position}</h5>
-                  </div>
-              </div>
+                  <a
+                    href={exec.linkedin}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                      <span className="card-icon" id="linkedin">
+                          <FaLinkedin />
+                      </span>
+                  </a>
+                  <a
+                    href={`mailto:${exec.email}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                      <span className="card-icon" id="personal-email">
+                          <FaEnvelope />
+                      </span>
+                  </a>
+                  </Card.Body>
+              </Card>
 
-              <Modal show={this.state.modalId === `modal${exec.id}`} onHide={this.handleClose}
-              aria-labelledby={`${exec.firstname}ModalLabel`} backdrop="static"
-              keyboard={false} key={exec.firstname} size = "lg">
-                  <Modal.Header id={`${exec.firstname}ModalLabel`} closeButton>
+              <Modal
+                  show={this.state.modalId === `modal${exec.id}`}
+                  onHide={this.handleClose}
+                  aria-labelledby={`${exec.firstname}ModalLabel`} backdrop="static"
+                  keyboard={false}
+                  key={exec.firstname}
+                  size = "lg">
+                  <Modal.Header
+                      id={`${exec.firstname}ModalLabel`}
+                      style={{
+                          backgroundColor: "whitesmoke"
+                      }}
+                      closeButton>
                   </Modal.Header>
-                  <Modal.Body>
-                      <div className="container">
-                          <Row>
-                              <Col lg={12}>
-                                  <Image className="enlarged-executive-photo" src={exec.image} />
-                                  <h3 className="name">{exec.name}</h3>
-                                  <h5 className="position">{exec.position}</h5>
-                                  <hr className="divider" />
-                                  <p className="biography">{exec.biography}</p>
-                              </Col>
-                          </Row>
-                      </div>
+                  <Modal.Body className="biography-modal">
+                      <Row>
+                          <Col lg={4}>
+                              <Image className="enlarged-executive-photo" src={exec.image} />
+                          </Col>
+                          <Col lg={8} className="biography-content">
+                              <h3 className="name">{exec.name}</h3>
+                              <h5 className="position">{exec.position}</h5>
+                              <br/>
+                              <p className="biography">{exec.biography}</p>
+                          </Col>
+                      </Row>
                   </Modal.Body>
               </Modal>
           </Col>
@@ -68,122 +101,126 @@ class Team extends Component {
     render() {
         return (
             <BrowserRouter forceRefresh={true}>
-                <Image id="team-banner" alt="Team Banner" src={conHall} />
-                <div className="white-background-section">
-                    <div>
-                        <br /><br /><br />
-                        <h3 className="team-name" id="senior-staff">Senior Staff</h3>
-                        <br />
-                        <Row className="grid-container team-members">
-                            {SENIOR_STAFF.map(this.renderExec)}
-                        </Row>
-                    </div>
-                    <br />
+                <Carousel>
+                    <Carousel.Item className="team-slideshow">
+                        <Image className="team-photo" alt="2018-2019 GSGGB Executive Team" src={teamPhoto1819} />
+                        <Carousel.Caption>
+                            <h3 className="slideshow-caption">2018-2019 GSGGB Executive Team</h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item className="team-slideshow">
+                        <Image className="team-photo" alt="2017-2018 GSGGB Executive Team" src={teamPhoto1718} />
+
+                        <Carousel.Caption>
+                            <h3 className="slideshow-caption">2017-2018 GSGGB Executive Team</h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                </Carousel>
+                <div className="team-slideshow">
+                    <br/>
                 </div>
 
-                <div className="cloud-background-section">
-                    <div>
-                        <hr className="team-section-separator" />
-                        <br /><br />
-                        <h3 className="team-name" id="conference">Conference</h3>
-                        <br />
-                        <Row className="grid-container team-members">
-                            {CONFERENCE.map(this.renderExec)}
-                        </Row>
-                    </div>
-                    <br />
+                <br /><br /><br />
+                <h3 className="team-name" id="senior-staff">SENIOR STAFF</h3>
+                <br />
+                <div className="container" id="team-members">
+                    <Row>
+                        {SENIOR_STAFF.map(this.renderExec)}
+                    </Row>
                 </div>
+                <br />
 
-                <div className="white-background-section">
-                    <div>
-                        <hr className="team-section-separator" />
-                        <br /><br />
-                        <h3 className="team-name" id="marketing">Marketing</h3>
-                        <br />
-                        <Row className="grid-container team-members">
-                            {MARKETING.map(this.renderExec)}
-                        </Row>
-                    </div>
-                    <br />
+                <hr className="team-section-separator" />
+                <br /><br />
+                <h3 className="team-name" id="conference">CONFERENCE</h3>
+                <br />
+                <div className="container" id="team-members">
+                  <Row>
+                      {CONFERENCE.map(this.renderExec)}
+                  </Row>
                 </div>
+                <br />
 
-                <div className="cloud-background-section">
-                    <div>
-                        <hr className="team-section-separator" />
-                        <br /><br />
-                        <h3 className="team-name" id="affairs">Affairs</h3>
-                        <br />
-                        <Row className="grid-container team-members">
-                            {AFFAIRS.map(this.renderExec)}
-                        </Row>
-                    </div>
-                    <br />
+                <hr className="team-section-separator" />
+                <br /><br />
+                <h3 className="team-name" id="marketing">MARKETING</h3>
+                <br />
+                <div className="container" id="team-members">
+                    <Row>
+                        {MARKETING.map(this.renderExec)}
+                    </Row>
                 </div>
+                <br />
 
-                <div className="white-background-section">
-                    <div>
-                        <hr className="team-section-separator" />
-                        <br /><br />
-                        <h3 className="team-name" id="mentorship">Mentorship</h3>
-                        <br />
-                        <Row className="grid-container team-members">
-                            {MENTORSHIP.map(this.renderExec)}
-                        </Row>
-                    </div>
-                    <br />
+                <hr className="team-section-separator" />
+                <br /><br />
+                <h3 className="team-name" id="affairs">AFFAIRS</h3>
+                <br />
+                <div className="container" id="team-members">
+                    <Row>
+                        {AFFAIRS.map(this.renderExec)}
+                    </Row>
                 </div>
+                <br />
 
-                <div className="cloud-background-section">
-                    <div>
-                        <hr className="team-section-separator" />
-                        <br /><br />
-                        <h3 className="team-name" id="events">Events</h3>
-                        <br />
-                        <Row className="grid-container team-members">
-                            {EVENTS.map(this.renderExec)}
-                        </Row>
-                    </div>
-                    <br />
+                <hr className="team-section-separator" />
+                <br /><br />
+                <h3 className="team-name" id="mentorship">MENTORSHIP</h3>
+                <br />
+                <div className="container" id="team-members">
+                    <Row>
+                        {MENTORSHIP.map(this.renderExec)}
+                    </Row>
                 </div>
+                <br />
 
-                <div className="white-background-section">
-                    <div>
-                        <hr className="team-section-separator" />
-                        <br /><br />
-                        <h3 className="team-name" id="tech-and-innovations">Technology &amp; Innovations</h3>
-                        <br />
-                        <Row className="grid-container team-members">
-                            {TECH_INNOVATIONS.map(this.renderExec)}
-                        </Row>
-                    </div>
-                    <br />
+                <hr className="team-section-separator" />
+                <br /><br />
+                <h3 className="team-name" id="events">EVENTS</h3>
+                <br />
+                <div className="container" id="team-members">
+                    <Row>
+                        {EVENTS.map(this.renderExec)}
+                    </Row>
                 </div>
+                <br />
 
-                <div className="cloud-background-section">
-                    <div>
-                        <hr className="team-section-separator" />
-                        <br /><br />
-                        <h3 className="team-name" id="jigg">JIGG</h3>
-                        <br />
-                        <Row className="grid-container team-members">
-                            {JIGG.map(this.renderExec)}
-                        </Row>
-                    </div>
-                    <br />
+                <hr className="team-section-separator" />
+                <br /><br />
+                <h3 className="team-name" id="tech-and-innovations">TECHNOLOGY &amp; INNOVATIONS</h3>
+                <br />
+                <div className="container" id="team-members">
+                    <Row>
+                        {TECH_INNOVATIONS.map(this.renderExec)}
+                    </Row>
                 </div>
+                <br />
 
-                <div className="white-background-section">
-                    <div>
-                        <hr className="team-section-separator" />
-                        <br /><br />
-                        <h3 className="team-name">Alumni</h3>
-                        <br />
-                        <p className="learn-more">You can click <a href="https://www.gsggb.org/team2019-2020">here</a> to learn more about our previous GSGGB executives from the 2019 - 2020 academic year.</p>
-                        <p className="learn-more">You can click <a href="https://www.gsggb.org/team2018-2019">here</a> to learn more about our previous GSGGB executives from the 2018 - 2019 academic year.</p>
-                        <p className="learn-more">You can click <a href="https://www.gsggb.org/team2017-2018">here</a> to learn more about our previous GSGGB executives from the 2017 - 2018 academic year.</p>
-                        <br />
-                    </div>
+                <hr className="team-section-separator" />
+                <br /><br />
+                <h3 className="team-name" id="jigg">JIGG</h3>
+                <br />
+                <div className="container" id="team-members">
+                    <Row>
+                        {JIGG.map(this.renderExec)}
+                    </Row>
                 </div>
+                <br />
+
+
+                <hr className="team-section-separator" />
+                <br /><br />
+                <h3 className="team-name" id="alumni">ALUMNI</h3>
+                <br />
+                <div className="container" id="team-members">
+                    <Row>
+                        {ALUMNI.map(this.renderExec)}
+                    </Row>
+                </div>
+                <br />
+
+                <hr className="team-section-separator" />
+                <br/><br/>
 
             </BrowserRouter>
         );

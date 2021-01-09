@@ -196,6 +196,13 @@ class Header extends Component {
                                       }}>
                                           JIGG
                                       </NavDropdown.Item>
+                                      <NavDropdown.Item href = "/team#alumni" id="dropdown-item"
+                                      style={{
+                                        backgroundColor: this.state.backgroundColor,
+                                        fontSize: this.state.fontSize
+                                      }}>
+                                          ALUMNI
+                                      </NavDropdown.Item>
                                   </NavDropdown>
 
                                   <Nav.Item>
