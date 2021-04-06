@@ -88,7 +88,7 @@ class Team extends Component {
                           <Col lg={8} className="biography-content">
                               <h3 className="name">{exec.name}</h3>
                               <h5 className="position">{exec.position}</h5>
-                              <br/>
+                              <hr class="biography-line" />
                               <p className="biography">{exec.biography}</p>
                           </Col>
                       </Row>

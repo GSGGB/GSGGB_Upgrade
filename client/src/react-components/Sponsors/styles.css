@@ -4,6 +4,7 @@
     font-weight: bold;
     color: black;
     text-align: center;
+    font-size: 40px;
 }
 
 /* "Thank-you..." */
@@ -11,6 +12,12 @@
     font-family: Tahoma, Geneva, sans-serif;
     color: #4c4c4c;
     text-align: center;
+}
+
+.sponsors-title-section{
+    background-color: whitesmoke;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 /* 1 hr only */

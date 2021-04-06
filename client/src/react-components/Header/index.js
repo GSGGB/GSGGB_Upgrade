@@ -225,11 +225,6 @@ class Header extends Component {
                                           GET INVOLVED
                                       </Nav.Link>
                                   </Nav.Item>
-                                  <Nav.Item>
-                                      <Nav.Link href="/jigg" className="navbar-item">
-                                          JIGG
-                                      </Nav.Link>
-                                  </Nav.Item>
                                   <span>{logoutButton}</span>
                               </Nav>
                           </Navbar.Collapse>

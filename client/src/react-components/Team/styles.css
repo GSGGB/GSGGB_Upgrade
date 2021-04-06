@@ -1,7 +1,7 @@
 /* Team */
 .team-slideshow{
     background-color: #FEFBEA;
-    padding-top: 20px;
+    padding-top: 25px;
 }
 
 .team-photo{
@@ -117,9 +117,16 @@
     background-color: whitesmoke;
 }
 
+.biography-line{
+    border-width: 5px;
+    width: 50px;
+    display: block;
+    margin-left: 0;
+    margin-bottom: 25px;
+}
+
 .biography-content{
     background-color: white;
-    border: 1px solid black !important;
     padding: 40px !important;
 }
 
