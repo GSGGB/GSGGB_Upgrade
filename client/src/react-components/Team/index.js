@@ -101,6 +101,15 @@ class Team extends Component {
     render() {
         return (
             <BrowserRouter forceRefresh={true}>
+                <br/><br/>
+
+                <div class="team-title-section">
+                    <h2 className="team-page-title">OUR EXECUTIVE TEAM</h2>
+                    <br />
+                    <h4 className="team-page-subtitle">(Fall 2020 - Winter 2021)</h4>
+                </div>
+
+                <br/>
                 <Carousel>
                     <Carousel.Item className="team-slideshow">
                         <Image className="team-photo" alt="2018-2019 GSGGB Executive Team" src={teamPhoto1819} />

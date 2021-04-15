@@ -1,6 +1,38 @@
 /* Team */
+.team-page-title{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    font-size: 40px;
+}
+
+/* "Thank-you..." */
+.team-page-subtitle{
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #4c4c4c;
+    text-align: center;
+}
+
+.team-title-section{
+    background-color: whitesmoke;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.team-name{
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    background-color: whitesmoke;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    scroll-margin-top: 10rem;
+}
+
+
 .team-slideshow{
-    background-color: #FEFBEA;
     padding-top: 25px;
 }
 
@@ -24,17 +56,6 @@
 
 .team-section-separator{
     margin: 0px;
-}
-
-.team-name{
-    color: black;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    background-color: whitesmoke;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    scroll-margin-top: 10rem;
 }
 
 /* Executive Cards */

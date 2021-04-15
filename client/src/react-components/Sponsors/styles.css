@@ -1,5 +1,5 @@
 /* "Our Sponsors" */
-.page-title{
+.sponsors-page-title{
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
     color: black;
@@ -8,7 +8,7 @@
 }
 
 /* "Thank-you..." */
-.page-subtitle{
+.sponsors-page-subtitle{
     font-family: Tahoma, Geneva, sans-serif;
     color: #4c4c4c;
     text-align: center;
@@ -20,16 +20,6 @@
     padding-bottom: 30px;
 }
 
-/* 1 hr only */
-.sponsors-title-separator{
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-
-/* Between sections */
-.sponsors-section-separator{
-    margin: 0px;
-}
 
 /* Center logos in each section */
 .img-center{
@@ -46,39 +36,38 @@
     font-family: Tahoma, Geneva, sans-serif;
 }
 
-#logo-spacing{
-    display: grid;
-}
-
 /* Sponsors title for each section */
-.platinum-header{
+.sponsors-header{
+    color: white;
+    font-size: 30px;
     font-weight: bold;
-    color: #7F7679;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-.gold-header{
-    font-weight: bold;
-    color: #D4AF37;
+#platinum-sponsor{
+    background-color: #7F7679;
 }
 
-.silver-header{
-    font-weight: bold;
-    color: #C0C0C0;
+#gold-sponsor{
+    background-color: #D4AF37;
 }
 
-.bronze-header{
-    font-weight: bold;
-    color: #CD7F32;
+#silver-sponsor{
+    background-color: #C0C0C0;
 }
 
-.partner-header{
-    font-weight: bold;
-    color: black;
+#bronze-sponsor{
+    background-color: #CD7F32;
 }
 
-.orange-header{
-    font-weight: bold;
-    color: darkorange;
+#partner-sponsor{
+    background-color: #012B5D;
+}
+
+#special-sponsor{
+    background-color: darkorange;
 }
 /* End of sponsors title for each section */
 

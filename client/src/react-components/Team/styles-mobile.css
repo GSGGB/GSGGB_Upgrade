@@ -1,5 +1,16 @@
 
 @media (max-width: 992px){
+    /* Set team photo to 100% width in mobile */
+    .team-photo{
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Decrease font size of slideshow caption in mobile */
+    .slideshow-caption{
+        font-size: 18px;
+    }
+
     /* Increase the padding between the photo and the name */
     .enlarged-executive-photo{
         padding: 12px;

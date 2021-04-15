@@ -29,77 +29,68 @@ class Sponsors extends Component {
     render() {
         return(
             <BrowserRouter forceRefresh={true}>
-              <div className="white-background-section">
-                  <br /><br />
-                  <div class="sponsors-title-section">
-                      <h2 className="page-title">OUR SPONSORS</h2>
-                      <br />
-                      <h4 className="page-subtitle">Thank-you to our sponsors for supporting GSGGB and its chapters!</h4>
-                  </div>
-                  <div className="container" id="logo-spacing">
-                      <hr className="sponsors-title-separator" />
-                      <br />
-                      <h4 className="platinum-header">PLATINUM: Awarded to sponsors with a contribution of $1000 or more.</h4>
-                      <br />
-                      <Row>
-                          {PLATINUM.map(this.renderSponsors)}
-                      </Row>
-                  </div>
+              <br /><br />
+              <div class="sponsors-title-section">
+                  <h2 className="sponsors-page-title">OUR SPONSORS</h2>
+                  <br />
+                  <h4 className="sponsors-page-subtitle">Thank-you to our sponsors for supporting GSGGB and its chapters!</h4>
               </div>
-              <div className="cloud-background-section">
-                  <div className="container" id="logo-spacing">
-                      <hr className="sponsors-section-separator" />
-                      <br /><br />
-                      <h4 className="gold-header">GOLD: Awarded to sponsors with a contribution of $500 or more.</h4>
-                      <br />
-                      <Row>
-                          {GOLD.map(this.renderSponsors)}
-                      </Row>
-                  </div>
+
+              <br /><br /><br />
+              <h4 className="sponsors-header" id="platinum-sponsor">PLATINUM: Awarded to sponsors with a contribution of $1000 or more.</h4>
+              <br />
+              <div className="container">
+                  <Row>
+                      {PLATINUM.map(this.renderSponsors)}
+                  </Row>
               </div>
-              <div className="white-background-section">
-                  <div className="container" id="logo-spacing">
-                      <hr className="sponsors-section-separator" />
-                      <br /><br />
-                      <h4 className="silver-header">SILVER: Awarded to sponsors with a contribution of $250 or more.</h4>
-                      <br />
-                      <Row>
-                          {SILVER.map(this.renderSponsors)}
-                      </Row>
-                  </div>
+              <br />
+
+              <br /><br />
+              <h4 className="sponsors-header" id="gold-sponsor">GOLD: Awarded to sponsors with a contribution of $500 or more.</h4>
+              <br />
+              <div className="container">
+                  <Row>
+                      {GOLD.map(this.renderSponsors)}
+                  </Row>
               </div>
-              <div className="cloud-background-section">
-                  <div className="container" id="logo-spacing">
-                      <hr className="sponsors-section-separator" />
-                      <br /><br />
-                      <h4 className="bronze-header">BRONZE: Awarded to sponsors with a contribution of $100 or more.</h4>
-                      <br />
-                      <Row>
-                          {BRONZE.map(this.renderSponsors)}
-                      </Row>
-                  </div>
+              <br/>
+
+              <br /><br />
+              <h4 className="sponsors-header" id="silver-sponsor">SILVER: Awarded to sponsors with a contribution of $250 or more.</h4>
+              <br />
+              <div className="container">
+                  <Row>
+                      {SILVER.map(this.renderSponsors)}
+                  </Row>
               </div>
-              <div className="white-background-section">
-                  <div className="container" id="logo-spacing">
-                      <hr className="sponsors-section-separator" />
-                      <br /><br />
-                      <h4 className="partner-header">Thanks to our U of T club partners for their support!</h4>
-                      <br />
-                      <Row>
-                          {PARTNERS.map(this.renderSponsors)}
-                      </Row>
-                  </div>
+              <br/>
+
+              <br /><br />
+              <h4 className="sponsors-header" id="bronze-sponsor">BRONZE: Awarded to sponsors with a contribution of $100 or more.</h4>
+              <br />
+              <div className="container">
+                  <Row>
+                      {BRONZE.map(this.renderSponsors)}
+                  </Row>
               </div>
-              <div className="cloud-background-section">
-                  <div className="container" id="logo-spacing">
-                      <hr className="sponsors-section-separator" />
-                      <br /><br />
-                      <h4 className="orange-header">A special thank-you to the Rare Disease Foundation for our partnership!</h4>
-                      <br />
-                      <Row>
-                          {SPECIAL.map(this.renderSponsors)}
-                      </Row>
-                  </div>
+
+              <br /><br />
+              <h4 className="sponsors-header" id="partner-sponsor">Thanks to our U of T club partners for their support!</h4>
+              <br />
+              <div className="container">
+                  <Row>
+                      {PARTNERS.map(this.renderSponsors)}
+                  </Row>
+              </div>
+
+              <br /><br />
+              <h4 className="sponsors-header" id="special-sponsor">A special thank-you to the Rare Disease Foundation for our partnership!</h4>
+              <br />
+              <div className="container">
+                  <Row>
+                      {SPECIAL.map(this.renderSponsors)}
+                  </Row>
               </div>
             </BrowserRouter>
         )
