@@ -11,6 +11,7 @@ class Sponsors extends Component {
         super(props);
         this.props.history.push("/sponsors");
         this.renderSponsors = this.renderSponsors.bind(this);
+        document.title = "GSGGB U of T | Sponsors";
     }
 
 

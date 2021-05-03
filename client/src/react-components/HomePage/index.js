@@ -22,6 +22,7 @@ class HomePage extends Component {
         this.props.history.push("/home");
         getAllAnnouncements(this);
         getAllResearchPosts(this);
+        document.title = "GSGGB U of T | Home";
     }
 
     state = {

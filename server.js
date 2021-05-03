@@ -14,6 +14,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 const { User } = require("./models/user");
 const { Announcement } = require("./models/announcement");
 const { Research } = require("./models/research");
+const { Event } = require("./models/event")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -39,6 +40,20 @@ app.use(
     })
 );
 
+// multipart middleware: allows you to access uploaded file from req.file
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart();
+
+// cloudinary: configure using credentials found on your Cloudinary Dashboard
+// sign up for a free account here: https://cloudinary.com/users/register/free
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'CLOUD_NAME',
+    api_key: 'API_KEY',
+    api_secret: 'API_SECRET'
+});
+
+// =============================================================================
 
 /** Start of user resource routes **/
 // A POST route to login and create a session.
@@ -341,6 +356,112 @@ app.delete("/researchDatabase/:id", (req, res) => {
         });
 });
 /** End of research posts resource routes **/
+
+
+/** Start of event resource routes **/
+// A GET route to get ALL events.
+app.get("/eventDatabase", (req, res) => {
+    Event.find().then(
+        (gEvents) => {
+            res.send({ gEvents });
+        },
+        (error) => {
+            res.status(500).send(error); // Server error, could not get.
+        }
+    );
+});
+
+// A GET route to get an event by their id.
+app.get("/eventDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Event.findById(id)
+        .then((gEvent) => {
+            if (!gEvent) {
+                res.status(404).send();
+            } else {
+                res.send(gEvent);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not get.
+        });
+});
+
+// A POST route to create an event.
+app.post("/eventDatabase", (req, res) => {
+    const gEvent = new Event({
+        userId: req.session.user,
+        iamgeURL: req.body.imageURL,
+        content: req.body.content,
+        date: new Date()
+    });
+
+    // Save event to the database.
+    gEvent.save().then(
+        (result) => {
+            res.send(result);
+        },
+        (error) => {
+            res.status(400).send(error); // 400 for bad request.
+        }
+    );
+});
+
+// A PATCH route to edit an event by their id.
+app.patch("/eventDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    const body = {
+        imageURL: req.body.imageURL,
+        content: req.body.content
+    };
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Event.findByIdAndUpdate(id, { $set: body })
+        .then((gEvent) => {
+            if (!gEvent) {
+                res.status(404).send();
+            } else {
+                res.send(gEvent);
+            }
+        })
+        .catch((error) => {
+            res.status(400).send(); // 400 for bad request.
+        });
+});
+
+// A DELETE route to delete an event by their id.
+app.delete("/eventDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Event.findByIdAndRemove(id)
+        .then((gEvent) => {
+            if (!gEvent) {
+                res.status(404).send();
+            } else {
+                res.send(gEvent);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not delete.
+        });
+});
+/** End of event resource routes **/
 
 /*** Webpage routes below **********************************/
 // Serve the build

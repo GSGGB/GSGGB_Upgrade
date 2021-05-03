@@ -82,7 +82,7 @@ export const addResearchPost = (homepageComp) => {
     const url = "/researchDatabase";
 
     const request = new Request(url, {
-        method: "post",
+        method: "POST",
         body: JSON.stringify(researchPost),
         headers: {
             Accept: "application/json, text/plain, */*",
@@ -115,7 +115,7 @@ export const addResearchPost = (homepageComp) => {
         });
 }
 
-
+// A function to edit a research post.
 export const editResearchPost = (researchComp, homepageComp, id) => {
     const url = "/researchDatabase/" + id;
 
@@ -145,12 +145,12 @@ export const editResearchPost = (researchComp, homepageComp, id) => {
     getAllResearchPosts(homepageComp);
 }
 
-
+// A function to delete a research post.
 export const deleteResearchPost = (homepageComp, id) => {
     const url = "/researchDatabase/" + id;
 
     const request = new Request(url, {
-        method: "delete",
+        method: "DELETE",
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"

@@ -7,6 +7,7 @@ import Header from "./react-components/Header";
 import Footer from "./react-components/Footer";
 import HomePage from "./react-components/HomePage";
 import Team from "./react-components/Team";
+import Events from "./react-components/Events"
 import Sponsors from "./react-components/Sponsors";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -84,6 +85,17 @@ class App extends Component {
                               <div>
                                   <Header />
                                   <Team history={history} app={this}/>
+                                  <Footer />
+                              </div>
+                          )}
+                      />
+
+                      <Route
+                          exact path="/events"
+                          render={({ history }) => (
+                              <div>
+                                  <Header />
+                                  <Events history={history} app={this}/>
                                   <Footer />
                               </div>
                           )}

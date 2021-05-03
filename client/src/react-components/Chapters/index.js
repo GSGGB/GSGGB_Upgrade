@@ -13,6 +13,7 @@ class Chapters extends Component {
     constructor(props) {
         super(props);
         this.props.history.push("/");
+        document.title = "GSGGB | Chapters";
     }
 
     render() {

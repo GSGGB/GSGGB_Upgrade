@@ -1,0 +1,36 @@
+.event.card {
+    margin: 10px;
+}
+
+.eventLeftBox {
+    float: left;
+    margin: 5px;
+}
+
+.eventName {
+    text-align: left;
+}
+
+.eventPhoto {
+    width: 150px;
+}
+
+.eventInfo {
+    margin-left: 150px;
+    list-style-type: none;
+}
+
+.eventDescription {
+    margin-left: 200px;
+}
+
+.attendingText {
+    position: relative;
+    text-align: right;
+    float: right;
+}
+
+.commentList {
+    position: relative;
+    width: 100%;
+}

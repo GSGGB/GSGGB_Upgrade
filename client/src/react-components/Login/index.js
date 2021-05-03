@@ -15,6 +15,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.props.history.push("/login");
+        document.title = "GSGGB | Login";
     }
 
     // Login information.

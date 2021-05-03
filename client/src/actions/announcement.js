@@ -48,6 +48,7 @@ export const getAllAnnouncements = (homepageComp) => {
         });
 }
 
+
 // A function to get a specific announcement by their id to update.
 export const getAnnouncementById = (announcementComp, id) => {
     const url = "/announcementDatabase/" + id;
@@ -83,7 +84,7 @@ export const addAnnouncement = (homepageComp) => {
     const url = "/announcementDatabase";
 
     const request = new Request(url, {
-        method: "post",
+        method: "POST",
         body: JSON.stringify(announcement),
         headers: {
             Accept: "application/json, text/plain, */*",
@@ -118,6 +119,7 @@ export const addAnnouncement = (homepageComp) => {
 }
 
 
+// A function to edit an announcement.
 export const editAnnouncement = (announcementComp, homepageComp, id) => {
     const url = "/announcementDatabase/" + id;
 
@@ -148,11 +150,12 @@ export const editAnnouncement = (announcementComp, homepageComp, id) => {
 }
 
 
+// A function to delete an announcement.
 export const deleteAnnouncement = (homepageComp, id) => {
     const url = "/announcementDatabase/" + id;
 
     const request = new Request(url, {
-        method: "delete",
+        method: "DELETE",
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"

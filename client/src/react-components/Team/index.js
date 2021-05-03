@@ -15,6 +15,7 @@ class Team extends Component {
         this.props.history.push("/team");
         this.renderExec = this.renderExec.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        document.title = "GSGGB U of T | Team";
     }
 
     state = {

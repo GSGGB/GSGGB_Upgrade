@@ -1,0 +1,43 @@
+.eventsBox {
+    display: flex;
+}
+
+.events {
+    float: left;
+    width: 75%;
+}
+
+.event.card {
+    margin: auto;
+    width: 100%;
+}
+
+.event.card:hover {
+    border-color: black;
+    border-style: solid;
+    transition: border-color 1s;
+}
+
+.rightBar {
+    float: right;
+    position: absolute;
+    left: 80%;
+}
+
+.calendar {
+    left: 80%;
+}
+
+#addEventButton {
+    margin-top: 10px;
+}
+
+.hasEvent {
+    background-color: lime;
+}
+
+.calendarEventDay {
+    display: inline-block;
+    font-size: small;
+    color: darkblue;
+}
