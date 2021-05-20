@@ -2,13 +2,13 @@
 
 const mongoose = require('mongoose')
 
-const ResearchSchema = new mongoose.Schema({
-    userId: {
+const ImageSchema = new mongoose.Schema({
+    imageId: {
         type: String,
         required: true,
         minlength: 1
     },
-    url: {
+    imageURL: {
         type: String,
         required: true,
         minlength: 1
@@ -16,5 +16,5 @@ const ResearchSchema = new mongoose.Schema({
 })
 
 // make a model using the schema
-const Research = mongoose.model('Research', ResearchSchema)
-module.exports = { Research }
+const Image = mongoose.model('Image', ImageSchema)
+module.exports = { Image }

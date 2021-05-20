@@ -8,9 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import "./styles.css";
-import "./styles-mobile.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+import { getImageById } from "../../../actions/image";
 import { retrieveAccountDetails } from "../../../actions/user";
 import { updateEventContent, getEventById, editEvent, deleteEvent } from "../../../actions/event";
 
@@ -23,10 +23,13 @@ class Event extends Component {
     state = {
         options: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: "Canada/Toronto"},
         displayModal: false,
+        imageCheckbox: "",
+        imageFile: "",
+        imageURL: "",
+        existingImageId: "",
+        imageId: "", // Updated image ID.
         existingContent: "",
         updatedContent: "",
-        existingImageURL: "",
-        updatedImageURL: "",
         firstName: "",
         lastName: "",
         username: "",
@@ -97,6 +100,8 @@ class Event extends Component {
     }
 
     render() {
+        getImageById(this, this.props.imageId);
+
         retrieveAccountDetails(this, this.props.userId);
         const headshot = this.state.firstName + ".jpg";
         const fullName = this.state.firstName + " " + this.state.lastName;
@@ -117,7 +122,7 @@ class Event extends Component {
                         </Card.Header>
                         <CardMedia
                             className="image__card-media"
-                            image={this.props.imageURL}
+                            image={this.state.imageURL}
                         />
                         <Card.Body>
                             {this.props.content}
@@ -135,12 +140,22 @@ class Event extends Component {
                         </ModalHeader>
                         <ModalBody>
                             <Form>
+                                <Form.Group controlId="formBasicCheckbox">
+                                    <Form.Check
+                                        name="imageCheckbox"
+                                        id="imageCheckbox"
+                                        type="checkbox"
+                                        label="Do you want to add a new image?"
+                                        onChange={e => updateEventContent(this, e.target)}
+                                        required />
+                                </Form.Group>
                                 <Form.Group>
                                     <Form.File
-                                        name="updatedImageURL"
-                                        id="updatedImageURL"
+                                        name="imageFile"
+                                        id="imageFile"
                                         label="Upload new event image"
                                         onChange={e => updateEventContent(this, e.target)}
+                                        disabled={this.state.imageCheckbox}
                                         required />
                                 </Form.Group>
                                 <Form.Group>

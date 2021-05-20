@@ -1,7 +1,15 @@
 import React from "react";
 import Event from "../react-components/Events/Event";
+import { addImage, deleteImage } from "../actions/image";
 
 // Functions to help with events.
+
+// A function to get the uploaded image file.
+export const updateImageFile = (comp, field) => {
+    comp.setState({
+        imageFile: field.files[0]
+    })
+}
 
 // A function to update event content.
 export const updateEventContent = (comp, field) => {
@@ -35,7 +43,7 @@ export const getAllEvents = (eventsComp) => {
                                     eventsComp={eventsComp}
                                     eventId={gEvent._id}
                                     userId={gEvent.userId}
-                                    imageURL={gEvent.imageURL}
+                                    imageId={gEvent.imageId}
                                     content={gEvent.content}
                                     date={gEvent.date}
                                   ></Event>
@@ -65,9 +73,10 @@ export const getEventById = (singleEventComp, id) => {
             }
         })
         .then(json => {
+            // Get existing image ID and content.
             singleEventComp.setState({
                 displayModal: true,
-                existingImageURL: json.imageURL,
+                existingImageId: json.imageId,
                 existingContent: json.content
             });
         })
@@ -79,12 +88,18 @@ export const getEventById = (singleEventComp, id) => {
 
 // A function to add a single event.
 export const addEvent = (eventsComp) => {
+    // 1) Add poster/image to cloudinary first.
+    addImage(eventsComp);
+
+    // 2) Add event to MongoDB database.
+    const url = "/eventDatabase";
+
     const gEvent = {
-        imageURL: eventsComp.state.eventImageURL,
+        imageId: eventsComp.state.imageId,
         content: eventsComp.state.eventContent
     };
 
-    const url = "/eventDatabase";
+    //console.log(gEvent)
 
     const request = new Request(url, {
         method: "POST",
@@ -109,7 +124,7 @@ export const addEvent = (eventsComp) => {
                                 eventsComp={eventsComp}
                                 eventId={json._id}
                                 userId={json.userId}
-                                imageURL={json.imageURL}
+                                imageId={json.imageId}
                                 content={json.content}
                                 date={json.date}
                             ></Event>
@@ -125,10 +140,26 @@ export const addEvent = (eventsComp) => {
 
 // A function to edit a single event.
 export const editEvent = (singleEventComp, eventsComp, id) => {
+    let newImageId;
+
+    // 1) Check whether editor/administrator wants to update image.
+    // If so, delete current image in cloudinary.
+    if (singleEventComp.state.imageCheckbox){
+        // Delete poster/image in cloudinary.
+        deleteImage(singleEventComp.state.existingImageId);
+        // Add new poster/image to cloudinary.
+        addImage(singleEventComp);
+
+        newImageId = singleEventComp.imageId
+    }else {
+        newImageId = singleEventComp.existingImageId
+    }
+
+    // 2) Edit event in MongoDB database.
     const url = "/eventDatabase/" + id;
 
     const updatedEvent = {
-        imageURL: singleEventComp.state.updatedImageURL,
+        imageId: newImageId,
         content: singleEventComp.state.updatedContent
     }
 
@@ -156,8 +187,12 @@ export const editEvent = (singleEventComp, eventsComp, id) => {
 
 
 // A function to delete a single event.
-export const deleteEvent = (eventsComp, id) => {
-    const url = "/eventDatabase/" + id;
+export const deleteEvent = (eventsComp, imageId, eventId) => {
+    // 1) Delete poster/image in cloudinary first.
+    deleteImage(imageId);
+
+    // 2) Remove event from MongoDB database.
+    const url = "/eventDatabase/" + eventId;
 
     const request = new Request(url, {
         method: "DELETE",

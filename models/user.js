@@ -95,6 +95,6 @@ UserSchema.statics.findByUsernamePassword = function (username, password) {
     });
 };
 
-// make a model using the User schema
+// make a model using the schema
 const User = mongoose.model('User', UserSchema)
 module.exports = { User }

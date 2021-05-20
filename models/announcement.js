@@ -20,6 +20,6 @@ const AnnouncementSchema = new mongoose.Schema({
     }
 })
 
-// make a model using the User schema
+// make a model using the schema
 const Announcement = mongoose.model('Announcement', AnnouncementSchema)
 module.exports = { Announcement }

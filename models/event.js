@@ -8,7 +8,7 @@ const EventSchema = new mongoose.Schema({
         required: true,
         minlength: 1
     },
-    imageURL: {
+    imageId: {
         type: String,
         required: true
     },
@@ -24,6 +24,6 @@ const EventSchema = new mongoose.Schema({
     }
 })
 
-// make a model using the User schema
+// make a model using the schema
 const Event = mongoose.model('Event', EventSchema)
 module.exports = { Event }

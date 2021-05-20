@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
 
 // Importing announcement actions/required methods.
-import { updateEventContent, getAllEvents, addEvent } from "../../actions/event";
+import { updateImageFile, updateEventContent, getAllEvents, addEvent } from "../../actions/event";
 
 class Events extends Component {
     constructor(props) {
@@ -23,7 +23,8 @@ class Events extends Component {
     state = {
         gEvents: [],
         displayEventModal: false,
-        eventImageURL: "",
+        imageFile: "",
+        imageId: "",
         eventContent: ""
     };
 
@@ -74,10 +75,10 @@ class Events extends Component {
                         <Form>
                             <Form.Group>
                                 <Form.File
-                                    name="eventImageURL"
-                                    id="eventImageURL"
+                                    name="imageFile"
+                                    id="imageFile"
                                     label="Upload event image"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateImageFile(this, e.target)}
                                     required />
                             </Form.Group>
                             <Form.Group>

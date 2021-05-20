@@ -6,12 +6,16 @@ const express = require("express");
 // starting the express server
 const app = express();
 
+const cors = require("cors");
+app.use(cors());
+
 // mongoose and mongo connection
 const { mongoose } = require("./db/mongoose");
 mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
 const { User } = require("./models/user");
+const { Image } = require("./models/image");
 const { Announcement } = require("./models/announcement");
 const { Research } = require("./models/research");
 const { Event } = require("./models/event")
@@ -48,9 +52,9 @@ const multipartMiddleware = multipart();
 // sign up for a free account here: https://cloudinary.com/users/register/free
 const cloudinary = require('cloudinary');
 cloudinary.config({
-    cloud_name: 'CLOUD_NAME',
-    api_key: 'API_KEY',
-    api_secret: 'API_SECRET'
+    cloud_name: 'gsggb',
+    api_key: '289885175397897',
+    api_secret: 'FOR8MHeaag5E6_L5f9Xe7gHFVPE'
 });
 
 // =============================================================================
@@ -397,7 +401,7 @@ app.get("/eventDatabase/:id", (req, res) => {
 app.post("/eventDatabase", (req, res) => {
     const gEvent = new Event({
         userId: req.session.user,
-        iamgeURL: req.body.imageURL,
+        imageId: req.body.imageId,
         content: req.body.content,
         date: new Date()
     });
@@ -418,7 +422,7 @@ app.patch("/eventDatabase/:id", (req, res) => {
     const id = req.params.id;
 
     const body = {
-        imageURL: req.body.imageURL,
+        imageId: req.body.imageId,
         content: req.body.content
     };
 
@@ -462,6 +466,81 @@ app.delete("/eventDatabase/:id", (req, res) => {
         });
 });
 /** End of event resource routes **/
+
+
+/** Start of image resource routes **/
+// A GET route to get an image by their id.
+app.get("/imageDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Image.findById(id)
+        .then((img) => {
+            if (!img) {
+                res.status(404).send();
+            } else {
+                res.send(img);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not get.
+        });
+});
+
+// a POST route to *create* an image
+app.post("/imageDatabase", multipartMiddleware, (req, res) => {
+
+    // Use uploader.upload API to upload image to cloudinary server.
+    cloudinary.uploader.upload(
+        req.files.image.path, // req.files contains uploaded files
+        function (result) {
+
+            // Create a new image using the Image mongoose model
+            var img = new Image({
+                imageId: result.public_id, // image id on cloudinary server
+                imageURL: result.url, // image url on cloudinary server
+            });
+
+            // Save image to the database
+            img.save().then(
+                saveRes => {
+                    res.send(saveRes);
+                },
+                error => {
+                    res.status(400).send(error); // 400 for bad request
+                }
+            );
+        });
+});
+
+
+/// a DELETE route to remove an image by its id.
+app.delete("/imageDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    // Delete an image by its id (NOT the database ID, but its id on the cloudinary server)
+    // on the cloudinary server
+    cloudinary.uploader.destroy(id, function (result) {
+
+        // Delete the image from the database
+        Image.findOneAndRemove({ imageId: id })
+            .then(img => {
+                if (!img) {
+                    res.status(404).send();
+                } else {
+                    res.send(img);
+                }
+            })
+            .catch(error => {
+                res.status(500).send(); // server error, could not delete.
+            });
+    });
+});
+/** End of image resource routes **/
 
 /*** Webpage routes below **********************************/
 // Serve the build
