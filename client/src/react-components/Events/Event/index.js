@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Card, Button, Modal, ModalBody, Form } from "react-bootstrap";
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import ModalHeader from "react-bootstrap/ModalHeader";
 import { confirmAlert } from 'react-confirm-alert';
@@ -12,7 +14,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import { getImageById } from "../../../actions/image";
 import { retrieveAccountDetails } from "../../../actions/user";
-import { updateEventContent, getEventById, editEvent, deleteEvent } from "../../../actions/event";
+import { updateImageFile, updateEventContent, getEventById, editEvent, deleteEvent } from "../../../actions/event";
 
 class Event extends Component {
     constructor(props) {
@@ -25,6 +27,7 @@ class Event extends Component {
         displayModal: false,
         imageCheckbox: "",
         imageFile: "",
+        imageCloudinaryId: "",
         imageURL: "",
         existingImageId: "",
         imageId: "", // Updated image ID.
@@ -101,6 +104,7 @@ class Event extends Component {
 
     render() {
         getImageById(this, this.props.imageId);
+        const imageURL = this.state.imageURL;
 
         retrieveAccountDetails(this, this.props.userId);
         const headshot = this.state.firstName + ".jpg";
@@ -120,13 +124,16 @@ class Event extends Component {
                             <small>{eventDate}</small>
                             <span>{editEventButton}{deleteEventButton}</span>
                         </Card.Header>
-                        <CardMedia
-                            className="image__card-media"
-                            image={this.state.imageURL}
-                        />
-                        <Card.Body>
-                            {this.props.content}
-                        </Card.Body>
+                        <CardActionArea>
+                            <CardMedia
+                              className="image__card-media"
+                              image={imageURL}
+                            />
+                            <CardContent>
+                                {this.props.content}
+                            </CardContent>
+
+                        </CardActionArea>
                     </Card>
                     <Modal
                         show={this.state.displayModal}
@@ -154,7 +161,7 @@ class Event extends Component {
                                         name="imageFile"
                                         id="imageFile"
                                         label="Upload new event image"
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateImageFile(this, e.target)}
                                         disabled={this.state.imageCheckbox}
                                         required />
                                 </Form.Group>
@@ -173,7 +180,10 @@ class Event extends Component {
                                 <Button
                                     variant="outline-info"
                                     type="submit"
-                                    onClick={() => editEvent(this, this.props.eventsComp, this.props.eventId)}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        editEvent(this, this.props.eventsComp, this.props.eventId)
+                                    }}
                                     >
                                         UPDATE
                                 </Button>

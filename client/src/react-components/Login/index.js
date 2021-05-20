@@ -77,14 +77,20 @@ class Login extends Component {
                                     </Form.Group>
                                     <Button
                                         id="login-button"
-                                        onClick={() => login(this)}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            login(this)
+                                        }}
                                     >
                                         LOGIN
                                     </Button>
                                     <hr />
                                     <Button
                                         id="homepage-button"
-                                        onClick={() => returnToHomePage(this)}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            returnToHomePage(this)
+                                        }}
                                     >
                                         RETURN TO HOMEPAGE
                                     </Button>

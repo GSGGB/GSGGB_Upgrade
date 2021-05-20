@@ -38,7 +38,7 @@ export const getAllEvents = (eventsComp) => {
         })
         .then(json => {
             eventsComp.setState({gEvents: []})
-            for (let gEvent of json.events) {
+            for (let gEvent of json.gEvents) {
                 const newEvent = <Event
                                     eventsComp={eventsComp}
                                     eventId={gEvent._id}
@@ -89,52 +89,50 @@ export const getEventById = (singleEventComp, id) => {
 // A function to add a single event.
 export const addEvent = (eventsComp) => {
     // 1) Add poster/image to cloudinary first.
-    addImage(eventsComp);
+    addImage(eventsComp, () => {
+        // 2) Add event to MongoDB database.
+        const url = "/eventDatabase";
 
-    // 2) Add event to MongoDB database.
-    const url = "/eventDatabase";
+        const gEvent = {
+            imageId: eventsComp.state.imageId,
+            content: eventsComp.state.eventContent
+        };
 
-    const gEvent = {
-        imageId: eventsComp.state.imageId,
-        content: eventsComp.state.eventContent
-    };
-
-    //console.log(gEvent)
-
-    const request = new Request(url, {
-        method: "POST",
-        body: JSON.stringify(gEvent),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    });
-
-    // Send the request with fetch()
-    fetch(request)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                alert("Could not add event");
+        const request = new Request(url, {
+            method: "POST",
+            body: JSON.stringify(gEvent),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
             }
-        })
-        .then(json => {
-            const newEvent = <Event
-                                eventsComp={eventsComp}
-                                eventId={json._id}
-                                userId={json.userId}
-                                imageId={json.imageId}
-                                content={json.content}
-                                date={json.date}
-                            ></Event>
-            eventsComp.setState({
-                gEvents: [newEvent].concat(eventsComp.state.gEvents)
-            })
-        })
-        .catch(error => {
-            console.log(error);
         });
+
+        // Send the request with fetch()
+        fetch(request)
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    alert("Could not add event");
+                }
+            })
+            .then(json => {
+                const newEvent = <Event
+                                    eventsComp={eventsComp}
+                                    eventId={json._id}
+                                    userId={json.userId}
+                                    imageId={json.imageId}
+                                    content={json.content}
+                                    date={json.date}
+                                ></Event>
+                eventsComp.setState({
+                    gEvents: [newEvent].concat(eventsComp.state.gEvents)
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    });
 }
 
 
@@ -150,9 +148,9 @@ export const editEvent = (singleEventComp, eventsComp, id) => {
         // Add new poster/image to cloudinary.
         addImage(singleEventComp);
 
-        newImageId = singleEventComp.imageId
+        newImageId = singleEventComp.imageId;
     }else {
-        newImageId = singleEventComp.existingImageId
+        newImageId = singleEventComp.existingImageId;
     }
 
     // 2) Edit event in MongoDB database.

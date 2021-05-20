@@ -95,7 +95,10 @@ class Events extends Component {
                             <Button
                                 variant="outline-info"
                                 type="submit"
-                                onClick={() => addEvent(this)}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    addEvent(this)
+                                }}
                                 >
                                     CREATE
                             </Button>

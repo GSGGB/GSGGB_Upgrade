@@ -225,7 +225,7 @@ class HomePage extends Component {
                             <Button
                                 variant="outline-info"
                                 type="submit"
-                                onClick={() => addResearchPost(this)}
+                                onClick={(e) => addResearchPost(this)}
                                 >
                                     CREATE
                             </Button>

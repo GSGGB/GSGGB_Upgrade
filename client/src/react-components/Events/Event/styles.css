@@ -34,3 +34,14 @@
     position: relative;
     width: 100%;
 }
+
+/* Styles for the Image React component */
+
+.MuiCardMedia-root.image__card-media {
+  height: 300px;
+  background-position: inherit;
+}
+
+.MuiCardActions-root.image__card-actions {
+  justify-content: center;
+}

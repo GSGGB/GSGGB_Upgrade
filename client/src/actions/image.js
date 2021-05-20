@@ -1,5 +1,5 @@
 // A function to send a POST request with a new image
-export const addImage = (comp) => {
+export const addImage = (comp, callback) => {
     let image = comp.state.imageFile;
     let imageData = new FormData();
     imageData.append("image", image);
@@ -25,9 +25,10 @@ export const addImage = (comp) => {
             }
         })
         .then(json => {
-            console.log(json);
             comp.setState({
-                imageId: json.imageId
+                imageId: json._id
+            }, () => {
+                callback();
             })
         })
         .catch(error => {
@@ -36,7 +37,7 @@ export const addImage = (comp) => {
 };
 
 
-// A function to get a specific image by their id.
+// A function to get a specific image by their id (database id, not cloudinary).
 export const getImageById = (comp, id) => {
     // the URL for the request
     const url = "/imageDatabase/" + id;
@@ -53,6 +54,7 @@ export const getImageById = (comp, id) => {
         })
         .then(json => {
             comp.setState({
+                imageCloudinaryId: json.imageId,
                 imageURL: json.imageURL
             });
         })
