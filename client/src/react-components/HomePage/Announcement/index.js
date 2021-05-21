@@ -99,8 +99,8 @@ class Announcement extends Component {
         const fullName = this.state.firstName + " " + this.state.lastName;
         const announcementDate = this.props.date.toLocaleString('en-US', this.state.options);
 
-        const editAnnouncementButton = this.editAnnouncementButton(this.state.username);
-        const deleteAnnouncementButton = this.deleteAnnouncementButton(this.state.username);
+        const editAnnouncementButton = this.editAnnouncementButton();
+        const deleteAnnouncementButton = this.deleteAnnouncementButton();
 
         return (
             <BrowserRouter forceRefresh={true}>
@@ -143,7 +143,11 @@ class Announcement extends Component {
                                 <Button
                                     variant="outline-info"
                                     type="submit"
-                                    onClick={() => editAnnouncement(this, this.props.homepageComp, this.props.announcementId)}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        editAnnouncement(this, this.props.homepageComp, this.props.announcementId);
+                                        this.setState({ displayModal: false })
+                                    }}
                                     >
                                         UPDATE
                                 </Button>

@@ -25,7 +25,7 @@ export const getAllAnnouncements = (homepageComp) => {
                 // Return a promise that resolves with the JSON body.
                 return res.json();
             } else {
-                alert("Could not get announcements");
+                alert("Could not get all announcements");
             }
         })
         .then(json => {
@@ -112,6 +112,8 @@ export const addAnnouncement = (homepageComp) => {
             homepageComp.setState({
                 announcements: [newAnnouncement].concat(homepageComp.state.announcements)
             })
+
+            alert("Successfully added announcement");
         })
         .catch(error => {
             console.log(error);
@@ -140,9 +142,10 @@ export const editAnnouncement = (announcementComp, homepageComp, id) => {
         .then(res => {
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body
+                alert("Successfully updated announcement");
                 return res.json();
             } else {
-                console.log("Could not update announcement");
+                alert("Could not update announcement");
             }
         })
 
@@ -168,9 +171,9 @@ export const deleteAnnouncement = (homepageComp, id) => {
             // Handle response we get from the API.
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
-                console.log("Successfully deleted announcement");
+                alert("Successfully deleted announcement");
             } else {
-                console.log("Failed to delete announcement");
+                alert("Failed to delete announcement");
             }
         })
         .catch(error => {

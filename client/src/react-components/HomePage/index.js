@@ -181,7 +181,11 @@ class HomePage extends Component {
                             <Button
                                 variant="outline-info"
                                 type="submit"
-                                onClick={() => addAnnouncement(this)}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    addAnnouncement(this);
+                                    this.setState({ displayAnnouncementModal: false })
+                                }}
                                 >
                                     CREATE
                             </Button>
@@ -225,7 +229,11 @@ class HomePage extends Component {
                             <Button
                                 variant="outline-info"
                                 type="submit"
-                                onClick={(e) => addResearchPost(this)}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    addResearchPost(this);
+                                    this.setState({ displayResearchModal: false })
+                                }}
                                 >
                                     CREATE
                             </Button>

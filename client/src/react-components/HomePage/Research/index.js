@@ -97,8 +97,8 @@ class Research extends Component {
         const headshot = this.state.firstName + ".jpg";
         const fullName = this.state.firstName + " " + this.state.lastName;
 
-        const editResearchButton = this.editResearchButton(this.state.username);
-        const deleteResearchButton = this.deleteResearchButton(this.state.username);
+        const editResearchButton = this.editResearchButton();
+        const deleteResearchButton = this.deleteResearchButton();
 
         return (
             <BrowserRouter forceRefresh={true}>
@@ -142,7 +142,11 @@ class Research extends Component {
                                 <Button
                                     variant="outline-info"
                                     type="submit"
-                                    onClick={() => editResearchPost(this, this.props.homepageComp, this.props.researchId)}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        editResearchPost(this, this.props.homepageComp, this.props.researchId)
+                                        this.setState({ displayModal: false })
+                                    }}
                                     >
                                         UPDATE
                                 </Button>

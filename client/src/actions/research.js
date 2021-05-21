@@ -25,7 +25,7 @@ export const getAllResearchPosts = (homepageComp) => {
                 // Return a promise that resolves with the JSON body.
                 return res.json();
             } else {
-                alert("Could not get research posts");
+                alert("Could not get all research posts");
             }
         })
         .then(json => {
@@ -109,6 +109,8 @@ export const addResearchPost = (homepageComp) => {
             homepageComp.setState({
                 researchPosts: [newResearchPost].concat(homepageComp.state.researchPosts)
             })
+
+            alert("Successfully added research post");
         })
         .catch(error => {
             console.log(error);
@@ -136,9 +138,10 @@ export const editResearchPost = (researchComp, homepageComp, id) => {
         .then(res => {
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body
+                alert("Successfully updated research post");
                 return res.json();
             } else {
-                console.log("Could not update research post");
+                alert("Could not update research post");
             }
         })
 
@@ -163,9 +166,9 @@ export const deleteResearchPost = (homepageComp, id) => {
             // Handle response we get from the API.
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
-                console.log("Successfully deleted research post");
+                alert("Successfully deleted research post");
             } else {
-                console.log("Failed to delete research post");
+                alert("Failed to delete research post");
             }
         })
         .catch(error => {
