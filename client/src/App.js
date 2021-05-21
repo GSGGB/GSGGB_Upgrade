@@ -4,6 +4,7 @@ import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Chapters from "./react-components/Chapters";
 import Login from "./react-components/Login";
 import Header from "./react-components/Header";
+import UserBar from "./react-components/UserBar";
 import Footer from "./react-components/Footer";
 import HomePage from "./react-components/HomePage";
 import Team from "./react-components/Team";
@@ -60,6 +61,7 @@ class App extends Component {
                                   ? <Login history={history} app={this}/>
                                   :
                                   <div>
+                                      <UserBar />
                                       <Header />
                                       <HomePage history={history} app={this}/>
                                       <Footer />
@@ -72,6 +74,7 @@ class App extends Component {
                           exact path="/home"
                           render={({ history }) => (
                               <div>
+                                  <UserBar />
                                   <Header />
                                   <HomePage history={history} app={this}/>
                                   <Footer />
@@ -83,6 +86,7 @@ class App extends Component {
                           exact path="/team"
                           render={({ history }) => (
                               <div>
+                                  <UserBar />
                                   <Header />
                                   <Team history={history} app={this}/>
                                   <Footer />
@@ -94,6 +98,7 @@ class App extends Component {
                           exact path="/events"
                           render={({ history }) => (
                               <div>
+                                  <UserBar />
                                   <Header />
                                   <Events history={history} app={this}/>
                                   <Footer />
@@ -105,6 +110,7 @@ class App extends Component {
                           exact path="/sponsors"
                           render={({ history }) => (
                               <div>
+                                  <UserBar />
                                   <Header />
                                   <Sponsors history={history} app={this}/>
                                   <Footer />

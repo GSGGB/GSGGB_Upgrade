@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, BrowserRouter } from "react-router-dom";
-import { Navbar, Nav, Image, NavDropdown, Button } from "react-bootstrap";
-
-// Importing actions/required methods
-import { logout } from "../../actions/user";
+import { Navbar, Nav, Image, NavDropdown } from "react-bootstrap";
 
 import "./styles.css";
 import "./styles-mobile.css";
@@ -23,30 +20,30 @@ class Header extends Component {
     // Manipulate DOM depending on scroll position.
     componentDidMount() {
         const header = document.querySelector(".header");
-        const logo = document.querySelector("#small-logo");
+        const logo = document.querySelector("#header-logo");
         const navbarDropdowns = document.querySelectorAll("#dropdown");
         const navbarItems = document.querySelectorAll(".navbar-item");
 
         window.addEventListener("scroll", () => {
-             if (document.body.scrollTop < window.innerHeight){
+             if (document.body.scrollTop < 100){
                 this.setState({
-                    backgroundColor: "#FEFBEA",
+                    backgroundColor: "white",
                     fontSize: "18px"
                 });
 
-                header.style.backgroundColor = "#FEFBEA";
+                header.style.backgroundColor = "white";
                 header.style.boxShadow = "0 0 0 0";
 
-                logo.style.width = "175px";
+                logo.style.width = "150px";
 
                 navbarDropdowns.forEach(function(dropdown){
                     dropdown.style.fontSize = "18px";
-                    dropdown.style.backgroundColor = "#FEFBEA";
+                    dropdown.style.backgroundColor = "white";
                 })
 
                 navbarItems.forEach(function(item){
                     item.style.fontSize = "18px";
-                    item.style.backgroundColor = "#FEFBEA";
+                    item.style.backgroundColor = "white";
                 })
             }
             else {
@@ -73,29 +70,8 @@ class Header extends Component {
         }, true);
     }
 
-    // Logout button for editors and administrators only.
-    logoutButton() {
-        const loggedIn = sessionStorage.getItem("loggedIn");
-
-        if (loggedIn === "true") {
-            return (
-                <Nav.Item as="li">
-                    <Button
-                        id="logout-button"
-                        variant="outline-info"
-                        onClick={() => logout(this)}
-                    >
-                        LOG OUT
-                    </Button>
-                </Nav.Item>
-              )
-        }
-    }
-
-
     render() {
       const { location } = this.props;
-      const logoutButton = this.logoutButton();
 
       return (
           <BrowserRouter>
@@ -104,7 +80,7 @@ class Header extends Component {
                       <Navbar collapseOnSelect expand="lg">
                           <Navbar.Brand>
                               <a href="/home">
-                                  <Image id="small-logo" alt="GSGGB Logo" src={logo} />
+                                  <Image id="header-logo" alt="GSGGB Logo" src={logo} />
                               </a>
                           </Navbar.Brand>
                           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -119,22 +95,22 @@ class Header extends Component {
                                   <NavDropdown title = "HOME" id="dropdown">
                                       <NavDropdown.Item href = "/home#about-us" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           ABOUT US
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/home#announcements" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           ANNOUNCEMENTS
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/home#latest-research" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           LATEST RESEARCH
                                       </NavDropdown.Item>
@@ -142,64 +118,64 @@ class Header extends Component {
                                   <NavDropdown title = "TEAM" id="dropdown">
                                       <NavDropdown.Item href = "/team#senior-staff" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           SENIOR STAFF
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/team#conference" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           CONFERENCE
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/team#marketing" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           MARKETING
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/team#affairs" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           AFFAIRS
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/team#mentorship" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           MENTORSHIP
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/team#events" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           EVENTS
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/team#tech-and-innovations" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           TECH &amp; INNOVATIONS
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/team#jigg" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           JIGG
                                       </NavDropdown.Item>
                                       <NavDropdown.Item href = "/team#alumni" id="dropdown-item"
                                       style={{
-                                        backgroundColor: this.state.backgroundColor,
-                                        fontSize: this.state.fontSize
+                                          backgroundColor: this.state.backgroundColor,
+                                          fontSize: this.state.fontSize
                                       }}>
                                           ALUMNI
                                       </NavDropdown.Item>
@@ -225,7 +201,6 @@ class Header extends Component {
                                           GET INVOLVED
                                       </Nav.Link>
                                   </Nav.Item>
-                                  <span>{logoutButton}</span>
                               </Nav>
                           </Navbar.Collapse>
                       </Navbar>

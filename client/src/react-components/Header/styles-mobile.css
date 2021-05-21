@@ -1,8 +1,8 @@
 
 /* Mobile screens */
 @media (max-width: 1200px){
-    #small-logo{
-        width: 125px !important;
+    #header-logo{
+        width: 100px !important;
     }
 
     .navbar-item, #dropdown{

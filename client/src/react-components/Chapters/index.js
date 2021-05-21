@@ -34,7 +34,7 @@ class Chapters extends Component {
                                         id="uoft-button"
                                         onClick={() => this.props.history.push("/home")}
                                     >
-                                        <Image id="uoft-logo" alt="UofT Logo" src={uoft_logo} />
+                                        <Image id="uoft-logo-chapters" alt="UofT Logo" src={uoft_logo} />
                                         University of Toronto
                                     </Button>
                                 </div>
@@ -44,7 +44,7 @@ class Chapters extends Component {
                                         className="chapters-button"
                                         id="mcmaster-button"
                                     >
-                                        <Image id="mcmaster-logo" alt="McMaster Logo" src={mcmaster_logo} />
+                                        <Image id="mcmaster-logo-chapters" alt="McMaster Logo" src={mcmaster_logo} />
                                         McMaster University
                                     </Button>
                                 </div>
@@ -54,7 +54,7 @@ class Chapters extends Component {
                                         className="chapters-button"
                                         id="queens-button"
                                     >
-                                        <Image id="queens-logo" alt="Queen's Logo" src={queens_logo} />
+                                        <Image id="queens-logo-chapters" alt="Queen's Logo" src={queens_logo} />
                                         Queen's University
                                     </Button>
                                 </div>

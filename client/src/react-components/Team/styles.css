@@ -1,24 +1,32 @@
-/* Team */
-.team-page-title{
+.team-photo-container{
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.team-photo{
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: top center;
+}
+
+.team-photo-title{
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
-    color: black;
-    text-align: center;
-    font-size: 40px;
+    font-size: 65px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* "Thank-you..." */
-.team-page-subtitle{
-    font-family: Tahoma, Geneva, sans-serif;
-    color: #4c4c4c;
-    text-align: center;
+.team-photo-subtitle{
+    font-size: 35px;
 }
 
-.team-title-section{
-    background-color: whitesmoke;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
+/* ===========================================================================*/
 
 .team-name{
     color: black;
@@ -29,24 +37,6 @@
     padding-top: 20px;
     padding-bottom: 20px;
     scroll-margin-top: 10rem;
-}
-
-
-.team-slideshow{
-    padding-top: 25px;
-}
-
-.team-photo{
-    width: 1300px;
-    height: 500px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-position: top center;
-}
-
-.slideshow-caption{
-    font-family: Tahoma, Geneva, sans-serif;
 }
 
 #team-members{

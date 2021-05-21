@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Image, Row, Col, Modal, Button, Card, Carousel } from "react-bootstrap";
+import { Image, Row, Col, Modal, Button, Card } from "react-bootstrap";
 import { FaLinkedin, FaEnvelope, FaInfo } from "react-icons/fa";
 
 import "./styles.css";
 import "./styles-mobile.css";
 import { SENIOR_STAFF, CONFERENCE, MARKETING, AFFAIRS, MENTORSHIP, EVENTS, TECH_INNOVATIONS, JIGG, ALUMNI } from './executives.js';
 import teamPhoto1819 from "./static/team-photo-18-19.jpg";
-import teamPhoto1718 from "./static/team-photo-17-18.jpg";
 
 class Team extends Component {
     constructor(props) {
@@ -102,30 +101,14 @@ class Team extends Component {
     render() {
         return (
             <BrowserRouter forceRefresh={true}>
-                <br/><br/>
-
-                <div class="team-title-section">
-                    <h2 className="team-page-title">OUR EXECUTIVE TEAM</h2>
-                    <br />
-                    <h4 className="team-page-subtitle">(Fall 2020 - Winter 2021)</h4>
+                <div class="team-photo-container">
+                    <Image className="team-photo" alt="2018-2019 GSGGB Executive Team" src={teamPhoto1819} />
+                    <span class="team-photo-title">
+                        Our Executive Team
+                        <h3 className="team-photo-subtitle">(Fall 2020 - Winter 2021)</h3>
+                    </span>
                 </div>
 
-                <br/>
-                <Carousel>
-                    <Carousel.Item className="team-slideshow">
-                        <Image className="team-photo" alt="2018-2019 GSGGB Executive Team" src={teamPhoto1819} />
-                        <Carousel.Caption>
-                            <h3 className="slideshow-caption">2018-2019 GSGGB Executive Team</h3>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item className="team-slideshow">
-                        <Image className="team-photo" alt="2017-2018 GSGGB Executive Team" src={teamPhoto1718} />
-
-                        <Carousel.Caption>
-                            <h3 className="slideshow-caption">2017-2018 GSGGB Executive Team</h3>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
                 <div className="team-slideshow">
                     <br/>
                 </div>

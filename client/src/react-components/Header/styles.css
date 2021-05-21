@@ -6,7 +6,6 @@
     top: 0;
     width: 100%;
     z-index: 99;
-    background-color: #FEFBEA;
     transition: background-color 1.0s ease;
 }
 
@@ -18,15 +17,16 @@
 /* End of Navbar Layout*/
 
 /* Navbar Logo */
-#small-logo{
-    width: 175px;
+#header-logo{
+    width: 150px;
+    margin-top: -15px;
     transition: all 1.0s ease;
 }
 /* End of Navbar Logo */
 
 /* Navbar Content and Dropdown Menu */
 .navbar-item, #dropdown{
-    background-color: #FEFBEA;
+    background-color: white;
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold !important;
     color: #4C4C4C !important;
@@ -38,7 +38,7 @@
 }
 
 #dropdown-item{
-    background-color: #FEFBEA;
+    background-color: white;
     font-size: 18px;
     color: black;
     text-align: center;
@@ -49,10 +49,6 @@
 
 .dropdown-menu{
     padding: 0px !important;
-}
-
-#logout-button{
-    margin-left: 20px;
 }
 /* End of Navbar Content and Dropdown Menu */
 
