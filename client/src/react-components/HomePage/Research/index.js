@@ -10,7 +10,6 @@ import { faEdit, faMinus } from '@fortawesome/free-solid-svg-icons';
 import "./styles.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-import { retrieveAccountDetails } from "../../../actions/user";
 import { updateResearchURL, getResearchPostById, editResearchPost, deleteResearchPost } from "../../../actions/research";
 
 class Research extends Component {
@@ -22,11 +21,7 @@ class Research extends Component {
     state = {
         displayModal: false,
         existingURL: "",
-        updatedURL: "",
-        firstName: "",
-        lastName: "",
-        username: "",
-        execPosition: ""
+        updatedURL: ""
     }
 
     // Edit research post button for editors and administrators only.
@@ -38,7 +33,7 @@ class Research extends Component {
         if (loggedIn === "true"){
             if (
               accountType === "Administrator" ||
-              (accountType === "Editor" && username === this.state.username)
+              (accountType === "Editor" && username === this.props.username)
             ){
                 return (
                     <Button
@@ -63,7 +58,7 @@ class Research extends Component {
         if (loggedIn === "true"){
             if (
               accountType === "Administrator" ||
-              (accountType === "Editor" && username === this.state.username)
+              (accountType === "Editor" && username === this.props.username)
             ){
                 return (
                     <Button
@@ -93,10 +88,6 @@ class Research extends Component {
     }
 
     render() {
-        retrieveAccountDetails(this, this.props.userId);
-        const headshot = this.state.firstName + ".jpg";
-        const fullName = this.state.firstName + " " + this.state.lastName;
-
         const editResearchButton = this.editResearchButton();
         const deleteResearchButton = this.deleteResearchButton();
 
@@ -106,8 +97,8 @@ class Research extends Component {
                     <Card className="researchPost">
                         <Card.Body>
                             <Card.Subtitle className="mb-2 text-muted">
-                                <img src={`/headshots/${headshot}`} className="headshot" alt="headshot" />
-                                <strong className="mr-auto">{fullName + " - " + this.state.execPosition}</strong>
+                                <img src={`/headshots/${this.props.headshot}`} className="headshot" alt="headshot" />
+                                <strong className="mr-auto">{this.props.fullName + " - " + this.props.execPosition}</strong>
                                 <span>{deleteResearchButton}{editResearchButton}</span>
                             </Card.Subtitle>
                             <FacebookProvider appId="807067446817483">

@@ -20,8 +20,6 @@ class HomePage extends Component {
     constructor(props) {
         super(props);
         this.props.history.push("/home");
-        getAllAnnouncements(this);
-        getAllResearchPosts(this);
         document.title = "GSGGB U of T | Home";
     }
 
@@ -33,6 +31,11 @@ class HomePage extends Component {
         displayResearchModal: false,
         researchURL: ""
     };
+
+    componentDidMount(){
+        getAllAnnouncements(this);
+        getAllResearchPosts(this);
+    }
 
     // Add announcement button for editors and administrators only.
     addAnnouncementButton() {

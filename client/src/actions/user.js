@@ -107,30 +107,3 @@ export const logout = (headerComp) => {
             console.log(error);
         });
 };
-
-
-// A function to retrieve user account details by their userId,
-// including first name, last name, username, and executive position.
-export const retrieveAccountDetails = (announcementComp, userId) => {
-  const url = "/userDatabase/" + userId;
-
-  fetch(url)
-      .then(res => {
-          if (res.status === 200) {
-              return res.json();
-          } else {
-              alert("Could not get user");
-          }
-      })
-      .then(json => {
-          announcementComp.setState({
-              firstName: json.firstName,
-              lastName: json.lastName,
-              username: json.username,
-              execPosition: json.execPosition
-          })
-      })
-      .catch(error => {
-          console.log(error);
-      });
-}

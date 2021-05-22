@@ -3,6 +3,38 @@ import Research from "../react-components/HomePage/Research";
 
 // Functions to help with research posts.
 
+// Helper function for getAllResearchPosts and addResearchPost.
+const addResearchPostHelper = (homepageComp, researchPost) => {
+    // Retrieve user details including username and full name.
+    let url = "/userDatabase/" + researchPost.userId;
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get user");
+            }
+        })
+        .then(json => {
+            const newResearchPost = <Research
+                                        homepageComp={homepageComp}
+                                        researchId={researchPost._id}
+                                        username={json.username}
+                                        fullName={json.firstName + " " + json.lastName}
+                                        execPosition={json.execPosition}
+                                        headshot={json.firstName + ".jpg"}
+                                        url={researchPost.url}
+                                    ></Research>
+            homepageComp.setState({
+                researchPosts: [newResearchPost].concat(homepageComp.state.researchPosts)
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
 // A function to update the research post URL.
 export const updateResearchURL = (comp, field) => {
     const value = field.value;
@@ -30,16 +62,9 @@ export const getAllResearchPosts = (homepageComp) => {
         })
         .then(json => {
             homepageComp.setState({researchPosts: []})
+
             for (let researchPost of json.researchPosts) {
-                const newResearchPost = <Research
-                                            homepageComp={homepageComp}
-                                            researchId={researchPost._id}
-                                            userId={researchPost.userId}
-                                            url={researchPost.url}
-                                        ></Research>
-                homepageComp.setState({
-                    researchPosts: [newResearchPost].concat(homepageComp.state.researchPosts)
-                })
+                addResearchPostHelper(homepageComp, researchPost);
             }
         })
         .catch(error => {
@@ -100,16 +125,7 @@ export const addResearchPost = (homepageComp) => {
             }
         })
         .then(json => {
-            const newResearchPost = <Research
-                                        homepageComp={homepageComp}
-                                        researchId={json._id}
-                                        userId={json.userId}
-                                        url={json.url}
-                                    ></Research>
-            homepageComp.setState({
-                researchPosts: [newResearchPost].concat(homepageComp.state.researchPosts)
-            })
-
+            addResearchPostHelper(homepageComp, json);
             alert("Successfully added research post");
         })
         .catch(error => {

@@ -3,6 +3,39 @@ import Announcement from "../react-components/HomePage/Announcement";
 
 // Functions to help with announcements.
 
+// Helper function for getAllAnnouncements and addAnnouncement.
+const addAnnouncementHelper = (homepageComp, announcement) => {
+    // Retrieve user details including username and full name.
+    let url = "/userDatabase/" + announcement.userId;
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get user");
+            }
+        })
+        .then(json => {
+            const newAnnouncement = <Announcement
+                                        homepageComp={homepageComp}
+                                        announcementId={announcement._id}
+                                        username={json.username}
+                                        fullName={json.firstName + " " + json.lastName}
+                                        execPosition={json.execPosition}
+                                        headshot={json.firstName + ".jpg"}
+                                        content={announcement.content}
+                                        date={announcement.date}
+                                    ></Announcement>
+            homepageComp.setState({
+                announcements: [newAnnouncement].concat(homepageComp.state.announcements)
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
 // A function to update announcement content.
 export const updateAnnouncementContent = (comp, field) => {
     const value = field.value;
@@ -12,7 +45,6 @@ export const updateAnnouncementContent = (comp, field) => {
         [name]: value
     });
 };
-
 
 // A function to get all announcements in the database.
 export const getAllAnnouncements = (homepageComp) => {
@@ -30,17 +62,9 @@ export const getAllAnnouncements = (homepageComp) => {
         })
         .then(json => {
             homepageComp.setState({announcements: []})
+
             for (let announcement of json.announcements) {
-                const newAnnouncement = <Announcement
-                                            homepageComp={homepageComp}
-                                            announcementId={announcement._id}
-                                            userId={announcement.userId}
-                                            content={announcement.content}
-                                            date={announcement.date}
-                                        ></Announcement>
-                homepageComp.setState({
-                    announcements: [newAnnouncement].concat(homepageComp.state.announcements)
-                })
+                addAnnouncementHelper(homepageComp, announcement);
             }
         })
         .catch(error => {
@@ -102,17 +126,7 @@ export const addAnnouncement = (homepageComp) => {
             }
         })
         .then(json => {
-            const newAnnouncement = <Announcement
-                                        homepageComp={homepageComp}
-                                        announcementId={json._id}
-                                        userId={json.userId}
-                                        content={json.content}
-                                        date={json.date}
-                                    ></Announcement>
-            homepageComp.setState({
-                announcements: [newAnnouncement].concat(homepageComp.state.announcements)
-            })
-
+            addAnnouncementHelper(homepageComp, json);
             alert("Successfully added announcement");
         })
         .catch(error => {

@@ -10,7 +10,6 @@ import "./styles.css";
 import "./styles-mobile.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-import { retrieveAccountDetails } from "../../../actions/user";
 import { updateAnnouncementContent, getAnnouncementById, editAnnouncement, deleteAnnouncement } from "../../../actions/announcement";
 
 class Announcement extends Component {
@@ -23,11 +22,7 @@ class Announcement extends Component {
         options: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: "Canada/Toronto"},
         displayModal: false,
         existingContent: "",
-        updatedContent: "",
-        firstName: "",
-        lastName: "",
-        username: "",
-        execPosition: ""
+        updatedContent: ""
     }
 
     // Edit announcement button for editors and administrators only.
@@ -39,7 +34,7 @@ class Announcement extends Component {
         if (loggedIn === "true"){
             if (
               accountType === "Administrator" ||
-              (accountType === "Editor" && username === this.state.username)
+              (accountType === "Editor" && username === this.props.username)
             ){
                 return (
                     <Button
@@ -64,7 +59,7 @@ class Announcement extends Component {
         if (loggedIn === "true"){
             if (
               accountType === "Administrator" ||
-              (accountType === "Editor" && username === this.state.username)
+              (accountType === "Editor" && username === this.props.username)
             ){
                 return (
                     <Button
@@ -94,21 +89,18 @@ class Announcement extends Component {
     }
 
     render() {
-        retrieveAccountDetails(this, this.props.userId);
-        const headshot = this.state.firstName + ".jpg";
-        const fullName = this.state.firstName + " " + this.state.lastName;
-        const announcementDate = this.props.date.toLocaleString('en-US', this.state.options);
-
         const editAnnouncementButton = this.editAnnouncementButton();
         const deleteAnnouncementButton = this.deleteAnnouncementButton();
+
+        const announcementDate = this.props.date.toLocaleString('en-US', this.state.options);
 
         return (
             <BrowserRouter forceRefresh={true}>
                 <div className="announcement">
                     <Toast>
                         <Toast.Header closeButton="false">
-                            <img src={`/headshots/${headshot}`} className="headshot" alt="headshot" />
-                            <strong className="mr-auto">{fullName + " - " + this.state.execPosition}</strong>
+                            <img src={`/headshots/${this.props.headshot}`} className="headshot" alt="headshot" />
+                            <strong className="mr-auto">{this.props.fullName + " - " + this.props.execPosition}</strong>
                             <small>{announcementDate}</small>
                             <span>{editAnnouncementButton}{deleteAnnouncementButton}</span>
                         </Toast.Header>
