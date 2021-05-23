@@ -4,36 +4,32 @@ import Announcement from "../react-components/HomePage/Announcement";
 // Functions to help with announcements.
 
 // Helper function for getAllAnnouncements and addAnnouncement.
-const addAnnouncementHelper = (homepageComp, announcement) => {
+const addAnnouncementHelper = async(homepageComp, announcement) => {
     // Retrieve user details including username and full name.
-    let url = "/userDatabase/" + announcement.userId;
+    const url = "/userDatabase/" + announcement.userId;
 
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                alert("Could not get user");
-            }
+    const res = await fetch(url);
+
+    if (res.status === 200) {
+        const json = await res.json();
+
+        const newAnnouncement = <Announcement
+                                    homepageComp={homepageComp}
+                                    announcementId={announcement._id}
+                                    username={json.username}
+                                    fullName={json.firstName + " " + json.lastName}
+                                    execPosition={json.execPosition}
+                                    headshot={json.firstName + ".jpg"}
+                                    content={announcement.content}
+                                    date={announcement.date}
+                                ></Announcement>
+        homepageComp.setState({
+            announcements: [newAnnouncement].concat(homepageComp.state.announcements)
         })
-        .then(json => {
-            const newAnnouncement = <Announcement
-                                        homepageComp={homepageComp}
-                                        announcementId={announcement._id}
-                                        username={json.username}
-                                        fullName={json.firstName + " " + json.lastName}
-                                        execPosition={json.execPosition}
-                                        headshot={json.firstName + ".jpg"}
-                                        content={announcement.content}
-                                        date={announcement.date}
-                                    ></Announcement>
-            homepageComp.setState({
-                announcements: [newAnnouncement].concat(homepageComp.state.announcements)
-            })
-        })
-        .catch(error => {
-            console.log(error);
-        });
+    }
+    else{
+        alert("Could not get user");
+    }
 };
 
 // A function to update announcement content.
@@ -60,11 +56,11 @@ export const getAllAnnouncements = (homepageComp) => {
                 alert("Could not get all announcements");
             }
         })
-        .then(json => {
+        .then(async json => {
             homepageComp.setState({announcements: []})
 
             for (let announcement of json.announcements) {
-                addAnnouncementHelper(homepageComp, announcement);
+                await addAnnouncementHelper(homepageComp, announcement);
             }
         })
         .catch(error => {

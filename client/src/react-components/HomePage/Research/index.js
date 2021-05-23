@@ -101,7 +101,7 @@ class Research extends Component {
                                 <strong className="mr-auto">{this.props.fullName + " - " + this.props.execPosition}</strong>
                                 <span>{deleteResearchButton}{editResearchButton}</span>
                             </Card.Subtitle>
-                            <FacebookProvider appId="807067446817483">
+                            <FacebookProvider appId="481552546265591">
                                 <EmbeddedPost href={this.props.url}/>
                             </FacebookProvider>
                         </Card.Body>
