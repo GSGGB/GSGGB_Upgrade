@@ -25,8 +25,7 @@ const addResearchPostHelper = async(homepageComp, researchPost) => {
         homepageComp.setState({
             researchPosts: [newResearchPost].concat(homepageComp.state.researchPosts)
         })
-    }
-    else{
+    } else {
         alert("Could not get user");
     }
 };
@@ -149,15 +148,17 @@ export const editResearchPost = (researchComp, homepageComp, id) => {
     fetch(request)
         .then(res => {
             if (res.status === 200) {
-                // return a promise that resolves with the JSON body
                 alert("Successfully updated research post");
-                return res.json();
             } else {
                 alert("Could not update research post");
             }
         })
-
-    getAllResearchPosts(homepageComp);
+        .catch(error => {
+            console.log(error);
+        })
+        .finally(() => {
+            getAllResearchPosts(homepageComp);
+        });
 }
 
 // A function to delete a research post.
@@ -174,7 +175,7 @@ export const deleteResearchPost = (homepageComp, id) => {
 
     // Send the request with fetch()
     fetch(request)
-        .then(function (res) {
+        .then(res => {
             // Handle response we get from the API.
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
@@ -185,7 +186,8 @@ export const deleteResearchPost = (homepageComp, id) => {
         })
         .catch(error => {
             console.log(error);
+        })
+        .finally(() => {
+            getAllResearchPosts(homepageComp);
         });
-
-    getAllResearchPosts(homepageComp);
 }

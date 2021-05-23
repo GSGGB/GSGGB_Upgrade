@@ -1,3 +1,10 @@
+// A function to get the uploaded image file.
+export const updateImageFile = (comp, field) => {
+    comp.setState({
+        imageFile: field.files[0]
+    })
+}
+
 // A function to send a POST request with a new image
 export const addImage = (comp, callback) => {
     let image = comp.state.imageFile;
@@ -36,34 +43,6 @@ export const addImage = (comp, callback) => {
         });
 };
 
-
-// A function to get a specific image by their id (database id, not cloudinary).
-export const getImageById = (comp, id) => {
-    // the URL for the request
-    const url = "/imageDatabase/" + id;
-
-    // Since this is a GET request, simply call fetch on the URL
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                // return a promise that resolves with the JSON body
-                return res.json();
-            } else {
-                alert("Could not get image.");
-            }
-        })
-        .then(json => {
-            comp.setState({
-                imageCloudinaryId: json.imageId,
-                imageURL: json.imageURL
-            });
-        })
-        .catch(error => {
-            console.log(error);
-        });
-};
-
-
 // A function to send a DELETE request with an image PUBLIC id (id on cloudinary)
 export const deleteImage = (id) => {
   const url = "/imageDatabase/" + id;
@@ -78,7 +57,7 @@ export const deleteImage = (id) => {
 
   // Send the request with fetch()
   fetch(request)
-      .then(function (res) {
+      .then(res => {
           // Handle response we get from the API.
           // Usually check the error codes to see what happened.
           if (res.status === 200) {

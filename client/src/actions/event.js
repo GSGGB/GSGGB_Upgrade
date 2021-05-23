@@ -4,12 +4,46 @@ import { addImage, deleteImage } from "../actions/image";
 
 // Functions to help with events.
 
-// A function to get the uploaded image file.
-export const updateImageFile = (comp, field) => {
-    comp.setState({
-        imageFile: field.files[0]
-    })
-}
+// Helper function for getAllEvents and addEvent.
+const addEventHelper = async(eventsComp, gEvent) => {
+    // Retrieve user details including username and full name.
+    const userURL = "/userDatabase/" + gEvent.userId;
+
+    const userRes = await fetch(userURL);
+
+    if (userRes.status === 200) {
+        const userJSON = await userRes.json();
+
+        // Retrieve image cloudinary ID and URL.
+        const imageURL = "/imageDatabase/" + gEvent.imageId;
+
+        const imageRes = await fetch(imageURL);
+
+        if (imageRes.status === 200) {
+            const imageJSON = await imageRes.json();
+
+            const newEvent = <Event
+                                eventsComp={eventsComp}
+                                eventId={gEvent._id}
+                                username={userJSON.username}
+                                fullName={userJSON.firstName + " " + userJSON.lastName}
+                                execPosition={userJSON.execPosition}
+                                headshot={userJSON.firstName + ".jpg"}
+                                imageCloudinaryId={imageJSON.imageId}
+                                imageURL={imageJSON.imageURL}
+                                content={gEvent.content}
+                                date={gEvent.date}
+                              ></Event>
+            eventsComp.setState({
+                gEvents: [newEvent].concat(eventsComp.state.gEvents)
+            })
+        } else {
+            alert("Could not get image");
+        }
+    } else {
+        alert("Could not get user");
+    }
+};
 
 // A function to update event content.
 export const updateEventContent = (comp, field) => {
@@ -33,23 +67,14 @@ export const getAllEvents = (eventsComp) => {
                 // Return a promise that resolves with the JSON body.
                 return res.json();
             } else {
-                alert("Could not get events");
+                alert("Could not get all events");
             }
         })
-        .then(json => {
+        .then(async json => {
             eventsComp.setState({gEvents: []})
+
             for (let gEvent of json.gEvents) {
-                const newEvent = <Event
-                                    eventsComp={eventsComp}
-                                    eventId={gEvent._id}
-                                    userId={gEvent.userId}
-                                    imageId={gEvent.imageId}
-                                    content={gEvent.content}
-                                    date={gEvent.date}
-                                  ></Event>
-                eventsComp.setState({
-                    gEvents: [newEvent].concat(eventsComp.state.gEvents)
-                })
+                await addEventHelper(eventsComp, gEvent);
             }
         })
         .catch(error => {
@@ -111,23 +136,14 @@ export const addEvent = (eventsComp) => {
         fetch(request)
             .then(res => {
                 if (res.status === 200) {
+                    alert("Successfully added event");
                     return res.json();
                 } else {
                     alert("Could not add event");
                 }
             })
             .then(json => {
-                const newEvent = <Event
-                                    eventsComp={eventsComp}
-                                    eventId={json._id}
-                                    userId={json.userId}
-                                    imageId={json.imageId}
-                                    content={json.content}
-                                    date={json.date}
-                                ></Event>
-                eventsComp.setState({
-                    gEvents: [newEvent].concat(eventsComp.state.gEvents)
-                })
+                addEventHelper(eventsComp, json);
             })
             .catch(error => {
                 console.log(error);
@@ -137,57 +153,84 @@ export const addEvent = (eventsComp) => {
 
 
 // A function to edit a single event.
-export const editEvent = (singleEventComp, eventsComp, id) => {
-    let newImageId;
+export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, id) => {
+    const url = "/eventDatabase/" + id;
 
     // 1) Check whether editor/administrator wants to update image.
     // If so, delete current image in cloudinary.
-    if (singleEventComp.state.imageCheckbox){
+    if (document.querySelector("#eventImageCheckbox").checked){
         // Delete poster/image in cloudinary.
-        deleteImage(singleEventComp.state.existingImageId);
+        deleteImage(imageCloudinaryId);
         // Add new poster/image to cloudinary.
-        addImage(singleEventComp);
+        addImage(singleEventComp, () => {
+            // 2) Edit event in MongoDB database.
+            const updatedEvent = {
+                imageId: singleEventComp.state.imageId,
+                content: singleEventComp.state.updatedContent
+            }
 
-        newImageId = singleEventComp.imageId;
-    }else {
-        newImageId = singleEventComp.existingImageId;
-    }
+            const request = new Request(url, {
+                method: "PATCH",
+                body: JSON.stringify(updatedEvent),
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                }
+            })
 
-    // 2) Edit event in MongoDB database.
-    const url = "/eventDatabase/" + id;
-
-    const updatedEvent = {
-        imageId: newImageId,
-        content: singleEventComp.state.updatedContent
-    }
-
-    const request = new Request(url, {
-        method: "PATCH",
-        body: JSON.stringify(updatedEvent),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
+            fetch(request)
+                .then(res => {
+                    if (res.status === 200) {
+                        alert("Successfully updated event");
+                    } else {
+                        alert("Could not update event");
+                    }
+                })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                getAllEvents(eventsComp);
+            });
+        });
+    } else {
+        // 2) Edit event in MongoDB database.
+        const updatedEvent = {
+            imageId: singleEventComp.state.existingImageId,
+            content: singleEventComp.state.updatedContent
         }
-    })
 
-    fetch(request)
-        .then(res => {
-            if (res.status === 200) {
-                // return a promise that resolves with the JSON body
-                return res.json();
-            } else {
-                console.log("Could not update event");
+        const request = new Request(url, {
+            method: "PATCH",
+            body: JSON.stringify(updatedEvent),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
             }
         })
 
-    getAllEvents(eventsComp);
+        fetch(request)
+            .then(res => {
+                if (res.status === 200) {
+                    alert("Successfully updated event");
+                } else {
+                    alert("Could not update event");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                getAllEvents(eventsComp);
+            });
+    }
 }
 
 
 // A function to delete a single event.
-export const deleteEvent = (eventsComp, imageId, eventId) => {
-    // 1) Delete poster/image in cloudinary first.
-    deleteImage(imageId);
+export const deleteEvent = (eventsComp, imageCloudinaryId, eventId) => {
+    // 1) Delete poster/image in cloudinary.
+    deleteImage(imageCloudinaryId);
 
     // 2) Remove event from MongoDB database.
     const url = "/eventDatabase/" + eventId;
@@ -202,18 +245,19 @@ export const deleteEvent = (eventsComp, imageId, eventId) => {
 
     // Send the request with fetch()
     fetch(request)
-        .then(function (res) {
+        .then(res => {
             // Handle response we get from the API.
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
-                console.log("Successfully deleted event");
+                alert("Successfully deleted event");
             } else {
-                console.log("Failed to delete event");
+                alert("Failed to delete event");
             }
         })
         .catch(error => {
             console.log(error);
+        })
+        .finally(() => {
+            getAllEvents(eventsComp);
         });
-
-    getAllEvents(eventsComp);
 }

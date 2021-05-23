@@ -12,9 +12,8 @@ import { faEdit, faMinus } from '@fortawesome/free-solid-svg-icons';
 import "./styles.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-import { getImageById } from "../../../actions/image";
-import { retrieveAccountDetails } from "../../../actions/user";
-import { updateImageFile, updateEventContent, getEventById, editEvent, deleteEvent } from "../../../actions/event";
+import { updateImageFile } from "../../../actions/image";
+import { updateEventContent, getEventById, editEvent, deleteEvent } from "../../../actions/event";
 
 class Event extends Component {
     constructor(props) {
@@ -25,18 +24,11 @@ class Event extends Component {
     state = {
         options: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: "Canada/Toronto"},
         displayModal: false,
-        imageCheckbox: "",
         imageFile: "",
-        imageCloudinaryId: "",
-        imageURL: "",
         existingImageId: "",
         imageId: "", // Updated image ID.
         existingContent: "",
-        updatedContent: "",
-        firstName: "",
-        lastName: "",
-        username: "",
-        execPosition: ""
+        updatedContent: ""
     };
 
     // Edit event button for editors and administrators only.
@@ -48,7 +40,7 @@ class Event extends Component {
         if (loggedIn === "true"){
             if (
               accountType === "Administrator" ||
-              (accountType === "Editor" && username === this.state.username)
+              (accountType === "Editor" && username === this.props.username)
             ){
                 return (
                     <Button
@@ -73,7 +65,7 @@ class Event extends Component {
         if (loggedIn === "true"){
             if (
               accountType === "Administrator" ||
-              (accountType === "Editor" && username === this.state.username)
+              (accountType === "Editor" && username === this.props.username)
             ){
                 return (
                     <Button
@@ -86,7 +78,7 @@ class Event extends Component {
                                 buttons: [
                                     {
                                       label: 'Yes',
-                                      onClick: () => deleteEvent(this.props.eventsComp, this.props.eventId)
+                                      onClick: () => deleteEvent(this.props.eventsComp, this.props.imageCloudinaryId, this.props.eventId)
                                     },
                                     {
                                       label: 'No'
@@ -102,32 +94,38 @@ class Event extends Component {
         }
     }
 
-    render() {
-        getImageById(this, this.props.imageId);
-        const imageURL = this.state.imageURL;
+    displayCheckbox(){
+        const eventImageCheckbox = document.querySelector("#eventImageCheckbox");
+        const imageFileEdit = document.querySelector("#imageFileEdit");
 
-        retrieveAccountDetails(this, this.props.userId);
-        const headshot = this.state.firstName + ".jpg";
-        const fullName = this.state.firstName + " " + this.state.lastName;
+        // If the checkbox is checked, display the output text
+        if (eventImageCheckbox.checked === true){
+            imageFileEdit.style.display = "block";
+        } else {
+            imageFileEdit.style.display = "none";
+        }
+    }
+
+    render() {
         const eventDate = this.props.date.toLocaleString('en-US', this.state.options);
 
-        const editEventButton = this.editEventButton(this.state.username);
-        const deleteEventButton = this.deleteEventButton(this.state.username);
+        const editEventButton = this.editEventButton();
+        const deleteEventButton = this.deleteEventButton();
 
         return (
             <BrowserRouter forceRefresh={true}>
                 <div className="event">
                     <Card>
                         <Card.Header closeButton="false">
-                            <img src={`/headshots/${headshot}`} className="headshot" alt="headshot" />
-                            <strong className="mr-auto">{fullName + " - " + this.state.execPosition}</strong>
+                            <img src={`/headshots/${this.props.headshot}`} className="headshot" alt="headshot" />
+                            <strong className="mr-auto">{this.props.fullName + " - " + this.props.execPosition}</strong>
                             <small>{eventDate}</small>
                             <span>{editEventButton}{deleteEventButton}</span>
                         </Card.Header>
                         <CardActionArea>
                             <CardMedia
                               className="image__card-media"
-                              image={imageURL}
+                              image={this.props.imageURL}
                             />
                             <CardContent>
                                 {this.props.content}
@@ -149,20 +147,19 @@ class Event extends Component {
                             <Form>
                                 <Form.Group controlId="formBasicCheckbox">
                                     <Form.Check
-                                        name="imageCheckbox"
-                                        id="imageCheckbox"
+                                        id="eventImageCheckbox"
                                         type="checkbox"
-                                        label="Do you want to add a new image?"
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        label="Change existing image"
+                                        onClick={() => {
+                                            this.displayCheckbox();
+                                        }}
                                         required />
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.File
                                         name="imageFile"
-                                        id="imageFile"
-                                        label="Upload new event image"
+                                        id="imageFileEdit"
                                         onChange={e => updateImageFile(this, e.target)}
-                                        disabled={this.state.imageCheckbox}
                                         required />
                                 </Form.Group>
                                 <Form.Group>
@@ -182,7 +179,8 @@ class Event extends Component {
                                     type="submit"
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        editEvent(this, this.props.eventsComp, this.props.eventId)
+                                        editEvent(this, this.props.eventsComp, this.props.imageCloudinaryId, this.props.eventId);
+                                        this.setState({ displayModal: false });
                                     }}
                                     >
                                         UPDATE

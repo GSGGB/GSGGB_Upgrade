@@ -1,47 +1,27 @@
-.event.card {
-    margin: 10px;
-}
-
-.eventLeftBox {
-    float: left;
-    margin: 5px;
-}
-
-.eventName {
-    text-align: left;
-}
-
-.eventPhoto {
-    width: 150px;
-}
-
-.eventInfo {
-    margin-left: 150px;
-    list-style-type: none;
-}
-
-.eventDescription {
-    margin-left: 200px;
-}
-
-.attendingText {
-    position: relative;
-    text-align: right;
-    float: right;
-}
-
-.commentList {
-    position: relative;
-    width: 100%;
-}
-
 /* Styles for the Image React component */
+#imageFileEdit{
+    display: none;
+}
 
 .MuiCardMedia-root.image__card-media {
-  height: 300px;
-  background-position: inherit;
+    height: 100px;
+}
+
+.landscape-poster{
+    width: 100%;
+    height: 225px;
+}
+
+.portrait-poster{
+    width: 100%;
+    height: 475px;
+}
+
+.square-poster{
+    width: 100%;
+    height: 100%;
 }
 
 .MuiCardActions-root.image__card-actions {
-  justify-content: center;
+    justify-content: center;
 }

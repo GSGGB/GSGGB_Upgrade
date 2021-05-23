@@ -10,13 +10,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
 
 // Importing announcement actions/required methods.
-import { updateImageFile, updateEventContent, getAllEvents, addEvent } from "../../actions/event";
+import { updateImageFile } from "../../actions/image";
+import { updateEventContent, getAllEvents, addEvent } from "../../actions/event";
 
 class Events extends Component {
     constructor(props) {
         super(props);
         this.props.history.push("/events");
-        getAllEvents(this);
         document.title = "GSGGB U of T | Events";
     }
 
@@ -27,6 +27,10 @@ class Events extends Component {
         imageId: "",
         eventContent: ""
     };
+
+    componentDidMount(){
+        getAllEvents(this);
+    }
 
     // Add event button for editors and administrators only.
     addEventButton() {
@@ -76,7 +80,7 @@ class Events extends Component {
                             <Form.Group>
                                 <Form.File
                                     name="imageFile"
-                                    id="imageFile"
+                                    id="imageFileAdd"
                                     label="Upload event image"
                                     onChange={e => updateImageFile(this, e.target)}
                                     required />
@@ -98,6 +102,7 @@ class Events extends Component {
                                 onClick={(e) => {
                                     e.preventDefault();
                                     addEvent(this)
+                                    this.setState({ displayEventModal: false })
                                 }}
                                 >
                                     CREATE

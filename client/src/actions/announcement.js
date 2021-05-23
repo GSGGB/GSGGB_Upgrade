@@ -26,8 +26,7 @@ const addAnnouncementHelper = async(homepageComp, announcement) => {
         homepageComp.setState({
             announcements: [newAnnouncement].concat(homepageComp.state.announcements)
         })
-    }
-    else{
+    } else {
         alert("Could not get user");
     }
 };
@@ -151,15 +150,17 @@ export const editAnnouncement = (announcementComp, homepageComp, id) => {
     fetch(request)
         .then(res => {
             if (res.status === 200) {
-                // return a promise that resolves with the JSON body
                 alert("Successfully updated announcement");
-                return res.json();
             } else {
                 alert("Could not update announcement");
             }
         })
-
-    getAllAnnouncements(homepageComp);
+        .catch(error => {
+            console.log(error);
+        })
+        .finally(() => {
+            getAllAnnouncements(homepageComp);
+        });
 }
 
 
@@ -177,7 +178,7 @@ export const deleteAnnouncement = (homepageComp, id) => {
 
     // Send the request with fetch()
     fetch(request)
-        .then(function (res) {
+        .then(res => {
             // Handle response we get from the API.
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
@@ -188,7 +189,8 @@ export const deleteAnnouncement = (homepageComp, id) => {
         })
         .catch(error => {
             console.log(error);
+        })
+        .finally(() => {
+            getAllAnnouncements(homepageComp);
         });
-
-    getAllAnnouncements(homepageComp);
 }
