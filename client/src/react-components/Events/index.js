@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Button, Modal, ModalBody, Form } from "react-bootstrap";
+import { Button, Modal, ModalBody, Form, Image } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import Calendar from "react-calendar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
+import rWorkshop1920 from "./static/r-workshop-19-20.jpg";
 
 // Importing announcement actions/required methods.
 import { updateImageFile } from "../../actions/image";
@@ -58,13 +59,23 @@ class Events extends Component {
 
         return (
             <BrowserRouter forceRefresh={true}>
+                <div class="events-photo-container">
+                    <Image className="events-photo" alt="2019-2020 Introduction to R Workshop" src={rWorkshop1920} />
+                    <span class="events-photo-title">
+                        Our Events
+                        <h3 className="events-photo-subtitle">Please follow our Facebook and Instagram pages to stay up to date on our upcoming events!</h3>
+                    </span>
+                </div>
+
                 <div className="events-section">
                     <div className="container">
+                        <hr></hr>
+                        <h2 className="events-title-section">Upcoming Events</h2>
                         <span>{addEventButton}</span>
+                        <hr className="events-separator"></hr>
                         <div className="event-cards">{this.state.gEvents}</div>
                     </div>
                 </div>
-
                 <Modal
                     show={this.state.displayEventModal}
                     onHide={() => this.setState({ displayEventModal: false })}

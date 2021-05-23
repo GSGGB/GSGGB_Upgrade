@@ -1,3 +1,57 @@
-#addEventButton {
-    margin-top: 10px;
+/* Start of events photo banner styling */
+.events-photo-container{
+    position: relative;
+    text-align: center;
+    color: white;
 }
+
+.events-photo{
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: top center;
+}
+
+.events-photo-title{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: bold;
+    font-size: 65px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.events-photo-subtitle{
+    font-size: 35px;
+}
+/* End of events photo banner styling */
+
+/* Start of events section styling */
+.events-section{
+    padding-top: 100px;
+    padding-bottom: 25px;
+}
+
+.events-title-section{
+      font-family: Tahoma, Geneva, sans-serif;
+      font-weight: bold;
+      color: #323232;
+      text-align: center;
+      padding: 5px;
+}
+
+.events-separator{
+    margin-bottom: 50px;
+}
+
+#add-event-button {
+    float: right;
+}
+
+.event-cards{
+    height: 600px;
+    overflow-y: auto;
+}
+/* End of events section styling */

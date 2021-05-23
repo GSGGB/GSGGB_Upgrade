@@ -109,111 +109,108 @@ class Team extends Component {
                     </span>
                 </div>
 
-                <div className="team-slideshow">
-                    <br/>
+                <div class="team-section">
+                    <h3 className="team-name" id="senior-staff">SENIOR STAFF</h3>
+                    <br />
+                    <div className="container" id="team-members">
+                        <Row>
+                            {SENIOR_STAFF.map(this.renderExec)}
+                        </Row>
+                    </div>
+                    <br />
+
+                    <hr className="team-section-separator" />
+                    <br /><br />
+                    <h3 className="team-name" id="conference">CONFERENCE</h3>
+                    <br />
+                    <div className="container" id="team-members">
+                      <Row>
+                          {CONFERENCE.map(this.renderExec)}
+                      </Row>
+                    </div>
+                    <br />
+
+                    <hr className="team-section-separator" />
+                    <br /><br />
+                    <h3 className="team-name" id="marketing">MARKETING</h3>
+                    <br />
+                    <div className="container" id="team-members">
+                        <Row>
+                            {MARKETING.map(this.renderExec)}
+                        </Row>
+                    </div>
+                    <br />
+
+                    <hr className="team-section-separator" />
+                    <br /><br />
+                    <h3 className="team-name" id="affairs">AFFAIRS</h3>
+                    <br />
+                    <div className="container" id="team-members">
+                        <Row>
+                            {AFFAIRS.map(this.renderExec)}
+                        </Row>
+                    </div>
+                    <br />
+
+                    <hr className="team-section-separator" />
+                    <br /><br />
+                    <h3 className="team-name" id="mentorship">MENTORSHIP</h3>
+                    <br />
+                    <div className="container" id="team-members">
+                        <Row>
+                            {MENTORSHIP.map(this.renderExec)}
+                        </Row>
+                    </div>
+                    <br />
+
+                    <hr className="team-section-separator" />
+                    <br /><br />
+                    <h3 className="team-name" id="events">EVENTS</h3>
+                    <br />
+                    <div className="container" id="team-members">
+                        <Row>
+                            {EVENTS.map(this.renderExec)}
+                        </Row>
+                    </div>
+                    <br />
+
+                    <hr className="team-section-separator" />
+                    <br /><br />
+                    <h3 className="team-name" id="tech-and-innovations">TECHNOLOGY &amp; INNOVATIONS</h3>
+                    <br />
+                    <div className="container" id="team-members">
+                        <Row>
+                            {TECH_INNOVATIONS.map(this.renderExec)}
+                        </Row>
+                    </div>
+                    <br />
+
+                    <hr className="team-section-separator" />
+                    <br /><br />
+                    <h3 className="team-name" id="jigg">JIGG</h3>
+                    <br />
+                    <div className="container" id="team-members">
+                        <Row>
+                            {JIGG.map(this.renderExec)}
+                        </Row>
+                    </div>
+                    <br />
+
+
+                    <hr className="team-section-separator" />
+                    <br /><br />
+                    <h3 className="team-name" id="alumni">ALUMNI</h3>
+                    <br />
+                    <div className="container" id="team-members">
+                        <Row>
+                            {ALUMNI.map(this.renderExec)}
+                        </Row>
+                    </div>
+                    <br />
+
+                    <hr className="team-section-separator" />
+                    <br/><br/>
                 </div>
-
-                <br /><br /><br />
-                <h3 className="team-name" id="senior-staff">SENIOR STAFF</h3>
-                <br />
-                <div className="container" id="team-members">
-                    <Row>
-                        {SENIOR_STAFF.map(this.renderExec)}
-                    </Row>
-                </div>
-                <br />
-
-                <hr className="team-section-separator" />
-                <br /><br />
-                <h3 className="team-name" id="conference">CONFERENCE</h3>
-                <br />
-                <div className="container" id="team-members">
-                  <Row>
-                      {CONFERENCE.map(this.renderExec)}
-                  </Row>
-                </div>
-                <br />
-
-                <hr className="team-section-separator" />
-                <br /><br />
-                <h3 className="team-name" id="marketing">MARKETING</h3>
-                <br />
-                <div className="container" id="team-members">
-                    <Row>
-                        {MARKETING.map(this.renderExec)}
-                    </Row>
-                </div>
-                <br />
-
-                <hr className="team-section-separator" />
-                <br /><br />
-                <h3 className="team-name" id="affairs">AFFAIRS</h3>
-                <br />
-                <div className="container" id="team-members">
-                    <Row>
-                        {AFFAIRS.map(this.renderExec)}
-                    </Row>
-                </div>
-                <br />
-
-                <hr className="team-section-separator" />
-                <br /><br />
-                <h3 className="team-name" id="mentorship">MENTORSHIP</h3>
-                <br />
-                <div className="container" id="team-members">
-                    <Row>
-                        {MENTORSHIP.map(this.renderExec)}
-                    </Row>
-                </div>
-                <br />
-
-                <hr className="team-section-separator" />
-                <br /><br />
-                <h3 className="team-name" id="events">EVENTS</h3>
-                <br />
-                <div className="container" id="team-members">
-                    <Row>
-                        {EVENTS.map(this.renderExec)}
-                    </Row>
-                </div>
-                <br />
-
-                <hr className="team-section-separator" />
-                <br /><br />
-                <h3 className="team-name" id="tech-and-innovations">TECHNOLOGY &amp; INNOVATIONS</h3>
-                <br />
-                <div className="container" id="team-members">
-                    <Row>
-                        {TECH_INNOVATIONS.map(this.renderExec)}
-                    </Row>
-                </div>
-                <br />
-
-                <hr className="team-section-separator" />
-                <br /><br />
-                <h3 className="team-name" id="jigg">JIGG</h3>
-                <br />
-                <div className="container" id="team-members">
-                    <Row>
-                        {JIGG.map(this.renderExec)}
-                    </Row>
-                </div>
-                <br />
-
-
-                <hr className="team-section-separator" />
-                <br /><br />
-                <h3 className="team-name" id="alumni">ALUMNI</h3>
-                <br />
-                <div className="container" id="team-members">
-                    <Row>
-                        {ALUMNI.map(this.renderExec)}
-                    </Row>
-                </div>
-                <br />
-
-                <hr className="team-section-separator" />
-                <br/><br/>
 
             </BrowserRouter>
         );

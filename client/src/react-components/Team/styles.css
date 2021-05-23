@@ -1,3 +1,4 @@
+/* Start of team photo banner styling */
 .team-photo-container{
     position: relative;
     text-align: center;
@@ -25,8 +26,7 @@
 .team-photo-subtitle{
     font-size: 35px;
 }
-
-/* ===========================================================================*/
+/* End of team photo banner styling */
 
 .team-name{
     color: black;
@@ -42,6 +42,11 @@
 #team-members{
     text-align: center;
     font-family: Tahoma, Geneva, sans-serif;
+}
+
+.team-section{
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 .team-section-separator{

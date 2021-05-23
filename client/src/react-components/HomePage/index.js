@@ -90,12 +90,12 @@ class HomePage extends Component {
                     <Image id="banner-photo" alt="GSGGB Banner" src={banner} />
                 </div>
 
-                <br/><br/>
-
                 <div className="about-us-section">
                     <div className="container">
+                        <hr></hr>
                         <h2 className="section-title" id="about-us">About Us</h2>
                         <hr className="homepage-separator"></hr>
+                        <br/>
                         <Row id="our-purpose">
                             <Col>
                                 <Image
@@ -152,6 +152,7 @@ class HomePage extends Component {
 
                 <div className="announcements-section">
                     <div className="container">
+                        <hr></hr>
                         <h2 className="section-title" id="announcements">Announcements</h2>
                         <span>{addAnnouncementButton}</span>
                         <hr className="homepage-separator"></hr>
@@ -198,6 +199,7 @@ class HomePage extends Component {
 
                 <div className="latest-research-section">
                     <div className="container">
+                        <hr></hr>
                         <h2 className="section-title" id="latest-research">Latest Research</h2>
                         <span>{addResearchButton}</span>
                         <hr className="homepage-separator"></hr>
