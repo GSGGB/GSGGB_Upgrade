@@ -38,19 +38,17 @@ class Header extends Component {
 
                 navbarDropdowns.forEach(function(dropdown){
                     dropdown.style.fontSize = "18px";
-                    dropdown.style.backgroundColor = "white";
                 })
 
                 navbarItems.forEach(function(item){
                     item.style.fontSize = "18px";
-                    item.style.backgroundColor = "white";
                 })
             }
             else {
-              this.setState({
-                  backgroundColor: "whitesmoke",
-                  fontSize: "16px"
-              });
+                this.setState({
+                    backgroundColor: "whitesmoke",
+                    fontSize: "16px"
+                });
 
                 header.style.backgroundColor = "whitesmoke";
                 header.style.boxShadow = "0 1px 0 0 #DADADA";
@@ -59,12 +57,10 @@ class Header extends Component {
 
                 navbarDropdowns.forEach(function(dropdown){
                     dropdown.style.fontSize = "16px";
-                    dropdown.style.backgroundColor = "whitesmoke";
                 })
 
                 navbarItems.forEach(function(item){
                     item.style.fontSize = "16px";
-                    item.style.backgroundColor = "whitesmoke";
                 })
             }
         }, true);

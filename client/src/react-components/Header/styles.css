@@ -26,7 +26,7 @@
 
 /* Navbar Content and Dropdown Menu */
 .navbar-item, #dropdown{
-    background-color: white;
+    background-color: transparent;
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold !important;
     color: #4C4C4C !important;

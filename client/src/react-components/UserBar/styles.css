@@ -17,8 +17,9 @@
     margin-top: 17px;
 }
 
-#logout-button{
-    float: right;
+#chapters-button, #logout-button{
     display: inline-block;
     margin-top: 10px;
+    margin-left: 10px;
+    float: right;
 }
