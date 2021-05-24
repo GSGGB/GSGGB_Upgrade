@@ -22,11 +22,21 @@ class Events extends Component {
     }
 
     state = {
-        gEvents: [],
+        upcomingEvents: [],
+        pastEvents: [],
         displayEventModal: false,
         imageFile: "",
         imageId: "",
-        eventContent: ""
+        eventType: "",
+        eventTitle: "",
+        eventDate: "",
+        eventStartTime: "",
+        eventEndTime: "",
+        eventLocation: "",
+        eventContent: "",
+        fbEventLink: "",
+        eventbriteLink: "",
+        zoomLink: ""
     };
 
     componentDidMount(){
@@ -63,24 +73,42 @@ class Events extends Component {
                     <Image className="events-photo" alt="2019-2020 Introduction to R Workshop" src={rWorkshop1920} />
                     <span class="events-photo-title">
                         Our Events
-                        <h3 className="events-photo-subtitle">Please follow our Facebook and Instagram pages to stay up to date on our upcoming events!</h3>
+                        <h3 className="events-photo-subtitle">
+                            Please follow our Facebook and Instagram pages to stay up to date on our upcoming events!
+                        </h3>
                     </span>
                 </div>
 
                 <div className="events-section">
                     <div className="container">
                         <hr></hr>
-                        <h2 className="events-title-section">Upcoming Events</h2>
-                        <span>{addEventButton}</span>
+                        <h2 className="events-title-section">
+                            Upcoming Events
+                            {addEventButton}
+                        </h2>
                         <hr className="events-separator"></hr>
-                        <div className="event-cards">{this.state.gEvents}</div>
+                        <div className="event-cards">{this.state.upcomingEvents}</div>
                     </div>
                 </div>
+
+                <div className="events-section">
+                    <div className="container">
+                        <hr></hr>
+                        <h2 className="events-title-section">
+                            Past Events
+                        </h2>
+                        <hr className="events-separator"></hr>
+                        <div className="event-cards">{this.state.pastEvents}</div>
+                    </div>
+                </div>
+
                 <Modal
                     show={this.state.displayEventModal}
                     onHide={() => this.setState({ displayEventModal: false })}
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
+                    backdrop="static"
+                    keyboard={false}
                     centered
                 >
                     <ModalHeader closeButton>
@@ -96,7 +124,84 @@ class Events extends Component {
                                     onChange={e => updateImageFile(this, e.target)}
                                     required />
                             </Form.Group>
+                            <br/>
                             <Form.Group>
+                                <Form.Label>Event type</Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    name="eventType"
+                                    id="eventType"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                    required
+                                >
+                                    <option>Academic Seminar</option>
+                                    <option>Awareness</option>
+                                    <option>Conference</option>
+                                    <option>Fundraiser</option>
+                                    <option>Promotional</option>
+                                    <option>Workshop</option>
+                                </Form.Control>
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Event title</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="eventTitle"
+                                    id="eventTitle"
+                                    rows="1"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Event date</Form.Label>
+                                <Form.Control
+                                    type="date"
+                                    name="eventDate"
+                                    id="eventDate"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Event start time (EST)</Form.Label>
+                                <Form.Control
+                                    type="time"
+                                    name="eventStartTime"
+                                    id="eventStartTime"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Event end time (EST)</Form.Label>
+                                <Form.Control
+                                    type="time"
+                                    name="eventEndTime"
+                                    id="eventEndTime"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Event location</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="eventLocation"
+                                    id="eventLocation"
+                                    rows="1"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Event content (excluding hyperlinks)</Form.Label>
                                 <Form.Control
                                     name="eventContent"
                                     id="eventContent"
@@ -107,6 +212,40 @@ class Events extends Component {
                                     required
                                 />
                             </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Facebook event link (OPTIONAL)</Form.Label>
+                                <Form.Control
+                                    name="fbEventLink"
+                                    id="fbEventLink"
+                                    as="textarea"
+                                    rows="1"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Eventbrite link (OPTIONAL)</Form.Label>
+                                <Form.Control
+                                    name="eventbriteLink"
+                                    id="eventbriteLink"
+                                    as="textarea"
+                                    rows="1"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Virtual Zoom link (OPTIONAL)</Form.Label>
+                                <Form.Control
+                                    name="zoomLink"
+                                    id="zoomLink"
+                                    as="textarea"
+                                    rows="1"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                />
+                            </Form.Group>
+                            <br/>
                             <Button
                                 variant="outline-info"
                                 type="submit"

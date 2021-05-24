@@ -153,8 +153,10 @@ class HomePage extends Component {
                 <div className="announcements-section">
                     <div className="container">
                         <hr></hr>
-                        <h2 className="section-title" id="announcements">Announcements</h2>
-                        <span>{addAnnouncementButton}</span>
+                        <h2 className="section-title" id="announcements">
+                            Announcements
+                            {addAnnouncementButton}
+                        </h2>
                         <hr className="homepage-separator"></hr>
                         <div className="announcement-toasts">{this.state.announcements}</div>
                     </div>
@@ -200,8 +202,10 @@ class HomePage extends Component {
                 <div className="latest-research-section">
                     <div className="container">
                         <hr></hr>
-                        <h2 className="section-title" id="latest-research">Latest Research</h2>
-                        <span>{addResearchButton}</span>
+                        <h2 className="section-title" id="latest-research">
+                            Latest Research
+                            {addResearchButton}
+                        </h2>
                         <hr className="homepage-separator"></hr>
                         <div className="research-posts">
                             <Row>{this.state.researchPosts}</Row>

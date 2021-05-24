@@ -1,3 +1,9 @@
+#edit-event-button, #delete-event-button{
+    display: inline-block;
+    float: right;
+    margin-bottom: 10px;
+}
+
 /* Styles for the Image React component */
 #imageFileEdit{
     display: none;

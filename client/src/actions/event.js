@@ -5,7 +5,7 @@ import { addImage, deleteImage } from "../actions/image";
 // Functions to help with events.
 
 // Helper function for getAllEvents and addEvent.
-const addEventHelper = async(eventsComp, gEvent) => {
+const addEventHelper = async(eventsComp, gEvent, dateToday) => {
     // Retrieve user details including username and full name.
     const userURL = "/userDatabase/" + gEvent.userId;
 
@@ -31,12 +31,30 @@ const addEventHelper = async(eventsComp, gEvent) => {
                                 headshot={userJSON.firstName + ".jpg"}
                                 imageCloudinaryId={imageJSON.imageId}
                                 imageURL={imageJSON.imageURL}
-                                content={gEvent.content}
+                                type={gEvent.type}
+                                title={gEvent.title}
                                 date={gEvent.date}
+                                startTime={gEvent.startTime}
+                                endTime={gEvent.endTime}
+                                location={gEvent.location}
+                                content={gEvent.content}
+                                fbEventLink={gEvent.fbEventLink}
+                                eventbriteLink={gEvent.eventbriteLink}
+                                zoomLink={gEvent.zoomLink}
                               ></Event>
-            eventsComp.setState({
-                gEvents: [newEvent].concat(eventsComp.state.gEvents)
-            })
+
+            // Past event.
+            if (new Date(gEvent.date) < dateToday){
+                eventsComp.setState({
+                    pastEvents: [newEvent].concat(eventsComp.state.pastEvents)
+                })
+            // Upcoming event.
+            } else {
+                eventsComp.setState({
+                    upcomingEvents: [newEvent].concat(eventsComp.state.upcomingEvents)
+                })
+            }
+
         } else {
             alert("Could not get image");
         }
@@ -71,10 +89,12 @@ export const getAllEvents = (eventsComp) => {
             }
         })
         .then(async json => {
-            eventsComp.setState({gEvents: []})
+            eventsComp.setState({ upcomingEvents: [] })
+            eventsComp.setState({ pastEvents: [] })
+            const dateToday = new Date();
 
-            for (let gEvent of json.gEvents) {
-                await addEventHelper(eventsComp, gEvent);
+            for (let gEvent of json.allEvents) {
+                await addEventHelper(eventsComp, gEvent, dateToday);
             }
         })
         .catch(error => {
@@ -102,7 +122,16 @@ export const getEventById = (singleEventComp, id) => {
             singleEventComp.setState({
                 displayModal: true,
                 existingImageId: json.imageId,
-                existingContent: json.content
+                existingType: json.type,
+                existingTitle: json.title,
+                existingDate: json.date,
+                existingStartTime: json.startTime,
+                existingEndTime: json.endTime,
+                existingLocation: json.location,
+                existingContent: json.content,
+                existingFbEventLink: json.fbEventLink,
+                existingEventbriteLink: json.eventbriteLink,
+                existingZoomLink: json.zoomLink
             });
         })
         .catch(error => {
@@ -120,7 +149,16 @@ export const addEvent = (eventsComp) => {
 
         const gEvent = {
             imageId: eventsComp.state.imageId,
-            content: eventsComp.state.eventContent
+            type: eventsComp.state.eventType,
+            title: eventsComp.state.eventTitle,
+            date: eventsComp.state.eventDate,
+            startTime: eventsComp.state.eventStartTime,
+            endTime: eventsComp.state.eventEndTime,
+            location: eventsComp.state.eventLocation,
+            content: eventsComp.state.eventContent,
+            fbEventLink: eventsComp.state.fbEventLink,
+            eventbriteLink: eventsComp.state.eventbriteLink,
+            zoomLink: eventsComp.state.zoomLink
         };
 
         const request = new Request(url, {
@@ -143,7 +181,8 @@ export const addEvent = (eventsComp) => {
                 }
             })
             .then(json => {
-                addEventHelper(eventsComp, json);
+                const dateToday = new Date();
+                addEventHelper(eventsComp, json, dateToday);
             })
             .catch(error => {
                 console.log(error);
@@ -166,7 +205,16 @@ export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, id) =>
             // 2) Edit event in MongoDB database.
             const updatedEvent = {
                 imageId: singleEventComp.state.imageId,
-                content: singleEventComp.state.updatedContent
+                type: singleEventComp.state.updatedType,
+                title: singleEventComp.state.updatedTitle,
+                date: singleEventComp.state.updatedDate,
+                startTime: singleEventComp.state.updatedStartTime,
+                endTime: singleEventComp.state.updatedEndTime,
+                location: singleEventComp.state.updatedLocation,
+                content: singleEventComp.state.updatedContent,
+                fbEventLink: singleEventComp.state.updatedFbEventLink,
+                eventbriteLink: singleEventComp.state.updatedEventbriteLink,
+                zoomLink: singleEventComp.state.updatedZoomLink
             }
 
             const request = new Request(url, {
@@ -197,7 +245,16 @@ export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, id) =>
         // 2) Edit event in MongoDB database.
         const updatedEvent = {
             imageId: singleEventComp.state.existingImageId,
-            content: singleEventComp.state.updatedContent
+            type: singleEventComp.state.updatedType,
+            title: singleEventComp.state.updatedTitle,
+            date: singleEventComp.state.updatedDate,
+            startTime: singleEventComp.state.updatedStartTime,
+            endTime: singleEventComp.state.updatedEndTime,
+            location: singleEventComp.state.updatedLocation,
+            content: singleEventComp.state.updatedContent,
+            fbEventLink: singleEventComp.state.updatedFbEventLink,
+            eventbriteLink: singleEventComp.state.updatedEventbriteLink,
+            zoomLink: singleEventComp.state.updatedZoomLink
         }
 
         const request = new Request(url, {

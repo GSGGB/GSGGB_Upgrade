@@ -19,7 +19,8 @@ class Announcement extends Component {
     }
 
     state = {
-        options: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: "Canada/Toronto"},
+        dateOptions: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
+        timeOptions: { hour: '2-digit', minute:'2-digit' },
         displayModal: false,
         existingContent: "",
         updatedContent: ""
@@ -92,7 +93,10 @@ class Announcement extends Component {
         const editAnnouncementButton = this.editAnnouncementButton();
         const deleteAnnouncementButton = this.deleteAnnouncementButton();
 
-        const announcementDate = this.props.date.toLocaleString('en-US', this.state.options);
+        const announcementDate = (
+            new Date(this.props.date).toLocaleDateString('en-US', this.state.dateOptions) + " " +
+            new Date(this.props.date).toLocaleTimeString('en-US', this.state.timeOptions)
+        );
 
         return (
             <BrowserRouter forceRefresh={true}>

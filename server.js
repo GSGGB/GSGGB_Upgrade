@@ -366,8 +366,8 @@ app.delete("/researchDatabase/:id", (req, res) => {
 // A GET route to get ALL events.
 app.get("/eventDatabase", (req, res) => {
     Event.find().then(
-        (gEvents) => {
-            res.send({ gEvents });
+        (allEvents) => {
+            res.send({ allEvents });
         },
         (error) => {
             res.status(500).send(error); // Server error, could not get.
@@ -402,8 +402,16 @@ app.post("/eventDatabase", (req, res) => {
     const gEvent = new Event({
         userId: req.session.user,
         imageId: req.body.imageId,
+        type: req.body.type,
+        title: req.body.title,
+        date: req.body.date,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        location: req.body.location,
         content: req.body.content,
-        date: new Date()
+        fbEventLink: req.body.fbEventLink,
+        eventbriteLink: req.body.eventbriteLink,
+        zoomLink: req.body.zoomLink
     });
 
     // Save event to the database.
@@ -423,7 +431,16 @@ app.patch("/eventDatabase/:id", (req, res) => {
 
     const body = {
         imageId: req.body.imageId,
-        content: req.body.content
+        type: req.body.type,
+        title: req.body.title,
+        date: req.body.date,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        location: req.body.location,
+        content: req.body.content,
+        fbEventLink: req.body.fbEventLink,
+        eventbriteLink: req.body.eventbriteLink,
+        zoomLink: req.body.zoomLink
     };
 
     if (!ObjectID.isValid(id)) {

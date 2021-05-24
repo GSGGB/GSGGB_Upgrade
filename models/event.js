@@ -10,9 +10,15 @@ const EventSchema = new mongoose.Schema({
     },
     imageId: {
         type: String,
-        required: true
+        required: true,
+        minlength: 1
     },
-    content: {
+    type: {
+        type: String,
+        required: true,
+        minlength: 1
+    },
+    title: {
         type: String,
         required: true,
         minlength: 1
@@ -21,6 +27,38 @@ const EventSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 1
+    },
+    startTime: {
+        type: String,
+        required: true,
+        minlength: 1
+    },
+    endTime: {
+        type: String,
+        required: true,
+        minlength: 1
+    },
+    location: {
+        type: String,
+        required: true,
+        minlength: 1
+    },
+    content: {
+        type: String,
+        required: true,
+        minlength: 1
+    },
+    fbEventLink: {
+        type: String,
+        minlength: 0
+    },
+    eventbriteLink: {
+        type: String,
+        minlength: 0
+    },
+    zoomLink: {
+        type: String,
+        minlength: 0
     }
 })
 
