@@ -176,7 +176,6 @@ class HomePage extends Component {
                             <Form.Group>
                                 <Form.Control
                                     name="announcementContent"
-                                    id="announcementContent"
                                     as="textarea"
                                     placeholder="Add announcement content here..."
                                     rows="5"
@@ -227,7 +226,6 @@ class HomePage extends Component {
                             <Form.Group>
                                 <Form.Control
                                     name="researchURL"
-                                    id="researchURL"
                                     as="textarea"
                                     placeholder="Add Facebook URL here..."
                                     rows="1"

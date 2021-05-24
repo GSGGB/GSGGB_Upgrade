@@ -118,20 +118,20 @@ export const getEventById = (singleEventComp, id) => {
             }
         })
         .then(json => {
-            // Get existing image ID and content.
+            // Get existing event details.
             singleEventComp.setState({
                 displayModal: true,
-                existingImageId: json.imageId,
-                existingType: json.type,
-                existingTitle: json.title,
-                existingDate: json.date,
-                existingStartTime: json.startTime,
-                existingEndTime: json.endTime,
-                existingLocation: json.location,
-                existingContent: json.content,
-                existingFbEventLink: json.fbEventLink,
-                existingEventbriteLink: json.eventbriteLink,
-                existingZoomLink: json.zoomLink
+                imageId: json.imageId,
+                type: json.type,
+                title: json.title,
+                date: json.date,
+                startTime: json.startTime,
+                endTime: json.endTime,
+                location: json.location,
+                content: json.content,
+                fbEventLink: json.fbEventLink,
+                eventbriteLink: json.eventbriteLink,
+                zoomLink: json.zoomLink
             });
         })
         .catch(error => {
@@ -191,6 +191,48 @@ export const addEvent = (eventsComp) => {
 }
 
 
+// Helper function for editEvent.
+const editEventHelper = (singleEventComp, eventsComp, url) => {
+    const updatedEvent = {
+        imageId: singleEventComp.state.imageId,
+        type: singleEventComp.state.type,
+        title: singleEventComp.state.title,
+        date: singleEventComp.state.date,
+        startTime: singleEventComp.state.startTime,
+        endTime: singleEventComp.state.endTime,
+        location: singleEventComp.state.location,
+        content: singleEventComp.state.content,
+        fbEventLink: singleEventComp.state.fbEventLink,
+        eventbriteLink: singleEventComp.state.eventbriteLink,
+        zoomLink: singleEventComp.state.zoomLink
+    }
+
+    const request = new Request(url, {
+        method: "PATCH",
+        body: JSON.stringify(updatedEvent),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                alert("Successfully updated event");
+            } else {
+                alert("Could not update event");
+            }
+        })
+    .catch(error => {
+        console.log(error);
+    })
+    .finally(() => {
+        getAllEvents(eventsComp);
+    });
+}
+
+
 // A function to edit a single event.
 export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, id) => {
     const url = "/eventDatabase/" + id;
@@ -203,83 +245,11 @@ export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, id) =>
         // Add new poster/image to cloudinary.
         addImage(singleEventComp, () => {
             // 2) Edit event in MongoDB database.
-            const updatedEvent = {
-                imageId: singleEventComp.state.imageId,
-                type: singleEventComp.state.updatedType,
-                title: singleEventComp.state.updatedTitle,
-                date: singleEventComp.state.updatedDate,
-                startTime: singleEventComp.state.updatedStartTime,
-                endTime: singleEventComp.state.updatedEndTime,
-                location: singleEventComp.state.updatedLocation,
-                content: singleEventComp.state.updatedContent,
-                fbEventLink: singleEventComp.state.updatedFbEventLink,
-                eventbriteLink: singleEventComp.state.updatedEventbriteLink,
-                zoomLink: singleEventComp.state.updatedZoomLink
-            }
-
-            const request = new Request(url, {
-                method: "PATCH",
-                body: JSON.stringify(updatedEvent),
-                headers: {
-                    Accept: "application/json, text/plain, */*",
-                    "Content-Type": "application/json"
-                }
-            })
-
-            fetch(request)
-                .then(res => {
-                    if (res.status === 200) {
-                        alert("Successfully updated event");
-                    } else {
-                        alert("Could not update event");
-                    }
-                })
-            .catch(error => {
-                console.log(error);
-            })
-            .finally(() => {
-                getAllEvents(eventsComp);
-            });
+            editEventHelper(singleEventComp, eventsComp, url)
         });
     } else {
-        // 2) Edit event in MongoDB database.
-        const updatedEvent = {
-            imageId: singleEventComp.state.existingImageId,
-            type: singleEventComp.state.updatedType,
-            title: singleEventComp.state.updatedTitle,
-            date: singleEventComp.state.updatedDate,
-            startTime: singleEventComp.state.updatedStartTime,
-            endTime: singleEventComp.state.updatedEndTime,
-            location: singleEventComp.state.updatedLocation,
-            content: singleEventComp.state.updatedContent,
-            fbEventLink: singleEventComp.state.updatedFbEventLink,
-            eventbriteLink: singleEventComp.state.updatedEventbriteLink,
-            zoomLink: singleEventComp.state.updatedZoomLink
-        }
-
-        const request = new Request(url, {
-            method: "PATCH",
-            body: JSON.stringify(updatedEvent),
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json"
-            }
-        })
-
-        fetch(request)
-            .then(res => {
-                if (res.status === 200) {
-                    alert("Successfully updated event");
-                } else {
-                    alert("Could not update event");
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            })
-            .finally(() => {
-                getAllEvents(eventsComp);
-            });
+        // Edit event in MongoDB database without modifying image.
+        editEventHelper(singleEventComp, eventsComp, url)
     }
 }
 

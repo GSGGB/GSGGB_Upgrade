@@ -22,8 +22,7 @@ class Announcement extends Component {
         dateOptions: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
         timeOptions: { hour: '2-digit', minute:'2-digit' },
         displayModal: false,
-        existingContent: "",
-        updatedContent: ""
+        content: ""
     }
 
     // Edit announcement button for editors and administrators only.
@@ -126,11 +125,10 @@ class Announcement extends Component {
                             <Form>
                                 <Form.Group>
                                     <Form.Control
-                                        name="updatedContent"
-                                        id="updatedContent"
+                                        name="content"
                                         as="textarea"
                                         placeholder="Edit announcement content here..."
-                                        defaultValue={this.state.existingContent}
+                                        defaultValue={this.state.content}
                                         rows="5"
                                         onChange={e => updateAnnouncementContent(this, e.target)}
                                         required

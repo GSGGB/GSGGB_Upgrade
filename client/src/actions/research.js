@@ -84,7 +84,7 @@ export const getResearchPostById = (researchComp, id) => {
         .then(json => {
             researchComp.setState({
                 displayModal: true,
-                existingURL: json.url
+                url: json.url
             });
         })
         .catch(error => {
@@ -133,7 +133,7 @@ export const editResearchPost = (researchComp, homepageComp, id) => {
     const url = "/researchDatabase/" + id;
 
     const updatedResearchPost = {
-        url: researchComp.state.updatedURL
+        url: researchComp.state.url
     }
 
     const request = new Request(url, {

@@ -20,8 +20,7 @@ class Research extends Component {
 
     state = {
         displayModal: false,
-        existingURL: "",
-        updatedURL: ""
+        url: ""
     }
 
     // Edit research post button for editors and administrators only.
@@ -120,11 +119,10 @@ class Research extends Component {
                             <Form>
                                 <Form.Group>
                                     <Form.Control
-                                        name="updatedURL"
-                                        id="updatedURL"
+                                        name="url"
                                         as="textarea"
                                         placeholder="Edit Facebook URL here..."
-                                        defaultValue={this.state.existingURL}
+                                        defaultValue={this.state.url}
                                         rows="1"
                                         onChange={e => updateResearchURL(this, e.target)}
                                         required

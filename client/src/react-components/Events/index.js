@@ -119,7 +119,6 @@ class Events extends Component {
                             <Form.Group>
                                 <Form.File
                                     name="imageFile"
-                                    id="imageFileAdd"
                                     label="Upload event image"
                                     onChange={e => updateImageFile(this, e.target)}
                                     required />
@@ -130,7 +129,6 @@ class Events extends Component {
                                 <Form.Control
                                     as="select"
                                     name="eventType"
-                                    id="eventType"
                                     onChange={e => updateEventContent(this, e.target)}
                                     required
                                 >
@@ -148,7 +146,6 @@ class Events extends Component {
                                 <Form.Control
                                     type="text"
                                     name="eventTitle"
-                                    id="eventTitle"
                                     rows="1"
                                     onChange={e => updateEventContent(this, e.target)}
                                     required
@@ -160,7 +157,6 @@ class Events extends Component {
                                 <Form.Control
                                     type="date"
                                     name="eventDate"
-                                    id="eventDate"
                                     onChange={e => updateEventContent(this, e.target)}
                                     required
                                 />
@@ -171,7 +167,6 @@ class Events extends Component {
                                 <Form.Control
                                     type="time"
                                     name="eventStartTime"
-                                    id="eventStartTime"
                                     onChange={e => updateEventContent(this, e.target)}
                                     required
                                 />
@@ -182,7 +177,6 @@ class Events extends Component {
                                 <Form.Control
                                     type="time"
                                     name="eventEndTime"
-                                    id="eventEndTime"
                                     onChange={e => updateEventContent(this, e.target)}
                                     required
                                 />
@@ -193,7 +187,6 @@ class Events extends Component {
                                 <Form.Control
                                     type="text"
                                     name="eventLocation"
-                                    id="eventLocation"
                                     rows="1"
                                     onChange={e => updateEventContent(this, e.target)}
                                     required
@@ -204,7 +197,6 @@ class Events extends Component {
                                 <Form.Label>Event content (excluding hyperlinks)</Form.Label>
                                 <Form.Control
                                     name="eventContent"
-                                    id="eventContent"
                                     as="textarea"
                                     placeholder="Add event content here..."
                                     rows="5"
@@ -217,7 +209,6 @@ class Events extends Component {
                                 <Form.Label>Facebook event link (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     name="fbEventLink"
-                                    id="fbEventLink"
                                     as="textarea"
                                     rows="1"
                                     onChange={e => updateEventContent(this, e.target)}
@@ -228,7 +219,6 @@ class Events extends Component {
                                 <Form.Label>Eventbrite link (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     name="eventbriteLink"
-                                    id="eventbriteLink"
                                     as="textarea"
                                     rows="1"
                                     onChange={e => updateEventContent(this, e.target)}
@@ -239,7 +229,6 @@ class Events extends Component {
                                 <Form.Label>Virtual Zoom link (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     name="zoomLink"
-                                    id="zoomLink"
                                     as="textarea"
                                     rows="1"
                                     onChange={e => updateEventContent(this, e.target)}

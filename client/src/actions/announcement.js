@@ -85,7 +85,7 @@ export const getAnnouncementById = (announcementComp, id) => {
         .then(json => {
             announcementComp.setState({
                 displayModal: true,
-                existingContent: json.content
+                content: json.content
             });
         })
         .catch(error => {
@@ -135,7 +135,7 @@ export const editAnnouncement = (announcementComp, homepageComp, id) => {
     const url = "/announcementDatabase/" + id;
 
     const updatedAnnouncement = {
-        content: announcementComp.state.updatedContent
+        content: announcementComp.state.content
     }
 
     const request = new Request(url, {

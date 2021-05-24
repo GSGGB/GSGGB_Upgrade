@@ -25,28 +25,17 @@ class Event extends Component {
         options: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: "Canada/Toronto"},
         displayModal: false,
         imageFile: "",
-        existingImageId: "",
-        imageId: "", // Updated image ID.
-        existingType: "",
-        updatedType: "",
-        existingTitle: "",
-        updatedTitle: "",
-        existingDate: "",
-        updatedDate: "",
-        existingStartTime: "",
-        updatedStartTime: "",
-        existingEndTime: "",
-        updatedEndTime: "",
-        existingLocation: "",
-        updatedLocation: "",
-        existingContent: "",
-        updatedContent: "",
-        existingFbEventLink: "",
-        updatedFbEventLink: "",
-        existingEventbriteLink: "",
-        updatedEventbriteLink: "",
-        existingZoomLink: "",
-        updatedZoomLink: ""
+        imageId: "",
+        type: "",
+        title: "",
+        date: "",
+        startTime: "",
+        endTime: "",
+        location: "",
+        content: "",
+        fbEventLink: "",
+        eventbriteLink: "",
+        zoomLink: ""
     };
 
     // Edit event button for editors and administrators only.
@@ -114,13 +103,13 @@ class Event extends Component {
 
     displayCheckbox(){
         const eventImageCheckbox = document.querySelector("#eventImageCheckbox");
-        const imageFileEdit = document.querySelector("#imageFileEdit");
+        const eventImageFileEdit = document.querySelector("#eventImageFileEdit");
 
         // If the checkbox is checked, display the output text
         if (eventImageCheckbox.checked === true){
-            imageFileEdit.style.display = "block";
+            eventImageFileEdit.style.display = "block";
         } else {
-            imageFileEdit.style.display = "none";
+            eventImageFileEdit.style.display = "none";
         }
     }
 
@@ -183,7 +172,7 @@ class Event extends Component {
                                 <Form.Group>
                                     <Form.File
                                         name="imageFile"
-                                        id="imageFileEdit"
+                                        id="eventImageFileEdit"
                                         onChange={e => updateImageFile(this, e.target)}
                                         required />
                                 </Form.Group>
@@ -192,9 +181,8 @@ class Event extends Component {
                                     <Form.Label>Event type</Form.Label>
                                     <Form.Control
                                         as="select"
-                                        name="updatedEventType"
-                                        id="updatedEventType"
-                                        defaultValue={this.state.existingType}
+                                        name="type"
+                                        defaultValue={this.state.type}
                                         onChange={e => updateEventContent(this, e.target)}
                                         required
                                     >
@@ -211,10 +199,9 @@ class Event extends Component {
                                     <Form.Label>Event title</Form.Label>
                                     <Form.Control
                                         type="text"
-                                        name="updatedEventTitle"
-                                        id="updatedEventTitle"
+                                        name="title"
                                         rows="1"
-                                        defaultValue={this.state.existingTitle}
+                                        defaultValue={this.state.title}
                                         onChange={e => updateEventContent(this, e.target)}
                                         required
                                     />
@@ -224,9 +211,8 @@ class Event extends Component {
                                     <Form.Label>Event date</Form.Label>
                                     <Form.Control
                                         type="date"
-                                        name="updatedEventDate"
-                                        id="updatedEventDate"
-                                        defaultValue={this.state.existingDate}
+                                        name="date"
+                                        defaultValue={this.state.date}
                                         onChange={e => updateEventContent(this, e.target)}
                                         required
                                     />
@@ -236,9 +222,8 @@ class Event extends Component {
                                     <Form.Label>Event start time (EST)</Form.Label>
                                     <Form.Control
                                         type="time"
-                                        name="updatedEventStartTime"
-                                        id="updatedEventStartTime"
-                                        defaultValue={this.state.existingStartTime}
+                                        name="startTime"
+                                        defaultValue={this.state.startTime}
                                         onChange={e => updateEventContent(this, e.target)}
                                         required
                                     />
@@ -248,9 +233,8 @@ class Event extends Component {
                                     <Form.Label>Event end time (EST)</Form.Label>
                                     <Form.Control
                                         type="time"
-                                        name="updatedEventEndTime"
-                                        id="updatedEventEndTime"
-                                        defaultValue={this.state.existingEndTime}
+                                        name="endTime"
+                                        defaultValue={this.state.endTime}
                                         onChange={e => updateEventContent(this, e.target)}
                                         required
                                     />
@@ -260,10 +244,9 @@ class Event extends Component {
                                     <Form.Label>Event location</Form.Label>
                                     <Form.Control
                                         type="text"
-                                        name="updatedEventLocation"
-                                        id="updatedEventLocation"
+                                        name="location"
                                         rows="1"
-                                        defaultValue={this.state.existingLocation}
+                                        defaultValue={this.state.location}
                                         onChange={e => updateEventContent(this, e.target)}
                                         required
                                     />
@@ -272,11 +255,10 @@ class Event extends Component {
                                 <Form.Group>
                                     <Form.Label>Event content (excluding hyperlinks)</Form.Label>
                                     <Form.Control
-                                        name="updatedContent"
-                                        id="updatedContent"
+                                        name="content"
                                         as="textarea"
                                         placeholder="Edit announcement content here..."
-                                        defaultValue={this.state.existingContent}
+                                        defaultValue={this.state.content}
                                         rows="5"
                                         onChange={e => updateEventContent(this, e.target)}
                                         required
@@ -286,10 +268,9 @@ class Event extends Component {
                                 <Form.Group>
                                     <Form.Label>Facebook event link (OPTIONAL)</Form.Label>
                                     <Form.Control
-                                        name="updatedfbEventLink"
-                                        id="updatedfbEventLink"
+                                        name="fbEventLink"
                                         as="textarea"
-                                        defaultValue={this.state.existingFbEventLink}
+                                        defaultValue={this.state.fbEventLink}
                                         rows="1"
                                         onChange={e => updateEventContent(this, e.target)}
                                     />
@@ -298,10 +279,9 @@ class Event extends Component {
                                 <Form.Group>
                                     <Form.Label>Eventbrite link (OPTIONAL)</Form.Label>
                                     <Form.Control
-                                        name="updatedEventbriteLink"
-                                        id="updatedEventbriteLink"
+                                        name="eventbriteLink"
                                         as="textarea"
-                                        defaultValue={this.state.existingEventbriteLink}
+                                        defaultValue={this.state.eventbriteLink}
                                         rows="1"
                                         onChange={e => updateEventContent(this, e.target)}
                                     />
@@ -310,10 +290,9 @@ class Event extends Component {
                                 <Form.Group>
                                     <Form.Label>Virtual Zoom link (OPTIONAL)</Form.Label>
                                     <Form.Control
-                                        name="updatedZoomLink"
-                                        id="updatedZoomLink"
+                                        name="zoomLink"
                                         as="textarea"
-                                        defaultValue={this.state.existingZoomLink}
+                                        defaultValue={this.state.zoomLink}
                                         rows="1"
                                         onChange={e => updateEventContent(this, e.target)}
                                     />
