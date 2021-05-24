@@ -402,6 +402,7 @@ app.post("/eventDatabase", (req, res) => {
     const gEvent = new Event({
         userId: req.session.user,
         imageId: req.body.imageId,
+        imageOrientation: req.body.imageOrientation,
         type: req.body.type,
         title: req.body.title,
         date: req.body.date,
@@ -431,6 +432,7 @@ app.patch("/eventDatabase/:id", (req, res) => {
 
     const body = {
         imageId: req.body.imageId,
+        imageOrientation: req.body.imageOrientation,
         type: req.body.type,
         title: req.body.title,
         date: req.body.date,

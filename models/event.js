@@ -13,6 +13,11 @@ const EventSchema = new mongoose.Schema({
         required: true,
         minlength: 1
     },
+    imageOrientation: {
+        type: String,
+        required: true,
+        minlength: 1
+    },
     type: {
         type: String,
         required: true,

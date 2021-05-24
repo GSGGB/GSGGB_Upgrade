@@ -88,7 +88,7 @@ class Team extends Component {
                           <Col lg={8} className="biography-content">
                               <h3 className="name">{exec.name}</h3>
                               <h5 className="position">{exec.position}</h5>
-                              <hr class="biography-line" />
+                              <hr className="biography-line" />
                               <p className="biography">{exec.biography}</p>
                           </Col>
                       </Row>
@@ -101,15 +101,15 @@ class Team extends Component {
     render() {
         return (
             <BrowserRouter forceRefresh={true}>
-                <div class="team-photo-container">
+                <div className="team-photo-container">
                     <Image className="team-photo" alt="2018-2019 GSGGB Executive Team" src={teamPhoto1819} />
-                    <span class="team-photo-title">
+                    <span className="team-photo-title">
                         Our Executive Team
                         <h3 className="team-photo-subtitle">(Fall 2020 - Winter 2021)</h3>
                     </span>
                 </div>
 
-                <div class="team-section">
+                <div className="team-section">
                     <h3 className="team-name" id="senior-staff">SENIOR STAFF</h3>
                     <br />
                     <div className="container" id="team-members">

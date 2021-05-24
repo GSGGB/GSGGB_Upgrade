@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Card, Button, Modal, ModalBody, Form } from "react-bootstrap";
+import { Row, Col, Card, Button, Modal, ModalBody, Form } from "react-bootstrap";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -26,6 +26,7 @@ class Event extends Component {
         displayModal: false,
         imageFile: "",
         imageId: "",
+        imageOrientation: "",
         type: "",
         title: "",
         date: "",
@@ -102,8 +103,8 @@ class Event extends Component {
     }
 
     displayCheckbox(){
-        const eventImageCheckbox = document.querySelector("#eventImageCheckbox");
-        const eventImageFileEdit = document.querySelector("#eventImageFileEdit");
+        const eventImageCheckbox = document.querySelector("#event-image-checkbox");
+        const eventImageFileEdit = document.querySelector("#event-image-file-edit");
 
         // If the checkbox is checked, display the output text
         if (eventImageCheckbox.checked === true){
@@ -115,6 +116,7 @@ class Event extends Component {
 
     render() {
         const eventDate = this.props.date.toLocaleString('en-US', this.state.options);
+        const eventImageOrientation = (this.props.imageOrientation).toLowerCase() + "-event-image";
 
         const editEventButton = this.editEventButton();
         const deleteEventButton = this.deleteEventButton();
@@ -128,21 +130,27 @@ class Event extends Component {
                             <strong className="mr-auto">{this.props.fullName + " - " + this.props.execPosition}</strong>
                             <span>{deleteEventButton}{editEventButton}</span>
                         </Card.Header>
-                        <CardActionArea>
-                            <CardMedia
-                              className="image__card-media"
-                              image={this.props.imageURL}
-                            />
-                            <CardContent>
-                                {this.props.type}
-                                {this.props.title}
-                                {eventDate}
-                                {this.props.startTime}
-                                {this.props.endTime}
-                                {this.props.location}
-                                {this.props.content}
-                            </CardContent>
-
+                        <CardActionArea className={eventImageOrientation}>
+                            <Row>
+                                <Col lg={4}>
+                                    <CardMedia
+                                      component="img"
+                                      className={eventImageOrientation}
+                                      image={this.props.imageURL}
+                                    />
+                                </Col>
+                                <Col lg={8}>
+                                    <CardContent>
+                                        {this.props.type}
+                                        {this.props.title}
+                                        {eventDate}
+                                        {this.props.startTime}
+                                        {this.props.endTime}
+                                        {this.props.location}
+                                        {this.props.content}
+                                    </CardContent>
+                                </Col>
+                            </Row>
                         </CardActionArea>
                     </Card>
                     <Modal
@@ -161,7 +169,7 @@ class Event extends Component {
                             <Form>
                                 <Form.Group controlId="formBasicCheckbox">
                                     <Form.Check
-                                        id="eventImageCheckbox"
+                                        id="event-image-checkbox"
                                         type="checkbox"
                                         label="Change existing image"
                                         onClick={() => {
@@ -172,9 +180,24 @@ class Event extends Component {
                                 <Form.Group>
                                     <Form.File
                                         name="imageFile"
-                                        id="eventImageFileEdit"
+                                        id="event-image-file-edit"
                                         onChange={e => updateImageFile(this, e.target)}
                                         required />
+                                </Form.Group>
+                                <br/>
+                                <Form.Group>
+                                    <Form.Label>Event image orientation</Form.Label>
+                                    <Form.Control
+                                        as="select"
+                                        name="imageOrientation"
+                                        defaultValue={this.state.imageOrientation}
+                                        onChange={e => updateEventContent(this, e.target)}
+                                        required
+                                    >
+                                        <option>Landscape</option>
+                                        <option>Portrait</option>
+                                        <option>Square</option>
+                                    </Form.Control>
                                 </Form.Group>
                                 <br/>
                                 <Form.Group>

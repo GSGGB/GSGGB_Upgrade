@@ -31,6 +31,7 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
                                 headshot={userJSON.firstName + ".jpg"}
                                 imageCloudinaryId={imageJSON.imageId}
                                 imageURL={imageJSON.imageURL}
+                                imageOrientation={gEvent.imageOrientation}
                                 type={gEvent.type}
                                 title={gEvent.title}
                                 date={gEvent.date}
@@ -122,6 +123,7 @@ export const getEventById = (singleEventComp, id) => {
             singleEventComp.setState({
                 displayModal: true,
                 imageId: json.imageId,
+                imageOrientation: json.imageOrientation,
                 type: json.type,
                 title: json.title,
                 date: json.date,
@@ -149,6 +151,7 @@ export const addEvent = (eventsComp) => {
 
         const gEvent = {
             imageId: eventsComp.state.imageId,
+            imageOrientation: eventsComp.state.eventImageOrientation,
             type: eventsComp.state.eventType,
             title: eventsComp.state.eventTitle,
             date: eventsComp.state.eventDate,
@@ -195,6 +198,7 @@ export const addEvent = (eventsComp) => {
 const editEventHelper = (singleEventComp, eventsComp, url) => {
     const updatedEvent = {
         imageId: singleEventComp.state.imageId,
+        imageOrientation: singleEventComp.state.imageOrientation,
         type: singleEventComp.state.type,
         title: singleEventComp.state.title,
         date: singleEventComp.state.date,
@@ -239,13 +243,14 @@ export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, id) =>
 
     // 1) Check whether editor/administrator wants to update image.
     // If so, delete current image in cloudinary.
-    if (document.querySelector("#eventImageCheckbox").checked){
-        // Delete poster/image in cloudinary.
-        deleteImage(imageCloudinaryId);
+    if (document.querySelector("#event-image-checkbox").checked){
         // Add new poster/image to cloudinary.
         addImage(singleEventComp, () => {
             // 2) Edit event in MongoDB database.
             editEventHelper(singleEventComp, eventsComp, url)
+
+            // Delete poster/image in cloudinary.
+            deleteImage(imageCloudinaryId);
         });
     } else {
         // Edit event in MongoDB database without modifying image.

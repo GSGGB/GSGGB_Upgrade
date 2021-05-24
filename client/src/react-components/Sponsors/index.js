@@ -31,7 +31,7 @@ class Sponsors extends Component {
         return(
             <BrowserRouter forceRefresh={true}>
               <br /><br />
-              <div class="sponsors-title-section">
+              <div className="sponsors-title-section">
                   <h2 className="sponsors-page-title">OUR SPONSORS</h2>
                   <br />
                   <h4 className="sponsors-page-subtitle">Thank-you to our sponsors for supporting GSGGB and its chapters!</h4>

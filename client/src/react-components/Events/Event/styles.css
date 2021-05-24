@@ -1,33 +1,24 @@
-#edit-event-button, #delete-event-button{
-    display: inline-block;
-    float: right;
-    margin-bottom: 10px;
-}
-
-/* Styles for the Image React component */
-#eventImageFileEdit{
+#event-image-file-edit{
     display: none;
 }
 
-.MuiCardMedia-root.image__card-media {
-    height: 100px;
+#edit-event-button, #delete-event-button{
+    display: inline-block;
+    float: right;
 }
 
-.landscape-poster{
+/* Styles for the Image React component */
+.landscape-event-image{
     width: 100%;
     height: 225px;
 }
 
-.portrait-poster{
+.portrait-event-image{
     width: 100%;
     height: 475px;
 }
 
-.square-poster{
+.square-event-image{
     width: 100%;
     height: 100%;
-}
-
-.MuiCardActions-root.image__card-actions {
-    justify-content: center;
 }

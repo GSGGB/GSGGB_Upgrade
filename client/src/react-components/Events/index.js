@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Button, Modal, ModalBody, Form, Image } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
-import Calendar from "react-calendar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,6 +26,7 @@ class Events extends Component {
         displayEventModal: false,
         imageFile: "",
         imageId: "",
+        eventImageOrientation: "",
         eventType: "",
         eventTitle: "",
         eventDate: "",
@@ -69,9 +69,9 @@ class Events extends Component {
 
         return (
             <BrowserRouter forceRefresh={true}>
-                <div class="events-photo-container">
+                <div className="events-photo-container">
                     <Image className="events-photo" alt="2019-2020 Introduction to R Workshop" src={rWorkshop1920} />
-                    <span class="events-photo-title">
+                    <span className="events-photo-title">
                         Our Events
                         <h3 className="events-photo-subtitle">
                             Please follow our Facebook and Instagram pages to stay up to date on our upcoming events!
@@ -122,6 +122,20 @@ class Events extends Component {
                                     label="Upload event image"
                                     onChange={e => updateImageFile(this, e.target)}
                                     required />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Event image orientation</Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    name="eventImageOrientation"
+                                    onChange={e => updateEventContent(this, e.target)}
+                                    required
+                                >
+                                    <option>Landscape</option>
+                                    <option>Portrait</option>
+                                    <option>Square</option>
+                                </Form.Control>
                             </Form.Group>
                             <br/>
                             <Form.Group>
