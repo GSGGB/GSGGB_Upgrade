@@ -6,9 +6,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import ModalHeader from "react-bootstrap/ModalHeader";
 import { confirmAlert } from 'react-confirm-alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faMinus, faBook, faHeart, faGraduationCap, faMoneyBill, faHandshake, faLaptop, faCalendarDay, faClock, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faMinus, faBook, faHeart, faGraduationCap, faMoneyBill, faHandshake,
+  faLaptop, faCalendarDay, faClock, faMapMarkerAlt, faTicketAlt, faVideo } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 import "./styles.css";
+import "./styles-mobile.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import { updateImageFile } from "../../../actions/image";
@@ -102,6 +105,7 @@ class Event extends Component {
         }
     }
 
+    // Checkbox for edit event form. Checked if user wishes to upload a new image.
     displayCheckbox(){
         const eventImageCheckbox = document.querySelector("#event-image-checkbox");
         const eventImageFileEdit = document.querySelector("#event-image-file-edit");
@@ -130,6 +134,39 @@ class Event extends Component {
         }
     }
 
+    getFacebookIcon(fbEventLink){
+        if (fbEventLink){
+            return (
+                <span class="event-detail">
+                    <FontAwesomeIcon className="event-detail-icon" icon={faFacebook} size={4}/>
+                    <a href={fbEventLink} target="_blank" rel="noopener noreferrer">Facebook Event Link</a>
+                </span>
+            )
+        }
+    }
+
+    getEventbriteIcon(eventbriteLink){
+        if (eventbriteLink){
+            return(
+                <span class="event-detail">
+                    <FontAwesomeIcon className="event-detail-icon" icon={faTicketAlt} size={4}/>
+                    <a href={eventbriteLink} target="_blank" rel="noopener noreferrer">Eventbrite Link</a>
+                </span>
+            )
+        }
+    }
+
+    getZoomIcon(zoomLink){
+        if (zoomLink){
+            return(
+                <span class="event-detail">
+                    <FontAwesomeIcon className="event-detail-icon" icon={faVideo} size={4}/>
+                    <a href={zoomLink} target="_blank" rel="noopener noreferrer">Zoom Link</a>
+                </span>
+            )
+        }
+    }
+
     // Credit to Briguy37 for the code, retrieved from Stack Overflow.
     // https://stackoverflow.com/questions/14402922/how-to-change-24hr-time-to-12hr-time-with-javascript
     getFormattedTime(fourDigitTime){
@@ -155,6 +192,10 @@ class Event extends Component {
 
         const date = (new Date(this.props.date + " EDT")).toLocaleDateString('en-US', this.state.dateOptions);
         const time = this.getFormattedTime(this.props.startTime) + " - " + this.getFormattedTime(this.props.endTime) + " (EST)";
+
+        const fbIcon = this.getFacebookIcon(this.props.fbEventLink);
+        const eventbriteIcon = this.getEventbriteIcon(this.props.eventbriteLink);
+        const zoomIcon = this.getZoomIcon(this.props.zoomLink);
 
         return (
             <BrowserRouter forceRefresh={true}>
@@ -189,7 +230,7 @@ class Event extends Component {
                                     <div class="event-detail">
                                         <FontAwesomeIcon className="event-detail-icon" icon={faMapMarkerAlt} size={4}/>{this.props.location}
                                     </div>
-                                    <br/>
+                                    {fbIcon}{eventbriteIcon}{zoomIcon}
                                     <div class="event-content">
                                         {this.props.content}
                                     </div>

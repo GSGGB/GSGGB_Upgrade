@@ -1,0 +1,8 @@
+
+@media (max-width: 992px){
+    /* Have each event media link on its own line in mobile */
+    .event-detail{
+        display: block;
+        margin-right: 0px;
+    }
+}
