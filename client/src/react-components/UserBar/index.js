@@ -6,6 +6,7 @@ import { Image, Button } from "react-bootstrap";
 import { logout } from "../../actions/user";
 
 import "./styles.css";
+import "./styles-mobile.css";
 import uoft_logo from "./static/uoft-logo.png";
 
 class UserBar extends Component {

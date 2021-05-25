@@ -51,8 +51,5 @@
 }
 
 .event-cards{
-    height: 600px;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 /* End of events section styling */

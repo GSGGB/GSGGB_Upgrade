@@ -28,7 +28,6 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
                                 username={userJSON.username}
                                 fullName={userJSON.firstName + " " + userJSON.lastName}
                                 execPosition={userJSON.execPosition}
-                                headshot={userJSON.firstName + ".jpg"}
                                 imageCloudinaryId={imageJSON.imageId}
                                 imageURL={imageJSON.imageURL}
                                 imageOrientation={gEvent.imageOrientation}

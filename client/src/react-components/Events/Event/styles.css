@@ -1,24 +1,59 @@
-#event-image-file-edit{
-    display: none;
-}
-
+/* Styling for each event card */
 #edit-event-button, #delete-event-button{
     display: inline-block;
     float: right;
 }
 
-/* Styles for the Image React component */
+.event-card{
+    margin-bottom: 25px;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 16px;
+    color: black;
+}
+
+.event-title{
+    font-weight: bold;
+}
+
+.event-type-overlay{
+    color: white;
+    background-color: #012B5D;
+    height: 65px;
+    opacity: 0.9;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.event-type-icon{
+    margin-left: 5px;
+    margin-right: 10px;
+}
+/* End of styling for each event card */
+
+
+/* Styling for the Image React component */
 .landscape-event-image{
     width: 100%;
     height: 225px;
+    pointer-events: none;
 }
 
 .portrait-event-image{
     width: 100%;
     height: 475px;
+    pointer-events: none;
 }
 
 .square-event-image{
     width: 100%;
     height: 100%;
+    pointer-events: none;
 }
+/* End of styling for the Image React component */
+
+
+/* Styling for event edit form */
+#event-image-file-edit{
+    display: none;
+}
+/* End of styling for event edit form */

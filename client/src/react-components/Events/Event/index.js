@@ -7,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import ModalHeader from "react-bootstrap/ModalHeader";
 import { confirmAlert } from 'react-confirm-alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faMinus, faBook, faHeart, faGraduationCap, faMoneyBill, faHandshake, faLaptop } from '@fortawesome/free-solid-svg-icons';
 
 import "./styles.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -114,35 +114,54 @@ class Event extends Component {
         }
     }
 
+    getEventTypeIcon(eventType){
+        if (eventType === "Awareness"){
+            return (<FontAwesomeIcon className="event-type-icon" icon={faHeart} size={4}/>)
+        } else if (eventType === "Academic Seminar"){
+            return (<FontAwesomeIcon className="event-type-icon" icon={faBook} size={4}/>)
+        } else if (eventType === "Conference"){
+            return (<FontAwesomeIcon className="event-type-icon" icon={faGraduationCap} size={4}/>)
+        } else if (eventType === "Fundraiser"){
+            return (<FontAwesomeIcon className="event-type-icon" icon={faMoneyBill} size={4}/>)
+        } else if (eventType === "Promotional") {
+            return (<FontAwesomeIcon className="event-type-icon" icon={faHandshake} size={4}/>)
+        } else {
+            return (<FontAwesomeIcon className="event-type-icon" icon={faLaptop} size={4}/>)
+        }
+    }
+
     render() {
         const eventDate = this.props.date.toLocaleString('en-US', this.state.options);
         const eventImageOrientation = (this.props.imageOrientation).toLowerCase() + "-event-image";
 
         const editEventButton = this.editEventButton();
         const deleteEventButton = this.deleteEventButton();
+        const eventTypeIcon = this.getEventTypeIcon(this.props.type);
 
         return (
             <BrowserRouter forceRefresh={true}>
-                <div className="event">
+                <div className="event-card">
                     <Card>
                         <Card.Header closeButton="false">
-                            <img src={`/headshots/${this.props.headshot}`} className="headshot" alt="headshot" />
-                            <strong className="mr-auto">{this.props.fullName + " - " + this.props.execPosition}</strong>
+                            <h3 className="event-title">{this.props.title}</h3>
                             <span>{deleteEventButton}{editEventButton}</span>
                         </Card.Header>
                         <CardActionArea className={eventImageOrientation}>
                             <Row>
                                 <Col lg={4}>
                                     <CardMedia
-                                      component="img"
-                                      className={eventImageOrientation}
-                                      image={this.props.imageURL}
+                                        component="img"
+                                        className={eventImageOrientation}
+                                        image={this.props.imageURL}
                                     />
+                                    <Card.ImgOverlay className="event-type-overlay">
+                                        <Card.Title>
+                                            {eventTypeIcon}{this.props.type}
+                                        </Card.Title>
+                                    </Card.ImgOverlay>
                                 </Col>
                                 <Col lg={8}>
                                     <CardContent>
-                                        {this.props.type}
-                                        {this.props.title}
                                         {eventDate}
                                         {this.props.startTime}
                                         {this.props.endTime}
