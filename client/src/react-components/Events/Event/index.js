@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Row, Col, Card, Button, Modal, ModalBody, Form } from "react-bootstrap";
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import ModalHeader from "react-bootstrap/ModalHeader";
 import { confirmAlert } from 'react-confirm-alert';
@@ -13,7 +12,7 @@ import "./styles.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import { updateImageFile } from "../../../actions/image";
-import { updateEventContent, getEventById, editEvent, deleteEvent } from "../../../actions/event";
+import { updateEventForm, getEventById, editEvent, deleteEvent } from "../../../actions/event";
 
 class Event extends Component {
     constructor(props) {
@@ -148,13 +147,14 @@ class Event extends Component {
         const eventTypeIcon = this.getEventTypeIcon(this.props.type);
 
         const imageOrientation = (this.props.imageOrientation).toLowerCase() + "-event-image";
+        const infoOrientation = (this.props.imageOrientation).toLowerCase() + "-event-info";
         const lastUpdatedText = (
             "Last updated " + (new Date(this.props.lastUpdated)).toLocaleDateString('en-US', this.state.dateOptions) + " " +
             (new Date(this.props.lastUpdated)).toLocaleTimeString('en-US', this.state.timeOptions)
         );
 
-        const date = (new Date(this.props.date)).toLocaleDateString('en-US', this.state.dateOptions);
-        const time = this.getFormattedTime(this.props.startTime) + " - " + this.getFormattedTime(this.props.endTime);
+        const date = (new Date(this.props.date + " EDT")).toLocaleDateString('en-US', this.state.dateOptions);
+        const time = this.getFormattedTime(this.props.startTime) + " - " + this.getFormattedTime(this.props.endTime) + " (EST)";
 
         return (
             <BrowserRouter forceRefresh={true}>
@@ -164,38 +164,38 @@ class Event extends Component {
                             <small className="text-muted">{lastUpdatedText}</small>
                             <span>{deleteEventButton}{editEventButton}</span>
                         </Card.Header>
-                        <CardActionArea className={imageOrientation}>
-                            <Row>
-                                <Col lg={4}>
+                        <Row>
+                            <Col className={infoOrientation} lg={4}>
+                                <CardActionArea className={imageOrientation}>
+                                    <div className="event-type-overlay">
+                                        {eventTypeIcon}{this.props.type}
+                                    </div>
                                     <CardMedia
                                         component="img"
                                         className={imageOrientation}
                                         image={this.props.imageURL}
                                     />
-                                    <Card.ImgOverlay className="event-type-overlay">
-                                        <Card.Title>
-                                            {eventTypeIcon}{this.props.type}
-                                        </Card.Title>
-                                    </Card.ImgOverlay>
-                                </Col>
-                                <Col lg={8}>
-                                    <CardContent>
-                                        <h4 className="event-title">{this.props.title}</h4>
-                                        <div class="event-detail">
-                                            <FontAwesomeIcon className="event-type-icon" icon={faCalendarDay} size={4}/>{date}
-                                        </div>
-                                        <div class="event-detail">
-                                            <FontAwesomeIcon className="event-type-icon" icon={faClock} size={4}/>{time}
-                                        </div>
-                                        <div class="event-detail">
-                                            <FontAwesomeIcon className="event-type-icon" icon={faMapMarkerAlt} size={4}/>{this.props.location}
-                                        </div>
-                                        <br/>
+                                </CardActionArea>
+                            </Col>
+                            <Col className={infoOrientation} lg={8}>
+                                <Card.Body>
+                                    <h4 className="event-title">{this.props.title}</h4>
+                                    <div class="event-detail">
+                                        <FontAwesomeIcon className="event-detail-icon" icon={faCalendarDay} size={4}/>{date}
+                                    </div>
+                                    <div class="event-detail">
+                                        <FontAwesomeIcon className="event-detail-icon" icon={faClock} size={4}/>{time}
+                                    </div>
+                                    <div class="event-detail">
+                                        <FontAwesomeIcon className="event-detail-icon" icon={faMapMarkerAlt} size={4}/>{this.props.location}
+                                    </div>
+                                    <br/>
+                                    <div class="event-content">
                                         {this.props.content}
-                                    </CardContent>
-                                </Col>
-                            </Row>
-                        </CardActionArea>
+                                    </div>
+                                </Card.Body>
+                            </Col>
+                        </Row>
                     </Card>
                     <Modal
                         show={this.state.displayModal}
@@ -235,7 +235,7 @@ class Event extends Component {
                                         as="select"
                                         name="imageOrientation"
                                         defaultValue={this.state.imageOrientation}
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                         required
                                     >
                                         <option>Landscape</option>
@@ -250,7 +250,7 @@ class Event extends Component {
                                         as="select"
                                         name="type"
                                         defaultValue={this.state.type}
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                         required
                                     >
                                         <option>Academic Seminar</option>
@@ -269,7 +269,7 @@ class Event extends Component {
                                         name="title"
                                         rows="1"
                                         defaultValue={this.state.title}
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                         required
                                     />
                                 </Form.Group>
@@ -280,7 +280,7 @@ class Event extends Component {
                                         type="date"
                                         name="date"
                                         defaultValue={this.state.date}
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                         required
                                     />
                                 </Form.Group>
@@ -291,7 +291,7 @@ class Event extends Component {
                                         type="time"
                                         name="startTime"
                                         defaultValue={this.state.startTime}
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                         required
                                     />
                                 </Form.Group>
@@ -302,7 +302,7 @@ class Event extends Component {
                                         type="time"
                                         name="endTime"
                                         defaultValue={this.state.endTime}
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                         required
                                     />
                                 </Form.Group>
@@ -314,7 +314,7 @@ class Event extends Component {
                                         name="location"
                                         rows="1"
                                         defaultValue={this.state.location}
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                         required
                                     />
                                 </Form.Group>
@@ -327,7 +327,7 @@ class Event extends Component {
                                         placeholder="Edit announcement content here..."
                                         defaultValue={this.state.content}
                                         rows="5"
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                         required
                                     />
                                 </Form.Group>
@@ -339,7 +339,7 @@ class Event extends Component {
                                         as="textarea"
                                         defaultValue={this.state.fbEventLink}
                                         rows="1"
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                     />
                                 </Form.Group>
                                 <br/>
@@ -350,7 +350,7 @@ class Event extends Component {
                                         as="textarea"
                                         defaultValue={this.state.eventbriteLink}
                                         rows="1"
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                     />
                                 </Form.Group>
                                 <br/>
@@ -361,7 +361,7 @@ class Event extends Component {
                                         as="textarea"
                                         defaultValue={this.state.zoomLink}
                                         rows="1"
-                                        onChange={e => updateEventContent(this, e.target)}
+                                        onChange={e => updateEventForm(this, e.target)}
                                     />
                                 </Form.Group>
                                 <br/>

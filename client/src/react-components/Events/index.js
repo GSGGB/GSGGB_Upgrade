@@ -12,7 +12,7 @@ import rWorkshop1920 from "./static/r-workshop-19-20.jpg";
 
 // Importing announcement actions/required methods.
 import { updateImageFile } from "../../actions/image";
-import { updateEventContent, getAllEvents, addEvent } from "../../actions/event";
+import { updateEventForm, getAllEvents, addEvent } from "../../actions/event";
 
 class Events extends Component {
     constructor(props) {
@@ -130,7 +130,7 @@ class Events extends Component {
                                 <Form.Control
                                     as="select"
                                     name="eventImageOrientation"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                     required
                                 >
                                     <option>Landscape</option>
@@ -144,7 +144,7 @@ class Events extends Component {
                                 <Form.Control
                                     as="select"
                                     name="eventType"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                     required
                                 >
                                     <option>Academic Seminar</option>
@@ -162,7 +162,7 @@ class Events extends Component {
                                     type="text"
                                     name="eventTitle"
                                     rows="1"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                     required
                                 />
                             </Form.Group>
@@ -172,7 +172,7 @@ class Events extends Component {
                                 <Form.Control
                                     type="date"
                                     name="eventDate"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                     required
                                 />
                             </Form.Group>
@@ -182,7 +182,7 @@ class Events extends Component {
                                 <Form.Control
                                     type="time"
                                     name="eventStartTime"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                     required
                                 />
                             </Form.Group>
@@ -192,7 +192,7 @@ class Events extends Component {
                                 <Form.Control
                                     type="time"
                                     name="eventEndTime"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                     required
                                 />
                             </Form.Group>
@@ -203,7 +203,7 @@ class Events extends Component {
                                     type="text"
                                     name="eventLocation"
                                     rows="1"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                     required
                                 />
                             </Form.Group>
@@ -215,7 +215,7 @@ class Events extends Component {
                                     as="textarea"
                                     placeholder="Add event content here..."
                                     rows="5"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                     required
                                 />
                             </Form.Group>
@@ -226,7 +226,7 @@ class Events extends Component {
                                     name="fbEventLink"
                                     as="textarea"
                                     rows="1"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                 />
                             </Form.Group>
                             <br/>
@@ -236,7 +236,7 @@ class Events extends Component {
                                     name="eventbriteLink"
                                     as="textarea"
                                     rows="1"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                 />
                             </Form.Group>
                             <br/>
@@ -246,7 +246,7 @@ class Events extends Component {
                                     name="zoomLink"
                                     as="textarea"
                                     rows="1"
-                                    onChange={e => updateEventContent(this, e.target)}
+                                    onChange={e => updateEventForm(this, e.target)}
                                 />
                             </Form.Group>
                             <br/>

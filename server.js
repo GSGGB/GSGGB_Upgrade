@@ -365,7 +365,7 @@ app.delete("/researchDatabase/:id", (req, res) => {
 /** Start of event resource routes **/
 // A GET route to get ALL events.
 app.get("/eventDatabase", (req, res) => {
-    Event.find().then(
+    (Event.find().sort({ "date": 1 })).then(
         (allEvents) => {
             res.send({ allEvents });
         },

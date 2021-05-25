@@ -62,8 +62,8 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
     }
 };
 
-// A function to update event content.
-export const updateEventContent = (comp, field) => {
+// A function to update contents of event form.
+export const updateEventForm = (comp, field) => {
     const value = field.value;
     const name = field.name;
 
