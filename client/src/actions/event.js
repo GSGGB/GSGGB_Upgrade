@@ -26,8 +26,6 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
                                 eventsComp={eventsComp}
                                 eventId={gEvent._id}
                                 username={userJSON.username}
-                                fullName={userJSON.firstName + " " + userJSON.lastName}
-                                execPosition={userJSON.execPosition}
                                 imageCloudinaryId={imageJSON.imageId}
                                 imageURL={imageJSON.imageURL}
                                 imageOrientation={gEvent.imageOrientation}
@@ -41,6 +39,7 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
                                 fbEventLink={gEvent.fbEventLink}
                                 eventbriteLink={gEvent.eventbriteLink}
                                 zoomLink={gEvent.zoomLink}
+                                lastUpdated={gEvent.lastUpdated}
                               ></Event>
 
             // Past event.

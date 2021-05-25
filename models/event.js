@@ -64,6 +64,11 @@ const EventSchema = new mongoose.Schema({
     zoomLink: {
         type: String,
         minlength: 0
+    },
+    lastUpdated: {
+        type: String,
+        required: true,
+        minlength: 1
     }
 })
 

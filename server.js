@@ -412,7 +412,8 @@ app.post("/eventDatabase", (req, res) => {
         content: req.body.content,
         fbEventLink: req.body.fbEventLink,
         eventbriteLink: req.body.eventbriteLink,
-        zoomLink: req.body.zoomLink
+        zoomLink: req.body.zoomLink,
+        lastUpdated: new Date()
     });
 
     // Save event to the database.
@@ -442,7 +443,8 @@ app.patch("/eventDatabase/:id", (req, res) => {
         content: req.body.content,
         fbEventLink: req.body.fbEventLink,
         eventbriteLink: req.body.eventbriteLink,
-        zoomLink: req.body.zoomLink
+        zoomLink: req.body.zoomLink,
+        lastUpdated: new Date()
     };
 
     if (!ObjectID.isValid(id)) {

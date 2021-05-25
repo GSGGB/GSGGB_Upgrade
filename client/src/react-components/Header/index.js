@@ -188,7 +188,7 @@ class Header extends Component {
                                       </Nav.Link>
                                   </Nav.Item>
                                   <Nav.Item>
-                                      <Nav.Link href="/conference" className="navbar-item">
+                                      <Nav.Link href="https://www.geneticssymposium.com" target="_blank" className="navbar-item">
                                           CONFERENCE
                                       </Nav.Link>
                                   </Nav.Item>

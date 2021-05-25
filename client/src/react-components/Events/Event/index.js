@@ -7,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import ModalHeader from "react-bootstrap/ModalHeader";
 import { confirmAlert } from 'react-confirm-alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faMinus, faBook, faHeart, faGraduationCap, faMoneyBill, faHandshake, faLaptop } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faMinus, faBook, faHeart, faGraduationCap, faMoneyBill, faHandshake, faLaptop, faCalendarDay, faClock, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 import "./styles.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -22,7 +22,8 @@ class Event extends Component {
     }
 
     state = {
-        options: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: "Canada/Toronto"},
+        dateOptions: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
+        timeOptions: { hour: '2-digit', minute:'2-digit' },
         displayModal: false,
         imageFile: "",
         imageId: "",
@@ -130,28 +131,45 @@ class Event extends Component {
         }
     }
 
-    render() {
-        const eventDate = this.props.date.toLocaleString('en-US', this.state.options);
-        const eventImageOrientation = (this.props.imageOrientation).toLowerCase() + "-event-image";
+    // Credit to Briguy37 for the code, retrieved from Stack Overflow.
+    // https://stackoverflow.com/questions/14402922/how-to-change-24hr-time-to-12hr-time-with-javascript
+    getFormattedTime(fourDigitTime){
+        const hours24 = parseInt(fourDigitTime.substring(0,2));
+        const hours = ((hours24 + 11) % 12) + 1;
+        const amPm = hours24 > 11 ? 'PM' : 'AM';
+        const minutes = fourDigitTime.substring(2);
 
+        return (hours + minutes + " " + amPm)
+    }
+
+    render() {
         const editEventButton = this.editEventButton();
         const deleteEventButton = this.deleteEventButton();
         const eventTypeIcon = this.getEventTypeIcon(this.props.type);
+
+        const imageOrientation = (this.props.imageOrientation).toLowerCase() + "-event-image";
+        const lastUpdatedText = (
+            "Last updated " + (new Date(this.props.lastUpdated)).toLocaleDateString('en-US', this.state.dateOptions) + " " +
+            (new Date(this.props.lastUpdated)).toLocaleTimeString('en-US', this.state.timeOptions)
+        );
+
+        const date = (new Date(this.props.date)).toLocaleDateString('en-US', this.state.dateOptions);
+        const time = this.getFormattedTime(this.props.startTime) + " - " + this.getFormattedTime(this.props.endTime);
 
         return (
             <BrowserRouter forceRefresh={true}>
                 <div className="event-card">
                     <Card>
-                        <Card.Header closeButton="false">
-                            <h3 className="event-title">{this.props.title}</h3>
+                        <Card.Header>
+                            <small className="text-muted">{lastUpdatedText}</small>
                             <span>{deleteEventButton}{editEventButton}</span>
                         </Card.Header>
-                        <CardActionArea className={eventImageOrientation}>
+                        <CardActionArea className={imageOrientation}>
                             <Row>
                                 <Col lg={4}>
                                     <CardMedia
                                         component="img"
-                                        className={eventImageOrientation}
+                                        className={imageOrientation}
                                         image={this.props.imageURL}
                                     />
                                     <Card.ImgOverlay className="event-type-overlay">
@@ -162,10 +180,17 @@ class Event extends Component {
                                 </Col>
                                 <Col lg={8}>
                                     <CardContent>
-                                        {eventDate}
-                                        {this.props.startTime}
-                                        {this.props.endTime}
-                                        {this.props.location}
+                                        <h4 className="event-title">{this.props.title}</h4>
+                                        <div class="event-detail">
+                                            <FontAwesomeIcon className="event-type-icon" icon={faCalendarDay} size={4}/>{date}
+                                        </div>
+                                        <div class="event-detail">
+                                            <FontAwesomeIcon className="event-type-icon" icon={faClock} size={4}/>{time}
+                                        </div>
+                                        <div class="event-detail">
+                                            <FontAwesomeIcon className="event-type-icon" icon={faMapMarkerAlt} size={4}/>{this.props.location}
+                                        </div>
+                                        <br/>
                                         {this.props.content}
                                     </CardContent>
                                 </Col>

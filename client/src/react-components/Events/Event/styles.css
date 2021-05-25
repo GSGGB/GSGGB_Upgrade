@@ -5,14 +5,10 @@
 }
 
 .event-card{
-    margin-bottom: 25px;
+    margin-bottom: 50px;
     font-family: Tahoma, Geneva, sans-serif;
     font-size: 16px;
     color: black;
-}
-
-.event-title{
-    font-weight: bold;
 }
 
 .event-type-overlay{
@@ -27,6 +23,17 @@
 .event-type-icon{
     margin-left: 5px;
     margin-right: 10px;
+}
+
+.event-title{
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.event-detail{
+    color: #012B5D;
+    margin-bottom: 10px;
 }
 /* End of styling for each event card */
 
