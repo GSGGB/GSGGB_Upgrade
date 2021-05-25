@@ -18,7 +18,7 @@ const addAnnouncementHelper = async(homepageComp, announcement) => {
                                     announcementId={announcement._id}
                                     username={json.username}
                                     fullName={json.firstName + " " + json.lastName}
-                                    execPosition={json.execPosition}
+                                    executivePosition={json.executivePosition}
                                     headshot={json.firstName + ".jpg"}
                                     content={announcement.content}
                                     date={announcement.date}

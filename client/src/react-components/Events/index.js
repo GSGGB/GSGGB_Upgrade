@@ -5,7 +5,6 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
 import "./styles-mobile.css";
 import rWorkshop1920 from "./static/r-workshop-19-20.jpg";

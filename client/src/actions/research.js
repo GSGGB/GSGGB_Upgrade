@@ -18,7 +18,7 @@ const addResearchPostHelper = async(homepageComp, researchPost) => {
                                     researchId={researchPost._id}
                                     username={json.username}
                                     fullName={json.firstName + " " + json.lastName}
-                                    execPosition={json.execPosition}
+                                    executivePosition={json.executivePosition}
                                     headshot={json.firstName + ".jpg"}
                                     url={researchPost.url}
                                 ></Research>

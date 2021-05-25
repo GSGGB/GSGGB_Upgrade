@@ -6,7 +6,7 @@ import { addImage, deleteImage } from "../actions/image";
 
 // Helper function for getAllEvents and addEvent.
 const addEventHelper = async(eventsComp, gEvent, dateToday) => {
-    // Retrieve user details including username and full name.
+    // Retrieve user details including username.
     const userURL = "/userDatabase/" + gEvent.userId;
 
     const userRes = await fetch(userURL);
@@ -40,7 +40,7 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
                                 eventbriteLink={gEvent.eventbriteLink}
                                 zoomLink={gEvent.zoomLink}
                                 lastUpdated={gEvent.lastUpdated}
-                              ></Event>
+                            ></Event>
 
             // Past event.
             if (new Date(gEvent.date) < dateToday){
@@ -88,8 +88,10 @@ export const getAllEvents = (eventsComp) => {
             }
         })
         .then(async json => {
-            eventsComp.setState({ upcomingEvents: [] })
-            eventsComp.setState({ pastEvents: [] })
+            eventsComp.setState({
+                upcomingEvents: [],
+                pastEvents: []
+            })
             const dateToday = new Date();
 
             for (let gEvent of json.allEvents) {

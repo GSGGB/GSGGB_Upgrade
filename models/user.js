@@ -44,7 +44,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    execPosition: {
+    executivePosition: {
         type: String,
         required: true,
         trim: true

@@ -129,7 +129,7 @@ class Event extends Component {
             return (<FontAwesomeIcon className="event-type-icon" icon={faMoneyBill} size={4}/>)
         } else if (eventType === "Promotional") {
             return (<FontAwesomeIcon className="event-type-icon" icon={faHandshake} size={4}/>)
-        } else {
+        } else if (eventType === "Workshop"){
             return (<FontAwesomeIcon className="event-type-icon" icon={faLaptop} size={4}/>)
         }
     }

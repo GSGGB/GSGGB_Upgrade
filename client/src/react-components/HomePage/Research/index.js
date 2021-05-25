@@ -97,7 +97,7 @@ class Research extends Component {
                         <Card.Body>
                             <Card.Subtitle className="mb-2 text-muted">
                                 <img src={`/headshots/${this.props.headshot}`} className="headshot" alt="headshot" />
-                                <strong className="mr-auto">{this.props.fullName + " - " + this.props.execPosition}</strong>
+                                <strong className="mr-auto">{this.props.fullName + " - " + this.props.executivePosition}</strong>
                                 <span>{deleteResearchButton}{editResearchButton}</span>
                             </Card.Subtitle>
                             <FacebookProvider appId="481552546265591">

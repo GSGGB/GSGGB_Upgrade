@@ -103,7 +103,7 @@ class Announcement extends Component {
                     <Toast>
                         <Toast.Header closeButton="false">
                             <img src={`/headshots/${this.props.headshot}`} className="headshot" alt="headshot" />
-                            <strong className="mr-auto">{this.props.fullName + " - " + this.props.execPosition}</strong>
+                            <strong className="mr-auto">{this.props.fullName + " - " + this.props.executivePosition}</strong>
                             <small>{announcementDate}</small>
                             <span>{editAnnouncementButton}{deleteAnnouncementButton}</span>
                         </Toast.Header>
