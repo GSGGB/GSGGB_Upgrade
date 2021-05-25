@@ -1,7 +1,7 @@
 
 @media (max-width: 992px){
     /* Set event photo to 100% width in mobile */
-    .team-photo{
+    .events-photo{
         width: 100%;
         height: 100%;
     }

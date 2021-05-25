@@ -1,24 +1,32 @@
-/* "Our Sponsors" */
-.sponsors-page-title{
+/* Start of sponsors photo banner styling */
+.sponsors-photo-container{
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.sponsors-photo{
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: top center;
+}
+
+.sponsors-photo-title{
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
-    color: black;
-    text-align: center;
-    font-size: 40px;
+    font-size: 65px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* "Thank-you..." */
-.sponsors-page-subtitle{
-    font-family: Tahoma, Geneva, sans-serif;
-    color: #4c4c4c;
-    text-align: center;
+.sponsors-photo-subtitle{
+    font-size: 35px;
 }
-
-.sponsors-title-section{
-    background-color: whitesmoke;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
+/* End of sponsors photo banner styling */
 
 
 /* Center logos in each section */
