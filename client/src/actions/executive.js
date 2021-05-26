@@ -15,7 +15,7 @@ const addExecutiveHelper = async(teamComp, executive) => {
         const userJSON = await userRes.json();
 
         // Retrieve image cloudinary ID and URL.
-        const imageURL = "/imageDatabase/" + exec.imageId;
+        const imageURL = "/imageDatabase/" + executive.imageId;
 
         const imageRes = await fetch(imageURL);
 
@@ -69,6 +69,10 @@ const addExecutiveHelper = async(teamComp, executive) => {
             } else if (executive.team === "JIGG"){
                 teamComp.setState({
                     jiggExecs: [newExecutive].concat(teamComp.state.jiggExecs)
+                })
+            } else if (executive.team === "Alumni"){
+                teamComp.setState({
+                    alumniExecs: [newExecutive].concat(teamComp.state.alumniExecs)
                 })
             }
 

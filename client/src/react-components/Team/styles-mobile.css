@@ -14,29 +14,6 @@
     .team-photo-subtitle{
         font-size: 25px;
     }
-
-    /* Increase the padding between the photo and the name */
-    .enlarged-executive-photo{
-        padding: 12px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Remove bottom margin from the column containing the enlarged executive photo*/
-    .photo-column{
-        margin-bottom: 0px;
-    }
-
-    /* Centralize the executive photo, name and description in modals on mobile screens */
-    .name, .position, .biography{
-        text-align: center;
-    }
-
-    /* Centralize the executive photo, name and description (non-modal) on mobile screens */
-    .executive-photo,.executive-name, .executive-position{
-        margin-right: 15px;
-    }
 }
 
 

@@ -9,7 +9,7 @@ import "./styles.css";
 import "./styles-mobile.css";
 import rWorkshop1920 from "./static/r-workshop-19-20.jpg";
 
-// Importing announcement actions/required methods.
+// Importing event actions/required methods.
 import { updateImageFile } from "../../actions/image";
 import { updateEventForm, getAllEvents, addEvent } from "../../actions/event";
 
@@ -254,7 +254,7 @@ class Events extends Component {
                                 type="submit"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    addEvent(this)
+                                    addEvent(this);
                                     this.setState({ displayEventModal: false })
                                 }}
                                 >

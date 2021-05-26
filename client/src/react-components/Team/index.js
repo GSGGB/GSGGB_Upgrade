@@ -1,104 +1,75 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Image, Row, Col, Modal, Button, Card } from "react-bootstrap";
-import { FaLinkedin, FaEnvelope, FaInfo } from "react-icons/fa";
+import { Row, Button, Modal, ModalBody, Form, Image } from "react-bootstrap";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import "./styles.css";
 import "./styles-mobile.css";
-import { SENIOR_STAFF, CONFERENCE, MARKETING, AFFAIRS, MENTORSHIP, EVENTS, TECH_INNOVATIONS, JIGG, ALUMNI } from './executives.js';
 import teamPhoto1819 from "./static/team-photo-18-19.jpg";
+
+// Importing team actions/required methods.
+import { updateImageFile } from "../../actions/image";
+import { updateExecutiveForm, getAllExecutives, addExecutive } from "../../actions/executive";
 
 class Team extends Component {
     constructor(props) {
         super(props);
         this.props.history.push("/team");
-        this.renderExec = this.renderExec.bind(this);
-        this.handleClose = this.handleClose.bind(this);
         document.title = "GSGGB U of T | Team";
     }
 
     state = {
-        modalId: ""
-    }
-
-    handleClose() {
-        this.setState({
-            modalId: ""
-        });
-    }
-
-    renderExec(exec) {
-        return (
-          <Col>
-              <Card className="executive-card mx-auto">
-                  <Card.Img className="executive-photo" src={exec.image} key={exec.firstname} />
-                  <Card.Body>
-                  <Card.Title className="executive-name">{exec.name}</Card.Title>
-                  <Card.Text className="executive-position">{exec.position}</Card.Text>
-
-                  <Button className="view-biography" onClick={() =>
-                      this.setState({
-                          modalId: `modal${exec.id}`
-                      })
-                  }>
-                      <span className="card-icon" id="biography">
-                          <FaInfo />
-                      </span>
-                  </Button>
-                  <a
-                    href={exec.linkedin}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                      <span className="card-icon" id="linkedin">
-                          <FaLinkedin />
-                      </span>
-                  </a>
-                  <a
-                    href={`mailto:${exec.email}`}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                      <span className="card-icon" id="personal-email">
-                          <FaEnvelope />
-                      </span>
-                  </a>
-                  </Card.Body>
-              </Card>
-
-              <Modal
-                  show={this.state.modalId === `modal${exec.id}`}
-                  onHide={this.handleClose}
-                  aria-labelledby={`${exec.firstname}ModalLabel`} backdrop="static"
-                  keyboard={false}
-                  key={exec.firstname}
-                  size = "lg">
-                  <Modal.Header
-                      id={`${exec.firstname}ModalLabel`}
-                      style={{
-                          backgroundColor: "whitesmoke"
-                      }}
-                      closeButton>
-                  </Modal.Header>
-                  <Modal.Body className="biography-modal">
-                      <Row>
-                          <Col lg={4}>
-                              <Image className="enlarged-executive-photo" src={exec.image} />
-                          </Col>
-                          <Col lg={8} className="biography-content">
-                              <h3 className="name">{exec.name}</h3>
-                              <h5 className="position">{exec.position}</h5>
-                              <hr className="biography-line" />
-                              <p className="biography">{exec.biography}</p>
-                          </Col>
-                      </Row>
-                  </Modal.Body>
-              </Modal>
-          </Col>
-        );
+        seniorStaffExecs: [],
+        conferenceExecs: [],
+        marketingExecs: [],
+        affairsExecs: [],
+        mentorshipExecs: [],
+        eventsExecs: [],
+        techExecs: [],
+        jiggExecs: [],
+        alumniExecs: [],
+        displayExecModal: false,
+        imageFile: "",
+        imageId: "",
+        execFirstName: "",
+        execLastName: "",
+        execTeam: "",
+        exePosition: "",
+        execBiography: "",
+        execLinkedin: "",
+        execEmail: ""
     };
 
+    componentDidMount(){
+        getAllExecutives(this);
+    }
+
+    // Add executive button for editors and administrators only.
+    addExecutiveButton() {
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
+
+        if (
+          loggedIn === "true" &&
+          (accountType === "Editor" || accountType === "Administrator")
+        ) {
+            return (
+                <Button
+                    id="add-exec-button"
+                    variant="outline-info"
+                    onClick={() => this.setState({ displayExecModal: true })}
+                >
+                    <FontAwesomeIcon icon={faPlus} size={20}/>
+                </Button>
+            )
+        }
+    }
+
     render() {
+        const addExecutiveButton = this.addExecutiveButton();
+
         return (
             <BrowserRouter forceRefresh={true}>
                 <div className="team-photo-container">
@@ -110,11 +81,14 @@ class Team extends Component {
                 </div>
 
                 <div className="team-section">
-                    <h3 className="team-name" id="senior-staff">SENIOR STAFF</h3>
+                    <h3 className="team-name" id="senior-staff">
+                        SENIOR STAFF
+                        {addExecutiveButton}
+                    </h3>
                     <br />
                     <div className="container" id="team-members">
                         <Row>
-                            {SENIOR_STAFF.map(this.renderExec)}
+                            {this.state.seniorStaffExecs}
                         </Row>
                     </div>
                     <br />
@@ -125,7 +99,7 @@ class Team extends Component {
                     <br />
                     <div className="container" id="team-members">
                       <Row>
-                          {CONFERENCE.map(this.renderExec)}
+                          {this.state.conferenceExecs}
                       </Row>
                     </div>
                     <br />
@@ -136,7 +110,7 @@ class Team extends Component {
                     <br />
                     <div className="container" id="team-members">
                         <Row>
-                            {MARKETING.map(this.renderExec)}
+                            {this.state.marketingExecs}
                         </Row>
                     </div>
                     <br />
@@ -147,7 +121,7 @@ class Team extends Component {
                     <br />
                     <div className="container" id="team-members">
                         <Row>
-                            {AFFAIRS.map(this.renderExec)}
+                            {this.state.affairsExecs}
                         </Row>
                     </div>
                     <br />
@@ -158,7 +132,7 @@ class Team extends Component {
                     <br />
                     <div className="container" id="team-members">
                         <Row>
-                            {MENTORSHIP.map(this.renderExec)}
+                            {this.state.mentorshipExecs}
                         </Row>
                     </div>
                     <br />
@@ -169,7 +143,7 @@ class Team extends Component {
                     <br />
                     <div className="container" id="team-members">
                         <Row>
-                            {EVENTS.map(this.renderExec)}
+                            {this.state.eventsExecs}
                         </Row>
                     </div>
                     <br />
@@ -180,7 +154,7 @@ class Team extends Component {
                     <br />
                     <div className="container" id="team-members">
                         <Row>
-                            {TECH_INNOVATIONS.map(this.renderExec)}
+                            {this.state.techExecs}
                         </Row>
                     </div>
                     <br />
@@ -191,7 +165,7 @@ class Team extends Component {
                     <br />
                     <div className="container" id="team-members">
                         <Row>
-                            {JIGG.map(this.renderExec)}
+                            {this.state.jiggExecs}
                         </Row>
                     </div>
                     <br />
@@ -203,7 +177,7 @@ class Team extends Component {
                     <br />
                     <div className="container" id="team-members">
                         <Row>
-                            {ALUMNI.map(this.renderExec)}
+                            {this.state.alumniExecs}
                         </Row>
                     </div>
                     <br />
@@ -211,6 +185,130 @@ class Team extends Component {
                     <hr className="team-section-separator" />
                     <br/><br/>
                 </div>
+
+                <Modal
+                    show={this.state.displayExecModal}
+                    onHide={() => this.setState({ displayExecModal: false })}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    backdrop="static"
+                    keyboard={false}
+                    centered
+                >
+                    <ModalHeader closeButton>
+                        <h4>Add new executive</h4>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Form>
+                            <Form.Group>
+                                <Form.File
+                                    name="imageFile"
+                                    label="Upload headshot"
+                                    onChange={e => updateImageFile(this, e.target)}
+                                    required />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>First name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="execFirstName"
+                                    rows="1"
+                                    onChange={e => updateExecutiveForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Last name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="execLastName"
+                                    rows="1"
+                                    onChange={e => updateExecutiveForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Team</Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    name="execTeam"
+                                    onChange={e => updateExecutiveForm(this, e.target)}
+                                    required
+                                >
+                                    <option>Senior Staff</option>
+                                    <option>Conference Committee</option>
+                                    <option>Marketing</option>
+                                    <option>Affairs</option>
+                                    <option>Mentorship</option>
+                                    <option>Events</option>
+                                    <option>Tech & Innovations</option>
+                                    <option>JIGG</option>
+                                    <option>Alumni</option>
+                                </Form.Control>
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Position</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="execPosition"
+                                    rows="1"
+                                    onChange={e => updateExecutiveForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Biography</Form.Label>
+                                <Form.Control
+                                    name="execBiography"
+                                    as="textarea"
+                                    placeholder="Add biography here..."
+                                    defaultValue={this.state.execBiography}
+                                    rows="5"
+                                    onChange={e => updateExecutiveForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>LinkedIn account (OPTIONAL)</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="execLinkedin"
+                                    rows="1"
+                                    defaultValue={this.state.execLinkedin}
+                                    onChange={e => updateExecutiveForm(this, e.target)}
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Email address (OPTIONAL)</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    name="execEmail"
+                                    rows="1"
+                                    defaultValue={this.state.execEmail}
+                                    onChange={e => updateExecutiveForm(this, e.target)}
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Button
+                                variant="outline-info"
+                                type="submit"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    addExecutive(this);
+                                    this.setState({ displayExecModal: false })
+                                }}
+                                >
+                                    ADD
+                            </Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
 
             </BrowserRouter>
         );
