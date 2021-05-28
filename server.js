@@ -412,7 +412,7 @@ app.post("/executiveDatabase", (req, res) => {
         email: req.body.email
     });
 
-    // Save event to the database.
+    // Save executive to the database.
     executive.save().then(
         (result) => {
             res.send(result);

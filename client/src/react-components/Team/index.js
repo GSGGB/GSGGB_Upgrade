@@ -35,8 +35,8 @@ class Team extends Component {
         imageId: "",
         execFirstName: "",
         execLastName: "",
-        execTeam: "",
-        exePosition: "",
+        execTeam: "Senior Staff", // Default option.
+        execPosition: "",
         execBiography: "",
         execLinkedin: "",
         execEmail: ""
@@ -76,15 +76,15 @@ class Team extends Component {
                     <Image className="team-photo" alt="2018-2019 GSGGB Executive Team" src={teamPhoto1819} />
                     <span className="team-photo-title">
                         Our Executive Team
-                        <h3 className="team-photo-subtitle">(Fall 2020 - Winter 2021)</h3>
+                        <h3 className="team-photo-subtitle">
+                            (Fall 2020 - Winter 2021)
+                            {addExecutiveButton}
+                        </h3>
                     </span>
                 </div>
 
                 <div className="team-section">
-                    <h3 className="team-name" id="senior-staff">
-                        SENIOR STAFF
-                        {addExecutiveButton}
-                    </h3>
+                    <h3 className="team-name" id="senior-staff">SENIOR STAFF</h3>
                     <br />
                     <div className="container" id="team-members">
                         <Row>
@@ -266,7 +266,6 @@ class Team extends Component {
                                     name="execBiography"
                                     as="textarea"
                                     placeholder="Add biography here..."
-                                    defaultValue={this.state.execBiography}
                                     rows="5"
                                     onChange={e => updateExecutiveForm(this, e.target)}
                                     required
@@ -279,7 +278,6 @@ class Team extends Component {
                                     type="text"
                                     name="execLinkedin"
                                     rows="1"
-                                    defaultValue={this.state.execLinkedin}
                                     onChange={e => updateExecutiveForm(this, e.target)}
                                 />
                             </Form.Group>
@@ -287,10 +285,9 @@ class Team extends Component {
                             <Form.Group>
                                 <Form.Label>Email address (OPTIONAL)</Form.Label>
                                 <Form.Control
-                                    type="email"
+                                    type="text"
                                     name="execEmail"
                                     rows="1"
-                                    defaultValue={this.state.execEmail}
                                     onChange={e => updateExecutiveForm(this, e.target)}
                                 />
                             </Form.Group>

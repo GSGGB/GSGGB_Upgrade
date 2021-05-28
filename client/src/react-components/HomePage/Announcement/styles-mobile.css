@@ -3,7 +3,9 @@
     .toast-header{
         height: 75px;
     }
+}
 
+@media (max-width: 768px){
     #delete-announcement-button{
         margin-left: 20px;
     }

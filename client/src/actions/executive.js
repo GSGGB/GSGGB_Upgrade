@@ -19,6 +19,16 @@ const addExecutiveHelper = async(teamComp, executive) => {
 
         const imageRes = await fetch(imageURL);
 
+        let linkedin = "https://www.linkedin.com";
+        if (executive.linkedin){
+            linkedin = executive.linkedin;
+        }
+
+        let email = "info@gsggb.org";
+        if (executive.email){
+            email = executive.email;
+        }
+
         if (imageRes.status === 200) {
             const imageJSON = await imageRes.json();
 
@@ -33,8 +43,8 @@ const addExecutiveHelper = async(teamComp, executive) => {
                                       team={executive.team}
                                       position={executive.position}
                                       biography={executive.biography}
-                                      linkedin={executive.linkedin}
-                                      email={executive.email}
+                                      linkedin={linkedin}
+                                      email={email}
                                 ></Executive>
 
             // Add to appropriate array depending on team.
@@ -118,7 +128,8 @@ export const getAllExecutives = (teamComp) => {
                 mentorshipExecs: [],
                 eventsExecs: [],
                 techExecs: [],
-                jiggExecs: []
+                jiggExecs: [],
+                alumniExecs: []
             })
 
             for (let executive of json.allExecutives) {
@@ -173,14 +184,14 @@ export const addExecutive = (teamComp) => {
         const url = "/executiveDatabase";
 
         const executive = {
-            imageId: teamComp.imageId,
-            firstName: teamComp.execFirstName,
-            lastName: teamComp.execLastName,
-            team: teamComp.execTeam,
-            position: teamComp.execPosition,
-            biography: teamComp.execBiography,
-            linkedin: teamComp.execLinkedin,
-            email: teamComp.execEmail
+            imageId: teamComp.state.imageId,
+            firstName: teamComp.state.execFirstName,
+            lastName: teamComp.state.execLastName,
+            team: teamComp.state.execTeam,
+            position: teamComp.state.execPosition,
+            biography: teamComp.state.execBiography,
+            linkedin: teamComp.state.execLinkedin,
+            email: teamComp.state.execEmail
         };
 
         const request = new Request(url, {
@@ -215,14 +226,14 @@ export const addExecutive = (teamComp) => {
 // Helper function for editExecutive.
 const editExecutiveHelper = (executiveComp, teamComp, url) => {
     const updatedExecutive = {
-        imageId: executiveComp.imageId,
-        firstName: executiveComp.execFirstName,
-        lastName: executiveComp.execLastName,
-        team: executiveComp.execTeam,
-        position: executiveComp.executivePosition,
-        biography: executiveComp.execBiography,
-        linkedin: executiveComp.execLinkedin,
-        email: executiveComp.execEmail
+        imageId: executiveComp.state.imageId,
+        firstName: executiveComp.state.firstName,
+        lastName: executiveComp.state.lastName,
+        team: executiveComp.state.team,
+        position: executiveComp.state.position,
+        biography: executiveComp.state.biography,
+        linkedin: executiveComp.state.linkedin,
+        email: executiveComp.state.email
     }
 
     const request = new Request(url, {

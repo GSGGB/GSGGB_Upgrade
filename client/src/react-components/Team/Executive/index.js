@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Row, Col, Card, Button, Modal, ModalBody, Form, Image } from "react-bootstrap";
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
 import ModalHeader from "react-bootstrap/ModalHeader";
 import { confirmAlert } from 'react-confirm-alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -30,7 +28,7 @@ class Executive extends Component {
         imageId: "",
         firstName: "",
         lastName: "",
-        team: "",
+        team: "Senior Staff", // Default option.
         position: "",
         biography: "",
         linkedin: "",
@@ -131,38 +129,39 @@ class Executive extends Component {
             <BrowserRouter forceRefresh={true}>
                 <Col>
                     <Card className="executive-card mx-auto">
+                        <Card.Title>{deleteExecutiveButton}{editExecutiveButton}</Card.Title>
                         <Card.Img className="executive-photo" src={this.props.imageURL} key={this.props.firstName} />
                         <Card.Body>
-                        <Card.Title className="executive-name">{this.props.firstName + " " + this.props.lastName}</Card.Title>
-                        <Card.Text className="executive-position">{this.props.position}</Card.Text>
+                            <Card.Title className="executive-name">{this.props.firstName + " " + this.props.lastName}</Card.Title>
+                            <Card.Text className="executive-position">{this.props.position}</Card.Text>
 
-                        <Button className="view-biography" onClick={() =>
-                            this.setState({
-                                modalId: `modal${this.props.executiveId}`
-                            })
-                        }>
-                            <span className="card-icon" id="biography">
-                                <FaInfo />
-                            </span>
-                        </Button>
-                        <a
-                          href={this.props.linkedin}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                            <span className="card-icon" id="linkedin">
-                                <FaLinkedin />
-                            </span>
-                        </a>
-                        <a
-                          href={`mailto:${this.props.email}`}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                            <span className="card-icon" id="personal-email">
-                                <FaEnvelope />
-                            </span>
-                        </a>
+                            <Button className="view-biography" onClick={() =>
+                                this.setState({
+                                    modalId: `modal${this.props.executiveId}`
+                                })
+                            }>
+                                <span className="card-icon" id="biography">
+                                    <FaInfo />
+                                </span>
+                            </Button>
+                            <a
+                              href={this.props.linkedin}
+                              rel="noopener noreferrer"
+                              target="_blank"
+                            >
+                                <span className="card-icon" id="linkedin">
+                                    <FaLinkedin />
+                                </span>
+                            </a>
+                            <a
+                              href={`mailto:${this.props.email}`}
+                              rel="noopener noreferrer"
+                              target="_blank"
+                            >
+                                <span className="card-icon" id="personal-email">
+                                    <FaEnvelope />
+                                </span>
+                            </a>
                         </Card.Body>
                     </Card>
 

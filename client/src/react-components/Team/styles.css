@@ -45,6 +45,10 @@
     font-family: Tahoma, Geneva, sans-serif;
 }
 
+#add-exec-button{
+    margin-left: 10px;
+}
+
 .team-section{
     margin-top: 100px;
     margin-bottom: 50px;
@@ -53,5 +57,4 @@
 .team-section-separator{
     margin: 0px;
 }
-
 /* End of Team */

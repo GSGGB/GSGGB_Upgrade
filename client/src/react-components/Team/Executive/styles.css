@@ -1,4 +1,9 @@
 /* Executive Cards */
+#edit-executive-button, #delete-executive-button{
+    display: inline-block;
+    float: right;
+}
+
 .executive-card{
     width: 18rem;
     margin-bottom: 20px;
@@ -116,3 +121,9 @@
     border-bottom: 0px !important;
 }
 /* End of Team Executives Modals */
+
+/* Styling for executive edit form */
+#exec-image-file-edit{
+    display: none;
+}
+/* End of styling for executive edit form */

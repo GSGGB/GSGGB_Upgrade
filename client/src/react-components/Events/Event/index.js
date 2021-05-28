@@ -29,8 +29,8 @@ class Event extends Component {
         displayModal: false,
         imageFile: "",
         imageId: "",
-        imageOrientation: "",
-        type: "",
+        imageOrientation: "Landscape", // Default option.
+        type: "Academic Seminar", // Default option.
         title: "",
         date: "",
         startTime: "",
