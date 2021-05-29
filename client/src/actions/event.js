@@ -4,6 +4,29 @@ import { addImage, deleteImage } from "../actions/image";
 
 // Functions to help with events.
 
+// A function to update contents of event form.
+export const updateEventForm = (comp, field) => {
+    const value = field.value;
+    const name = field.name;
+
+    comp.setState({
+        [name]: value
+    });
+};
+
+
+// A function to delete the event image.
+const deleteImageHelper = async(gEvent) => {
+      const imageURL = "/imageDatabase/" + gEvent.imageId;
+      const imageRes = await fetch(imageURL);
+
+      if (imageRes.status === 200) {
+          const imageJSON = await imageRes.json();
+          deleteImage(imageJSON.imageId);
+      }
+};
+
+
 // Helper function for getAllEvents and addEvent.
 const addEventHelper = async(eventsComp, gEvent, dateToday) => {
     // Retrieve user details including username.
@@ -60,16 +83,6 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
     } else {
         alert("Could not get user");
     }
-};
-
-// A function to update contents of event form.
-export const updateEventForm = (comp, field) => {
-    const value = field.value;
-    const name = field.name;
-
-    comp.setState({
-        [name]: value
-    });
 };
 
 
@@ -181,6 +194,7 @@ export const addEvent = (eventsComp) => {
                     return res.json();
                 } else {
                     alert("Could not add event");
+                    deleteImageHelper(gEvent);
                 }
             })
             .then(json => {
@@ -213,7 +227,7 @@ export const addEvent = (eventsComp) => {
 
 
 // Helper function for editEvent.
-const editEventHelper = (singleEventComp, eventsComp, url) => {
+const editEventHelper = (singleEventComp, eventsComp, url, imageUpdated, imageCloudinaryId) => {
     const updatedEvent = {
         imageId: singleEventComp.state.imageId,
         imageOrientation: singleEventComp.state.imageOrientation,
@@ -242,8 +256,18 @@ const editEventHelper = (singleEventComp, eventsComp, url) => {
         .then(res => {
             if (res.status === 200) {
                 alert("Successfully updated event");
+
+                // Delete old image.
+                if (imageUpdated === true){
+                    deleteImage(imageCloudinaryId);
+                }
             } else {
                 alert("Could not update event");
+
+                // Delete image just uploaded but not added to event due to mongoose model fail.
+                if (imageUpdated === true){
+                    deleteImageHelper(updatedEvent);
+                }
             }
         })
     .catch(error => {
@@ -265,14 +289,11 @@ export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, id) =>
         // Add new poster/image to cloudinary.
         addImage(singleEventComp, () => {
             // 2) Edit event in MongoDB database.
-            editEventHelper(singleEventComp, eventsComp, url)
-
-            // Delete poster/image in cloudinary.
-            deleteImage(imageCloudinaryId);
+            editEventHelper(singleEventComp, eventsComp, url, true, imageCloudinaryId)
         });
     } else {
         // Edit event in MongoDB database without modifying image.
-        editEventHelper(singleEventComp, eventsComp, url)
+        editEventHelper(singleEventComp, eventsComp, url, false, imageCloudinaryId)
     }
 }
 

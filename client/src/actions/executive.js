@@ -4,6 +4,29 @@ import { addImage, deleteImage } from "../actions/image";
 
 // Functions to help with executives.
 
+// A function to update contents of executive form.
+export const updateExecutiveForm = (comp, field) => {
+    const value = field.value;
+    const name = field.name;
+
+    comp.setState({
+        [name]: value
+    });
+};
+
+
+// A function to delete the executive image image.
+const deleteImageHelper = async(executive) => {
+      const imageURL = "/imageDatabase/" + executive.imageId;
+      const imageRes = await fetch(imageURL);
+
+      if (imageRes.status === 200) {
+          const imageJSON = await imageRes.json();
+          deleteImage(imageJSON.imageId);
+      }
+};
+
+
 // Helper function for getAllExecutives and addExecutive.
 const addExecutiveHelper = async(teamComp, executive) => {
     // Retrieve user details including username.
@@ -50,39 +73,39 @@ const addExecutiveHelper = async(teamComp, executive) => {
             // Add to appropriate array depending on team.
             if (executive.team === "Senior Staff"){
                 teamComp.setState({
-                    seniorStaffExecs: [newExecutive].concat(teamComp.state.seniorStaffExecs)
+                    seniorStaffExecs: (teamComp.state.seniorStaffExecs).concat([newExecutive])
                 })
             } else if (executive.team === "Conference Committee"){
                 teamComp.setState({
-                    conferenceExecs: [newExecutive].concat(teamComp.state.conferenceExecs)
+                    conferenceExecs: (teamComp.state.conferenceExecs).concat([newExecutive])
                 })
             } else if (executive.team === "Marketing"){
                 teamComp.setState({
-                    marketingExecs: [newExecutive].concat(teamComp.state.marketingExecs)
+                    marketingExecs: (teamComp.state.marketingExecs).concat([newExecutive])
                 })
             } else if (executive.team === "Affairs"){
                 teamComp.setState({
-                    affairsExecs: [newExecutive].concat(teamComp.state.affairsExecs)
+                    affairsExecs: (teamComp.state.affairsExecs).concat([newExecutive])
                 })
             } else if (executive.team === "Mentorship"){
                 teamComp.setState({
-                    mentorshipExecs: [newExecutive].concat(teamComp.state.mentorshipExecs)
+                    mentorshipExecs: (teamComp.state.mentorshipExecs).concat([newExecutive])
                 })
             } else if (executive.team === "Events"){
                 teamComp.setState({
-                    eventsExecs: [newExecutive].concat(teamComp.state.eventsExecs)
+                    eventsExecs: (teamComp.state.eventsExecs).concat([newExecutive])
                 })
             } else if (executive.team === "Tech & Innovations"){
                 teamComp.setState({
-                    techExecs: [newExecutive].concat(teamComp.state.techExecs)
+                    techExecs: (teamComp.state.techExecs).concat([newExecutive])
                 })
             } else if (executive.team === "JIGG"){
                 teamComp.setState({
-                    jiggExecs: [newExecutive].concat(teamComp.state.jiggExecs)
+                    jiggExecs: (teamComp.state.jiggExecs).concat([newExecutive])
                 })
             } else if (executive.team === "Alumni"){
                 teamComp.setState({
-                    alumniExecs: [newExecutive].concat(teamComp.state.alumniExecs)
+                    alumniExecs: (teamComp.state.alumniExecs).concat([newExecutive])
                 })
             }
 
@@ -92,16 +115,6 @@ const addExecutiveHelper = async(teamComp, executive) => {
     } else {
         alert("Could not get user");
     }
-};
-
-// A function to update contents of executive form.
-export const updateExecutiveForm = (comp, field) => {
-    const value = field.value;
-    const name = field.name;
-
-    comp.setState({
-        [name]: value
-    });
 };
 
 
@@ -211,6 +224,7 @@ export const addExecutive = (teamComp) => {
                     return res.json();
                 } else {
                     alert("Could not add executive");
+                    deleteImageHelper(executive);
                 }
             })
             .then(json => {
@@ -238,7 +252,7 @@ export const addExecutive = (teamComp) => {
 
 
 // Helper function for editExecutive.
-const editExecutiveHelper = (executiveComp, teamComp, url) => {
+const editExecutiveHelper = (executiveComp, teamComp, url, imageUpdated, imageCloudinaryId) => {
     const updatedExecutive = {
         imageId: executiveComp.state.imageId,
         firstName: executiveComp.state.firstName,
@@ -263,8 +277,18 @@ const editExecutiveHelper = (executiveComp, teamComp, url) => {
         .then(res => {
             if (res.status === 200) {
                 alert("Successfully updated executive");
+
+                // Delete old image.
+                if (imageUpdated === true){
+                    deleteImage(imageCloudinaryId);
+                }
             } else {
                 alert("Could not update executive");
+
+                // Delete image just uploaded but not added to executive due to mongoose model fail.
+                if (imageUpdated === true){
+                    deleteImageHelper(updatedExecutive);
+                }
             }
         })
     .catch(error => {
@@ -286,14 +310,11 @@ export const editExecutive = (executiveComp, teamComp, imageCloudinaryId, id) =>
         // Add new poster/image to cloudinary.
         addImage(executiveComp, () => {
             // 2) Edit executive in MongoDB database.
-            editExecutiveHelper(executiveComp, teamComp, url)
-
-            // Delete poster/image in cloudinary.
-            deleteImage(imageCloudinaryId);
+            editExecutiveHelper(executiveComp, teamComp, url, true, imageCloudinaryId)
         });
     } else {
         // Edit executive in MongoDB database without modifying image.
-        editExecutiveHelper(executiveComp, teamComp, url)
+        editExecutiveHelper(executiveComp, teamComp, url, false, imageCloudinaryId)
     }
 }
 

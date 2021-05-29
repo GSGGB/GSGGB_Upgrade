@@ -28,13 +28,14 @@ export const addImage = (comp, callback) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                alert("Image upload failed. Please try again.");
+                alert("Image upload failed");
             }
         })
         .then(json => {
             comp.setState({
                 imageId: json._id
             }, () => {
+                alert("Image upload successful")
                 callback();
             })
         })
@@ -45,28 +46,28 @@ export const addImage = (comp, callback) => {
 
 // A function to send a DELETE request with an image PUBLIC id (id on cloudinary)
 export const deleteImage = (id) => {
-  const url = "/imageDatabase/" + id;
+    const url = "/imageDatabase/" + id;
 
-  const request = new Request(url, {
-      method: "DELETE",
-      headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json"
-      }
-  });
+    const request = new Request(url, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
 
-  // Send the request with fetch()
-  fetch(request)
-      .then(res => {
-          // Handle response we get from the API.
-          // Usually check the error codes to see what happened.
-          if (res.status === 200) {
-              alert("Successfully deleted image.");
-          } else {
-              alert("Image deletion failed. Please try again.");
-          }
-      })
-      .catch(error => {
-          console.log(error);
-      });
+    // Send the request with fetch()
+    fetch(request)
+        .then(res => {
+            // Handle response we get from the API.
+            // Usually check the error codes to see what happened.
+            if (res.status === 200) {
+                alert("Image deletion successful");
+            } else {
+                alert("Image deletion failed");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }
