@@ -218,6 +218,20 @@ export const addExecutive = (teamComp) => {
             })
             .catch(error => {
                 console.log(error);
+            })
+            .finally(() => {
+                // Reset state variables.
+                teamComp.setState({
+                    imageFile: "",
+                    imageId: "",
+                    execFirstName: "",
+                    execLastName: "",
+                    execTeam: "Senior Staff",
+                    execPosition: "",
+                    execBiography: "",
+                    execLinkedin: "",
+                    execEmail: "",
+                });
             });
     });
 }

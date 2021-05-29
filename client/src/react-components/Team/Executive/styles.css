@@ -115,6 +115,7 @@
     color: black;
     height: 325px;
     overflow-y: auto;
+    white-space: pre-line;
 }
 
 .modal-header {

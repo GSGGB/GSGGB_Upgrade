@@ -40,11 +40,11 @@ const ExecutiveSchema = new mongoose.Schema({
     },
     linkedin: {
         type: String,
-        minlength: 1
+        minlength: 0
     },
     email: {
         type: String,
-        minlength: 1
+        minlength: 0
     }
 })
 

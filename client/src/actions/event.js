@@ -189,6 +189,24 @@ export const addEvent = (eventsComp) => {
             })
             .catch(error => {
                 console.log(error);
+            })
+            .finally(() => {
+                // Reset state variables.
+                eventsComp.setState({
+                    imageFile: "",
+                    imageId: "",
+                    eventImageOrientation: "Landscape",
+                    eventType: "Academic Seminar",
+                    eventTitle: "",
+                    eventDate: "",
+                    eventStartTime: "",
+                    eventEndTime: "",
+                    eventLocation: "",
+                    eventContent: "",
+                    fbEventLink: "",
+                    eventbriteLink: "",
+                    zoomLink: ""
+                });
             });
     });
 }

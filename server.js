@@ -18,8 +18,8 @@ const { User } = require("./models/user");
 const { Image } = require("./models/image");
 const { Announcement } = require("./models/announcement");
 const { Research } = require("./models/research");
-const { Event } = require("./models/event")
 const { Executive } = require("./models/executive")
+const { Event } = require("./models/event")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
