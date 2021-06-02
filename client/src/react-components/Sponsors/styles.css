@@ -26,15 +26,13 @@
 .sponsors-photo-subtitle{
     font-size: 35px;
 }
-/* End of sponsors photo banner styling */
 
-
-/* Center logos in each section */
 #add-sponsor-button{
     margin-left: 10px;
 }
+/* End of sponsors photo banner styling */
 
-/* Sponsors title for each section */
+/* Sponsors header for each section */
 .sponsors-header{
     color: white;
     font-size: 30px;
@@ -67,92 +65,4 @@
 #special-sponsor{
     background-color: darkorange;
 }
-/* End of sponsors title for each section */
-
-
-/* PLATINUM SECTION */
-.peros-logo{
-    width: 500px;
-    margin-top: 60px;
-    margin-bottom: 50px;
-}
-
-.trillium-logo{
-    width: 300px;
-    height: 200px;
-    margin-bottom: 50px;
-}
-/* END OF PLATINUM SECTION */
-
-
-/* GOLD SECTION */
-.utsu-logo{
-    width: 250px;
-    margin-bottom: 20px;
-}
-
-.janpix-logo{
-    width: 300px;
-    height: 200px;
-    margin-bottom: 50px;
-    margin-right: 60px;
-}
-
-.princeton-logo{
-    width: 375px;
-    height: 200px;
-    margin-bottom: 50px;
-}
-/* END OF GOLD SECTION */
-
-
-/* SILVER SECTION */
-.physiology-logo{
-    margin-top: 50px;
-    width: 425px;
-    height: 100px;
-}
-
-.csb-logo{
-    margin-top: 40px;
-    width: 275px;
-    height: 100px;
-}
-
-.newcollege-logo{
-    width: 175px;
-    height: 175px;
-    margin-top: 30px;
-    margin-bottom: 50px;
-}
-/* END OF SILVER SECTION */
-
-
-/* BRONZE SECTION */
-.assu-logo, .oztrekk-logo{
-    width: 300px;
-    height: 150px;
-    margin-bottom: 50px;
-}
-/* END OF BRONZE SECTION */
-
-
-/* PARTNER SECTION */
-.ssscr-logo{
-    width: 225px;
-    height: 150px;
-    margin-bottom: 50px;
-}
-
-.stem-fellowship-uoft-logo, .carrm-logo, .heart-logo, .wbc-logo, .bioethics-logo{
-    width: 150px;
-    height: 150px;
-    margin-bottom: 50px;
-}
-
-.rare-disease-foundation-logo{
-    width: 425px;
-    height: 175px;
-    margin-bottom: 50px;
-}
-/* END OF PARTNER SECTION */
+/* End of sponsors header for each section */

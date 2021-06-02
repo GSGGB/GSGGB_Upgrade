@@ -34,7 +34,7 @@ class Sponsors extends Component {
         sponsorName: "",
         sponsorLink: "",
         logoWidth: 0,
-        logoHeight: 0,
+        logoHeight: null,
         logoMarginLeft: 0,
         logoMarginRight: 0,
         logoMarginTop: 0,
@@ -201,7 +201,7 @@ class Sponsors extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image width in pixels</Form.Label>
+                                <Form.Label>Logo/Image <b>WIDTH</b> in pixels</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="logoWidth"
@@ -212,7 +212,7 @@ class Sponsors extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image height in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>HEIGHT</b> in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="logoHeight"
@@ -222,7 +222,7 @@ class Sponsors extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image left margin in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>LEFT</b> margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="logoMarginLeft"
@@ -232,7 +232,7 @@ class Sponsors extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image right margin in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>RIGHT</b> margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="logoMarginRight"
@@ -242,7 +242,7 @@ class Sponsors extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image top margin in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>TOP</b> margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="logoMarginTop"
@@ -252,7 +252,7 @@ class Sponsors extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image bottom margin in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>BOTTOM</b> margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="logoMarginBottom"

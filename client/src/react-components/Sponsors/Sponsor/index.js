@@ -7,6 +7,7 @@ import { faEdit, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import "./styles.css";
+import "./styles-mobile.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import { updateImageFile } from "../../../actions/image";
@@ -26,12 +27,26 @@ class Sponsor extends Component {
         name: "",
         link: "",
         width: 0,
-        height: 0,
+        height: null,
         marginLeft: 0,
         marginRight: 0,
         marginTop: 0,
         marginBottom: 0
     };
+
+    // Manipulate DOM by editing sponsor logo/image CSS.
+    componentDidMount(){
+        const sponsorLogo = document.querySelector(`.${(this.props.name).toLowerCase().split(" ").join("-")}-logo`);
+
+        // Set CSS attributes here. Any fields that were not filled in
+        // were initialized to 0.
+        sponsorLogo.style.width = this.props.width + "px";
+        sponsorLogo.style.height = this.props.height + "px";
+        sponsorLogo.style.marginLeft = this.props.marginLeft + "px";
+        sponsorLogo.style.marginRight = this.props.marginRight + "px";
+        sponsorLogo.style.marginTop = this.props.marginTop + "px";
+        sponsorLogo.style.marginBottom = this.props.marginBottom + "px";
+    }
 
     // Edit sponsor button for editors and administrators only.
     editSponsorButton(){
@@ -119,7 +134,8 @@ class Sponsor extends Component {
                     <div className="sponsor-center">
                         {deleteSponsorButton}{editSponsorButton}
                         <a href={this.props.link} target="_blank" rel="noopener noreferrer">
-                            <Image className={`${this.props.name}-logo`} src={this.props.imageURL} />
+                            <Image className={`${(this.props.name).toLowerCase().split(" ").join("-")}-logo`}
+                            src={this.props.imageURL} />
                         </a>
                     </div>
                 </Col>
@@ -199,7 +215,7 @@ class Sponsor extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image width in pixels</Form.Label>
+                                <Form.Label>Logo/Image <b>WIDTH</b> in pixels</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="width"
@@ -211,7 +227,7 @@ class Sponsor extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image height in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>HEIGHT</b> in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="height"
@@ -223,7 +239,7 @@ class Sponsor extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image left margin in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>LEFT</b> margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="marginLeft"
@@ -234,7 +250,7 @@ class Sponsor extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image right margin in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>RIGHT</b> margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="marginRight"
@@ -245,7 +261,7 @@ class Sponsor extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image top margin in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>TOP</b> margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="marginTop"
@@ -256,7 +272,7 @@ class Sponsor extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Logo/Image bottom margin in pixels (OPTIONAL)</Form.Label>
+                                <Form.Label>Logo/Image <b>BOTTOM</b> margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="marginBottom"
@@ -271,7 +287,7 @@ class Sponsor extends Component {
                                 type="submit"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    editSponsor(this, this.props.sponsorsComp, this.props.imageCloudinaryId, this.props.executiveId);
+                                    editSponsor(this, this.props.sponsorsComp, this.props.imageCloudinaryId, this.props.sponsorId);
                                     this.setState({ displayModal: false });
                                 }}
                                 >
