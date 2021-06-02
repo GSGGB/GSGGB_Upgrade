@@ -203,7 +203,7 @@ class Team extends Component {
                             <Form.Group>
                                 <Form.File
                                     name="imageFile"
-                                    label="Upload headshot"
+                                    label="Upload headshot (with square image orientation)"
                                     onChange={e => updateImageFile(this, e.target)}
                                     required />
                             </Form.Group>

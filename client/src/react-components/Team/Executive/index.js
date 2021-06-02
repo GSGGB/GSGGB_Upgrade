@@ -194,6 +194,7 @@ class Executive extends Component {
                         </Modal.Body>
                     </Modal>
                 </Col>
+                
                 <Modal
                     show={this.state.displayModal}
                     onHide={() => this.setState({ displayModal: false })}
@@ -212,7 +213,7 @@ class Executive extends Component {
                                 <Form.Check
                                     id="exec-image-checkbox"
                                     type="checkbox"
-                                    label="Change existing headshot"
+                                    label="Change existing headshot (with square image orientation)"
                                     onClick={() => {
                                         this.displayCheckbox();
                                     }}
@@ -332,6 +333,7 @@ class Executive extends Component {
                         </Form>
                     </ModalBody>
                 </Modal>
+
             </BrowserRouter>
         );
     }

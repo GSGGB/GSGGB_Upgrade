@@ -1,147 +1,132 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Row, Button, Modal, ModalBody, Form, Image } from "react-bootstrap";
+import { Col, Button, Modal, ModalBody, Form, Image } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
+import { confirmAlert } from 'react-confirm-alert';
+import { faEdit, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import "./styles.css";
-import "./styles-mobile.css";
-import sponsorsPrincetonReview from "./static/sponsors-princeton-review.jpg";
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
-// Importing sponsor actions/required methods.
-import { updateImageFile } from "../../actions/image";
-import { updateSponsorForm, getAllSponsors, addSponsor } from "../../actions/sponsor";
+import { updateImageFile } from "../../../actions/image";
+import { updateSponsorForm, getSponsorById, editSponsor, deleteSponsor } from "../../../actions/sponsor";
 
-class Sponsors extends Component {
+class Sponsor extends Component {
     constructor(props) {
         super(props);
-        this.props.history.push("/sponsors");
-        document.title = "GSGGB U of T | Sponsors";
+        this.myRef = React.createRef();
     }
 
     state = {
-        platinumSponsors: [],
-        goldSponsors: [],
-        silverSponsors: [],
-        bronzeSponsors: [],
-        partners: [],
-        special: [],
-        displaySponsorModal: false,
+        displayModal: false,
         imageFile: "",
         imageId: "",
-        sponsorType: "Platinum", // Default option.
-        sponsorName: "",
-        sponsorLink: "",
-        logoWidth: 0,
-        logoHeight: 0,
-        logoMarginLeft: 0,
-        logoMarginRight: 0,
-        logoMarginTop: 0,
-        logoMarginBottom: 0
+        type: "Platinum", // Default option.
+        name: "",
+        link: "",
+        width: 0,
+        height: 0,
+        marginLeft: 0,
+        marginRight: 0,
+        marginTop: 0,
+        marginBottom: 0
     };
 
-    componentDidMount(){
-        getAllSponsors(this);
-    }
-
-    // Add sponsor button for editors and administrators only.
-    addSponsorButton() {
+    // Edit sponsor button for editors and administrators only.
+    editSponsorButton(){
+        const username = sessionStorage.getItem("username");
         const accountType = sessionStorage.getItem("accountType");
         const loggedIn = sessionStorage.getItem("loggedIn");
 
-        if (
-          loggedIn === "true" &&
-          (accountType === "Editor" || accountType === "Administrator")
-        ) {
-            return (
-                <Button
-                    id="add-sponsor-button"
-                    variant="outline-info"
-                    onClick={() => this.setState({ displaySponsorModal: true })}
-                >
-                    <FontAwesomeIcon icon={faPlus} size={20}/>
-                </Button>
-            )
+        if (loggedIn === "true"){
+            if (
+              accountType === "Administrator" ||
+              (accountType === "Editor" && username === this.props.username)
+            ){
+                return (
+                    <Button
+                        id="edit-sponsor-button"
+                        variant="outline-info"
+                        size="sm"
+                        onClick={() => getSponsorById(this, this.props.sponsorId)}
+                    >
+                        <FontAwesomeIcon icon={faEdit} size={4}/>
+                    </Button>
+                )
+            }
+        }
+    }
+
+    // Delete sponsor button for editors and administrators only.
+    deleteSponsorButton(){
+        const username = sessionStorage.getItem("username");
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
+
+        if (loggedIn === "true"){
+            if (
+              accountType === "Administrator" ||
+              (accountType === "Editor" && username === this.props.username)
+            ){
+                return (
+                    <Button
+                        id="delete-sponsor-button"
+                        variant="outline-info"
+                        size="sm"
+                        onClick={() => {
+                            confirmAlert({
+                                message: 'Please confirm deletion of this sponsor.',
+                                buttons: [
+                                    {
+                                      label: 'Yes',
+                                      onClick: () => deleteSponsor(this.props.sponsorsComp, this.props.imageCloudinaryId, this.props.sponsorId)
+                                    },
+                                    {
+                                      label: 'No'
+                                    }
+                                ]
+                            });
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faMinus} size={5}/>
+                    </Button>
+                )
+            }
+        }
+    }
+
+    // Checkbox for edit sponsor form. Checked if user wishes to upload a new image.
+    displayCheckbox(){
+        const sponsorImageCheckbox = document.querySelector("#sponsor-image-checkbox");
+        const sponsorImageFileEdit = document.querySelector("#sponsor-image-file-edit");
+
+        // If the checkbox is checked, display the output text
+        if (sponsorImageCheckbox.checked === true){
+            sponsorImageFileEdit.style.display = "block";
+        } else {
+            sponsorImageFileEdit.style.display = "none";
         }
     }
 
     render() {
-        const addSponsorButton = this.addSponsorButton();
+        const editSponsorButton = this.editSponsorButton();
+        const deleteSponsorButton = this.deleteSponsorButton();
 
-        return(
+        return (
             <BrowserRouter forceRefresh={true}>
-                <div className="sponsors-photo-container">
-                    <Image className="sponsors-photo" alt="2019-2020 Introduction to R Workshop" src={sponsorsPrincetonReview} />
-                    <span className="sponsors-photo-title">
-                        Our Sponsors
-                        <h3 className="sponsors-photo-subtitle">
-                            Thank-you to our sponsors for supporting GSGGB and its chapters!
-                            {addSponsorButton}
-                        </h3>
-                    </span>
-                </div>
-
-                <br /><br /><br /><br />
-                <h4 className="sponsors-header" id="platinum-sponsor">PLATINUM: Awarded to sponsors with a contribution of $1000 or more.</h4>
-                <br />
-                <div className="container">
-                    <Row>
-                        {this.state.platinumSponsors}
-                    </Row>
-                </div>
-                <br />
-
-                <br /><br />
-                <h4 className="sponsors-header" id="gold-sponsor">GOLD: Awarded to sponsors with a contribution of $500 or more.</h4>
-                <br />
-                <div className="container">
-                    <Row>
-                        {this.state.goldSponsors}
-                    </Row>
-                </div>
-                <br/>
-
-                <br /><br />
-                <h4 className="sponsors-header" id="silver-sponsor">SILVER: Awarded to sponsors with a contribution of $250 or more.</h4>
-                <br />
-                <div className="container">
-                    <Row>
-                        {this.state.silverSponsors}
-                    </Row>
-                </div>
-                <br/>
-
-                <br /><br />
-                <h4 className="sponsors-header" id="bronze-sponsor">BRONZE: Awarded to sponsors with a contribution of $100 or more.</h4>
-                <br />
-                <div className="container">
-                    <Row>
-                        {this.state.bronzeSponsors}
-                    </Row>
-                </div>
-
-                <br /><br />
-                <h4 className="sponsors-header" id="partner-sponsor">Thanks to our U of T club partners for their support!</h4>
-                <br />
-                <div className="container">
-                    <Row>
-                        {this.state.partners}
-                    </Row>
-                </div>
-
-                <br /><br />
-                <h4 className="sponsors-header" id="special-sponsor">A special thank-you to the Rare Disease Foundation for our partnership!</h4>
-                <br />
-                <div className="container">
-                    <Row>
-                        {this.state.special}
-                    </Row>
-                </div>
+                <Col sm>
+                    <div className="sponsor-center">
+                        {deleteSponsorButton}{editSponsorButton}
+                        <a href={this.props.link} target="_blank" rel="noopener noreferrer">
+                            <Image className={`${this.props.name}-logo`} src={this.props.imageURL} />
+                        </a>
+                    </div>
+                </Col>
 
                 <Modal
-                    show={this.state.displaySponsorModal}
-                    onHide={() => this.setState({ displaySponsorModal: false })}
+                    show={this.state.displayModal}
+                    onHide={() => this.setState({ displayModal: false })}
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     backdrop="static"
@@ -149,14 +134,24 @@ class Sponsors extends Component {
                     centered
                 >
                     <ModalHeader closeButton>
-                        <h4>Add new sponsor</h4>
+                        <h4>Edit sponsor</h4>
                     </ModalHeader>
                     <ModalBody>
                         <Form>
+                            <Form.Group controlId="formBasicCheckbox">
+                                <Form.Check
+                                    id="sponsor-image-checkbox"
+                                    type="checkbox"
+                                    label="Change existing sponsor logo"
+                                    onClick={() => {
+                                        this.displayCheckbox();
+                                    }}
+                                    required />
+                            </Form.Group>
                             <Form.Group>
                                 <Form.File
                                     name="imageFile"
-                                    label="Upload sponsor logo"
+                                    id="sponsor-image-file-edit"
                                     onChange={e => updateImageFile(this, e.target)}
                                     required />
                             </Form.Group>
@@ -165,7 +160,8 @@ class Sponsors extends Component {
                                 <Form.Label>Sponsor type</Form.Label>
                                 <Form.Control
                                     as="select"
-                                    name="sponsorType"
+                                    name="type"
+                                    defaultValue={this.state.type}
                                     onChange={e => updateSponsorForm(this, e.target)}
                                     required
                                 >
@@ -182,8 +178,9 @@ class Sponsors extends Component {
                                 <Form.Label>Sponsor name</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    name="sponsorName"
+                                    name="name"
                                     rows="1"
+                                    defaultValue={this.state.name}
                                     onChange={e => updateSponsorForm(this, e.target)}
                                     required
                                 />
@@ -193,8 +190,9 @@ class Sponsors extends Component {
                                 <Form.Label>Sponsor link</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    name="sponsorLink"
+                                    name="link"
                                     rows="1"
+                                    defaultValue={this.state.link}
                                     onChange={e => updateSponsorForm(this, e.target)}
                                     required
                                 />
@@ -204,8 +202,9 @@ class Sponsors extends Component {
                                 <Form.Label>Logo/Image width in pixels</Form.Label>
                                 <Form.Control
                                     type="number"
-                                    name="logoWidth"
+                                    name="width"
                                     rows="1"
+                                    defaultValue={this.state.width}
                                     onChange={e => updateSponsorForm(this, e.target)}
                                     required
                                 />
@@ -215,9 +214,11 @@ class Sponsors extends Component {
                                 <Form.Label>Logo/Image height in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
-                                    name="logoHeight"
+                                    name="height"
                                     rows="1"
+                                    defaultValue={this.state.height}
                                     onChange={e => updateSponsorForm(this, e.target)}
+                                    required
                                 />
                             </Form.Group>
                             <br/>
@@ -225,8 +226,9 @@ class Sponsors extends Component {
                                 <Form.Label>Logo/Image left margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
-                                    name="logoMarginLeft"
+                                    name="marginLeft"
                                     rows="1"
+                                    defaultValue={this.state.marginLeft}
                                     onChange={e => updateSponsorForm(this, e.target)}
                                 />
                             </Form.Group>
@@ -235,8 +237,9 @@ class Sponsors extends Component {
                                 <Form.Label>Logo/Image right margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
-                                    name="logoMarginRight"
+                                    name="marginRight"
                                     rows="1"
+                                    defaultValue={this.state.marginRight}
                                     onChange={e => updateSponsorForm(this, e.target)}
                                 />
                             </Form.Group>
@@ -245,8 +248,9 @@ class Sponsors extends Component {
                                 <Form.Label>Logo/Image top margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
-                                    name="logoMarginTop"
+                                    name="marginTop"
                                     rows="1"
+                                    defaultValue={this.state.marginTop}
                                     onChange={e => updateSponsorForm(this, e.target)}
                                 />
                             </Form.Group>
@@ -255,8 +259,9 @@ class Sponsors extends Component {
                                 <Form.Label>Logo/Image bottom margin in pixels (OPTIONAL)</Form.Label>
                                 <Form.Control
                                     type="number"
-                                    name="logoMarginBottom"
+                                    name="marginBottom"
                                     rows="1"
+                                    defaultValue={this.state.marginBottom}
                                     onChange={e => updateSponsorForm(this, e.target)}
                                 />
                             </Form.Group>
@@ -266,19 +271,19 @@ class Sponsors extends Component {
                                 type="submit"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    addSponsor(this);
-                                    this.setState({ displaySponsorModal: false })
+                                    editSponsor(this, this.props.sponsorsComp, this.props.imageCloudinaryId, this.props.executiveId);
+                                    this.setState({ displayModal: false });
                                 }}
                                 >
-                                    ADD
+                                    UPDATE
                             </Button>
                         </Form>
                     </ModalBody>
                 </Modal>
 
             </BrowserRouter>
-        )
+        );
     }
 }
 
-export default Sponsors;
+export default Sponsor;

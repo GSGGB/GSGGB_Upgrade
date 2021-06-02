@@ -18,8 +18,9 @@ const { User } = require("./models/user");
 const { Image } = require("./models/image");
 const { Announcement } = require("./models/announcement");
 const { Research } = require("./models/research");
-const { Executive } = require("./models/executive")
-const { Event } = require("./models/event")
+const { Executive } = require("./models/executive");
+const { Event } = require("./models/event");
+const { Sponsor } = require("./models/sponsor");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -606,6 +607,127 @@ app.delete("/eventDatabase/:id", (req, res) => {
         });
 });
 /** End of event resource routes **/
+
+
+/** Start of sponsor resource routes **/
+// A GET route to get ALL sponsors.
+app.get("/sponsorDatabase", (req, res) => {
+    Sponsor.find().then(
+        (allSponsors) => {
+            res.send({ allSponsors });
+        },
+        (error) => {
+            res.status(500).send(error); // Server error, could not get.
+        }
+    );
+});
+
+// A GET route to get a sponsor by their id.
+app.get("/sponsorDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Sponsor.findById(id)
+        .then((sponsor) => {
+            if (!sponsor) {
+                res.status(404).send();
+            } else {
+                res.send(sponsor);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not get.
+        });
+});
+
+// A POST route to create a sponsor.
+app.post("/sponsorDatabase", (req, res) => {
+    const sponsor = new Sponsor({
+        userId: req.session.user,
+        imageId: req.body.imageId,
+        type: req.body.type,
+        name: req.body.name,
+        link: req.body.link,
+        width: req.body.width,
+        height: req.body.height,
+        marginLeft: req.body.marginLeft,
+        marginRight: req.body.marginRight,
+        marginTop: req.body.marginTop,
+        marginBottom: req.body.marginBottom
+    });
+
+    // Save sponsor to the database.
+    sponsor.save().then(
+        (result) => {
+            res.send(result);
+        },
+        (error) => {
+            res.status(400).send(error); // 400 for bad request.
+        }
+    );
+});
+
+// A PATCH route to edit a sponsor by their id.
+app.patch("/sponsorDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    const body = {
+        imageId: req.body.imageId,
+        type: req.body.type,
+        name: req.body.name,
+        link: req.body.link,
+        width: req.body.width,
+        height: req.body.height,
+        marginLeft: req.body.marginLeft,
+        marginRight: req.body.marginRight,
+        marginTop: req.body.marginTop,
+        marginBottom: req.body.marginBottom
+    };
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Sponsor.findByIdAndUpdate(id, { $set: body })
+        .then((sponsor) => {
+            if (!sponsor) {
+                res.status(404).send();
+            } else {
+                res.send(sponsor);
+            }
+        })
+        .catch((error) => {
+            res.status(400).send(); // 400 for bad request.
+        });
+});
+
+// A DELETE route to delete a sponsor by their id.
+app.delete("/sponsorDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Sponsor.findByIdAndRemove(id)
+        .then((sponsor) => {
+            if (!sponsor) {
+                res.status(404).send();
+            } else {
+                res.send(sponsor);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not delete.
+        });
+});
+/** End of sponsor resource routes **/
 
 
 /** Start of image resource routes **/

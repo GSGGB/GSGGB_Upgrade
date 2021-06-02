@@ -1,0 +1,17 @@
+/* Styling for each sponsor logo */
+#edit-sponsor-button, #delete-sponsor-button{
+    display: inline-block;
+    float: right;
+}
+
+.sponsor-center{
+    text-align: center;
+}
+/* End of styling for each sponsor logo */
+
+
+/* Styling for sponsor edit form */
+#sponsor-image-file-edit{
+    display: none;
+}
+/* End of styling for sponsor edit form */

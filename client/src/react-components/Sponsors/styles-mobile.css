@@ -18,15 +18,6 @@
         font-size: 25px;
     }
 
-    /* PLATINUM SECTION */
-    .peros-logo{
-        margin-top: 25px;
-    }
-
-    .janpix-logo{
-        margin-right: 20px;
-    }
-
     .peros-logo, .trillium-logo, .utsu-logo, .janpix-logo, .princeton-logo,
     .physiology-logo, .csb-logo, .newcollege-logo, .assu-logo, .oztrekk-logo,
     .ssscr-logo, .stem-fellowship-uoft-logo, .carrm-logo, .heart-logo,
@@ -38,11 +29,6 @@
     .partner-header, .orange-header{
         text-align: center;
     }
-
-    .newcollege-logo{
-        margin-top: 30px;
-    }
-
 }
 
 
@@ -53,75 +39,5 @@
 
     .sponsors-photo-subtitle{
         font-size: 15px;
-    }
-
-    /* PLATINUM SECTION */
-    .peros-logo{
-        width: 375px;
-    }
-
-    .newcollege-logo{}
-}
-
-
-/* Making all logos smaller to fit mobile screens */
-@media (max-width: 475px){
-    /* PLATINUM SECTION */
-    .trillium-logo{
-        width: 100px;
-        height: 100px;
-    }
-
-
-    /* GOLD SECTION */
-    .janpix-logo{
-        width: 150px;
-        height: 100px;
-    }
-
-    .princeton-logo{
-        width: 190px;
-        height: 100px;
-    }
-
-
-    /* SILVER SECTION */
-    .physiology-logo{
-        width: 220px;
-        height: 50px;
-    }
-
-    .csb-logo{
-        width: 140px;
-        height: 50px;
-    }
-
-    .newcollege-logo{
-        width: 75px;
-        height: 75px;
-    }
-
-
-    /* BRONZE SECTION */
-    .assu-logo{
-        width: 200px;
-        height: 100px;
-    }
-
-
-    /* PARTNER SECTION */
-    .partner-landscape-logo{
-        width: 150px;
-        height: 100px;
-    }
-
-    .partner-square-logo{
-        width: 100px;
-        height: 100px;
-    }
-
-    .rare-disease-foundation-logo{
-        width: 220px;
-        height: 90px;
     }
 }
