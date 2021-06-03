@@ -1,0 +1,29 @@
+/* Start of get involved photo banner styling */
+.getinvolved-photo-container{
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.getinvolved-photo{
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: top center;
+}
+
+.getinvolved-photo-title{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: bold;
+    font-size: 65px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.getinvolved-photo-subtitle{
+    font-size: 35px;
+}
+/* End of get involved photo banner styling */

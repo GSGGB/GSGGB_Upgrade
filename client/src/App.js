@@ -10,6 +10,7 @@ import HomePage from "./react-components/HomePage";
 import Team from "./react-components/Team";
 import Events from "./react-components/Events"
 import Sponsors from "./react-components/Sponsors";
+import GetInvolved from "./react-components/GetInvolved";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -113,6 +114,18 @@ class App extends Component {
                                   <UserBar />
                                   <Header />
                                   <Sponsors history={history} app={this}/>
+                                  <Footer />
+                              </div>
+                          )}
+                      />
+
+                      <Route
+                          exact path="/get-involved"
+                          render={({ history }) => (
+                              <div>
+                                  <UserBar />
+                                  <Header />
+                                  <GetInvolved history={history} app={this}/>
                                   <Footer />
                               </div>
                           )}
