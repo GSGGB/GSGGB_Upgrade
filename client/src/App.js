@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
 
 import Chapters from "./react-components/Chapters";
 import Login from "./react-components/Login";
@@ -11,6 +11,7 @@ import Team from "./react-components/Team";
 import Events from "./react-components/Events"
 import Sponsors from "./react-components/Sponsors";
 import GetInvolved from "./react-components/GetInvolved";
+import Admin from "./react-components/Admin";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -127,6 +128,25 @@ class App extends Component {
                                   <Header />
                                   <GetInvolved history={history} app={this}/>
                                   <Footer />
+                              </div>
+                          )}
+                      />
+
+                      <Route
+                          exact path="/admin"
+                          render={({ history }) => (
+                              <div>
+                                  { /* If logged in as an administrator, enable access to admin page. */ }
+                                  {(sessionStorage.getItem("accountType") === "Administrator" &&
+                                  sessionStorage.getItem("loggedIn") === "true")
+                                    ?
+                                    <div>
+                                        <UserBar />
+                                        <Header />
+                                        <Admin history={history} app={this}/>
+                                        <Footer />
+                                    </div>
+                                    : <Redirect to="/"/>}
                               </div>
                           )}
                       />

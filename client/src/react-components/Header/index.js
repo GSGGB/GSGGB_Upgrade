@@ -25,7 +25,7 @@ class Header extends Component {
         const navbarItems = document.querySelectorAll(".navbar-item");
 
         window.addEventListener("scroll", () => {
-             if (document.body.scrollTop < 100){
+             if (document.body.scrollTop <= 100){
                 this.setState({
                     backgroundColor: "white",
                     fontSize: "18px"

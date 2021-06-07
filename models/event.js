@@ -16,59 +16,71 @@ const EventSchema = new mongoose.Schema({
     imageOrientation: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     type: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     title: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     date: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     startTime: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     endTime: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     location: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     content: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     fbEventLink: {
         type: String,
-        minlength: 0
+        minlength: 0,
+        trim: true
     },
     eventbriteLink: {
         type: String,
-        minlength: 0
+        minlength: 0,
+        trim: true
     },
     zoomLink: {
         type: String,
-        minlength: 0
+        minlength: 0,
+        trim: true
     },
     lastUpdated: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     }
 })
 

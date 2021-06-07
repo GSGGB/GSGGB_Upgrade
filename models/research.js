@@ -11,7 +11,8 @@ const ResearchSchema = new mongoose.Schema({
     url: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     }
 })
 

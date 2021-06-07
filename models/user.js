@@ -48,6 +48,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    deactivated: {
+        type: Boolean,
+        required: true,
+        trim: true
     }
 });
 

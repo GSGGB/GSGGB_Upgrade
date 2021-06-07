@@ -16,22 +16,26 @@ const ExecutiveSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     lastName: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     team: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     position: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 1,
+        trim: true
     },
     biography: {
         type: String,
@@ -40,11 +44,13 @@ const ExecutiveSchema = new mongoose.Schema({
     },
     linkedin: {
         type: String,
-        minlength: 0
+        minlength: 0,
+        trim: true
     },
     email: {
         type: String,
-        minlength: 0
+        minlength: 0,
+        trim: true
     }
 })
 

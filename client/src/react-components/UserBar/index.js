@@ -15,6 +15,37 @@ class UserBar extends Component {
         this.myRef = React.createRef();
     }
 
+    // Button to go back to chapters page.
+    chaptersButton() {
+        return (
+            <Button
+                id="chapters-button"
+                variant="outline-light"
+                onClick={() => this.props.history.push("/")}
+            >
+                BACK TO CHAPTERS
+            </Button>
+        )
+    }
+
+    // Admin button to redirect to admin only page.
+    adminButton() {
+        const loggedIn = sessionStorage.getItem("loggedIn");
+        const accountType = sessionStorage.getItem("accountType");
+
+        if (loggedIn === "true" && accountType === "Administrator") {
+            return (
+                <Button
+                    id="admin-button"
+                    variant="outline-light"
+                    onClick={() => this.props.history.push("/admin")}
+                >
+                    ADMIN PAGE
+                </Button>
+              )
+        }
+    }
+
     // Logout button for editors and administrators only.
     logoutButton() {
         const loggedIn = sessionStorage.getItem("loggedIn");
@@ -32,22 +63,10 @@ class UserBar extends Component {
         }
     }
 
-    chaptersButton() {
-        return (
-            <Button
-                id="chapters-button"
-                variant="outline-light"
-                onClick={() => this.props.history.push("/")}
-            >
-                BACK TO CHAPTERS
-            </Button>
-        )
-    }
-
-
     render() {
-      const logoutButton = this.logoutButton();
       const chaptersButton = this.chaptersButton();
+      const adminButton = this.adminButton();
+      const logoutButton = this.logoutButton();
 
       return (
           <BrowserRouter>
@@ -55,7 +74,7 @@ class UserBar extends Component {
                   <div className="container">
                       <Image id="uoft-logo-user-bar" alt="UofT Logo" src={uoft_logo} />
                       <span className="chapters-text">University of Toronto Chapter</span>
-                      <span>{logoutButton}{chaptersButton}</span>
+                      <span>{logoutButton}{adminButton}{chaptersButton}</span>
                   </div>
               </div>
           </BrowserRouter>

@@ -1,4 +1,4 @@
-@media (max-width: 768px){
+@media (max-width: 992px){
     .user-bar{
         height: 120px;
     }
@@ -7,11 +7,17 @@
         margin-right: 50px;
     }
 
-    #chapters-button, #logout-button{
+    #chapters-button, #admin-button, #logout-button{
         margin-top: 15px;
     }
 
     #chapters-button{
         float: left;
+    }
+}
+
+@media (max-width: 768px){
+    .chapters-text{
+        margin-right: 125px;
     }
 }
