@@ -88,7 +88,6 @@ app.post("/userDatabase/login", (req, res) => {
         });
 });
 
-
 // A GET route to logout a user.
 app.get("/userDatabase/logout", (req, res) => {
     // Remove the session
@@ -101,7 +100,6 @@ app.get("/userDatabase/logout", (req, res) => {
     });
 });
 
-
 // A GET route to check if a use is logged in on the session cookie.
 app.get("/userDatabase/check-session", (req, res) => {
     if (req.session.user) {
@@ -109,6 +107,42 @@ app.get("/userDatabase/check-session", (req, res) => {
     } else {
         res.status(401).send();
     }
+});
+
+
+// A GET route to get ALL users.
+app.get("/userDatabase", (req, res) => {
+    User.find().then(
+        (users) => {
+            res.send({ users });
+        },
+        (error) => {
+            res.status(500).send(error); // Server error, could not get.
+        }
+    );
+});
+
+// A GET route to *retrieve* a user account's details.
+app.get("/userDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    // Check if the username we want exists
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    User.findById(id)
+        .then((user) => {
+            if (!user) {
+                res.status(404).send();
+            } else {
+                res.send(user);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(error);
+        });
 });
 
 // A POST route to create a user account.
@@ -136,17 +170,27 @@ app.post("/userDatabase", (req, res) => {
     );
 });
 
-// A GET route to *retrieve* a user account's details.
-app.get("/userDatabase/:id", (req, res) => {
+// A PATCH route to edit a user by their id.
+app.patch("/userDatabase/:id", (req, res) => {
     const id = req.params.id;
 
-    // Check if the username we want exists
+    const body = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password,
+        accountType: req.body.accountType,
+        executivePosition: req.body.executivePosition,
+        deactivated: req.body.deactivated
+    };
+
     if (!ObjectID.isValid(id)) {
         res.status(404).send();
         return;
     }
 
-    User.findById(id)
+    User.findByIdAndUpdate(id, { $set: body })
         .then((user) => {
             if (!user) {
                 res.status(404).send();
@@ -155,7 +199,29 @@ app.get("/userDatabase/:id", (req, res) => {
             }
         })
         .catch((error) => {
-            res.status(500).send(error);
+            res.status(400).send(); // 400 for bad request.
+        });
+});
+
+// A DELETE route to delete a user by their id.
+app.delete("/userDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    User.findByIdAndRemove(id)
+        .then((user) => {
+            if (!user) {
+                res.status(404).send();
+            } else {
+                res.send(user);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not delete.
         });
 });
 /** End of user resource routes **/

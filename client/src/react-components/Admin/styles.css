@@ -1,0 +1,24 @@
+#displayedTable table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+#displayedTable table,
+th,
+td {
+    text-align: center;
+    border: 1px solid lightgray;
+}
+
+#displayedTable th {
+    font-size: x-large;
+}
+
+#displayedTable td {
+    font-size: large;
+}
+
+#displayedTable button {
+    margin: 5px;
+}
