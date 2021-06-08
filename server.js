@@ -78,7 +78,8 @@ app.post("/userDatabase/login", (req, res) => {
                 req.session.username = user.username;
                 res.send({
                     username: user.username,
-                    accountType: user.accountType
+                    accountType: user.accountType,
+                    deactivated: user.deactivated
                 });
             }
         })
@@ -120,7 +121,8 @@ app.post("/userDatabase", (req, res) => {
         username: req.body.username,
         password: req.body.password,
         accountType: req.body.accountType,
-        executivePosition: req.body.executivePosition
+        executivePosition: req.body.executivePosition,
+        deactivated: req.body.deactivated
     });
 
     // Save user to the database

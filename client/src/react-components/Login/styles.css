@@ -47,7 +47,7 @@
     font-weight: bold;
 }
 
-#login-error{
+#login-error, #account-deactivated-error{
     display: none;
     margin-bottom: 20px;
 }

@@ -43,6 +43,8 @@ export const returnToHomePage = (loginComp) => {
 export const login = (loginComp) => {
     const loginError = document.querySelector("#login-error");
     loginError.style.display = "none";
+    const deactivatedError = document.querySelector("#account-deactivated-error");
+    deactivatedError.style.display = "none";
 
     const url = "/userDatabase/login";
 
@@ -63,24 +65,23 @@ export const login = (loginComp) => {
             }
         })
         .then(json => {
+            // 1) Check user account credentials.
             if (json !== undefined && json.username !== undefined) {
-                sessionStorage.setItem("username", json.username)
-                sessionStorage.setItem("accountType", json.accountType)
-                sessionStorage.setItem("loggedIn", "true")
+                // 2) Check if account has been deactivated.
+                if (json.deactivated === false){
+                    sessionStorage.setItem("username", json.username)
+                    sessionStorage.setItem("accountType", json.accountType)
+                    sessionStorage.setItem("loggedIn", "true")
 
-                loginError.style.display = "none";
-
-                let path;
-                if (json.accountType === "Editor") {
-                    path = `/home`;
+                    loginError.style.display = "none";
+                    deactivatedError.style.display = "none";
+                    loginComp.props.history.push("/home");
+                } else{
+                    setTimeout(function () {
+                        deactivatedError.style.display = "block";
+                    }, 500);
                 }
-                else if (json.accountType === "Administrator") {
-                    path = `/home`; // Temporary.
-                }
-
-                loginComp.props.history.push(path);
-            }
-            else{
+            } else{
                 setTimeout(function () {
                     loginError.style.display = "block";
                 }, 500);

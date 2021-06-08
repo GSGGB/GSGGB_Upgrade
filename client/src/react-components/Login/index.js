@@ -44,6 +44,13 @@ class Login extends Component {
                                       &nbsp; Invalid username or password. Please
                                       try again.
                                 </div>
+                                <div
+                                    className="alert alert-danger text-center"
+                                    id="account-deactivated-error"
+                                >
+                                      <FontAwesomeIcon icon={faExclamationCircle} size={25}/>
+                                      &nbsp; This account has been deactivated by an administrator.
+                                </div>
 
                                 <Form>
                                     <Form.Group>
