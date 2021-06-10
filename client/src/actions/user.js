@@ -124,7 +124,7 @@ export const getAllUsers = (usersAdminComp) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
-            this.setState({ rows: [] })
+            usersAdminComp.setState({ rows: [] })
             for (let user of json.users) {
                 usersAdminComp.addRow(user._id, user.username, user.accountType)
             }

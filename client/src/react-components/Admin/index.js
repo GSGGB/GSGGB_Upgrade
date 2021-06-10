@@ -56,11 +56,15 @@ class Admin extends Component {
                   </div>
               </Navbar>
 
+              <br/><br/>
+
               <div class="container">
                   <div id="displayedTable">
                       {tables[this.state.displayedTable]}
                   </div>
               </div>
+
+              <br/><br/>
 
           </BrowserRouter>
         );

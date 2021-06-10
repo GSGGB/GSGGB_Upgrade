@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Table, Button, Form, Modal, ModalBody } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 
+import { getAllUsers, getUserById, deleteUser } from "../../../actions/user";
+
 class UsersAdmin extends Component {
     state = {
         displayModal: false,
@@ -15,6 +17,10 @@ class UsersAdmin extends Component {
         executivePosition: "",
         deactivated: ""
     };
+
+    componentDidMount(){
+        getAllUsers(this);
+    }
 
     render() {
         return (
@@ -47,14 +53,24 @@ class UsersAdmin extends Component {
 
     addRow(id, username, accountType) {
         this.setState({
-            rows: this.state.rows.concat(<tr>
-                <td>{username}</td>
-                <td>{accountType}</td>
-                <td>
-                    <button onClick={() => this.getUserById(id)}>Edit</button>
-                    <button onClick={() => this.deleteUser(id)}>Delete</button>
-                </td>
-            </tr>)
+            rows: this.state.rows.concat(
+              <tr>
+                  <td>{username}</td>
+                  <td>{accountType}</td>
+                  <td>
+                      <Button
+                          variant="outline-info"
+                          onClick={() => getUserById(this, id)}>
+                          Edit
+                      </Button>
+                      <Button
+                          variant="outline-info"
+                          onClick={() => deleteUser(this, id)}>
+                          Delete
+                      </Button>
+                  </td>
+              </tr>
+            )
         })
     }
 }
