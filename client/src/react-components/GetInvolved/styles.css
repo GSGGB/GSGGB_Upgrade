@@ -18,7 +18,7 @@
     font-weight: bold;
     font-size: 65px;
     position: absolute;
-    top: 50%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -26,4 +26,22 @@
 .getinvolved-photo-subtitle{
     font-size: 35px;
 }
+
+.headers{
+  color: black;
+  font-weight: bold;
+  padding: 5px;
+  float: left;
+  text-align: left;
+}
+
+.form{
+  margin: auto;
+  height: 100%;
+}
+
+.text-muted{
+  padding-top: 0px;
+}
+
 /* End of get involved photo banner styling */
