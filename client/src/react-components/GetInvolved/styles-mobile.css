@@ -9,6 +9,7 @@
     /* Decrease font size of get involved photo title in mobile */
     .getinvolved-photo-title{
         font-size: 40px;
+        top: 8%;
     }
 
     .getinvolved-photo-subtitle{
