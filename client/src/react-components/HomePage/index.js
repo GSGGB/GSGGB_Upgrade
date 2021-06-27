@@ -105,7 +105,7 @@ class HomePage extends Component {
                                 />
                                 <h4 className="about-us-subheader">Our Purpose</h4>
                                 <br/>
-                                <p className="description">
+                                <p className="homepage-description">
                                     Founded in 2016 at the University of
                                     Toronto, GSGGB - Global Society for Genetics
                                     and Genome Biology, is an international
@@ -129,7 +129,7 @@ class HomePage extends Component {
                                 />
                                 <h4 className="about-us-subheader">Our Mission</h4>
                                 <br/>
-                                <p className="description">
+                                <p className="homepage-description">
                                     GSGGB focuses mainly on educating both its
                                     members and the public about genetic
                                     diseases. We strive to raise awareness about

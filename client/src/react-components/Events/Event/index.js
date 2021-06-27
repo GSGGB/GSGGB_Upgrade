@@ -137,7 +137,7 @@ class Event extends Component {
     getFacebookIcon(fbEventLink){
         if (fbEventLink){
             return (
-                <span class="event-detail">
+                <span className="event-detail">
                     <FontAwesomeIcon className="event-detail-icon" icon={faFacebook} size={4}/>
                     <a href={fbEventLink} target="_blank" rel="noopener noreferrer">Facebook Event Link</a>
                 </span>
@@ -148,7 +148,7 @@ class Event extends Component {
     getEventbriteIcon(eventbriteLink){
         if (eventbriteLink){
             return(
-                <span class="event-detail">
+                <span className="event-detail">
                     <FontAwesomeIcon className="event-detail-icon" icon={faTicketAlt} size={4}/>
                     <a href={eventbriteLink} target="_blank" rel="noopener noreferrer">Eventbrite Link</a>
                 </span>
@@ -159,7 +159,7 @@ class Event extends Component {
     getZoomIcon(zoomLink){
         if (zoomLink){
             return(
-                <span class="event-detail">
+                <span className="event-detail">
                     <FontAwesomeIcon className="event-detail-icon" icon={faVideo} size={4}/>
                     <a href={zoomLink} target="_blank" rel="noopener noreferrer">Zoom Link</a>
                 </span>
@@ -221,17 +221,17 @@ class Event extends Component {
                             <Col className={infoOrientation} lg={8}>
                                 <Card.Body>
                                     <h4 className="event-title">{this.props.title}</h4>
-                                    <div class="event-detail">
+                                    <div className="event-detail">
                                         <FontAwesomeIcon className="event-detail-icon" icon={faCalendarDay} size={4}/>{date}
                                     </div>
-                                    <div class="event-detail">
+                                    <div className="event-detail">
                                         <FontAwesomeIcon className="event-detail-icon" icon={faClock} size={4}/>{time}
                                     </div>
-                                    <div class="event-detail">
+                                    <div className="event-detail">
                                         <FontAwesomeIcon className="event-detail-icon" icon={faMapMarkerAlt} size={4}/>{this.props.location}
                                     </div>
                                     {fbIcon}{eventbriteIcon}{zoomIcon}
-                                    <div class="event-content">
+                                    <div className="event-detail">
                                         {this.props.content}
                                     </div>
                                 </Card.Body>

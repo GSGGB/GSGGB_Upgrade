@@ -1,0 +1,26 @@
+.user-table-header{
+    background-color: ghostwhite;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #5BC0DE;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#add-user-button{
+    margin-left: 20px !important;
+}
+
+table, tbody {
+    width: 100% !important;
+}
+
+.deactivated{
+    color: red;
+    font-weight: bold;
+}
+
+.activated{
+    color: green;
+    font-weight: bold;
+}

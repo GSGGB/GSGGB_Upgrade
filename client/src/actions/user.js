@@ -126,7 +126,7 @@ export const getAllUsers = (usersAdminComp) => {
             // the resolved promise with the JSON body
             usersAdminComp.setState({ rows: [] })
             for (let user of json.users) {
-                usersAdminComp.addRow(user._id, user.username, user.accountType)
+                usersAdminComp.addRow(user._id, user.username, user.accountType, user.deactivated)
             }
         })
         .catch(error => {
@@ -239,4 +239,96 @@ export const deleteUser = (usersAdminComp, id) => {
         .finally(() => {
             getAllUsers(usersAdminComp);
         });
+}
+
+
+// A function to deactivate a user.
+export const deactivateUser = async(usersAdminComp, id) => {
+    const url = "/userDatabase/" + id;
+
+    const userRes = await fetch(url);
+
+    if (userRes.status === 200) {
+        // Return a promise that resolves with the JSON body.
+        const json = await userRes.json();
+
+        const deactivatedUser = {
+            firstName: json.firstName,
+            lastName: json.lastName,
+            email: json.email,
+            username: json.username,
+            password: json.password,
+            accountType: json.accountType,
+            executivePosition: json.executivePosition,
+            deactivated: true
+        }
+
+        const request = new Request(url, {
+            method: "PATCH",
+            body: JSON.stringify(deactivatedUser),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+
+
+        const deactivatedUserRes = await fetch(request);
+
+        if (deactivatedUserRes.status === 200) {
+            alert("Successfully deactivated user");
+        } else {
+            alert("Could not deactivate user");
+        }
+    } else {
+        alert("Could not get user");
+    }
+
+    getAllUsers(usersAdminComp);
+}
+
+
+// A function to reactivate a user.
+export const reactivateUser = async(usersAdminComp, id) => {
+    const url = "/userDatabase/" + id;
+
+    const userRes = await fetch(url);
+
+    if (userRes.status === 200) {
+        // Return a promise that resolves with the JSON body.
+        const json = await userRes.json();
+
+        const reactivatedUser = {
+            firstName: json.firstName,
+            lastName: json.lastName,
+            email: json.email,
+            username: json.username,
+            password: json.password,
+            accountType: json.accountType,
+            executivePosition: json.executivePosition,
+            deactivated: false
+        }
+
+        const request = new Request(url, {
+            method: "PATCH",
+            body: JSON.stringify(reactivatedUser),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+
+
+        const reactivatedUserRes = await fetch(request);
+
+        if (reactivatedUserRes.status === 200) {
+            alert("Successfully reactivated user");
+        } else {
+            alert("Could not reactivate user");
+        }
+    } else {
+        alert("Could not get user");
+    }
+
+    getAllUsers(usersAdminComp);
 }

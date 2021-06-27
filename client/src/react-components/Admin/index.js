@@ -26,7 +26,7 @@ class Admin extends Component {
           <BrowserRouter>
 
               <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-                  <div class="container">
+                  <div className="container">
                       <Navbar.Brand>Admin</Navbar.Brand>
                       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                       <Navbar.Collapse id="responsive-navbar-nav">
@@ -58,7 +58,7 @@ class Admin extends Component {
 
               <br/><br/>
 
-              <div class="container">
+              <div className="container">
                   <div id="displayedTable">
                       {tables[this.state.displayedTable]}
                   </div>
