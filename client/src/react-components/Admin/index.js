@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
-import UsersAdmin from "./UsersAdmin/UsersAdmin";
+import UsersAdmin from "./UsersAdmin";
 
 import "./styles.css";
 import "./styles-mobile.css";

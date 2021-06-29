@@ -4,7 +4,7 @@ import Research from "../react-components/HomePage/Research";
 // Functions to help with research posts.
 
 // Helper function for getAllResearchPosts and addResearchPost.
-const addResearchPostHelper = async(homepageComp, researchPost, routeType) => {
+const addResearchPostHelper = async(homepageComp, researchPost) => {
     // Retrieve user details including username and full name.
     const url = "/userDatabase/" + researchPost.userId;
 
@@ -25,10 +25,6 @@ const addResearchPostHelper = async(homepageComp, researchPost, routeType) => {
         homepageComp.setState({
             researchPosts: [newResearchPost].concat(homepageComp.state.researchPosts)
         })
-
-        if (routeType === "POST"){
-            alert("Successfully added research post");
-        }
     } else {
         alert("Could not get user");
     }
@@ -63,7 +59,7 @@ export const getAllResearchPosts = (homepageComp) => {
             homepageComp.setState({researchPosts: []})
 
             for (let researchPost of json.researchPosts) {
-                await addResearchPostHelper(homepageComp, researchPost, "GET");
+                await addResearchPostHelper(homepageComp, researchPost);
             }
         })
         .catch(error => {
@@ -118,13 +114,14 @@ export const addResearchPost = (homepageComp) => {
     fetch(request)
         .then(res => {
             if (res.status === 200) {
+                alert("Successfully added research post");
                 return res.json();
             } else {
                 alert("Could not add research post");
             }
         })
         .then(json => {
-            addResearchPostHelper(homepageComp, json, "POST");
+            addResearchPostHelper(homepageComp, json);
         })
         .catch(error => {
             console.log(error);

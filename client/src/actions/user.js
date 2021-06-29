@@ -1,4 +1,23 @@
+import React from "react";
+import User from "../react-components/Admin/UsersAdmin/User";
+
 // Functions to help with user actions.
+
+// Helper function for getAllUsers and addUser.
+const addUserHelper = async(usersAdminComp, user) => {
+    const newUser = <User
+                        usersAdminComp={usersAdminComp}
+                        userId={user._id}
+                        username={user.username}
+                        accountType={user.accountType}
+                        deactivated={user.deactivated}
+                    ></User>
+
+    usersAdminComp.setState({
+        users: [newUser].concat(usersAdminComp.state.users)
+    })
+};
+
 
 // A function to check if a user is logged in on the session cookie.
 export const readCookie = () => {
@@ -27,6 +46,17 @@ export const updateLoginCredentials = (loginComp, field) => {
     const name = field.name;
 
     loginComp.setState({
+        [name]: value
+    });
+};
+
+
+// A function to update user form.
+export const updateUserForm = (comp, field) => {
+    const value = field.value;
+    const name = field.name;
+
+    comp.setState({
         [name]: value
     });
 };
@@ -122,11 +152,11 @@ export const getAllUsers = (usersAdminComp) => {
                 alert("Could not get all users");
             }
         })
-        .then(json => {
-            // the resolved promise with the JSON body
-            usersAdminComp.setState({ rows: [] })
+        .then(async json => {
+            usersAdminComp.setState({ users: [] })
+
             for (let user of json.users) {
-                usersAdminComp.addRow(user._id, user.username, user.accountType, user.deactivated)
+                await addUserHelper(usersAdminComp, user);
             }
         })
         .catch(error => {
@@ -136,7 +166,7 @@ export const getAllUsers = (usersAdminComp) => {
 
 
 // A function to get a specific user by their id to update.
-export const getUserById = (usersAdminComp, id) => {
+export const getUserById = (userComp, id) => {
     const url = "/userDatabase/" + id;
 
     // Since this is a GET request, simply call fetch on the URL.
@@ -151,7 +181,7 @@ export const getUserById = (usersAdminComp, id) => {
         })
         .then(json => {
             // Get existing user details.
-            usersAdminComp.setState({
+            userComp.setState({
                 displayModal: true,
                 firstName: json.firstName,
                 lastName: json.lastName,
@@ -169,19 +199,75 @@ export const getUserById = (usersAdminComp, id) => {
 }
 
 
+// A function to add a user.
+export const addUser = (usersAdminComp) => {
+    const user = {
+        firstName: usersAdminComp.state.userFirstName,
+        lastName: usersAdminComp.state.userLastName,
+        email: usersAdminComp.state.userEmail,
+        username: usersAdminComp.state.userUsername,
+        password: usersAdminComp.state.userPassword,
+        accountType: usersAdminComp.state.userAccountType,
+        executivePosition: usersAdminComp.state.userExecutivePosition,
+        deactivated: false
+    };
+
+    const url = "/userDatabase";
+
+    const request = new Request(url, {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    // Send the request with fetch()
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                alert("Successfully created user");
+                return res.json();
+            } else {
+                alert("Could not create user");
+            }
+        })
+        .then(async json => {
+            await addUserHelper(usersAdminComp, json);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        .finally(() => {
+            // Reset state variables.
+            usersAdminComp.setState({
+                firstName: "",
+                lastName: "",
+                email: "",
+                username: "",
+                password: "",
+                accountType: "",
+                executivePosition: "",
+                deactivated: ""
+            });
+        });
+}
+
+
 // A function to edit a user.
-export const editUser = (usersAdminComp, id) => {
+export const editUser = (userComp, usersAdminComp, id) => {
     const url = "/userDatabase/" + id;
 
     const updatedUser = {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        username: this.state.username,
-        password: this.state.password,
-        accountType: this.state.accountType,
-        executivePosition: this.state.executivePosition,
-        deactivated: this.state.deactivated
+        firstName: userComp.state.firstName,
+        lastName: userComp.state.lastName,
+        email: userComp.state.email,
+        username: userComp.state.username,
+        password: userComp.state.password,
+        accountType: userComp.state.accountType,
+        executivePosition: userComp.state.executivePosition,
+        deactivated: userComp.state.deactivated
     }
 
     const request = new Request(url, {

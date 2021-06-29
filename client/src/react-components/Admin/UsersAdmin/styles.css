@@ -14,13 +14,3 @@
 table, tbody {
     width: 100% !important;
 }
-
-.deactivated{
-    color: red;
-    font-weight: bold;
-}
-
-.activated{
-    color: green;
-    font-weight: bold;
-}

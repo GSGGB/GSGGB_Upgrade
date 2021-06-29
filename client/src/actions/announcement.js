@@ -4,7 +4,7 @@ import Announcement from "../react-components/HomePage/Announcement";
 // Functions to help with announcements.
 
 // Helper function for getAllAnnouncements and addAnnouncement.
-const addAnnouncementHelper = async(homepageComp, announcement, routeType) => {
+const addAnnouncementHelper = async(homepageComp, announcement) => {
     // Retrieve user details including username and full name.
     const url = "/userDatabase/" + announcement.userId;
 
@@ -26,10 +26,6 @@ const addAnnouncementHelper = async(homepageComp, announcement, routeType) => {
         homepageComp.setState({
             announcements: [newAnnouncement].concat(homepageComp.state.announcements)
         })
-
-        if (routeType === "POST"){
-            alert("Successfully added announcement");
-        }
     } else {
         alert("Could not get user");
     }
@@ -63,7 +59,7 @@ export const getAllAnnouncements = (homepageComp) => {
             homepageComp.setState({announcements: []})
 
             for (let announcement of json.announcements) {
-                await addAnnouncementHelper(homepageComp, announcement, "GET");
+                await addAnnouncementHelper(homepageComp, announcement);
             }
         })
         .catch(error => {
@@ -119,13 +115,14 @@ export const addAnnouncement = (homepageComp) => {
     fetch(request)
         .then(res => {
             if (res.status === 200) {
+                alert("Successfully added announcement");
                 return res.json();
             } else {
                 alert("Could not add announcement");
             }
         })
         .then(json => {
-            addAnnouncementHelper(homepageComp, json, "POST");
+            addAnnouncementHelper(homepageComp, json);
         })
         .catch(error => {
             console.log(error);

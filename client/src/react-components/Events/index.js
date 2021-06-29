@@ -255,7 +255,7 @@ class Events extends Component {
                                 onClick={(e) => {
                                     e.preventDefault();
                                     addEvent(this);
-                                    this.setState({ displayEventModal: false })
+                                    this.setState({ displayEventModal: false });
                                 }}
                                 >
                                     CREATE
