@@ -3,28 +3,33 @@ import { Button, Form, Modal, ModalBody } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import { confirmAlert } from 'react-confirm-alert';
 
-import { updateUserForm, getUserById, editUser, deleteUser, deactivateUser, reactivateUser } from "../../../../actions/user";
+import { updateUserForm, getUserById, editUser, deleteUser, updateUserPassword,
+  deactivateUser, reactivateUser } from "../../../../actions/user";
 
 import "./styles.css";
 
 class User extends Component {
     state = {
-        displayModal: false,
+        displayEditModal: false,
+        displayPasswordModal: false,
         firstName: "",
         lastName: "",
         email: "",
         username: "",
-        password: "",
-        confirmPassword: "",
         accountType: "Administrator", // Default option.
         executivePosition: "",
-        deactivated: false
+        deactivated: false,
+        confirmChanges: "",
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: ""
     };
 
     render() {
         return (
             <tr>
                 <td>{this.props.username}</td>
+                <td>{this.props.executivePosition}</td>
                 <td>{this.props.accountType}</td>
 
                 {(this.props.deactivated ?
@@ -40,6 +45,7 @@ class User extends Component {
                           onClick={() => getUserById(this, this.props.userId)}>
                           Edit
                       </Button>
+
                       <Button
                           variant="outline-danger"
                           onClick={() => {
@@ -58,6 +64,13 @@ class User extends Component {
                           }}>
                           Delete
                       </Button>
+
+                      <Button
+                          variant="outline-secondary"
+                          onClick={() => this.setState({ displayPasswordModal: true })}>
+                          Change password
+                      </Button>
+
                       {(this.props.deactivated ?
                         <Button
                             variant="outline-success"
@@ -100,8 +113,8 @@ class User extends Component {
                 )}
 
                 <Modal
-                    show={this.state.displayModal}
-                    onHide={() => this.setState({ displayModal: false })}
+                    show={this.state.displayEditModal}
+                    onHide={() => this.setState({ displayEditModal: false })}
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     backdrop="static"
@@ -150,38 +163,14 @@ class User extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Username</Form.Label>
+                                <Form.Label>Username (Cannot be changed after account creation)</Form.Label>
                                 <Form.Control
                                     type="text"
                                     name="username"
                                     rows="1"
                                     defaultValue={this.state.username}
                                     onChange={e => updateUserForm(this, e.target)}
-                                    required
-                                />
-                            </Form.Group>
-                            <br/>
-                            <Form.Group>
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="password"
-                                    autocomplete="off"
-                                    rows="1"
-                                    onChange={e => updateUserForm(this, e.target)}
-                                    required
-                                />
-                            </Form.Group>
-                            <br/>
-                            <Form.Group>
-                                <Form.Label>Confirm password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="confirmPassword"
-                                    autocomplete="off"
-                                    rows="1"
-                                    onChange={e => updateUserForm(this, e.target)}
-                                    required
+                                    readOnly
                                 />
                             </Form.Group>
                             <br/>
@@ -211,17 +200,25 @@ class User extends Component {
                                 />
                             </Form.Group>
                             <br/>
+                            <Form.Group>
+                                <Form.Label><strong>Confirm changes with password</strong></Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="confirmChanges"
+                                    autocomplete="off"
+                                    rows="1"
+                                    onChange={e => updateUserForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
                             <Button
                                 variant="outline-info"
                                 type="submit"
                                 onClick={(e) => {
-                                    if (this.state.password === this.state.confirmPassword){
-                                        e.preventDefault();
-                                        editUser(this, this.props.usersAdminComp, this.props.userId);
-                                        this.setState({ displayModal: false });
-                                    } else{
-                                        alert("Passwords don't match. Please try again.");
-                                    }
+                                    e.preventDefault();
+                                    editUser(this, this.props.usersAdminComp, this.props.userId);
+                                    this.setState({ displayEditModal: false });
                                 }}
                                 >
                                     UPDATE
@@ -229,6 +226,76 @@ class User extends Component {
                         </Form>
                     </ModalBody>
                 </Modal>
+
+                <Modal
+                    show={this.state.displayPasswordModal}
+                    onHide={() => this.setState({ displayPasswordModal: false })}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    backdrop="static"
+                    keyboard={false}
+                    centered
+                >
+                    <ModalHeader closeButton>
+                        <h4>Change password</h4>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Form>
+                            <Form.Group>
+                                <Form.Label>Old password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="oldPassword"
+                                    autocomplete="off"
+                                    rows="1"
+                                    onChange={e => updateUserForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>New password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="newPassword"
+                                    autocomplete="off"
+                                    rows="1"
+                                    onChange={e => updateUserForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Confirm password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="confirmPassword"
+                                    autocomplete="off"
+                                    rows="1"
+                                    onChange={e => updateUserForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Button
+                                variant="outline-info"
+                                type="submit"
+                                onClick={(e) => {
+                                    if (this.state.newPassword === this.state.confirmPassword){
+                                        e.preventDefault();
+                                        updateUserPassword(this, this.props.usersAdminComp, this.props.userId);
+                                        this.setState({ displayPasswordModal: false });
+                                    } else{
+                                        alert("Passwords don't match. Please try again.");
+                                    }
+                                }}
+                                >
+                                    CHANGE
+                            </Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+
             </tr>
         );
     }

@@ -173,33 +173,92 @@ app.post("/userDatabase", (req, res) => {
 // A PATCH route to edit a user by their id.
 app.patch("/userDatabase/:id", (req, res) => {
     const id = req.params.id;
+    const username = req.body.username;
+    const password = req.body.password;
 
-    const body = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        username: req.body.username,
-        password: req.body.password,
-        accountType: req.body.accountType,
-        executivePosition: req.body.executivePosition,
-        deactivated: req.body.deactivated
-    };
-
-    if (!ObjectID.isValid(id)) {
-        res.status(404).send();
-        return;
-    }
-
-    User.findByIdAndUpdate(id, { $set: body })
+    // Use the static method on the User model to find a user
+    // by their username and password
+    User.findByUsernamePassword(username, password)
         .then((user) => {
-            if (!user) {
-                res.status(404).send();
-            } else {
-                res.send(user);
-            }
+            // IMPORTANT: Only make edits to user if username and password are valid.
+            if (user) {
+                const body = {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    email: req.body.email,
+                    username: req.body.username,
+                    password: req.body.password,
+                    accountType: req.body.accountType,
+                    executivePosition: req.body.executivePosition,
+                    deactivated: req.body.deactivated
+                };
+
+                if (!ObjectID.isValid(id)) {
+                    res.status(404).send();
+                    return;
+                }
+
+                User.findByIdAndUpdate(id, { $set: body })
+                    .then((user) => {
+                        if (!user) {
+                            res.status(404).send();
+                        } else {
+                            res.send(user);
+                        }
+                    })
+                    .catch((error) => {
+                        res.status(400).send(); // 400 for bad request.
+                    });
+              }
         })
         .catch((error) => {
-            res.status(400).send(); // 400 for bad request.
+            res.status(400).send();
+        });
+});
+
+// A PATCH route to update a user's password.
+app.patch("/userDatabase/password/:id", (req, res) => {
+    const id = req.params.id;
+    const username = req.body.username;
+    const password = req.body.oldPassword;
+
+    // Use the static method on the User model to find a user
+    // by their username and password
+    User.findByUsernamePassword(username, password)
+        .then((user) => {
+            // IMPORTANT: Only update password if username and old password are valid.
+            if (user) {
+                const body = {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    email: req.body.email,
+                    username: req.body.username,
+                    password: req.body.newPassword,
+                    accountType: req.body.accountType,
+                    executivePosition: req.body.executivePosition,
+                    deactivated: req.body.deactivated
+                };
+
+                if (!ObjectID.isValid(id)) {
+                    res.status(404).send();
+                    return;
+                }
+
+                User.findByIdAndUpdate(id, { $set: body })
+                    .then((user) => {
+                        if (!user) {
+                            res.status(404).send();
+                        } else {
+                            res.send(user);
+                        }
+                    })
+                    .catch((error) => {
+                        res.status(400).send(); // 400 for bad request.
+                    });
+              }
+        })
+        .catch((error) => {
+            res.status(400).send();
         });
 });
 

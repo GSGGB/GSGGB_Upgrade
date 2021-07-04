@@ -10,6 +10,7 @@ const addUserHelper = async(usersAdminComp, user) => {
                         userId={user._id}
                         username={user.username}
                         accountType={user.accountType}
+                        executivePosition={user.executivePosition}
                         deactivated={user.deactivated}
                     ></User>
 
@@ -182,12 +183,11 @@ export const getUserById = (userComp, id) => {
         .then(json => {
             // Get existing user details.
             userComp.setState({
-                displayModal: true,
+                displayEditModal: true,
                 firstName: json.firstName,
                 lastName: json.lastName,
                 email: json.email,
                 username: json.username,
-                password: json.password,
                 accountType: json.accountType,
                 executivePosition: json.executivePosition,
                 deactivated: json.deactivated
@@ -263,7 +263,7 @@ export const editUser = (userComp, usersAdminComp, id) => {
         lastName: userComp.state.lastName,
         email: userComp.state.email,
         username: userComp.state.username,
-        password: userComp.state.password,
+        password: userComp.state.confirmChanges,
         accountType: userComp.state.accountType,
         executivePosition: userComp.state.executivePosition,
         deactivated: userComp.state.deactivated
@@ -327,6 +327,54 @@ export const deleteUser = (usersAdminComp, id) => {
 }
 
 
+// A function to update a user's password.
+export const updateUserPassword = async(userComp, usersAdminComp, id) => {
+    const getURL = "/userDatabase/" + id;
+
+    const userRes = await fetch(getURL);
+
+    if (userRes.status === 200) {
+        // Return a promise that resolves with the JSON body.
+        const json = await userRes.json();
+
+        const patchURL = "/userDatabase/password/" + id;
+
+        const updatedUser = {
+            firstName: json.firstName,
+            lastName: json.lastName,
+            email: json.email,
+            username: json.username,
+            oldPassword: userComp.state.oldPassword,
+            newPassword: userComp.state.newPassword,
+            accountType: json.accountType,
+            executivePosition: json.executivePosition,
+            deactivated: json.deactivated
+        }
+
+        const request = new Request(patchURL, {
+            method: "PATCH",
+            body: JSON.stringify(updatedUser),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+
+        const updatedUserRes = await fetch(request);
+
+        if (updatedUserRes.status === 200) {
+            alert("Successfully updated user password");
+        } else {
+            alert("Failed to update user password. Old password may be invalid.");
+        }
+    } else {
+        alert("Could not find user");
+    }
+
+    getAllUsers(usersAdminComp);
+}
+
+
 // A function to deactivate a user.
 export const deactivateUser = async(usersAdminComp, id) => {
     const url = "/userDatabase/" + id;
@@ -366,7 +414,7 @@ export const deactivateUser = async(usersAdminComp, id) => {
             alert("Could not deactivate user");
         }
     } else {
-        alert("Could not get user");
+        alert("Could not find user");
     }
 
     getAllUsers(usersAdminComp);
@@ -412,7 +460,7 @@ export const reactivateUser = async(usersAdminComp, id) => {
             alert("Could not reactivate user");
         }
     } else {
-        alert("Could not get user");
+        alert("Could not find user");
     }
 
     getAllUsers(usersAdminComp);

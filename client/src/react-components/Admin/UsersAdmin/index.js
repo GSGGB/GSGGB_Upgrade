@@ -44,7 +44,8 @@ class UsersAdmin extends Component {
                                 <thead>
                                     <tr>
                                         <th>Username</th>
-                                        <th>Role</th>
+                                        <th>Position</th>
+                                        <th>Type</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
