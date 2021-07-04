@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { BrowserRouter } from "react-router-dom";
 import { Button, Form, Modal, ModalBody } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import { confirmAlert } from 'react-confirm-alert';
@@ -17,92 +16,88 @@ class User extends Component {
         username: "",
         password: "",
         confirmPassword: "",
-        accountType: "",
+        accountType: "Administrator", // Default option.
         executivePosition: "",
         deactivated: false
     };
 
     render() {
         return (
-            <BrowserRouter forceRefresh={true}>
-                <div>
-                    <tr>
-                        <td>{this.props.username}</td>
-                        <td>{this.props.accountType}</td>
+            <tr>
+                <td>{this.props.username}</td>
+                <td>{this.props.accountType}</td>
 
-                        {(this.props.deactivated ?
-                          <td className="deactivated">Deactivated</td>
-                          : <td className="activated">Activated</td>
-                        )}
+                {(this.props.deactivated ?
+                  <td className="deactivated">Deactivated</td>
+                  : <td className="activated">Activated</td>
+                )}
 
-                        {(this.props.username === "jahn" ?
-                          <td>No actions allowed</td>
-                          : <td>
-                              <Button
-                                  variant="outline-info"
-                                  onClick={() => getUserById(this, this.props.userId)}>
-                                  Edit
-                              </Button>
-                              <Button
-                                  variant="outline-danger"
-                                  onClick={() => {
-                                      confirmAlert({
-                                          message: 'Please confirm deletion of this user.',
-                                          buttons: [
-                                              {
-                                                label: 'Yes',
-                                                onClick: () => deleteUser(this.props.usersAdminComp, this.props.userId)
-                                              },
-                                              {
-                                                label: 'No'
-                                              }
-                                          ]
-                                      });
-                                  }}>
-                                  Delete
-                              </Button>
-                              {(this.props.deactivated ?
-                                <Button
-                                    variant="outline-success"
-                                    onClick={() => {
-                                        confirmAlert({
-                                            message: 'Please confirm reactivation of this user.',
-                                            buttons: [
-                                                {
-                                                  label: 'Yes',
-                                                  onClick: () => reactivateUser(this.props.usersAdminComp, this.props.userId)
-                                                },
-                                                {
-                                                  label: 'No'
-                                                }
-                                            ]
-                                        });
-                                    }}>
-                                    Reactivate
-                                </Button>
-                                : <Button
-                                    variant="outline-danger"
-                                    onClick={() => {
-                                        confirmAlert({
-                                            message: 'Please confirm deactivation of this user.',
-                                            buttons: [
-                                                {
-                                                  label: 'Yes',
-                                                  onClick: () => deactivateUser(this.props.usersAdminComp, this.props.userId)
-                                                },
-                                                {
-                                                  label: 'No'
-                                                }
-                                            ]
-                                        });
-                                    }}>
-                                    Deactivate
-                                </Button>
-                              )}
-                          </td>
-                        )}
-                    </tr>
-                </div>
+                {(this.props.username === "jahn" ?
+                  <td>No actions allowed</td>
+                  : <td>
+                      <Button
+                          variant="outline-info"
+                          onClick={() => getUserById(this, this.props.userId)}>
+                          Edit
+                      </Button>
+                      <Button
+                          variant="outline-danger"
+                          onClick={() => {
+                              confirmAlert({
+                                  message: 'Please confirm deletion of this user.',
+                                  buttons: [
+                                      {
+                                        label: 'Yes',
+                                        onClick: () => deleteUser(this.props.usersAdminComp, this.props.userId)
+                                      },
+                                      {
+                                        label: 'No'
+                                      }
+                                  ]
+                              });
+                          }}>
+                          Delete
+                      </Button>
+                      {(this.props.deactivated ?
+                        <Button
+                            variant="outline-success"
+                            onClick={() => {
+                                confirmAlert({
+                                    message: 'Please confirm reactivation of this user.',
+                                    buttons: [
+                                        {
+                                          label: 'Yes',
+                                          onClick: () => reactivateUser(this.props.usersAdminComp, this.props.userId)
+                                        },
+                                        {
+                                          label: 'No'
+                                        }
+                                    ]
+                                });
+                            }}>
+                            Reactivate
+                        </Button>
+                        : <Button
+                            variant="outline-danger"
+                            onClick={() => {
+                                confirmAlert({
+                                    message: 'Please confirm deactivation of this user.',
+                                    buttons: [
+                                        {
+                                          label: 'Yes',
+                                          onClick: () => deactivateUser(this.props.usersAdminComp, this.props.userId)
+                                        },
+                                        {
+                                          label: 'No'
+                                        }
+                                    ]
+                                });
+                            }}>
+                            Deactivate
+                        </Button>
+                      )}
+                  </td>
+                )}
 
                 <Modal
                     show={this.state.displayModal}
@@ -171,6 +166,7 @@ class User extends Component {
                                 <Form.Control
                                     type="password"
                                     name="password"
+                                    autocomplete="off"
                                     rows="1"
                                     onChange={e => updateUserForm(this, e.target)}
                                     required
@@ -182,10 +178,25 @@ class User extends Component {
                                 <Form.Control
                                     type="password"
                                     name="confirmPassword"
+                                    autocomplete="off"
                                     rows="1"
                                     onChange={e => updateUserForm(this, e.target)}
                                     required
                                 />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Account type</Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    name="accountType"
+                                    defaultValue={this.state.accountType}
+                                    onChange={e => updateUserForm(this, e.target)}
+                                    required
+                                >
+                                    <option>Administrator</option>
+                                    <option>Editor</option>
+                                </Form.Control>
                             </Form.Group>
                             <br/>
                             <Form.Group>
@@ -218,8 +229,7 @@ class User extends Component {
                         </Form>
                     </ModalBody>
                 </Modal>
-
-            </BrowserRouter>
+            </tr>
         );
     }
 }

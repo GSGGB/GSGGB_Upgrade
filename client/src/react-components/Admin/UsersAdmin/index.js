@@ -17,9 +17,8 @@ class UsersAdmin extends Component {
         userUsername: "",
         userPassword: "",
         userConfirmPassword: "",
-        userAccountType: "",
-        userExecutivePosition: "",
-        userDeactivated: false
+        userAccountType: "Administrator", // Default option.
+        userExecutivePosition: ""
     };
 
     componentDidMount(){
@@ -119,6 +118,7 @@ class UsersAdmin extends Component {
                                 <Form.Control
                                     type="password"
                                     name="userPassword"
+                                    autocomplete="off"
                                     rows="1"
                                     onChange={e => updateUserForm(this, e.target)}
                                     required
@@ -130,10 +130,24 @@ class UsersAdmin extends Component {
                                 <Form.Control
                                     type="password"
                                     name="userConfirmPassword"
+                                    autocomplete="off"
                                     rows="1"
                                     onChange={e => updateUserForm(this, e.target)}
                                     required
                                 />
+                            </Form.Group>
+                            <br/>
+                            <Form.Group>
+                                <Form.Label>Account type</Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    name="userAccountType"
+                                    onChange={e => updateUserForm(this, e.target)}
+                                    required
+                                >
+                                    <option>Administrator</option>
+                                    <option>Editor</option>
+                                </Form.Control>
                             </Form.Group>
                             <br/>
                             <Form.Group>

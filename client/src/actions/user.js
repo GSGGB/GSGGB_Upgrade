@@ -14,7 +14,7 @@ const addUserHelper = async(usersAdminComp, user) => {
                     ></User>
 
     usersAdminComp.setState({
-        users: [newUser].concat(usersAdminComp.state.users)
+        users: (usersAdminComp.state.users).concat([newUser])
     })
 };
 
@@ -201,6 +201,8 @@ export const getUserById = (userComp, id) => {
 
 // A function to add a user.
 export const addUser = (usersAdminComp) => {
+    const url = "/userDatabase";
+
     const user = {
         firstName: usersAdminComp.state.userFirstName,
         lastName: usersAdminComp.state.userLastName,
@@ -211,8 +213,6 @@ export const addUser = (usersAdminComp) => {
         executivePosition: usersAdminComp.state.userExecutivePosition,
         deactivated: false
     };
-
-    const url = "/userDatabase";
 
     const request = new Request(url, {
         method: "POST",
@@ -233,8 +233,8 @@ export const addUser = (usersAdminComp) => {
                 alert("Could not create user");
             }
         })
-        .then(async json => {
-            await addUserHelper(usersAdminComp, json);
+        .then(json => {
+            addUserHelper(usersAdminComp, json);
         })
         .catch(error => {
             console.log(error);
@@ -242,14 +242,13 @@ export const addUser = (usersAdminComp) => {
         .finally(() => {
             // Reset state variables.
             usersAdminComp.setState({
-                firstName: "",
-                lastName: "",
-                email: "",
-                username: "",
-                password: "",
-                accountType: "",
-                executivePosition: "",
-                deactivated: ""
+                userFirstName: "",
+                userLastName: "",
+                userEmail: "",
+                userUsername: "",
+                userPassword: "",
+                userAccountType: "",
+                userExecutivePosition: ""
             });
         });
 }
