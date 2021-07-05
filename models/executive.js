@@ -52,7 +52,20 @@ const ExecutiveSchema = new mongoose.Schema({
         minlength: 0,
         trim: true
     }
-})
+});
+
+// Find executives created by userId.
+ExecutiveSchema.statics.findByUserId = function(userId) {
+    const Executive = this;
+
+    return Executive.findOne({ userId: userId }).then((executive) => {
+        if (!executive) {
+            return Promise.reject();
+        } else{
+            return Promise.resolve(executive);
+        }
+    });
+};
 
 // make a model using the schema
 const Executive = mongoose.model('Executive', ExecutiveSchema)

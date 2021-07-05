@@ -62,7 +62,20 @@ const SponsorSchema = new mongoose.Schema({
         minlength: 0,
         trim: true
     }
-})
+});
+
+// Find sponsors created by userId.
+SponsorSchema.statics.findByUserId = function(userId) {
+    const Sponsor = this;
+
+    return Sponsor.findOne({ userId: userId }).then((sponsor) => {
+        if (!sponsor) {
+            return Promise.reject();
+        } else{
+            return Promise.resolve(sponsor);
+        }
+    });
+};
 
 // make a model using the schema
 const Sponsor = mongoose.model('Sponsor', SponsorSchema)

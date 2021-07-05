@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, Modal, ModalBody } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
-import { confirmAlert } from 'react-confirm-alert';
 
 import { updateUserForm, getUserById, editUser, deleteUser, updateUserPassword,
   deactivateUser, reactivateUser } from "../../../../actions/user";
@@ -27,7 +26,50 @@ class User extends Component {
         confirmPassword: ""
     };
 
+    // Delete user button for all other users other than themselves.
+    deleteUserButton(){
+        const username = sessionStorage.getItem("username");
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
+
+        if (loggedIn === "true"){
+            if (accountType === "Administrator" && username !== this.props.username){
+                return (
+                    <Button
+                        variant="outline-danger"
+                        onClick={() => this.setState({ displayDeleteModal: true })}>
+                        Delete
+                    </Button>
+                )
+            }
+        }
+    }
+
+    // Deactivate/reactivate button for all users.
+    activateButton(){
+        if (this.props.deactivated){
+            return (
+                <Button
+                    variant="outline-success"
+                    onClick={() => this.setState({ displayReactivateModal: true })}>
+                    Reactivate
+                </Button>
+            )
+        } else{
+            return (
+                <Button
+                    variant="outline-danger"
+                    onClick={() => this.setState({ displayDeactivateModal: true })}>
+                    Deactivate
+                </Button>
+            )
+        }
+    }
+
     render() {
+        const deleteUserButton = this.deleteUserButton();
+        const activateButton = this.activateButton();
+
         return (
             <tr>
                 <td>{this.props.username}</td>
@@ -48,24 +90,7 @@ class User extends Component {
                           Edit
                       </Button>
 
-                      <Button
-                          variant="outline-danger"
-                          onClick={() => {
-                              confirmAlert({
-                                  message: 'Please confirm deletion of this user.',
-                                  buttons: [
-                                      {
-                                        label: 'Yes',
-                                        onClick: () => deleteUser(this.props.usersAdminComp, this.props.userId)
-                                      },
-                                      {
-                                        label: 'No'
-                                      }
-                                  ]
-                              });
-                          }}>
-                          Delete
-                      </Button>
+                      {deleteUserButton}
 
                       <Button
                           variant="outline-secondary"
@@ -73,18 +98,7 @@ class User extends Component {
                           Change password
                       </Button>
 
-                      {(this.props.deactivated ?
-                        <Button
-                            variant="outline-success"
-                            onClick={() => this.setState({ displayReactivateModal: true })}>
-                            Reactivate
-                        </Button>
-                        : <Button
-                            variant="outline-danger"
-                            onClick={() => this.setState({ displayDeactivateModal: true })}>
-                            Deactivate
-                        </Button>
-                      )}
+                      {activateButton}
                   </td>
                 )}
 
@@ -177,7 +191,7 @@ class User extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label><strong>Confirm changes with password</strong></Form.Label>
+                                <Form.Label><strong>Confirm changes with the user's password</strong></Form.Label>
                                 <Form.Control
                                     type="password"
                                     name="confirmPassword"
@@ -273,6 +287,47 @@ class User extends Component {
                 </Modal>
 
                 <Modal
+                    show={this.state.displayDeleteModal}
+                    onHide={() => this.setState({ displayDeleteModal: false })}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    backdrop="static"
+                    keyboard={false}
+                    centered
+                >
+                    <ModalHeader closeButton>
+                        <h4>Delete user</h4>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Form>
+                            <Form.Group>
+                                <Form.Label><strong>Confirm deletion with the user's password</strong></Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="confirmPassword"
+                                    autocomplete="off"
+                                    rows="1"
+                                    onChange={e => updateUserForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Button
+                                variant="outline-info"
+                                type="submit"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    deleteUser(this, this.props.usersAdminComp, this.props.userId);
+                                    this.setState({ displayDeleteModal: false });
+                                }}
+                                >
+                                    DELETE
+                            </Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+
+                <Modal
                     show={this.state.displayDeactivateModal}
                     onHide={() => this.setState({ displayDeactivateModal: false })}
                     size="lg"
@@ -287,7 +342,7 @@ class User extends Component {
                     <ModalBody>
                         <Form>
                             <Form.Group>
-                                <Form.Label><strong>Confirm deactivation with password</strong></Form.Label>
+                                <Form.Label><strong>Confirm deactivation with the user's password</strong></Form.Label>
                                 <Form.Control
                                     type="password"
                                     name="confirmPassword"
@@ -328,7 +383,7 @@ class User extends Component {
                     <ModalBody>
                         <Form>
                             <Form.Group>
-                                <Form.Label><strong>Confirm reactivation with password</strong></Form.Label>
+                                <Form.Label><strong>Confirm reactivation with the user's password</strong></Form.Label>
                                 <Form.Control
                                     type="password"
                                     name="confirmPassword"

@@ -296,34 +296,42 @@ export const editUser = (userComp, usersAdminComp, id) => {
 
 
 // A function to delete a user.
-export const deleteUser = (usersAdminComp, id) => {
+export const deleteUser = async(userComp, usersAdminComp, id) => {
     const url = "/userDatabase/" + id;
 
-    const request = new Request(url, {
-        method: "DELETE",
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    });
+    const userRes = await fetch(url);
 
-    // Send the request with fetch()
-    fetch(request)
-        .then(res => {
-            // Handle response we get from the API.
-            // Usually check the error codes to see what happened.
-            if (res.status === 200) {
-                alert("Successfully deleted user");
-            } else {
-                alert("Failed to delete user");
+    if (userRes.status === 200) {
+        // Return a promise that resolves with the JSON body.
+        const json = await userRes.json();
+
+        const deletedUser = {
+            username: json.username,
+            password: userComp.state.confirmPassword
+        }
+
+        const request = new Request(url, {
+            method: "DELETE",
+            body: JSON.stringify(deletedUser),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
             }
-        })
-        .catch(error => {
-            console.log(error);
-        })
-        .finally(() => {
-            getAllUsers(usersAdminComp);
         });
+
+
+        const deletedUserRes = await fetch(request);
+
+        if (deletedUserRes.status === 200) {
+            alert("Successfully deleted user");
+        } else {
+            alert("Failed to delete user. User may have already created content in a page.");
+        }
+    } else {
+        alert("Could not find user");
+    }
+
+    getAllUsers(usersAdminComp);
 }
 
 

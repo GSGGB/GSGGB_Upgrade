@@ -82,7 +82,20 @@ const EventSchema = new mongoose.Schema({
         minlength: 1,
         trim: true
     }
-})
+});
+
+// Find events created by userId.
+EventSchema.statics.findByUserId = function(userId) {
+    const Event = this;
+
+    return Event.findOne({ userId: userId }).then((gEvent) => {
+        if (!gEvent) {
+            return Promise.reject();
+        } else{
+            return Promise.resolve(gEvent);
+        }
+    });
+};
 
 // make a model using the schema
 const Event = mongoose.model('Event', EventSchema)

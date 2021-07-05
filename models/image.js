@@ -13,7 +13,7 @@ const ImageSchema = new mongoose.Schema({
         required: true,
         minlength: 1
     }
-})
+});
 
 // make a model using the schema
 const Image = mongoose.model('Image', ImageSchema)

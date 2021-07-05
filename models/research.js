@@ -14,7 +14,20 @@ const ResearchSchema = new mongoose.Schema({
         minlength: 1,
         trim: true
     }
-})
+});
+
+// Find research posts created by userId.
+ResearchSchema.statics.findByUserId = function(userId) {
+    const Research = this;
+
+    return Research.findOne({ userId: userId }).then((researchPost) => {
+        if (!researchPost) {
+            return Promise.reject();
+        } else{
+            return Promise.resolve(researchPost);
+        }
+    });
+};
 
 // make a model using the schema
 const Research = mongoose.model('Research', ResearchSchema)

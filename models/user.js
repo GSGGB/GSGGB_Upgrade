@@ -57,7 +57,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 // An example of Mongoose middleware.
-// This function will run immediately prior to saving the document
+// This function will run immediately prior to CREATING AND SAVING the document
 // in the database.
 UserSchema.pre('save', function(next) {
 	const user = this; // binds this to User document instance
@@ -77,22 +77,24 @@ UserSchema.pre('save', function(next) {
 })
 
 
+// This function will run immediately prior to UPDATING the document
+// in the database.
 UserSchema.pre('findOneAndUpdate', function(next) {
-  const user = this._update;
+    const user = this._update;
 
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(user.$set.password, salt, (err, hash) => {
-      user.$set.password = hash
-      next()
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(user.$set.password, salt, (err, hash) => {
+          user.$set.password = hash
+          next()
+        })
     })
-  })
 })
 
 
 // A static method on the document model.
 // Allows us to find a User document by comparing the hashed password
-//  to a given one, for example when logging in.
-UserSchema.statics.findByUsernamePassword = function (username, password) {
+// to a given one, for example when logging in.
+UserSchema.statics.findByUsernamePassword = function(username, password) {
     const User = this; // binds this to the User model
 
     // First find the user by their username
