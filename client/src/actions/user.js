@@ -263,7 +263,7 @@ export const editUser = (userComp, usersAdminComp, id) => {
         lastName: userComp.state.lastName,
         email: userComp.state.email,
         username: userComp.state.username,
-        password: userComp.state.confirmChanges,
+        password: userComp.state.confirmPassword,
         accountType: userComp.state.accountType,
         executivePosition: userComp.state.executivePosition,
         deactivated: userComp.state.deactivated
@@ -376,7 +376,7 @@ export const updateUserPassword = async(userComp, usersAdminComp, id) => {
 
 
 // A function to deactivate a user.
-export const deactivateUser = async(usersAdminComp, id) => {
+export const deactivateUser = async(userComp, usersAdminComp, id) => {
     const url = "/userDatabase/" + id;
 
     const userRes = await fetch(url);
@@ -390,7 +390,7 @@ export const deactivateUser = async(usersAdminComp, id) => {
             lastName: json.lastName,
             email: json.email,
             username: json.username,
-            password: json.password,
+            password: userComp.state.confirmPassword,
             accountType: json.accountType,
             executivePosition: json.executivePosition,
             deactivated: true
@@ -422,7 +422,7 @@ export const deactivateUser = async(usersAdminComp, id) => {
 
 
 // A function to reactivate a user.
-export const reactivateUser = async(usersAdminComp, id) => {
+export const reactivateUser = async(userComp, usersAdminComp, id) => {
     const url = "/userDatabase/" + id;
 
     const userRes = await fetch(url);
@@ -436,7 +436,7 @@ export const reactivateUser = async(usersAdminComp, id) => {
             lastName: json.lastName,
             email: json.email,
             username: json.username,
-            password: json.password,
+            password: userComp.state.confirmPassword,
             accountType: json.accountType,
             executivePosition: json.executivePosition,
             deactivated: false

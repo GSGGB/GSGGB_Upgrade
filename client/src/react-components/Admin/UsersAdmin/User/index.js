@@ -11,7 +11,10 @@ import "./styles.css";
 class User extends Component {
     state = {
         displayEditModal: false,
+        displayDeleteModal: false,
         displayPasswordModal: false,
+        displayDeActivateModal: false,
+        displayReactivateModal: false,
         firstName: "",
         lastName: "",
         email: "",
@@ -19,7 +22,6 @@ class User extends Component {
         accountType: "Administrator", // Default option.
         executivePosition: "",
         deactivated: false,
-        confirmChanges: "",
         oldPassword: "",
         newPassword: "",
         confirmPassword: ""
@@ -74,38 +76,12 @@ class User extends Component {
                       {(this.props.deactivated ?
                         <Button
                             variant="outline-success"
-                            onClick={() => {
-                                confirmAlert({
-                                    message: 'Please confirm reactivation of this user.',
-                                    buttons: [
-                                        {
-                                          label: 'Yes',
-                                          onClick: () => reactivateUser(this.props.usersAdminComp, this.props.userId)
-                                        },
-                                        {
-                                          label: 'No'
-                                        }
-                                    ]
-                                });
-                            }}>
+                            onClick={() => this.setState({ displayReactivateModal: true })}>
                             Reactivate
                         </Button>
                         : <Button
                             variant="outline-danger"
-                            onClick={() => {
-                                confirmAlert({
-                                    message: 'Please confirm deactivation of this user.',
-                                    buttons: [
-                                        {
-                                          label: 'Yes',
-                                          onClick: () => deactivateUser(this.props.usersAdminComp, this.props.userId)
-                                        },
-                                        {
-                                          label: 'No'
-                                        }
-                                    ]
-                                });
-                            }}>
+                            onClick={() => this.setState({ displayDeactivateModal: true })}>
                             Deactivate
                         </Button>
                       )}
@@ -204,7 +180,7 @@ class User extends Component {
                                 <Form.Label><strong>Confirm changes with password</strong></Form.Label>
                                 <Form.Control
                                     type="password"
-                                    name="confirmChanges"
+                                    name="confirmPassword"
                                     autocomplete="off"
                                     rows="1"
                                     onChange={e => updateUserForm(this, e.target)}
@@ -291,6 +267,88 @@ class User extends Component {
                                 }}
                                 >
                                     CHANGE
+                            </Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+
+                <Modal
+                    show={this.state.displayDeactivateModal}
+                    onHide={() => this.setState({ displayDeactivateModal: false })}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    backdrop="static"
+                    keyboard={false}
+                    centered
+                >
+                    <ModalHeader closeButton>
+                        <h4>Deactivate user</h4>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Form>
+                            <Form.Group>
+                                <Form.Label><strong>Confirm deactivation with password</strong></Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="confirmPassword"
+                                    autocomplete="off"
+                                    rows="1"
+                                    onChange={e => updateUserForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Button
+                                variant="outline-info"
+                                type="submit"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    deactivateUser(this, this.props.usersAdminComp, this.props.userId);
+                                    this.setState({ displayDeactivateModal: false });
+                                }}
+                                >
+                                    DEACTIVATE
+                            </Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+
+                <Modal
+                    show={this.state.displayReactivateModal}
+                    onHide={() => this.setState({ displayReactivateModal: false })}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    backdrop="static"
+                    keyboard={false}
+                    centered
+                >
+                    <ModalHeader closeButton>
+                        <h4>Reactivate user</h4>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Form>
+                            <Form.Group>
+                                <Form.Label><strong>Confirm reactivation with password</strong></Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="confirmPassword"
+                                    autocomplete="off"
+                                    rows="1"
+                                    onChange={e => updateUserForm(this, e.target)}
+                                    required
+                                />
+                            </Form.Group>
+                            <br/>
+                            <Button
+                                variant="outline-info"
+                                type="submit"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    reactivateUser(this, this.props.usersAdminComp, this.props.userId);
+                                    this.setState({ displayReactivateModal: false });
+                                }}
+                                >
+                                    REACTIVATE
                             </Button>
                         </Form>
                     </ModalBody>
