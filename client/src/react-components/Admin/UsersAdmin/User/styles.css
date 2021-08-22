@@ -1,3 +1,9 @@
+.usersadmin-headshot{
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 20%;
+}
+
 .deactivated{
     color: red;
     font-weight: bold;

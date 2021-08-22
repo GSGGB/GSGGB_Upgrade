@@ -18,7 +18,7 @@
     font-weight: bold;
     font-size: 65px;
     position: absolute;
-    top: 15%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -31,17 +31,10 @@
   color: black;
   font-weight: bold;
   padding: 5px;
-  float: left;
-  text-align: left;
 }
 
 .description{
   font-weight: normal !important;
-}
-
-.form{
-  margin: auto;
-  height: 100%;
 }
 
 /* End of get involved photo banner styling */

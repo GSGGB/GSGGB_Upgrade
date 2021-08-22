@@ -93,10 +93,10 @@ class Research extends Component {
         return (
             <BrowserRouter forceRefresh={true}>
                 <Col xl={6}>
-                    <Card className="researchPost">
+                    <Card className="research-post">
                         <Card.Body>
                             <Card.Subtitle className="mb-2 text-muted">
-                                <img src={this.props.headshot} className="headshot" alt="headshot" />
+                                <img src={this.props.headshot} className="research-headshot" alt="headshot" />
                                 <strong className="mr-auto">{this.props.fullName + " - " + this.props.executivePosition}</strong>
                                 <span>{deleteResearchButton}{editResearchButton}</span>
                             </Card.Subtitle>
