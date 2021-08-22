@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Card, Table, Button, Form, Modal, ModalBody } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 
+import { updateImageFile } from "../../../actions/image";
 import { updateUserForm, getAllUsers, addUser } from "../../../actions/user";
 
 import "./styles.css";
@@ -11,6 +12,8 @@ class UsersAdmin extends Component {
     state = {
         users: [],
         displayUserModal: false,
+        imageFile: "",
+        imageId: "",
         userFirstName: "",
         userLastName: "",
         userEmail: "",
@@ -40,18 +43,20 @@ class UsersAdmin extends Component {
                             </Button>
                         </Card.Header>
                         <Card.Body>
-                            <Table border hover>
-                                <thead>
-                                    <tr>
-                                        <th>Username</th>
-                                        <th>Position</th>
-                                        <th>Type</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>{this.state.users}</tbody>
-                            </Table>
+                            <div class="table-responsive">
+                                <Table border hover>
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Position</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>{this.state.users}</tbody>
+                                </Table>
+                            </div>
                         </Card.Body>
                     </Card>
                 </div>
@@ -70,6 +75,13 @@ class UsersAdmin extends Component {
                     </ModalHeader>
                     <ModalBody>
                         <Form>
+                            <Form.Group>
+                                <Form.File
+                                    name="imageFile"
+                                    label="Upload headshot (with square image orientation)"
+                                    onChange={e => updateImageFile(this, e.target)}
+                                    required />
+                            </Form.Group>
                             <Form.Group>
                                 <Form.Label>First name</Form.Label>
                                 <Form.Control

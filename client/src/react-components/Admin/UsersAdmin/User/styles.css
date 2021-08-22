@@ -7,3 +7,9 @@
     color: green;
     font-weight: bold;
 }
+
+/* Styling for user edit form */
+#user-image-file-edit{
+    display: none;
+}
+/* End of styling for user edit form */

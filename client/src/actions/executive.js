@@ -15,7 +15,7 @@ export const updateExecutiveForm = (comp, field) => {
 };
 
 
-// A function to delete the executive image image.
+// A function to delete the executive headshot.
 const deleteImageHelper = async(executive) => {
       const imageURL = "/imageDatabase/" + executive.imageId;
       const imageRes = await fetch(imageURL);
@@ -110,7 +110,7 @@ const addExecutiveHelper = async(teamComp, executive) => {
             }
 
         } else {
-            alert("Could not get executive");
+            alert("Could not get headshot");
         }
     } else {
         alert("Could not get user");
@@ -191,7 +191,7 @@ export const getExecutiveById = (executiveComp, id) => {
 
 // A function to add a single executive.
 export const addExecutive = (teamComp) => {
-    // 1) Add poster/image to cloudinary first.
+    // 1) Add headshot to cloudinary first.
     addImage(teamComp, () => {
         // 2) Add executive to MongoDB database.
         const url = "/executiveDatabase";
@@ -301,13 +301,13 @@ const editExecutiveHelper = (executiveComp, teamComp, url, imageUpdated, imageCl
 
 
 // A function to edit a single executive.
-export const editExecutive = (executiveComp, teamComp, imageCloudinaryId, id) => {
-    const url = "/executiveDatabase/" + id;
+export const editExecutive = (executiveComp, teamComp, imageCloudinaryId, executiveId) => {
+    const url = "/executiveDatabase/" + executiveId;
 
     // 1) Check whether editor/administrator wants to update image.
     // If so, delete current image in cloudinary.
     if (document.querySelector("#exec-image-checkbox").checked){
-        // Add new poster/image to cloudinary.
+        // Add new headshot to cloudinary.
         addImage(executiveComp, () => {
             // 2) Edit executive in MongoDB database.
             editExecutiveHelper(executiveComp, teamComp, url, true, imageCloudinaryId)
@@ -321,7 +321,7 @@ export const editExecutive = (executiveComp, teamComp, imageCloudinaryId, id) =>
 
 // A function to delete a single executive.
 export const deleteExecutive = (teamComp, imageCloudinaryId, executiveId) => {
-    // 1) Delete poster/image in cloudinary.
+    // 1) Delete headshot in cloudinary.
     deleteImage(imageCloudinaryId);
 
     // 2) Remove executive from MongoDB database.

@@ -6,26 +6,37 @@ import Announcement from "../react-components/HomePage/Announcement";
 // Helper function for getAllAnnouncements and addAnnouncement.
 const addAnnouncementHelper = async(homepageComp, announcement) => {
     // Retrieve user details including username and full name.
-    const url = "/userDatabase/" + announcement.userId;
+    const userURL = "/userDatabase/" + announcement.userId;
 
-    const res = await fetch(url);
+    const userRes = await fetch(userURL);
 
-    if (res.status === 200) {
-        const json = await res.json();
+    if (userRes.status === 200) {
+        const userJSON = await userRes.json();
 
-        const newAnnouncement = <Announcement
-                                    homepageComp={homepageComp}
-                                    announcementId={announcement._id}
-                                    username={json.username}
-                                    fullName={json.firstName + " " + json.lastName}
-                                    executivePosition={json.executivePosition}
-                                    headshot={json.firstName + ".jpg"}
-                                    content={announcement.content}
-                                    date={announcement.date}
-                                ></Announcement>
-        homepageComp.setState({
-            announcements: [newAnnouncement].concat(homepageComp.state.announcements)
-        })
+        // Retrieve image cloudinary ID and URL.
+        const imageURL = "/imageDatabase/" + userJSON.imageId;
+
+        const imageRes = await fetch(imageURL);
+
+        if (imageRes.status === 200) {
+            const imageJSON = await imageRes.json();
+
+            const newAnnouncement = <Announcement
+                                        homepageComp={homepageComp}
+                                        announcementId={announcement._id}
+                                        headshot={imageJSON.imageURL}
+                                        username={userJSON.username}
+                                        fullName={userJSON.firstName + " " + userJSON.lastName}
+                                        executivePosition={userJSON.executivePosition}
+                                        content={announcement.content}
+                                        date={announcement.date}
+                                    ></Announcement>
+            homepageComp.setState({
+                announcements: [newAnnouncement].concat(homepageComp.state.announcements)
+            })
+        } else {
+            alert("Could not get headshot");
+        }
     } else {
         alert("Could not get user");
     }

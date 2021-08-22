@@ -25,7 +25,7 @@ class Admin extends Component {
       return (
           <BrowserRouter>
 
-              <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+              <Navbar collapseOnSelect expand="sm" bg="light" variant="light">
                   <div className="container">
                       <Navbar.Brand>Admin</Navbar.Brand>
                       <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, Modal, ModalBody } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/ModalHeader";
 
+import { updateImageFile } from "../../../../actions/image";
 import { updateUserForm, getUserById, editUser, deleteUser, updateUserPassword,
   deactivateUser, reactivateUser } from "../../../../actions/user";
 
@@ -14,6 +15,8 @@ class User extends Component {
         displayPasswordModal: false,
         displayDeActivateModal: false,
         displayReactivateModal: false,
+        imageFile: "",
+        imageId: "",
         firstName: "",
         lastName: "",
         email: "",
@@ -74,6 +77,19 @@ class User extends Component {
         }
     }
 
+    // Checkbox for edit user form. Checked if user wishes to upload a new headshot.
+    displayCheckbox(){
+        const userImageCheckbox = document.querySelector("#user-image-checkbox");
+        const userImageFileEdit = document.querySelector("#user-image-file-edit");
+
+        // If the checkbox is checked, display the output text
+        if (userImageCheckbox.checked === true){
+            userImageFileEdit.style.display = "block";
+        } else {
+            userImageFileEdit.style.display = "none";
+        }
+    }
+
     render() {
         const deleteUserButton = this.deleteUserButton();
         const activateButton = this.activateButton();
@@ -89,7 +105,7 @@ class User extends Component {
                   : <td className="activated">Activated</td>
                 )}
 
-                {(this.props.username === "jahn" ?
+                {(this.props.username === "master_admin" || this.props.username === "jahn" ?
                   <td>No actions allowed</td>
                   : <td>
                       <Button
@@ -124,6 +140,24 @@ class User extends Component {
                     </ModalHeader>
                     <ModalBody>
                         <Form>
+                            <Form.Group controlId="formBasicCheckbox">
+                                <Form.Check
+                                    id="user-image-checkbox"
+                                    type="checkbox"
+                                    label="Change existing headshot (with square image orientation)"
+                                    onClick={() => {
+                                        this.displayCheckbox();
+                                    }}
+                                    required />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.File
+                                    name="imageFile"
+                                    id="user-image-file-edit"
+                                    onChange={e => updateImageFile(this, e.target)}
+                                    required />
+                            </Form.Group>
+                            <br/>
                             <Form.Group>
                                 <Form.Label>First name</Form.Label>
                                 <Form.Control
@@ -215,7 +249,7 @@ class User extends Component {
                                 type="submit"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    editUser(this, this.props.usersAdminComp, this.props.userId);
+                                    editUser(this, this.props.usersAdminComp, this.props.imageCloudinaryId, this.props.userId);
                                     this.setState({ displayEditModal: false });
                                 }}
                                 >
@@ -325,7 +359,7 @@ class User extends Component {
                                 type="submit"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    deleteUser(this, this.props.usersAdminComp, this.props.userId);
+                                    deleteUser(this, this.props.usersAdminComp, this.props.imageCloudinaryId, this.props.userId);
                                     this.setState({ displayDeleteModal: false });
                                 }}
                                 >

@@ -280,8 +280,8 @@ const editEventHelper = (singleEventComp, eventsComp, url, imageUpdated, imageCl
 
 
 // A function to edit a single event.
-export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, id) => {
-    const url = "/eventDatabase/" + id;
+export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, eventId) => {
+    const url = "/eventDatabase/" + eventId;
 
     // 1) Check whether editor/administrator wants to update image.
     // If so, delete current image in cloudinary.

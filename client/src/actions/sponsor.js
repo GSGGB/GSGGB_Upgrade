@@ -287,8 +287,8 @@ const editSponsorHelper = (singleSponsorComp, sponsorsComp, url, imageUpdated, i
 
 
 // A function to edit a single sponsor.
-export const editSponsor = (singleSponsorComp, sponsorsComp, imageCloudinaryId, id) => {
-    const url = "/sponsorDatabase/" + id;
+export const editSponsor = (singleSponsorComp, sponsorsComp, imageCloudinaryId, sponsorId) => {
+    const url = "/sponsorDatabase/" + sponsorId;
 
     // 1) Check whether editor/administrator wants to update image.
     // If so, delete current image in cloudinary.

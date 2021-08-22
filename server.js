@@ -149,6 +149,7 @@ app.get("/userDatabase/:id", (req, res) => {
 app.post("/userDatabase", (req, res) => {
     // Create a new user using the User mongoose model
     const user = new User({
+        imageId: req.body.imageId,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
@@ -183,6 +184,7 @@ app.patch("/userDatabase/:id", (req, res) => {
             // IMPORTANT: Only make edits to user if username and password are valid.
             if (user) {
                 const body = {
+                    imageId: req.body.imageId,
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     email: req.body.email,
@@ -229,6 +231,7 @@ app.patch("/userDatabase/password/:id", (req, res) => {
             // IMPORTANT: Only update password if username and old password are valid.
             if (user) {
                 const body = {
+                    imageId: req.body.imageId,
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     email: req.body.email,

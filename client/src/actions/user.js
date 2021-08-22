@@ -1,22 +1,48 @@
 import React from "react";
 import User from "../react-components/Admin/UsersAdmin/User";
+import { addImage, deleteImage } from "../actions/image";
 
 // Functions to help with user actions.
 
+// A function to delete the user headshot.
+const deleteImageHelper = async(user) => {
+      const imageURL = "/imageDatabase/" + user.imageId;
+      const imageRes = await fetch(imageURL);
+
+      if (imageRes.status === 200) {
+          const imageJSON = await imageRes.json();
+          deleteImage(imageJSON.imageId);
+      }
+};
+
+
 // Helper function for getAllUsers and addUser.
 const addUserHelper = async(usersAdminComp, user) => {
-    const newUser = <User
-                        usersAdminComp={usersAdminComp}
-                        userId={user._id}
-                        username={user.username}
-                        accountType={user.accountType}
-                        executivePosition={user.executivePosition}
-                        deactivated={user.deactivated}
-                    ></User>
+    // Retrieve image cloudinary ID and URL.
+    const imageURL = "/imageDatabase/" + user.imageId;
 
-    usersAdminComp.setState({
-        users: (usersAdminComp.state.users).concat([newUser])
-    })
+    const imageRes = await fetch(imageURL);
+
+    if (imageRes.status === 200) {
+        const imageJSON = await imageRes.json();
+
+        const newUser = <User
+                            usersAdminComp={usersAdminComp}
+                            userId={user._id}
+                            imageCloudinaryId={imageJSON.imageId}
+                            imageURL={imageJSON.imageURL}
+                            username={user.username}
+                            accountType={user.accountType}
+                            executivePosition={user.executivePosition}
+                            deactivated={user.deactivated}
+                        ></User>
+
+        usersAdminComp.setState({
+            users: (usersAdminComp.state.users).concat([newUser])
+        })
+    } else {
+        alert("Could not get user");
+    }
 };
 
 
@@ -184,6 +210,7 @@ export const getUserById = (userComp, id) => {
             // Get existing user details.
             userComp.setState({
                 displayEditModal: true,
+                imageId: json.imageId,
                 firstName: json.firstName,
                 lastName: json.lastName,
                 email: json.email,
@@ -201,64 +228,71 @@ export const getUserById = (userComp, id) => {
 
 // A function to add a user.
 export const addUser = (usersAdminComp) => {
-    const url = "/userDatabase";
+    // 1) Add headshot to cloudinary first.
+    addImage(usersAdminComp, () => {
+        // 2) Add user to MongoDB database.
+        const url = "/userDatabase";
 
-    const user = {
-        firstName: usersAdminComp.state.userFirstName,
-        lastName: usersAdminComp.state.userLastName,
-        email: usersAdminComp.state.userEmail,
-        username: usersAdminComp.state.userUsername,
-        password: usersAdminComp.state.userPassword,
-        accountType: usersAdminComp.state.userAccountType,
-        executivePosition: usersAdminComp.state.userExecutivePosition,
-        deactivated: false
-    };
+        const user = {
+            imageId: usersAdminComp.state.imageId,
+            firstName: usersAdminComp.state.userFirstName,
+            lastName: usersAdminComp.state.userLastName,
+            email: usersAdminComp.state.userEmail,
+            username: usersAdminComp.state.userUsername,
+            password: usersAdminComp.state.userPassword,
+            accountType: usersAdminComp.state.userAccountType,
+            executivePosition: usersAdminComp.state.userExecutivePosition,
+            deactivated: false
+        };
 
-    const request = new Request(url, {
-        method: "POST",
-        body: JSON.stringify(user),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    });
-
-    // Send the request with fetch()
-    fetch(request)
-        .then(res => {
-            if (res.status === 200) {
-                alert("Successfully created user");
-                return res.json();
-            } else {
-                alert("Could not create user");
+        const request = new Request(url, {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
             }
-        })
-        .then(json => {
-            addUserHelper(usersAdminComp, json);
-        })
-        .catch(error => {
-            console.log(error);
-        })
-        .finally(() => {
-            // Reset state variables.
-            usersAdminComp.setState({
-                userFirstName: "",
-                userLastName: "",
-                userEmail: "",
-                userUsername: "",
-                userPassword: "",
-                userAccountType: "",
-                userExecutivePosition: ""
-            });
         });
+
+        // Send the request with fetch()
+        fetch(request)
+            .then(res => {
+                if (res.status === 200) {
+                    alert("Successfully created user");
+                    return res.json();
+                } else {
+                    alert("Could not create user");
+                    deleteImageHelper(user);
+                }
+            })
+            .then(json => {
+                addUserHelper(usersAdminComp, json);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                // Reset state variables.
+                usersAdminComp.setState({
+                    imageFile: "",
+                    imageId: "",
+                    userFirstName: "",
+                    userLastName: "",
+                    userEmail: "",
+                    userUsername: "",
+                    userPassword: "",
+                    userAccountType: "",
+                    userExecutivePosition: ""
+                });
+            });
+    });
 }
 
 
-// A function to edit a user.
-export const editUser = (userComp, usersAdminComp, id) => {
-    const url = "/userDatabase/" + id;
-
+// Helper function for editUser.
+const editUserHelper = (userComp, usersAdminComp, url, imageUpdated, imageCloudinaryId) => {
     const updatedUser = {
+        imageId: userComp.state.imageId,
         firstName: userComp.state.firstName,
         lastName: userComp.state.lastName,
         email: userComp.state.email,
@@ -282,8 +316,18 @@ export const editUser = (userComp, usersAdminComp, id) => {
         .then(res => {
             if (res.status === 200) {
                 alert("Successfully updated user");
+
+                // Delete old image.
+                if (imageUpdated === true){
+                    deleteImage(imageCloudinaryId);
+                }
             } else {
                 alert("Could not update user");
+
+                // Delete image just uploaded but not added to user due to mongoose model fail.
+                if (imageUpdated === true){
+                    deleteImageHelper(updatedUser);
+                }
             }
         })
         .catch(error => {
@@ -295,9 +339,32 @@ export const editUser = (userComp, usersAdminComp, id) => {
 }
 
 
+// A function to edit a user.
+export const editUser = (userComp, usersAdminComp, imageCloudinaryId, userId) => {
+    const url = "/userDatabase/" + userId;
+
+    // 1) Check whether administrator wants to update image.
+    // If so, delete current image in cloudinary.
+    if (document.querySelector("#user-image-checkbox").checked){
+        // Add new headshot to cloudinary.
+        addImage(userComp, () => {
+            // 2) Edit user in MongoDB database.
+            editUserHelper(userComp, usersAdminComp, url, true, imageCloudinaryId)
+        });
+    } else {
+        // Edit user in MongoDB database without modifying image.
+        editUserHelper(userComp, usersAdminComp, url, false, imageCloudinaryId)
+    }
+}
+
+
 // A function to delete a user.
-export const deleteUser = async(userComp, usersAdminComp, id) => {
-    const url = "/userDatabase/" + id;
+export const deleteUser = async(userComp, usersAdminComp, imageCloudinaryId, userId) => {
+    // 1) Delete headshot in cloudinary.
+    deleteImage(imageCloudinaryId);
+
+    // 2) Remove executive from MongoDB database.
+    const url = "/userDatabase/" + userId;
 
     const userRes = await fetch(url);
 
@@ -348,6 +415,7 @@ export const updateUserPassword = async(userComp, usersAdminComp, id) => {
         const patchURL = "/userDatabase/password/" + id;
 
         const updatedUser = {
+            imageId: json.imageId,
             firstName: json.firstName,
             lastName: json.lastName,
             email: json.email,
@@ -394,6 +462,7 @@ export const deactivateUser = async(userComp, usersAdminComp, id) => {
         const json = await userRes.json();
 
         const deactivatedUser = {
+            imageId: json.imageId,
             firstName: json.firstName,
             lastName: json.lastName,
             email: json.email,
@@ -440,6 +509,7 @@ export const reactivateUser = async(userComp, usersAdminComp, id) => {
         const json = await userRes.json();
 
         const reactivatedUser = {
+            imageId: json.imageId,
             firstName: json.firstName,
             lastName: json.lastName,
             email: json.email,
