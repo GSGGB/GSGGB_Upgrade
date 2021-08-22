@@ -45,24 +45,32 @@ class User extends Component {
         }
     }
 
-    // Deactivate/reactivate button for all users.
+    // Deactivate/reactivate button for all other users other than themselves.
     activateButton(){
-        if (this.props.deactivated){
-            return (
-                <Button
-                    variant="outline-success"
-                    onClick={() => this.setState({ displayReactivateModal: true })}>
-                    Reactivate
-                </Button>
-            )
-        } else{
-            return (
-                <Button
-                    variant="outline-danger"
-                    onClick={() => this.setState({ displayDeactivateModal: true })}>
-                    Deactivate
-                </Button>
-            )
+        const username = sessionStorage.getItem("username");
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
+
+        if (loggedIn === "true"){
+            if (accountType === "Administrator" && username !== this.props.username){
+                if (this.props.deactivated){
+                    return (
+                        <Button
+                            variant="outline-success"
+                            onClick={() => this.setState({ displayReactivateModal: true })}>
+                            Reactivate
+                        </Button>
+                    )
+                } else{
+                    return (
+                        <Button
+                            variant="outline-danger"
+                            onClick={() => this.setState({ displayDeactivateModal: true })}>
+                            Deactivate
+                        </Button>
+                    )
+                }
+            }
         }
     }
 

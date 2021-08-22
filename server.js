@@ -263,7 +263,7 @@ app.patch("/userDatabase/password/:id", (req, res) => {
 });
 
 // A DELETE route to delete a user by their id.
-app.delete("/userDatabase/:id", (req, res) => {
+app.delete("/userDatabase/:id", async(req, res) => {
     const id = req.params.id;
     const username = req.body.username;
     const password = req.body.password;
@@ -273,17 +273,75 @@ app.delete("/userDatabase/:id", (req, res) => {
         return;
     }
 
-    Announcement.findByUserId(id)
+    var announcementExists = await Announcement.findByUserId(id)
         .then((announcement) => {
             if (announcement) {
-                res.status(404).send();
-                return;
+                return true;
+            } else{
+                return false;
             }
         })
-        .catch((error) => {
-            res.status(400).send();
-        });
+        .catch((error) => {});
+    if (announcementExists){
+        res.status(404).send();
+        return;
+    }
 
+    var researchPostExists = await Research.findByUserId(id)
+        .then((researchPost) => {
+            if (researchPost) {
+                return true;
+            } else{
+                return false;
+            }
+        })
+        .catch((error) => {});
+    if (researchPostExists){
+        res.status(404).send();
+        return;
+    }
+
+    var executivePostExists = await Executive.findByUserId(id)
+        .then((executivePost) => {
+            if (executivePost) {
+                return true;
+            } else{
+                return false;
+            }
+        })
+        .catch((error) => {});
+    if (executivePostExists){
+        res.status(404).send();
+        return;
+    }
+
+    var eventExists = await Event.findByUserId(id)
+        .then((gEvent) => {
+            if (gEvent) {
+                return true;
+            } else{
+                return false;
+            }
+        })
+        .catch((error) => {});
+    if (eventExists){
+        res.status(404).send();
+        return;
+    }
+
+    var sponsorExists = await Sponsor.findByUserId(id)
+        .then((sponsor) => {
+            if (sponsor) {
+                return true;
+            } else{
+                return false;
+            }
+        })
+        .catch((error) => {});
+    if (sponsorExists){
+        res.status(404).send();
+        return;
+    }
 
     User.findByUsernamePassword(username, password)
         .then((user) => {
