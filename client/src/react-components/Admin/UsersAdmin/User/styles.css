@@ -4,6 +4,10 @@
     border-radius: 20%;
 }
 
+.usersadmin-username{
+    text-align: left;
+}
+
 .deactivated{
     color: red;
     font-weight: bold;

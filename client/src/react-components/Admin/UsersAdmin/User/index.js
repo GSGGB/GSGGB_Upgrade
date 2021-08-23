@@ -96,7 +96,7 @@ class User extends Component {
 
         return (
             <tr>
-                <td>
+                <td className="usersadmin-username">
                     <img src={this.props.imageURL} className="usersadmin-headshot" alt="headshot" />
                     {this.props.username}
                 </td>

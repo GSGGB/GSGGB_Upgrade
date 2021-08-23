@@ -26,15 +26,26 @@
 .getinvolved-photo-subtitle{
     font-size: 35px;
 }
-
-.headers, .description{
-  color: black;
-  font-weight: bold;
-  padding: 5px;
-}
-
-.description{
-  font-weight: normal !important;
-}
-
 /* End of get involved photo banner styling */
+
+/* Start of applicant form styling */
+.applicant-card-header{
+    background-color: ghostwhite;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #5BC0DE;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.applicant-form-header{
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+}
+
+#affairs-applicant-positions, #conference-applicant-positions, #events-applicant-positions,
+#marketing-applicant-positions, #mentorship-applicant-positions, #tech-applicant-positions{
+
+}
+/* End of applicant form styling */

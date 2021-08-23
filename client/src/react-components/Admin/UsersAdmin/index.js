@@ -43,7 +43,7 @@ class UsersAdmin extends Component {
                             </Button>
                         </Card.Header>
                         <Card.Body>
-                            <div class="table-responsive">
+                            <div className="table-responsive">
                                 <Table border hover>
                                     <thead>
                                         <tr>

@@ -1,23 +1,23 @@
-// A function to get the uploaded image file.
-export const updateImageFile = (comp, field) => {
+// A function to update a resume file to add to cloudinary.
+export const updateResumeFile = (comp, field) => {
     comp.setState({
-        imageFile: field.files[0]
+        resumeFile: field.files[0]
     })
 };
 
-// A function to send a POST request with a new image.
-export const addImage = (comp, callback) => {
-    let image = comp.state.imageFile;
-    let imageData = new FormData();
-    imageData.append("image", image);
+// A function to send a POST request with a new resume.
+export const addResume = (comp, callback) => {
+    let resume = comp.state.resumeFile;
+    let resumeData = new FormData();
+    resumeData.append("resume", resume);
 
     // the URL for the request
-    const url = "/imageDatabase";
+    const url = "/resumeDatabase";
 
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
         method: "POST",
-        body: imageData
+        body: resumeData
     });
 
     // Send the request with fetch()
@@ -28,14 +28,14 @@ export const addImage = (comp, callback) => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                alert("Image upload failed");
+                alert("Resume upload failed");
             }
         })
         .then(json => {
             comp.setState({
-                imageId: json._id
+                resumeId: json._id
             }, () => {
-                alert("Image upload successful")
+                alert("Resume upload successful")
                 callback();
             })
         })
@@ -44,9 +44,9 @@ export const addImage = (comp, callback) => {
         });
 };
 
-// A function to send a DELETE request with an image PUBLIC id (id on cloudinary).
-export const deleteImage = (id) => {
-    const url = "/imageDatabase/" + id;
+// A function to send a DELETE request with a resume PUBLIC id (id on cloudinary).
+export const deleteResume = (id) => {
+    const url = "/resumeDatabase/" + id;
 
     const request = new Request(url, {
         method: "DELETE",
@@ -62,9 +62,9 @@ export const deleteImage = (id) => {
             // Handle response we get from the API.
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
-                alert("Image deletion successful");
+                alert("Resume deletion successful");
             } else {
-                alert("Image deletion failed");
+                alert("Resume deletion failed");
             }
         })
         .catch(error => {

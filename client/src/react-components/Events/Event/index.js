@@ -231,7 +231,7 @@ class Event extends Component {
                                         <FontAwesomeIcon className="event-detail-icon" icon={faMapMarkerAlt} size={4}/>{this.props.location}
                                     </div>
                                     {fbIcon}{eventbriteIcon}{zoomIcon}
-                                    <div className="event-detail">
+                                    <div className="event-detail" id="event-content">
                                         {this.props.content}
                                     </div>
                                 </Card.Body>
