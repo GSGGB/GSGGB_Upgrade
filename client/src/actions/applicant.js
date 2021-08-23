@@ -1,3 +1,5 @@
+import React from "react";
+import Applicant from "../react-components/Admin/ApplicationsAdmin/Applicant";
 import { addResume, deleteResume } from "../actions/resume";
 
 // Functions to help with potential applicants.
@@ -26,7 +28,7 @@ const deleteResumeHelper = async(applicant) => {
 
 
 // Helper function for getAllApplicants and sendApplication.
-const addApplicantHelper = async(getInvolvedComp, applicant) => {
+const addApplicantHelper = async(applicationsAdminComp, applicant) => {
     // Retrieve resume cloudinary ID and URL.
     const resumeURL = "/resumeDatabase/" + applicant.resumeId;
 
@@ -35,10 +37,122 @@ const addApplicantHelper = async(getInvolvedComp, applicant) => {
     if (resumeRes.status === 200) {
         const resumeJSON = await resumeRes.json();
 
+        const newApplicant = <Applicant
+                              applicationsAdminComp={applicationsAdminComp}
+                              applicantId={applicant._id}
+                              resumeCloudinaryId={resumeJSON.resumeId}
+                              resumeURL={resumeJSON.resumeURL}
+                              fullName={applicant.fullName}
+                              email={applicant.email}
+                              year={applicant.year}
+                              program={applicant.program}
+                              fridays={applicant.fridays}
+                              position={applicant.position}
+                              otherPositions={applicant.otherPositions}
+                              statement={applicant.statement}
+                              viewed={applicant.viewed}
+                          ></Applicant>
+
+        // Add to appropriate array depending on interested team.
+        if (newApplicant.team === "Affairs"){
+            applicationsAdminComp.setState({
+                affairsApplicants: (applicationsAdminComp.state.affairsApplicants).concat([newApplicant])
+            })
+        } else if (newApplicant.team === "Conference Committee"){
+            applicationsAdminComp.setState({
+                conferenceApplicants: (applicationsAdminComp.state.conferenceApplicants).concat([newApplicant])
+            })
+        } else if (newApplicant.team === "Events"){
+            applicationsAdminComp.setState({
+                eventsApplicants: (applicationsAdminComp.state.eventsApplicants).concat([newApplicant])
+            })
+        } else if (newApplicant.team === "Marketing"){
+            applicationsAdminComp.setState({
+                marketingApplicants: (applicationsAdminComp.state.marketingApplicants).concat([newApplicant])
+            })
+        } else if (newApplicant.team === "Mentorship"){
+            applicationsAdminComp.setState({
+                mentorshipApplicants: (applicationsAdminComp.state.mentorshipApplicants).concat([newApplicant])
+            })
+        } else if (newApplicant.team === "Tech & Innovations"){
+            applicationsAdminComp.setState({
+                techApplicants: (applicationsAdminComp.state.techApplicants).concat([newApplicant])
+            })
+        }
+
     } else {
         alert("Could not retrieve resume");
     }
 };
+
+
+// A function to get all applicants in the database.
+export const getAllApplicants = (applicationsAdminComp) => {
+    const url = "/applicantDatabase";
+
+    // Since this is a GET request, simply call fetch on the URL.
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                // Return a promise that resolves with the JSON body.
+                return res.json();
+            } else {
+                alert("Could not get all applicants");
+            }
+        })
+        .then(async json => {
+            applicationsAdminComp.setState({
+                affairsApplicants: [],
+                conferenceApplicants: [],
+                eventsApplicants: [],
+                marketingApplicants: [],
+                mentorshipApplicants: [],
+                techApplicants: []
+            })
+
+            for (let applicant of json.allApplicants) {
+                await addApplicantHelper(applicationsAdminComp, applicant);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+
+// A function to get a specific applicant by their id to update.
+export const getApplicantById = (applicationsAdminComp, id) => {
+    const url = "/applicantDatabase/" + id;
+
+    // Since this is a GET request, simply call fetch on the URL.
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                // Return a promise that resolves with the JSON body.
+                return res.json();
+            } else {
+                alert("Could not get applicant");
+            }
+        })
+        .then(json => {
+            // Get existing applicant details.
+            applicationsAdminComp.setState({
+                resumeId: json.resumeId,
+                fullName: json.applicantfullName,
+                email: json.applicantEmail,
+                program: json.applicantProgram,
+                fridays: json.applicantFridays,
+                team: json.applicantTeam,
+                position: json.applicantPosition,
+                otherPositions: json.applicantOtherPositions,
+                statement: json.applicantStatement,
+                viewed: json.viewed
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
 
 
 // A function to store a potential applicant's information to the database.
@@ -54,10 +168,11 @@ export const sendApplication = (getInvolvedComp) => {
             email: getInvolvedComp.state.applicantEmail,
             program: getInvolvedComp.state.applicantProgram,
             fridays: getInvolvedComp.state.applicantFridays,
-            subteam: getInvolvedComp.state.applicantSubteam,
+            team: getInvolvedComp.state.applicantTeam,
             position: getInvolvedComp.state.applicantPosition,
             otherPositions: getInvolvedComp.state.applicantOtherPositions,
-            statement: getInvolvedComp.state.applicantStatement
+            statement: getInvolvedComp.state.applicantStatement,
+            viewed: false
         };
 
         const request = new Request(url, {
@@ -96,11 +211,143 @@ export const sendApplication = (getInvolvedComp) => {
                     applicantYear: "Year 1",
                     applicantProgram: "",
                     applicantFridays: "No",
-                    applicantSubteam: "Affairs",
-                    applicantPosition: "",
+                    applicantTeam: "Affairs",
+                    applicantPosition: "Affairs Executive",
                     applicantOtherPositions: "",
                     applicantStatement: ""
                 });
             });
     });
 };
+
+
+// A function to delete an application.
+export const deleteApplication = async(applicationsAdminComp, imageCloudinaryId, applicantId) => {
+    // 1) Delete resume in cloudinary.
+    deleteResume(imageCloudinaryId);
+
+    // 2) Remove application from MongoDB database.
+    const url = "/applicantDatabase/" + applicantId;
+
+    const request = new Request(url, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    // Send the request with fetch()
+    fetch(request)
+        .then(res => {
+            // Handle response we get from the API.
+            // Usually check the error codes to see what happened.
+            if (res.status === 200) {
+                alert("Successfully deleted application");
+            } else {
+                alert("Failed to delete application");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        .finally(() => {
+            getAllApplicants(applicationsAdminComp);
+        });
+}
+
+
+// A function to specify confirmed viewing of application.
+export const viewConfirmed = async(applicationsAdminComp, id) => {
+    const url = "/applicantDatabase/" + id;
+
+    const applicantRes = await fetch(url);
+
+    if (applicantRes.status === 200) {
+        // Return a promise that resolves with the JSON body.
+        const json = await applicantRes.json();
+
+        const confirmedApplicant = {
+            resumeId: json.resumeId,
+            fullName: json.applicantfullName,
+            email: json.applicantEmail,
+            program: json.applicantProgram,
+            fridays: json.applicantFridays,
+            team: json.applicantTeam,
+            position: json.applicantPosition,
+            otherPositions: json.applicantOtherPositions,
+            statement: json.applicantStatement,
+            viewed: true
+        }
+
+        const request = new Request(url, {
+            method: "PATCH",
+            body: JSON.stringify(confirmedApplicant),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+
+
+        const confirmedApplicantRes = await fetch(request);
+
+        if (confirmedApplicantRes.status === 200) {
+            alert("Successfully confirmed viewing of applicant");
+        } else {
+            alert("Could not confirm viewing of applicant");
+        }
+    } else {
+        alert("Could not find applicant");
+    }
+
+    getAllApplicants(applicationsAdminComp);
+}
+
+
+// A function to specify unconfirmed viewing of application.
+export const viewUnconfirmed = async(applicationsAdminComp, id) => {
+    const url = "/applicantDatabase/" + id;
+
+    const applicantRes = await fetch(url);
+
+    if (applicantRes.status === 200) {
+        // Return a promise that resolves with the JSON body.
+        const json = await applicantRes.json();
+
+        const unconfirmedApplicant = {
+            resumeId: json.resumeId,
+            fullName: json.applicantfullName,
+            email: json.applicantEmail,
+            program: json.applicantProgram,
+            fridays: json.applicantFridays,
+            team: json.applicantTeam,
+            position: json.applicantPosition,
+            otherPositions: json.applicantOtherPositions,
+            statement: json.applicantStatement,
+            viewed: false
+        }
+
+        const request = new Request(url, {
+            method: "PATCH",
+            body: JSON.stringify(unconfirmedApplicant),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+
+
+        const unconfirmedApplicantRes = await fetch(request);
+
+        if (unconfirmedApplicantRes.status === 200) {
+            alert("Successfully unconfirmed viewing of applicant");
+        } else {
+            alert("Could not unconfirm viewing of applicant");
+        }
+    } else {
+        alert("Could not find applicant");
+    }
+
+    getAllApplicants(applicationsAdminComp);
+}

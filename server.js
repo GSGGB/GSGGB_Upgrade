@@ -15,12 +15,14 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
 const { User } = require("./models/user");
-const { Image } = require("./models/image");
 const { Announcement } = require("./models/announcement");
 const { Research } = require("./models/research");
 const { Executive } = require("./models/executive");
 const { Event } = require("./models/event");
 const { Sponsor } = require("./models/sponsor");
+const { Applicant } = require("./models/applicant");
+const { Image } = require("./models/image");
+const { Resume } = require("./models/resume");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -940,6 +942,126 @@ app.delete("/sponsorDatabase/:id", (req, res) => {
 /** End of sponsor resource routes **/
 
 
+/** Start of applicant resource routes **/
+// A GET route to get ALL applications.
+app.get("/applicantDatabase", (req, res) => {
+    Applicant.find().then(
+        (allApplicants) => {
+            res.send({ allApplicants });
+        },
+        (error) => {
+            res.status(500).send(error); // Server error, could not get.
+        }
+    );
+});
+
+// A GET route to get an application by their id.
+app.get("/applicantDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Applicant.findById(id)
+        .then((applicant) => {
+            if (!applicant) {
+                res.status(404).send();
+            } else {
+                res.send(applicant);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not get.
+        });
+});
+
+// A POST route to create/send an application.
+app.post("/applicantDatabase", (req, res) => {
+    const applicant = new Applicant({
+        resumeId: req.body.resumeId,
+        fullName: req.body.fullName,
+        email: req.body.email,
+        program: req.body.program,
+        fridays: req.body.fridays,
+        team: req.body.team,
+        position: req.body.position,
+        otherPositions: req.body.otherPositions,
+        statement: req.body.statement,
+        viewed: req.body.viewed
+    });
+
+    // Save executive to the database.
+    applicant.save().then(
+        (result) => {
+            res.send(result);
+        },
+        (error) => {
+            res.status(400).send(error); // 400 for bad request.
+        }
+    );
+});
+
+// A PATCH route to edit an application by their id.
+app.patch("/applicantDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    const body = {
+        resumeId: req.body.resumeId,
+        fullName: req.body.fullName,
+        email: req.body.email,
+        program: req.body.program,
+        fridays: req.body.fridays,
+        team: req.body.team,
+        position: req.body.position,
+        otherPositions: req.body.otherPositions,
+        statement: req.body.statement,
+        viewed: req.body.viewed
+    };
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Applicant.findByIdAndUpdate(id, { $set: body })
+        .then((applicant) => {
+            if (!applicant) {
+                res.status(404).send();
+            } else {
+                res.send(applicant);
+            }
+        })
+        .catch((error) => {
+            res.status(400).send(); // 400 for bad request.
+        });
+});
+
+// A DELETE route to delete an application by their id.
+app.delete("/applicantDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Applicant.findByIdAndRemove(id)
+        .then((applicant) => {
+            if (!applicant) {
+                res.status(404).send();
+            } else {
+                res.send(applicant);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not delete.
+        });
+});
+/** End of applicant resource routes **/
+
+
 /** Start of image resource routes **/
 // A GET route to get an image by their id.
 app.get("/imageDatabase/:id", (req, res) => {
@@ -1013,6 +1135,81 @@ app.delete("/imageDatabase/:id", (req, res) => {
     });
 });
 /** End of image resource routes **/
+
+
+/** Start of resume resource routes **/
+// A GET route to get a resume by their id.
+app.get("/resumeDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Resume.findById(id)
+        .then((resume) => {
+            if (!resume) {
+                res.status(404).send();
+            } else {
+                res.send(resume);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not get.
+        });
+});
+
+// a POST route to *create* a resume
+app.post("/resumeDatabase", multipartMiddleware, (req, res) => {
+
+    // Use uploader.upload API to upload image to cloudinary server.
+    cloudinary.uploader.upload(
+        req.files.resume.path, // req.files contains uploaded files
+        function (result) {
+
+            // Create a new image using the Image mongoose model
+            var resume = new Resume({
+                resumeId: result.public_id, // image id on cloudinary server
+                resumeURL: result.url, // image url on cloudinary server
+            });
+
+            // Save image to the database
+            resume.save().then(
+                saveRes => {
+                    res.send(saveRes);
+                },
+                error => {
+                    res.status(400).send(error); // 400 for bad request
+                }
+            );
+        });
+});
+
+
+/// a DELETE route to remove a resume by its id.
+app.delete("/resumeDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    // Delete a resume by its id (NOT the database ID, but its id on the cloudinary server)
+    // on the cloudinary server
+    cloudinary.uploader.destroy(id, function (result) {
+
+        // Delete the resume from the database
+        Resume.findOneAndRemove({ resumeId: id })
+            .then(resume => {
+                if (!resume) {
+                    res.status(404).send();
+                } else {
+                    res.send(resume);
+                }
+            })
+            .catch(error => {
+                res.status(500).send(); // server error, could not delete.
+            });
+    });
+});
+/** End of resume resource routes **/
 
 /*** Webpage routes below **********************************/
 // Serve the build

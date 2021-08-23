@@ -1,0 +1,12 @@
+.applicant-table-header{
+    background-color: ghostwhite;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #5BC0DE;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+table, tbody {
+    width: 100% !important;
+}

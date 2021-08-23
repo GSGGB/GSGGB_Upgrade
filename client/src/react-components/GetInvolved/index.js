@@ -24,63 +24,70 @@ class GetInvolved extends Component {
         applicantYear: "Year 1", // Default option.
         applicantProgram: "",
         applicantFridays: "No", // Default option.
-        applicantSubteam: "Affairs", // Default option.
-        applicantPosition: "",
+        applicantTeam: "Affairs", // Default option.
+        applicantPosition: "Affairs Executive", // Default option.
         applicantOtherPositions: "",
         applicantStatement: ""
     };
 
     // Display available positions for particular team after it has been chosen by the user.
-    displayPositions(){
-        const affairs = document.querySelector("#affairs-applicant-positions");
-        const conference = document.querySelector("#conference-applicant-positions");
-        const events = document.querySelector("#events-applicant-positions");
-        const marketing = document.querySelector("#marketing-applicant-positions");
-        const mentorship = document.querySelector("#mentorship-applicant-positions");
-        const tech = document.querySelector("#tech-applicant-positions");
+    componentDidUpdate(prevState){
+        if (this.state.applicantTeam !== prevState.applicantTeam){
+            const affairs = document.querySelector("#affairs-applicant-positions");
+            const conference = document.querySelector("#conference-applicant-positions");
+            const events = document.querySelector("#events-applicant-positions");
+            const marketing = document.querySelector("#marketing-applicant-positions");
+            const mentorship = document.querySelector("#mentorship-applicant-positions");
+            const tech = document.querySelector("#tech-applicant-positions");
 
-        if (this.state.applicantSubteam === "Affairs"){
-            affairs.style.display = "block";
-            conference.style.display = "none";
-            events.style.display = "none";
-            marketing.style.display = "none";
-            mentorship.style.display = "none";
-            tech.style.display = "none";
-        } else if (this.state.applicantSubteam === "Conference"){
-            affairs.style.display = "none";
-            conference.style.display = "block";
-            events.style.display = "none";
-            marketing.style.display = "none";
-            mentorship.style.display = "none";
-            tech.style.display = "none";
-        } else if (this.state.applicantSubteam === "Events"){
-            affairs.style.display = "none";
-            conference.style.display = "none";
-            events.style.display = "block";
-            marketing.style.display = "none";
-            mentorship.style.display = "none";
-            tech.style.display = "none";
-        } else if (this.state.applicantSubteam === "Marketing"){
-            affairs.style.display = "none";
-            conference.style.display = "none";
-            events.style.display = "none";
-            marketing.style.display = "block";
-            mentorship.style.display = "none";
-            tech.style.display = "none";
-        } else if (this.state.applicantSubteam === "Mentorship"){
-            affairs.style.display = "none";
-            conference.style.display = "none";
-            events.style.display = "none";
-            marketing.style.display = "none";
-            mentorship.style.display = "block";
-            tech.style.display = "none";
-        } else if (this.state.applicantSubteam === "Tech"){
-            affairs.style.display = "none";
-            conference.style.display = "none";
-            events.style.display = "none";
-            marketing.style.display = "none";
-            mentorship.style.display = "none";
-            tech.style.display = "block";
+            if (this.state.applicantTeam === "Affairs"){
+                affairs.style.display = "block";
+                conference.style.display = "none";
+                events.style.display = "none";
+                marketing.style.display = "none";
+                mentorship.style.display = "none";
+                tech.style.display = "none";
+
+            } else if (this.state.applicantTeam === "Conference"){
+                affairs.style.display = "none";
+                conference.style.display = "block";
+                events.style.display = "none";
+                marketing.style.display = "none";
+                mentorship.style.display = "none";
+                tech.style.display = "none";
+
+            } else if (this.state.applicantTeam === "Events"){
+                affairs.style.display = "none";
+                conference.style.display = "none";
+                events.style.display = "block";
+                marketing.style.display = "none";
+                mentorship.style.display = "none";
+                tech.style.display = "none";
+
+            } else if (this.state.applicantTeam === "Marketing"){
+                affairs.style.display = "none";
+                conference.style.display = "none";
+                events.style.display = "none";
+                marketing.style.display = "block";
+                mentorship.style.display = "none";
+                tech.style.display = "none";
+
+            } else if (this.state.applicantTeam === "Mentorship"){
+                affairs.style.display = "none";
+                conference.style.display = "none";
+                events.style.display = "none";
+                marketing.style.display = "none";
+                mentorship.style.display = "block";
+                tech.style.display = "none";
+
+            } else if (this.state.applicantTeam === "Tech"){
+                affairs.style.display = "none";
+                conference.style.display = "none";
+                events.style.display = "none";
+                marketing.style.display = "none";
+                mentorship.style.display = "none";
+                tech.style.display = "block";
+            }
         }
     }
 
@@ -110,7 +117,7 @@ class GetInvolved extends Component {
                         <Card.Body>
                             <Form>
                                 <Row>
-                                    <Col sm={6}>
+                                    <Col md={6}>
                                         <Form.Group>
                                           <Form.Label className="applicant-form-header">Name</Form.Label>
                                           <Form.Control
@@ -123,7 +130,7 @@ class GetInvolved extends Component {
                                         </Form.Group>
                                     </Col>
 
-                                    <Col sm={6}>
+                                    <Col md={6}>
                                         <Form.Group controlId="formBasicEmail">
                                             <Form.Label className="applicant-form-header">Email address</Form.Label>
                                             <Form.Control
@@ -141,7 +148,7 @@ class GetInvolved extends Component {
                                 </Row>
 
                                 <Row>
-                                    <Col sm={6}>
+                                    <Col md={6}>
                                         <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label className="applicant-form-header">Year of study</Form.Label>
                                             <Form.Control
@@ -162,7 +169,7 @@ class GetInvolved extends Component {
                                         </Form.Group>
                                     </Col>
 
-                                    <Col sm={6}>
+                                    <Col md={6}>
                                         <Form.Group>
                                             <Form.Label className="applicant-form-header">Program of Study (POSt)/Major</Form.Label>
                                             <Form.Control
@@ -197,19 +204,22 @@ class GetInvolved extends Component {
                                 <br/><hr/><br/>
 
                                 <Form.Group>
-                                    <Form.Label className="applicant-form-header">Which sub-team would you like to apply to?</Form.Label>
+                                    <Form.Label className="applicant-form-header">
+                                        Which team would you like to apply to? Click on a team name to learn more! (If dropdown
+                                        is blank, no positions are currently available for that particular team.)
+                                    </Form.Label>
                                     <Form.Control
                                         as="select"
-                                        name="applicantSubteam"
+                                        name="applicantTeam"
                                         onChange={e => updateApplicantForm(this, e.target)}
                                         required
                                     >
                                         <option value="Affairs">Affairs</option>
-                                        <option value="Conference">Conference Committee</option>
+                                        <option value="Conference Committee">Conference Committee</option>
                                         <option value="Events">Events</option>
                                         <option value="Marketing">Marketing</option>
                                         <option value="Mentorship">Mentorship</option>
-                                        <option value="Tech">Tech & Innovation</option>
+                                        <option value="Tech & Innovations">Tech & Innovation</option>
                                     </Form.Control>
                                 </Form.Group>
 
@@ -221,12 +231,12 @@ class GetInvolved extends Component {
                                         <tbody>
 
                                             <tr id="affairs-applicant-positions">
-                                                <td><b>Affairs</b></td>
-                                                <td>
+                                                <td className="col-sm-2"><b>Affairs</b></td>
+                                                <td className="col-sm-7">
                                                     The affairs team oversees the internal and external relations of the club.
                                                     They are responsible for communication and maintaining a budget.
                                                 </td>
-                                                <td>
+                                                <td className="col-sm-3">
                                                     <Form.Control
                                                         as="select"
                                                         name="applicantPosition"
@@ -239,40 +249,37 @@ class GetInvolved extends Component {
                                             </tr>
 
                                             <tr id="conference-applicant-positions">
-                                                <td><b>Conference Committee</b></td>
-                                                <td>
-                                                  Our annual conference is our biggest event of the year. The conference committee
-                                                  is responsible for organizing various aspect of the conference such as communication
-                                                  with the speakers, room booking and advertisement.
+                                                <td className="col-sm-2"><b>Conference Committee</b></td>
+                                                <td className="col-sm-7">
+                                                    Our annual conference is our biggest event of the year. The conference committee
+                                                    is responsible for organizing various aspect of the conference such as communication
+                                                    with the speakers, room booking and advertisement.
                                                 </td>
-                                                <td>
+                                                <td className="col-sm-3">
                                                     <Form.Control
                                                         as="select"
                                                         name="applicantPosition"
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
-                                                        <option value="senior-outreach">Senior Outreach Officer</option>
-                                                        <option value="junior-outreach">Junior Outreach Officer</option>
+                                                        <option value="junior-outreach">Outreach Officer</option>
                                                         <option value="communications">Communications Officer</option>
-                                                        <option value="senior-event">Senior Event Coordinator</option>
-                                                        <option value="junior-event">Junior Event Coordinator</option>
-                                                        <option value="social-media">Social Media Coordinator</option>
+                                                        <option value="junior-event">Event Coordinator</option>
+                                                        <option value="social-media">Media Coordinator</option>
                                                         <option value="fundraising">Fundraising Event Coordinator</option>
-                                                        <option value="senior-graphics">Senior Graphics Designer</option>
-                                                        <option value="junior-graphics">Junior Graphics Designer</option>
+                                                        <option value="junior-graphics">Graphic Designer</option>
                                                     </Form.Control>
                                                 </td>
                                             </tr>
 
                                             <tr id="events-applicant-positions">
-                                                <td><b>Events</b></td>
-                                                <td>
+                                                <td className="col-sm-2"><b>Events</b></td>
+                                                <td className="col-sm-7">
                                                     The events team is responsible for organizing our monthly events. They especially
                                                     handle fundraising events where we raise money to donate or to get funding for
                                                     the club. The team is also responsible for organizing academic events open to
                                                     the entire campus.
                                                 </td>
-                                                <td>
+                                                <td className="col-sm-3">
                                                     <Form.Control
                                                         as="select"
                                                         name="applicantPosition"
@@ -281,19 +288,19 @@ class GetInvolved extends Component {
                                                         <option value="social-events">Social Events Coordinator</option>
                                                         <option value="fundraising">Fundraising Event Coordinator</option>
                                                         <option value="academic-event">Academic Event Coordinator</option>
-                                                        <option value="event-marketing">Event / Marketing Liaison</option>
+                                                        <option value="event-marketing">Event/Marketing Liaison</option>
                                                         <option value="team-member">Event Team Member</option>
                                                     </Form.Control>
                                                 </td>
                                             </tr>
 
                                             <tr id="marketing-applicant-positions">
-                                                <td><b>Marketing</b></td>
-                                                <td>
+                                                <td className="col-sm-2"><b>Marketing</b></td>
+                                                <td className="col-sm-7">
                                                     The marketing team is responsible for promoting the club through social media,
                                                     class announcements and also designing posters, images or other promotional items.
                                                 </td>
-                                                <td>
+                                                <td className="col-sm-3">
                                                     <Form.Control
                                                         as="select"
                                                         name="applicantPosition"
@@ -310,15 +317,15 @@ class GetInvolved extends Component {
                                             </tr>
 
                                             <tr id="mentorship-applicant-positions">
-                                                <td><b>Mentorship</b></td>
-                                                <td>
-                                                    The mentorship associate assists the mentorship leader with setting up mentor-mentee
+                                                <td className="col-sm-2"><b>Mentorship</b></td>
+                                                <td className="col-sm-7">
+                                                    The mentorship associates assist the mentorship leader with setting up mentor-mentee
                                                     groups and helping incoming students with various university aspects that might be
-                                                     new to them. Our vision for the mentorship program is to instill and intersect passion
+                                                    new to them. Our vision for the mentorship program is to instill and intersect passion
                                                     for science, research, and student empowerment to improve the quality of life for
                                                     incoming University students at the University of Toronto.
                                                 </td>
-                                                <td>
+                                                <td className="col-sm-3">
                                                   <Form.Control
                                                       as="select"
                                                       name="applicantPosition"
@@ -330,20 +337,19 @@ class GetInvolved extends Component {
                                             </tr>
 
                                             <tr id="tech-applicant-positions">
-                                                <td><b>Tech and Innovation</b></td>
-                                                <td>
-                                                    The tech team is responsible for maintaining and updating the website and leading
-                                                    our bioinformatics events.
+                                                <td className="col-sm-2"><b>Tech & Innovation</b></td>
+                                                <td className="col-sm-7">
+                                                    The tech & innovations team is responsible for maintaining and updating the website
+                                                    and leading our bioinformatics events and coding workshops.
                                                 </td>
-                                                <td>
+                                                <td className="col-sm-3">
                                                     <Form.Control
                                                         as="select"
                                                         name="applicantPosition"
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
-                                                        <option value="webmaster">Webmaster</option>
-                                                        <option value="bioinformatics-lead">Bioinformatics Project Lead</option>
-                                                        <option value="workshop-organizer">Workshop Organizer</option>
+                                                        <option value="webmaster">Web Developer/Webmaster</option>
+                                                        <option value="workshop-organizer">Event/Workshop Organizer</option>
                                                     </Form.Control>
                                                 </td>
                                             </tr>
@@ -356,7 +362,7 @@ class GetInvolved extends Component {
 
                                 <Form.Group>
                                     <Form.Label className="applicant-form-header">
-                                        If you are interested in other positions, please list them here (and their respective team).
+                                        If you are also interested in other positions, please list them here (and their respective team).
                                     </Form.Label>
                                     <Form.Control
                                         name="applicantOtherPositions"
@@ -369,14 +375,15 @@ class GetInvolved extends Component {
 
                                 <br/><hr/><br/>
 
-                                <Form.Group controlId="exampleForm.ControlTextarea1">
+                                <Form.Group>
                                     <Form.Label className="applicant-form-header">
-                                        Tell us why you would like to be part of GSGGB and the specific position(s) on the team.
+                                        Tell us why you would like to be a part of GSGGB and why you are a strong candidate for the
+                                        position(s) selected.
                                     </Form.Label>
                                     <Form.Control
                                         name="applicantStatement"
                                         as="textarea"
-                                        rows="3"
+                                        rows="5"
                                         placeholder="Your statement"
                                         onChange={e => updateApplicantForm(this, e.target)}
                                         required />

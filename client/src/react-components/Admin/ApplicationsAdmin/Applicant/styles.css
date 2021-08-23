@@ -1,0 +1,9 @@
+.viewed{
+    color: green;
+    font-weight: bold;
+}
+
+.not-viewed{
+    color: red;
+    font-weight: bold;
+}

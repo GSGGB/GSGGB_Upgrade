@@ -38,7 +38,7 @@ const ApplicantSchema = new mongoose.Schema({
         minlength: 1,
         trim: true
     },
-    subteam: {
+    team: {
         type: String,
         required: true,
         minlength: 1,
@@ -60,7 +60,12 @@ const ApplicantSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 1
-    }
+    },
+    viewed: {
+        type: String,
+        required: true,
+        minlength: 1
+    },
 });
 
 // make a model using the schema
