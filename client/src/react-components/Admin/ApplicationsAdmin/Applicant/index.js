@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Accordion } from "react-bootstrap";
 
 import { deleteApplication, viewConfirmed, viewUnconfirmed } from "../../../../actions/applicant";
 
@@ -72,16 +72,13 @@ class Applicant extends Component {
         const viewedButton = this.viewedButton();
 
         return (
-            <tr>
 
-                {(this.props.viewed ?
-                  <td className="not-viewed">Not Viewed</td>
-                  : <td className="viewed">Viewed</td>
-                )}
-
-                <td>{deleteApplicationButton}{viewedButton}</td>
-
-            </tr>
+          <Accordion.Item eventKey="0">
+              <Accordion.Header>{this.props.fullName}{this.props.viewed}{deleteApplicationButton}{viewedButton}</Accordion.Header>
+              <Accordion.Body>
+                  {this.props.fullName}
+              </Accordion.Body>
+          </Accordion.Item>
         );
     }
 }

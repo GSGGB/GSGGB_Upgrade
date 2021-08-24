@@ -38,20 +38,20 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
         const resumeJSON = await resumeRes.json();
 
         const newApplicant = <Applicant
-                              applicationsAdminComp={applicationsAdminComp}
-                              applicantId={applicant._id}
-                              resumeCloudinaryId={resumeJSON.resumeId}
-                              resumeURL={resumeJSON.resumeURL}
-                              fullName={applicant.fullName}
-                              email={applicant.email}
-                              year={applicant.year}
-                              program={applicant.program}
-                              fridays={applicant.fridays}
-                              position={applicant.position}
-                              otherPositions={applicant.otherPositions}
-                              statement={applicant.statement}
-                              viewed={applicant.viewed}
-                          ></Applicant>
+                                  applicationsAdminComp={applicationsAdminComp}
+                                  applicantId={applicant._id}
+                                  resumeCloudinaryId={resumeJSON.resumeId}
+                                  resumeURL={resumeJSON.resumeURL}
+                                  fullName={applicant.fullName}
+                                  email={applicant.email}
+                                  year={applicant.year}
+                                  program={applicant.program}
+                                  fridays={applicant.fridays}
+                                  position={applicant.position}
+                                  otherPositions={applicant.otherPositions}
+                                  statement={applicant.statement}
+                                  viewed={applicant.viewed}
+                            ></Applicant>
 
         // Add to appropriate array depending on interested team.
         if (newApplicant.team === "Affairs"){
@@ -140,6 +140,7 @@ export const getApplicantById = (applicationsAdminComp, id) => {
                 resumeId: json.resumeId,
                 fullName: json.applicantfullName,
                 email: json.applicantEmail,
+                year: json.applicantYear,
                 program: json.applicantProgram,
                 fridays: json.applicantFridays,
                 team: json.applicantTeam,
@@ -164,8 +165,9 @@ export const sendApplication = (getInvolvedComp) => {
 
         const applicant = {
             resumeId: getInvolvedComp.state.resumeId,
-            fullName: getInvolvedComp.state.applicantfullName,
+            fullName: getInvolvedComp.state.applicantFullName,
             email: getInvolvedComp.state.applicantEmail,
+            year: getInvolvedComp.state.applicantYear,
             program: getInvolvedComp.state.applicantProgram,
             fridays: getInvolvedComp.state.applicantFridays,
             team: getInvolvedComp.state.applicantTeam,
@@ -189,14 +191,10 @@ export const sendApplication = (getInvolvedComp) => {
             .then(res => {
                 if (res.status === 200) {
                     alert("Successfully sent application.");
-                    return res.json();
                 } else {
                     alert("Could not send application. Please try again.");
                     deleteResumeHelper(applicant);
                 }
-            })
-            .then(json => {
-                addApplicantHelper(getInvolvedComp, json);
             })
             .catch(error => {
                 console.log(error);
@@ -271,6 +269,7 @@ export const viewConfirmed = async(applicationsAdminComp, id) => {
             resumeId: json.resumeId,
             fullName: json.applicantfullName,
             email: json.applicantEmail,
+            year: json.applicantYear,
             program: json.applicantProgram,
             fridays: json.applicantFridays,
             team: json.applicantTeam,
@@ -319,6 +318,7 @@ export const viewUnconfirmed = async(applicationsAdminComp, id) => {
             resumeId: json.resumeId,
             fullName: json.applicantfullName,
             email: json.applicantEmail,
+            year: json.applicantYear,
             program: json.applicantProgram,
             fridays: json.applicantFridays,
             team: json.applicantTeam,

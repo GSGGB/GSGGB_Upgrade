@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
 import UsersAdmin from "./UsersAdmin";
+import ApplicationsAdmin from "./ApplicationsAdmin";
 
 import "./styles.css";
 import "./styles-mobile.css";
 
 const tables = {
-    users: <UsersAdmin></UsersAdmin>
+    users: <UsersAdmin></UsersAdmin>,
+    applications: <ApplicationsAdmin></ApplicationsAdmin>
 };
 
 class Admin extends Component {

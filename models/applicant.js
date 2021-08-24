@@ -53,8 +53,7 @@ const ApplicantSchema = new mongoose.Schema({
     otherPositions: {
         type: String,
         required: true,
-        minlength: 1,
-        trim: true
+        minlength: 1
     },
     statement: {
         type: String,

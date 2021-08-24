@@ -1,4 +1,4 @@
-.applicant-table-header{
+.applicant-card-header{
     background-color: ghostwhite;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -7,6 +7,6 @@
     font-weight: bold;
 }
 
-table, tbody {
-    width: 100% !important;
+.#applicant-dropdown{
+    margin-left: 20px !important;
 }

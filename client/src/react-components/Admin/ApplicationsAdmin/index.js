@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Card, Table, Button } from "react-bootstrap";
-import ModalHeader from "react-bootstrap/ModalHeader";
+import { Card, Dropdown, Accordion } from "react-bootstrap";
 
 import { getAllApplicants } from "../../../actions/applicant";
 
@@ -25,11 +24,36 @@ class ApplicationsAdmin extends Component {
         return (
             <BrowserRouter forceRefresh={true}>
                 <div>
-                </div>
+                    <Card>
+                        <Card.Header className="applicant-card-header">
+                            Filter
 
+                            <Dropdown id="applicant-dropdown">
+                                <Dropdown.Toggle variant="info">
+                                    Filter by team
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/admin#applications#affairs">Affairs</Dropdown.Item>
+                                    <Dropdown.Item href="/admin#applications#conference">Conference Committee</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+
+                        </Card.Header>
+                        <Card.Body>
+                            <Accordion id="affairs">
+                                {this.state.affairsApplicants}
+                            </Accordion>
+
+                            <Accordion id="conference">
+                                {this.state.conferenceApplicants}
+                            </Accordion>
+                        </Card.Body>
+                    </Card>
+                </div>
             </BrowserRouter>
         );
     }
 }
 
-export default UsersAdmin;
+export default ApplicationsAdmin;

@@ -48,7 +48,7 @@ class GetInvolved extends Component {
                 mentorship.style.display = "none";
                 tech.style.display = "none";
 
-            } else if (this.state.applicantTeam === "Conference"){
+            } else if (this.state.applicantTeam === "Conference Committee"){
                 affairs.style.display = "none";
                 conference.style.display = "block";
                 events.style.display = "none";
@@ -80,7 +80,7 @@ class GetInvolved extends Component {
                 mentorship.style.display = "block";
                 tech.style.display = "none";
 
-            } else if (this.state.applicantTeam === "Tech"){
+            } else if (this.state.applicantTeam === "Tech & Innovations"){
                 affairs.style.display = "none";
                 conference.style.display = "none";
                 events.style.display = "none";
