@@ -25,7 +25,7 @@ class GetInvolved extends Component {
         applicantProgram: "",
         applicantFridays: "No", // Default option.
         applicantTeam: "Affairs", // Default option.
-        applicantPosition: "Affairs Executive", // Default option.
+        applicantPosition: "",
         applicantOtherPositions: "",
         applicantStatement: ""
     };
@@ -119,7 +119,7 @@ class GetInvolved extends Component {
                                 <Row>
                                     <Col md={6}>
                                         <Form.Group>
-                                          <Form.Label className="applicant-form-header">Name</Form.Label>
+                                          <Form.Label className="applicant-form-header">Full name</Form.Label>
                                           <Form.Control
                                               name="applicantFullName"
                                               as="textarea"
@@ -132,12 +132,12 @@ class GetInvolved extends Component {
 
                                     <Col md={6}>
                                         <Form.Group controlId="formBasicEmail">
-                                            <Form.Label className="applicant-form-header">Email address</Form.Label>
+                                            <Form.Label className="applicant-form-header">Email address (preferably school)</Form.Label>
                                             <Form.Control
                                                 type="email"
                                                 name="applicantEmail"
                                                 rows="1"
-                                                placeholder="Your email address (preferably school)"
+                                                placeholder="Your email address"
                                                 onChange={e => updateApplicantForm(this, e.target)}
                                                 required />
                                             <Form.Text className="text-muted">
@@ -219,7 +219,7 @@ class GetInvolved extends Component {
                                         <option value="Events">Events</option>
                                         <option value="Marketing">Marketing</option>
                                         <option value="Mentorship">Mentorship</option>
-                                        <option value="Tech & Innovations">Tech & Innovation</option>
+                                        <option value="Tech & Innovations">Tech & Innovations</option>
                                     </Form.Control>
                                 </Form.Group>
 
@@ -242,8 +242,9 @@ class GetInvolved extends Component {
                                                         name="applicantPosition"
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
-                                                        <option value="affairs-exec">Affairs Executive</option>
-                                                        <option value="treasurer">Treasurer</option>
+                                                        <option value=""></option>
+                                                        <option value="Affairs Executive">Affairs Executive</option>
+                                                        <option value="Treasurer">Treasurer</option>
                                                     </Form.Control>
                                                 </td>
                                             </tr>
@@ -261,12 +262,13 @@ class GetInvolved extends Component {
                                                         name="applicantPosition"
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
-                                                        <option value="junior-outreach">Outreach Officer</option>
-                                                        <option value="communications">Communications Officer</option>
-                                                        <option value="junior-event">Event Coordinator</option>
-                                                        <option value="social-media">Media Coordinator</option>
-                                                        <option value="fundraising">Fundraising Event Coordinator</option>
-                                                        <option value="junior-graphics">Graphic Designer</option>
+                                                        <option value=""></option>
+                                                        <option value="Outreach Officer">Outreach Officer</option>
+                                                        <option value="Communications Officer">Communications Officer</option>
+                                                        <option value="Event Coordinator">Event Coordinator</option>
+                                                        <option value="Social Media Coordinator">Social Media Coordinator</option>
+                                                        <option value="Fundraising Event Coordinator">Fundraising Event Coordinator</option>
+                                                        <option value="Graphic Designer">Graphic Designer</option>
                                                     </Form.Control>
                                                 </td>
                                             </tr>
@@ -285,11 +287,12 @@ class GetInvolved extends Component {
                                                         name="applicantPosition"
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
-                                                        <option value="social-events">Social Events Coordinator</option>
-                                                        <option value="fundraising">Fundraising Event Coordinator</option>
-                                                        <option value="academic-event">Academic Event Coordinator</option>
-                                                        <option value="event-marketing">Event/Marketing Liaison</option>
-                                                        <option value="team-member">Event Team Member</option>
+                                                        <option value=""></option>
+                                                        <option value="Social Events Coordinator">Social Events Coordinator</option>
+                                                        <option value="Fundraising Event Coordinator">Fundraising Event Coordinator</option>
+                                                        <option value="Academic Event Coordinator">Academic Event Coordinator</option>
+                                                        <option value="Event/Marketing Liaison">Event/Marketing Liaison</option>
+                                                        <option value="Event Team Member">Event Team Member</option>
                                                     </Form.Control>
                                                 </td>
                                             </tr>
@@ -306,12 +309,13 @@ class GetInvolved extends Component {
                                                         name="applicantPosition"
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
-                                                        <option value="graphic">Graphic Designer</option>
-                                                        <option value="social-media">Social Media Coordinator</option>
-                                                        <option value="academic-affairs">Academic Affairs Director</option>
-                                                        <option value="videography">Videographer/Photographer</option>
-                                                        <option value="second-year">2nd Year Representative</option>
-                                                        <option value="first-year">1st Year Representative</option>
+                                                        <option value=""></option>
+                                                        <option value="Graphic Designer">Graphic Designer</option>
+                                                        <option value="Social Media Coordinator">Social Media Coordinator</option>
+                                                        <option value="Academic Affairs Director">Academic Affairs Director</option>
+                                                        <option value="Videographer/Photographer">Videographer/Photographer</option>
+                                                        <option value="2nd Year Representative">2nd Year Representative</option>
+                                                        <option value="1st Year Representative">1st Year Representative</option>
                                                     </Form.Control>
                                                 </td>
                                             </tr>
@@ -331,13 +335,14 @@ class GetInvolved extends Component {
                                                       name="applicantPosition"
                                                       onChange={e => updateApplicantForm(this, e.target)}
                                                   >
-                                                      <option value="associate">Mentorship Associate</option>
+                                                      <option value=""></option>
+                                                      <option value="Mentorship Associate">Mentorship Associate</option>
                                                   </Form.Control>
                                                 </td>
                                             </tr>
 
                                             <tr id="tech-applicant-positions">
-                                                <td className="col-sm-2"><b>Tech & Innovation</b></td>
+                                                <td className="col-sm-2"><b>Tech & Innovations</b></td>
                                                 <td className="col-sm-7">
                                                     The tech & innovations team is responsible for maintaining and updating the website
                                                     and leading our bioinformatics events and coding workshops.
@@ -348,8 +353,9 @@ class GetInvolved extends Component {
                                                         name="applicantPosition"
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
-                                                        <option value="webmaster">Web Developer/Webmaster</option>
-                                                        <option value="workshop-organizer">Event/Workshop Organizer</option>
+                                                        <option value=""></option>
+                                                        <option value="Web Developer/Webmaster">Web Developer/Webmaster</option>
+                                                        <option value="Workshop Organizer">Event/Workshop Organizer</option>
                                                     </Form.Control>
                                                 </td>
                                             </tr>

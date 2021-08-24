@@ -36,6 +36,7 @@ class ApplicationsAdmin extends Component {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/admin#applications#affairs">Affairs</Dropdown.Item>
                                     <Dropdown.Item href="/admin#applications#conference">Conference Committee</Dropdown.Item>
+                                    <Dropdown.Item href="/admin#applications#tech">Tech & Innovations</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
 
@@ -46,6 +47,10 @@ class ApplicationsAdmin extends Component {
                             </Accordion>
 
                             <Accordion id="conference">
+                                {this.state.conferenceApplicants}
+                            </Accordion>
+
+                            <Accordion id="tech">
                                 {this.state.conferenceApplicants}
                             </Accordion>
                         </Card.Body>

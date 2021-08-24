@@ -199,22 +199,6 @@ export const sendApplication = (getInvolvedComp) => {
             .catch(error => {
                 console.log(error);
             })
-            .finally(() => {
-                // Reset state variables.
-                getInvolvedComp.setState({
-                    resumeFile: "",
-                    resumeId: "",
-                    applicantFullName: "",
-                    applicantEmail: "",
-                    applicantYear: "Year 1",
-                    applicantProgram: "",
-                    applicantFridays: "No",
-                    applicantTeam: "Affairs",
-                    applicantPosition: "Affairs Executive",
-                    applicantOtherPositions: "",
-                    applicantStatement: ""
-                });
-            });
     });
 };
 
