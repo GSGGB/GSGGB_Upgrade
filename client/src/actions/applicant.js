@@ -38,7 +38,6 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
         const resumeJSON = await resumeRes.json();
 
         const newApplicant = <Applicant
-                                  applicationsAdminComp={applicationsAdminComp}
                                   applicantId={applicant._id}
                                   resumeCloudinaryId={resumeJSON.resumeId}
                                   resumeURL={resumeJSON.resumeURL}
@@ -51,30 +50,30 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
                                   otherPositions={applicant.otherPositions}
                                   statement={applicant.statement}
                                   viewed={applicant.viewed}
-                            ></Applicant>
+                              ></Applicant>
 
         // Add to appropriate array depending on interested team.
-        if (newApplicant.team === "Affairs"){
+        if (applicant.team === "Affairs"){
             applicationsAdminComp.setState({
                 affairsApplicants: (applicationsAdminComp.state.affairsApplicants).concat([newApplicant])
             })
-        } else if (newApplicant.team === "Conference Committee"){
+        } else if (applicant.team === "Conference Committee"){
             applicationsAdminComp.setState({
                 conferenceApplicants: (applicationsAdminComp.state.conferenceApplicants).concat([newApplicant])
             })
-        } else if (newApplicant.team === "Events"){
+        } else if (applicant.team === "Events"){
             applicationsAdminComp.setState({
                 eventsApplicants: (applicationsAdminComp.state.eventsApplicants).concat([newApplicant])
             })
-        } else if (newApplicant.team === "Marketing"){
+        } else if (applicant.team === "Marketing"){
             applicationsAdminComp.setState({
                 marketingApplicants: (applicationsAdminComp.state.marketingApplicants).concat([newApplicant])
             })
-        } else if (newApplicant.team === "Mentorship"){
+        } else if (applicant.team === "Mentorship"){
             applicationsAdminComp.setState({
                 mentorshipApplicants: (applicationsAdminComp.state.mentorshipApplicants).concat([newApplicant])
             })
-        } else if (newApplicant.team === "Tech & Innovations"){
+        } else if (applicant.team === "Tech & Innovations"){
             applicationsAdminComp.setState({
                 techApplicants: (applicationsAdminComp.state.techApplicants).concat([newApplicant])
             })
@@ -110,7 +109,7 @@ export const getAllApplicants = (applicationsAdminComp) => {
                 techApplicants: []
             })
 
-            for (let applicant of json.allApplicants) {
+            for (let applicant of json.applicants) {
                 await addApplicantHelper(applicationsAdminComp, applicant);
             }
         })

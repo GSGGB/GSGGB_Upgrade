@@ -946,8 +946,8 @@ app.delete("/sponsorDatabase/:id", (req, res) => {
 // A GET route to get ALL applications.
 app.get("/applicantDatabase", (req, res) => {
     Applicant.find().then(
-        (allApplicants) => {
-            res.send({ allApplicants });
+        (applicants) => {
+            res.send({ applicants });
         },
         (error) => {
             res.status(500).send(error); // Server error, could not get.

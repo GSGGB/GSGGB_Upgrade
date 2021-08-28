@@ -51,7 +51,7 @@ class ApplicationsAdmin extends Component {
                             </Accordion>
 
                             <Accordion id="tech">
-                                {this.state.conferenceApplicants}
+                                {this.state.techApplicants}
                             </Accordion>
                         </Card.Body>
                     </Card>
