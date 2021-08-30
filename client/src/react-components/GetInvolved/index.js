@@ -396,7 +396,7 @@ class GetInvolved extends Component {
                                 </Form.Group>
 
                                 <Form.Group>
-                                    <Form.Label className="applicant-form-header">Please upload a copy of your resume.</Form.Label>
+                                    <Form.Label className="applicant-form-header">Please upload a copy of your resume (in PDF format).</Form.Label>
                                     <Form.File
                                         name="resumeFile"
                                         onChange={e => updateResumeFile(this, e.target)}

@@ -36,6 +36,9 @@ class ApplicationsAdmin extends Component {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/admin#applications#affairs">Affairs</Dropdown.Item>
                                     <Dropdown.Item href="/admin#applications#conference">Conference Committee</Dropdown.Item>
+                                    <Dropdown.Item href="/admin#applications#events">Events</Dropdown.Item>
+                                    <Dropdown.Item href="/admin#applications#marketing">Marketing</Dropdown.Item>
+                                    <Dropdown.Item href="/admin#applications#mentorship">Mentorship</Dropdown.Item>
                                     <Dropdown.Item href="/admin#applications#tech">Tech & Innovations</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -48,6 +51,18 @@ class ApplicationsAdmin extends Component {
 
                             <Accordion id="conference">
                                 {this.state.conferenceApplicants}
+                            </Accordion>
+
+                            <Accordion id="events">
+                                {this.state.eventsApplicants}
+                            </Accordion>
+
+                            <Accordion id="marketing">
+                                {this.state.marketingApplicants}
+                            </Accordion>
+
+                            <Accordion id="mentorship">
+                                {this.state.mentorshipApplicants}
                             </Accordion>
 
                             <Accordion id="tech">

@@ -38,6 +38,7 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
         const resumeJSON = await resumeRes.json();
 
         const newApplicant = <Applicant
+                                  applicationsAdminComp={applicationsAdminComp}
                                   applicantId={applicant._id}
                                   resumeCloudinaryId={resumeJSON.resumeId}
                                   resumeURL={resumeJSON.resumeURL}
@@ -46,10 +47,11 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
                                   year={applicant.year}
                                   program={applicant.program}
                                   fridays={applicant.fridays}
+                                  team={applicant.team}
                                   position={applicant.position}
                                   otherPositions={applicant.otherPositions}
                                   statement={applicant.statement}
-                                  viewed={applicant.viewed}
+                                  flagged={applicant.flagged}
                               ></Applicant>
 
         // Add to appropriate array depending on interested team.
@@ -137,16 +139,16 @@ export const getApplicantById = (applicationsAdminComp, id) => {
             // Get existing applicant details.
             applicationsAdminComp.setState({
                 resumeId: json.resumeId,
-                fullName: json.applicantfullName,
-                email: json.applicantEmail,
-                year: json.applicantYear,
-                program: json.applicantProgram,
-                fridays: json.applicantFridays,
-                team: json.applicantTeam,
-                position: json.applicantPosition,
-                otherPositions: json.applicantOtherPositions,
-                statement: json.applicantStatement,
-                viewed: json.viewed
+                fullName: json.fullName,
+                email: json.email,
+                year: json.year,
+                program: json.program,
+                fridays: json.fridays,
+                team: json.team,
+                position: json.position,
+                otherPositions: json.otherPositions,
+                statement: json.statement,
+                flagged: json.flagged
             });
         })
         .catch(error => {
@@ -173,7 +175,7 @@ export const sendApplication = (getInvolvedComp) => {
             position: getInvolvedComp.state.applicantPosition,
             otherPositions: getInvolvedComp.state.applicantOtherPositions,
             statement: getInvolvedComp.state.applicantStatement,
-            viewed: false
+            flagged: false
         };
 
         const request = new Request(url, {
@@ -238,8 +240,8 @@ export const deleteApplication = async(applicationsAdminComp, imageCloudinaryId,
 }
 
 
-// A function to specify confirmed viewing of application.
-export const viewConfirmed = async(applicationsAdminComp, id) => {
+// A function to flag an application.
+export const flagApplication = async(applicationsAdminComp, id) => {
     const url = "/applicantDatabase/" + id;
 
     const applicantRes = await fetch(url);
@@ -248,23 +250,23 @@ export const viewConfirmed = async(applicationsAdminComp, id) => {
         // Return a promise that resolves with the JSON body.
         const json = await applicantRes.json();
 
-        const confirmedApplicant = {
+        const flaggedApplicant = {
             resumeId: json.resumeId,
-            fullName: json.applicantfullName,
-            email: json.applicantEmail,
-            year: json.applicantYear,
-            program: json.applicantProgram,
-            fridays: json.applicantFridays,
-            team: json.applicantTeam,
-            position: json.applicantPosition,
-            otherPositions: json.applicantOtherPositions,
-            statement: json.applicantStatement,
-            viewed: true
+            fullName: json.fullName,
+            email: json.email,
+            year: json.year,
+            program: json.program,
+            fridays: json.fridays,
+            team: json.team,
+            position: json.position,
+            otherPositions: json.otherPositions,
+            statement: json.statement,
+            flagged: true
         }
 
         const request = new Request(url, {
             method: "PATCH",
-            body: JSON.stringify(confirmedApplicant),
+            body: JSON.stringify(flaggedApplicant),
             headers: {
                 Accept: "application/json, text/plain, */*",
                 "Content-Type": "application/json"
@@ -272,12 +274,12 @@ export const viewConfirmed = async(applicationsAdminComp, id) => {
         })
 
 
-        const confirmedApplicantRes = await fetch(request);
+        const flaggedApplicantRes = await fetch(request);
 
-        if (confirmedApplicantRes.status === 200) {
-            alert("Successfully confirmed viewing of applicant");
+        if (flaggedApplicantRes.status === 200) {
+            alert("Successfully flagged applicant");
         } else {
-            alert("Could not confirm viewing of applicant");
+            alert("Could not flag applicant");
         }
     } else {
         alert("Could not find applicant");
@@ -287,8 +289,8 @@ export const viewConfirmed = async(applicationsAdminComp, id) => {
 }
 
 
-// A function to specify unconfirmed viewing of application.
-export const viewUnconfirmed = async(applicationsAdminComp, id) => {
+// A function to unflag an application.
+export const unflagApplication = async(applicationsAdminComp, id) => {
     const url = "/applicantDatabase/" + id;
 
     const applicantRes = await fetch(url);
@@ -297,23 +299,23 @@ export const viewUnconfirmed = async(applicationsAdminComp, id) => {
         // Return a promise that resolves with the JSON body.
         const json = await applicantRes.json();
 
-        const unconfirmedApplicant = {
+        const unflaggedApplicant = {
             resumeId: json.resumeId,
-            fullName: json.applicantfullName,
-            email: json.applicantEmail,
-            year: json.applicantYear,
-            program: json.applicantProgram,
-            fridays: json.applicantFridays,
-            team: json.applicantTeam,
-            position: json.applicantPosition,
-            otherPositions: json.applicantOtherPositions,
-            statement: json.applicantStatement,
-            viewed: false
+            fullName: json.fullName,
+            email: json.email,
+            year: json.year,
+            program: json.program,
+            fridays: json.fridays,
+            team: json.team,
+            position: json.position,
+            otherPositions: json.otherPositions,
+            statement: json.statement,
+            flagged: false
         }
 
         const request = new Request(url, {
             method: "PATCH",
-            body: JSON.stringify(unconfirmedApplicant),
+            body: JSON.stringify(unflaggedApplicant),
             headers: {
                 Accept: "application/json, text/plain, */*",
                 "Content-Type": "application/json"
@@ -321,12 +323,12 @@ export const viewUnconfirmed = async(applicationsAdminComp, id) => {
         })
 
 
-        const unconfirmedApplicantRes = await fetch(request);
+        const unflaggedApplicantRes = await fetch(request);
 
-        if (unconfirmedApplicantRes.status === 200) {
-            alert("Successfully unconfirmed viewing of applicant");
+        if (unflaggedApplicantRes.status === 200) {
+            alert("Successfully unflagged applicant");
         } else {
-            alert("Could not unconfirm viewing of applicant");
+            alert("Could not unflag applicant");
         }
     } else {
         alert("Could not find applicant");

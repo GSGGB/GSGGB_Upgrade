@@ -1,11 +1,32 @@
 import React, { Component } from "react";
-import { Button, Accordion, Card } from "react-bootstrap";
+import { BrowserRouter } from "react-router-dom";
+import { Button, Accordion, Card, Image } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { confirmAlert } from 'react-confirm-alert';
+import { faFlag } from '@fortawesome/free-solid-svg-icons';
 
-import { deleteApplication, viewConfirmed, viewUnconfirmed } from "../../../../actions/applicant";
+import { deleteApplication, flagApplication, unflagApplication } from "../../../../actions/applicant";
 
 import "./styles.css";
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class Applicant extends Component {
+
+    // Flag icon.
+    flagIcon(){
+        const accountType = sessionStorage.getItem("accountType");
+        const loggedIn = sessionStorage.getItem("loggedIn");
+
+        if (loggedIn === "true" && accountType === "Administrator"){
+            if (this.props.flagged){
+                return (
+                    <div className="flag-applicant-icon">
+                        <FontAwesomeIcon icon={faFlag} size={30}/>
+                    </div>
+                )
+            }
+        }
+    }
 
     // Delete application button for all administrators.
     deleteApplicationButton(){
@@ -15,48 +36,91 @@ class Applicant extends Component {
         if (loggedIn === "true" && accountType === "Administrator"){
             return (
                 <Button
+                    id="applicant-button"
                     variant="outline-danger"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        deleteApplication(this, this.props.resumeCloudinaryId, this.props.applicantId);
+                    onClick={() => {
+                        confirmAlert({
+                            message: 'Please confirm deletion of this application.',
+                            buttons: [
+                                {
+                                    label: 'Yes',
+                                    onClick: () => {
+                                        deleteApplication(
+                                            this.props.applicationsAdminComp,
+                                            this.props.resumeCloudinaryId,
+                                            this.props.applicantId
+                                        )
+                                    }
+                                },
+                                {
+                                    label: 'No'
+                                }
+                            ]
+                        });
                     }}
-                    >
-                        DELETE
+                >
+                    DELETE
                 </Button>
             )
         }
     }
 
-    // Viewed button for all administrators.
-    viewedButton(){
+    // Flag button for all administrators.
+    flagApplicationButton(){
         const accountType = sessionStorage.getItem("accountType");
         const loggedIn = sessionStorage.getItem("loggedIn");
 
         if (loggedIn === "true" && accountType === "Administrator"){
-            if (this.props.viewed){
+            if (this.props.flagged){
                 return (
                     <Button
-                        variant="outline-info"
+                        id="applicant-button"
+                        variant="outline-warning"
                         type="submit"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            viewUnconfirmed(this, this.props.applicantId);
+                        onClick={() => {
+                            confirmAlert({
+                                message: 'Please confirm unflagging of this application.',
+                                buttons: [
+                                    {
+                                        label: 'Yes',
+                                        onClick: () => {
+                                            unflagApplication(this.props.applicationsAdminComp, this.props.applicantId)
+                                        }
+                                    },
+                                    {
+                                        label: 'No'
+                                    }
+                                ]
+                            });
                         }}
-                        >
-                            UNCONFIRM VIEW
+                    >
+                        UNFLAG APPLICATION
                     </Button>
                 )
             } else{
                 return (
                     <Button
-                        variant="outline-info"
+                        id="applicant-button"
+                        variant="outline-warning"
                         type="submit"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            viewConfirmed(this, this.props.applicantId);
+                        onClick={() => {
+                            confirmAlert({
+                                message: 'Please confirm flagging of this application.',
+                                buttons: [
+                                    {
+                                        label: 'Yes',
+                                        onClick: () => {
+                                            flagApplication(this.props.applicationsAdminComp, this.props.applicantId)
+                                        }
+                                    },
+                                    {
+                                        label: 'No'
+                                    }
+                                ]
+                            });
                         }}
-                        >
-                            CONFIRM VIEW
+                    >
+                        FLAG APPLICATION
                     </Button>
                 )
             }
@@ -65,19 +129,51 @@ class Applicant extends Component {
 
     render() {
         const deleteApplicationButton = this.deleteApplicationButton();
-        const viewedButton = this.viewedButton();
+        const flagApplicationButton = this.flagApplicationButton();
+        const flagIcon = this.flagIcon();
 
         return (
-            <Card>
-                <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey={this.props.applicantId}>
-                        {this.props.fullName}{this.props.viewed}{deleteApplicationButton}{viewedButton}
-                    </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey={this.props.applicantId}>
-                    <Card.Body>{this.props.fullName}</Card.Body>
-                </Accordion.Collapse>
-            </Card>
+            <BrowserRouter forceRefresh={true}>
+                <div>
+                    <Card>
+                        <Card.Header>
+                            <Accordion.Toggle eventKey={this.props.applicantId}>
+                                <span className="applicant-name">{(this.props.fullName).toUpperCase()}</span>
+                            </Accordion.Toggle>
+                            {flagIcon}
+                            {deleteApplicationButton}
+                            {flagApplicationButton}
+                        </Card.Header>
+                        <Accordion.Collapse eventKey={this.props.applicantId}>
+                            <Card.Body>
+                                <div className="applicant-details">
+                                    <span className="bold-applicant-text">Full name:</span> {this.props.fullName}
+                                    <br/>
+                                    <span className="bold-applicant-text">Email:</span> {this.props.email}
+                                    <br/>
+                                    <span className="bold-applicant-text">Year of study:</span> {this.props.year}
+                                    <br/>
+                                    <span className="bold-applicant-text">Program of study (POSt)/Major:</span> {this.props.program}
+                                    <br/>
+                                    <span className="bold-applicant-text">Available on Fridays:</span> {this.props.fridays}
+                                    <br/><br/>
+                                    <span className="bold-applicant-text">Interested team:</span> {this.props.team}
+                                    <br/>
+                                    <span className="bold-applicant-text">Interested position:</span> {this.props.position}
+                                    <br/>
+                                    <span className="bold-applicant-text">Other interested positions:</span> {this.props.otherPositions}
+                                    <br/><br/>
+                                    <span className="bold-applicant-text">Statement:</span> {this.props.statement}
+                                    <br/><br/>
+                                    <span className="bold-applicant-text">Resume (in PDF format):</span>
+                                    <br/><br/>
+                                    <Image id="resume-image" src={(this.props.resumeURL).replace(".pdf", ".png")} />
+                                </div>
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </div>
+            </BrowserRouter>
         );
     }
 }

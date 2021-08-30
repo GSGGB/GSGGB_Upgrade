@@ -47,11 +47,13 @@ const UserSchema = new mongoose.Schema({
     accountType: {
         type: String,
         required: true,
+        minlength: 1,
         trim: true
     },
     executivePosition: {
         type: String,
         required: true,
+        minlength: 1,
         trim: true
     },
     deactivated: {

@@ -24,51 +24,51 @@ class Admin extends Component {
     };
 
     render() {
-      return (
-          <BrowserRouter>
+        return (
+            <BrowserRouter>
 
-              <Navbar collapseOnSelect expand="sm" bg="light" variant="light">
-                  <div className="container">
-                      <Navbar.Brand>Admin</Navbar.Brand>
-                      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                      <Navbar.Collapse id="responsive-navbar-nav">
-                          <Nav className="mr-auto">
-                              <Nav.Link
-                                  href="#users"
-                                  onClick={() =>
-                                      this.setState({
-                                          displayedTable: "users",
-                                      })
-                                  }
-                              >
-                                  Users
-                              </Nav.Link>
-                              <Nav.Link
-                                  href="#applications"
-                                  onClick={() =>
-                                      this.setState({
-                                          displayedTable: "applications",
-                                      })
-                                  }
-                              >
-                                  Applications
-                              </Nav.Link>
-                          </Nav>
-                      </Navbar.Collapse>
-                  </div>
-              </Navbar>
+                <Navbar collapseOnSelect expand="sm" bg="light" variant="light">
+                    <div className="container">
+                        <Navbar.Brand>Admin</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                        <Navbar.Collapse id="responsive-navbar-nav">
+                            <Nav className="mr-auto">
+                                <Nav.Link
+                                    href="#users"
+                                    onClick={() =>
+                                        this.setState({
+                                            displayedTable: "users",
+                                        })
+                                    }
+                                >
+                                    Users
+                                </Nav.Link>
+                                <Nav.Link
+                                    href="#applications"
+                                    onClick={() =>
+                                        this.setState({
+                                            displayedTable: "applications",
+                                        })
+                                    }
+                                >
+                                    Applications
+                                </Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </div>
+                </Navbar>
 
-              <br/><br/>
+                <br/><br/>
 
-              <div className="container">
-                  <div id="displayedTable">
-                      {tables[this.state.displayedTable]}
-                  </div>
-              </div>
+                <div className="container">
+                    <div id="displayedTable">
+                        {tables[this.state.displayedTable]}
+                    </div>
+                </div>
 
-              <br/><br/>
+                <br/><br/>
 
-          </BrowserRouter>
+            </BrowserRouter>
         );
     }
 }

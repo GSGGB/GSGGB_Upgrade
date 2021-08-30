@@ -60,10 +60,10 @@ const ApplicantSchema = new mongoose.Schema({
         required: true,
         minlength: 1
     },
-    viewed: {
-        type: String,
+    flagged: {
+        type: Boolean,
         required: true,
-        minlength: 1
+        trim: true
     },
 });
 

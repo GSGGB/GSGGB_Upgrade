@@ -1,9 +1,35 @@
-.viewed{
-    color: green;
+/* Accordion header*/
+.applicant-name{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 20px;
+    color: black;
+    padding: 10px;
+}
+
+.flag-applicant-icon{
+    color: red;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+#applicant-button{
+    margin-right: 10px;
+    float: right;
+}
+
+
+/* Accordion content */
+.bold-applicant-text{
     font-weight: bold;
 }
 
-.not-viewed{
-    color: red;
-    font-weight: bold;
+.applicant-details{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 16px;
+    color: black;
+}
+
+#resume-image{
+    width: 100%;
+    border: 2px solid black;
 }
