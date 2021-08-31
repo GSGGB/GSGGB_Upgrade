@@ -57,27 +57,27 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
         // Add to appropriate array depending on interested team.
         if (applicant.team === "Affairs"){
             applicationsAdminComp.setState({
-                affairsApplicants: (applicationsAdminComp.state.affairsApplicants).concat([newApplicant])
+                affairsApplicants: [newApplicant].concat(applicationsAdminComp.state.affairsApplicants)
             })
         } else if (applicant.team === "Conference Committee"){
             applicationsAdminComp.setState({
-                conferenceApplicants: (applicationsAdminComp.state.conferenceApplicants).concat([newApplicant])
+                conferenceApplicants: [newApplicant].concat(applicationsAdminComp.state.conferenceApplicants)
             })
         } else if (applicant.team === "Events"){
             applicationsAdminComp.setState({
-                eventsApplicants: (applicationsAdminComp.state.eventsApplicants).concat([newApplicant])
+                eventsApplicants: [newApplicant].concat(applicationsAdminComp.state.eventsApplicants)
             })
         } else if (applicant.team === "Marketing"){
             applicationsAdminComp.setState({
-                marketingApplicants: (applicationsAdminComp.state.marketingApplicants).concat([newApplicant])
+                marketingApplicants: [newApplicant].concat(applicationsAdminComp.state.marketingApplicants)
             })
         } else if (applicant.team === "Mentorship"){
             applicationsAdminComp.setState({
-                mentorshipApplicants: (applicationsAdminComp.state.mentorshipApplicants).concat([newApplicant])
+                mentorshipApplicants: [newApplicant].concat(applicationsAdminComp.state.mentorshipApplicants)
             })
         } else if (applicant.team === "Tech & Innovations"){
             applicationsAdminComp.setState({
-                techApplicants: (applicationsAdminComp.state.techApplicants).concat([newApplicant])
+                techApplicants: [newApplicant].concat(applicationsAdminComp.state.techApplicants)
             })
         }
 

@@ -26,7 +26,7 @@ class GetInvolved extends Component {
         applicantFridays: "No", // Default option.
         applicantTeam: "Affairs", // Default option.
         applicantPosition: "",
-        applicantOtherPositions: "",
+        applicantOtherPositions: "N/A", // Default option.
         applicantStatement: ""
     };
 
@@ -413,7 +413,7 @@ class GetInvolved extends Component {
                                         sendApplication(this);
                                     }}
                                     >
-                                        SUBMIT
+                                        SUBMIT (Please wait until you receive an alert/confirmation to close your window)
                                 </Button>
 
                             </Form>

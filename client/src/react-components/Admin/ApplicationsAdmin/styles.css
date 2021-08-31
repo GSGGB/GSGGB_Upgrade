@@ -7,6 +7,12 @@
     font-weight: bold;
 }
 
-.#applicant-dropdown{
+#applicant-team-dropdown{
     margin-left: 20px !important;
+    margin-right: 20px !important;
+    display: inline-block !important;
+}
+
+.applicant-team-selected{
+    margin-top: 10px;
 }

@@ -12,13 +12,18 @@
     display: inline-block;
 }
 
-#applicant-button{
+#flag-applicant-button, #delete-applicant-button{
     margin-right: 10px;
     float: right;
 }
 
 
 /* Accordion content */
+#conference-accordion, #events-accordion, #marketing-accordion,
+#mentorship-accordion, #tech-accordion{
+    display: none;
+}
+
 .bold-applicant-text{
     font-weight: bold;
 }

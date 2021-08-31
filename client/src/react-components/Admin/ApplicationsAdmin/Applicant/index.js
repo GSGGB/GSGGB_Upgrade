@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Button, Accordion, Card, Image } from "react-bootstrap";
+import { Row, Col, Button, Accordion, Card, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { confirmAlert } from 'react-confirm-alert';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,7 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { deleteApplication, flagApplication, unflagApplication } from "../../../../actions/applicant";
 
 import "./styles.css";
+import "./styles-mobile.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class Applicant extends Component {
@@ -36,7 +37,7 @@ class Applicant extends Component {
         if (loggedIn === "true" && accountType === "Administrator"){
             return (
                 <Button
-                    id="applicant-button"
+                    id="delete-applicant-button"
                     variant="outline-danger"
                     onClick={() => {
                         confirmAlert({
@@ -74,7 +75,7 @@ class Applicant extends Component {
             if (this.props.flagged){
                 return (
                     <Button
-                        id="applicant-button"
+                        id="flag-applicant-button"
                         variant="outline-warning"
                         type="submit"
                         onClick={() => {
@@ -100,7 +101,7 @@ class Applicant extends Component {
             } else{
                 return (
                     <Button
-                        id="applicant-button"
+                        id="flag-applicant-button"
                         variant="outline-warning"
                         type="submit"
                         onClick={() => {
@@ -137,12 +138,18 @@ class Applicant extends Component {
                 <div>
                     <Card>
                         <Card.Header>
-                            <Accordion.Toggle eventKey={this.props.applicantId}>
-                                <span className="applicant-name">{(this.props.fullName).toUpperCase()}</span>
-                            </Accordion.Toggle>
-                            {flagIcon}
-                            {deleteApplicationButton}
-                            {flagApplicationButton}
+                            <Row>
+                                <Col sm={6}>
+                                    <Accordion.Toggle eventKey={this.props.applicantId}>
+                                        <span className="applicant-name">{(this.props.fullName).toUpperCase()}</span>
+                                    </Accordion.Toggle>
+                                    {flagIcon}
+                                </Col>
+                                <Col sm={6}>
+                                    {deleteApplicationButton}
+                                    {flagApplicationButton}
+                                </Col>
+                            </Row>
                         </Card.Header>
                         <Accordion.Collapse eventKey={this.props.applicantId}>
                             <Card.Body>

@@ -5,7 +5,6 @@ import UsersAdmin from "./UsersAdmin";
 import ApplicationsAdmin from "./ApplicationsAdmin";
 
 import "./styles.css";
-import "./styles-mobile.css";
 
 const tables = {
     users: <UsersAdmin></UsersAdmin>,
