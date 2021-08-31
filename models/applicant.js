@@ -65,6 +65,12 @@ const ApplicantSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    submissionDate: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true
+    }
 });
 
 // make a model using the schema

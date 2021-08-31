@@ -1,5 +1,5 @@
-@media (max-width: 576px){
-      #flag-applicant-button{
-          float: left;
-      }
+@media (max-width: 768px){
+    #flag-applicant-button, #delete-applicant-button{
+        margin-top: 15px !important;
+    }
 }

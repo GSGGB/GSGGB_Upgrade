@@ -52,6 +52,7 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
                                   otherPositions={applicant.otherPositions}
                                   statement={applicant.statement}
                                   flagged={applicant.flagged}
+                                  submissionDate={applicant.submissionDate}
                               ></Applicant>
 
         // Add to appropriate array depending on interested team.
@@ -114,42 +115,6 @@ export const getAllApplicants = (applicationsAdminComp) => {
             for (let applicant of json.applicants) {
                 await addApplicantHelper(applicationsAdminComp, applicant);
             }
-        })
-        .catch(error => {
-            console.log(error);
-        });
-}
-
-
-// A function to get a specific applicant by their id to update.
-export const getApplicantById = (applicationsAdminComp, id) => {
-    const url = "/applicantDatabase/" + id;
-
-    // Since this is a GET request, simply call fetch on the URL.
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                // Return a promise that resolves with the JSON body.
-                return res.json();
-            } else {
-                alert("Could not get applicant");
-            }
-        })
-        .then(json => {
-            // Get existing applicant details.
-            applicationsAdminComp.setState({
-                resumeId: json.resumeId,
-                fullName: json.fullName,
-                email: json.email,
-                year: json.year,
-                program: json.program,
-                fridays: json.fridays,
-                team: json.team,
-                position: json.position,
-                otherPositions: json.otherPositions,
-                statement: json.statement,
-                flagged: json.flagged
-            });
         })
         .catch(error => {
             console.log(error);
@@ -261,7 +226,8 @@ export const flagApplication = async(applicationsAdminComp, id) => {
             position: json.position,
             otherPositions: json.otherPositions,
             statement: json.statement,
-            flagged: true
+            flagged: true,
+            submissionDate: json.submissionDate
         }
 
         const request = new Request(url, {
@@ -310,7 +276,8 @@ export const unflagApplication = async(applicationsAdminComp, id) => {
             position: json.position,
             otherPositions: json.otherPositions,
             statement: json.statement,
-            flagged: false
+            flagged: false,
+            submissionDate: json.submissionDate
         }
 
         const request = new Request(url, {

@@ -17,6 +17,10 @@
     float: right;
 }
 
+#applicant-submission-date{
+    margin-left: 15px;
+}
+
 
 /* Accordion content */
 #conference-accordion, #events-accordion, #marketing-accordion,

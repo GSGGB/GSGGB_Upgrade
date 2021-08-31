@@ -405,6 +405,10 @@ class GetInvolved extends Component {
 
                                 <br/><br/>
 
+                                <div className="applicant-submission-note">
+                                    NOTE: It may take several seconds for your submission to process successfully due to resume upload.
+                                    Please wait until you receive two successive alerts to close your window.
+                                </div>
                                 <Button
                                     variant="outline-info"
                                     type="submit"
@@ -413,7 +417,7 @@ class GetInvolved extends Component {
                                         sendApplication(this);
                                     }}
                                     >
-                                        SUBMIT (Please wait until you receive an alert/confirmation to close your window)
+                                        SUBMIT
                                 </Button>
 
                             </Form>

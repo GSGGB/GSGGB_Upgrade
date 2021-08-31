@@ -990,7 +990,8 @@ app.post("/applicantDatabase", (req, res) => {
         position: req.body.position,
         otherPositions: req.body.otherPositions,
         statement: req.body.statement,
-        flagged: req.body.flagged
+        flagged: req.body.flagged,
+        submissionDate: new Date()
     });
 
     // Save executive to the database.
@@ -1019,7 +1020,8 @@ app.patch("/applicantDatabase/:id", (req, res) => {
         position: req.body.position,
         otherPositions: req.body.otherPositions,
         statement: req.body.statement,
-        flagged: req.body.flagged
+        flagged: req.body.flagged,
+        submissionDate: req.body.submissionDate
     };
 
     if (!ObjectID.isValid(id)) {

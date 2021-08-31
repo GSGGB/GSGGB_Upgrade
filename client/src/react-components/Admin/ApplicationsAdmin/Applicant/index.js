@@ -13,6 +13,11 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class Applicant extends Component {
 
+    state = {
+        dateOptions: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
+        timeOptions: { hour: '2-digit', minute:'2-digit' }
+    };
+
     // Flag icon.
     flagIcon(){
         const accountType = sessionStorage.getItem("accountType");
@@ -133,19 +138,25 @@ class Applicant extends Component {
         const flagApplicationButton = this.flagApplicationButton();
         const flagIcon = this.flagIcon();
 
+        const submissionDateText = (
+            "Submitted " + (new Date(this.props.submissionDate)).toLocaleDateString('en-US', this.state.dateOptions) + " " +
+            (new Date(this.props.submissionDate)).toLocaleTimeString('en-US', this.state.timeOptions)
+        );
+
         return (
             <BrowserRouter forceRefresh={true}>
                 <div>
                     <Card>
                         <Card.Header>
                             <Row>
-                                <Col sm={6}>
+                                <Col lg={7}>
                                     <Accordion.Toggle eventKey={this.props.applicantId}>
                                         <span className="applicant-name">{(this.props.fullName).toUpperCase()}</span>
                                     </Accordion.Toggle>
                                     {flagIcon}
+                                    <small className="text-muted" id="applicant-submission-date">{submissionDateText}</small>
                                 </Col>
-                                <Col sm={6}>
+                                <Col lg={5}>
                                     {deleteApplicationButton}
                                     {flagApplicationButton}
                                 </Col>
@@ -172,7 +183,7 @@ class Applicant extends Component {
                                     <br/><br/>
                                     <span className="bold-applicant-text">Statement:</span> {this.props.statement}
                                     <br/><br/>
-                                    <span className="bold-applicant-text">Resume (in PDF format):</span>
+                                    <span className="bold-applicant-text">Resume:</span>
                                     <br/><br/>
                                     <Image id="resume-image" src={(this.props.resumeURL).replace(".pdf", ".png")} />
                                 </div>
