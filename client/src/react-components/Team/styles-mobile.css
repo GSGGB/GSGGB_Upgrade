@@ -26,3 +26,14 @@
         font-size: 15px;
     }
 }
+
+
+@media (max-width: 450px){
+    .team-photo-title{
+        font-size: 20px;
+    }
+
+    .team-photo-subtitle{
+        font-size: 12px;
+    }
+}

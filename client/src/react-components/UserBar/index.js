@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, BrowserRouter } from "react-router-dom";
-import { Image, Button } from "react-bootstrap";
+import { Row, Col, Image, Button } from "react-bootstrap";
 
 // Importing actions/required methods
 import { logout } from "../../actions/user";
@@ -72,9 +72,16 @@ class UserBar extends Component {
           <BrowserRouter>
               <div className="user-bar">
                   <div className="container">
-                      <Image id="uoft-logo-user-bar" alt="UofT Logo" src={uoft_logo} />
-                      <span className="chapters-text">University of Toronto Chapter</span>
-                      <span>{logoutButton}{adminButton}{chaptersButton}</span>
+                      <Row>
+                        <Col md={6}>
+                            <Image id="uoft-logo-user-bar" alt="UofT Logo" src={uoft_logo} />
+                            <span className="chapters-text">University of Toronto Chapter</span>
+                            <span className="short-chapters-text">U of T Chapter</span>
+                        </Col>
+                        <Col md={6}>
+                            <div className="userbar-buttons">{chaptersButton}{adminButton}{logoutButton}</div>
+                        </Col>
+                      </Row>
                   </div>
               </div>
           </BrowserRouter>

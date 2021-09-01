@@ -17,9 +17,16 @@
     margin-top: 17px;
 }
 
+.short-chapters-text{
+    display: none;
+}
+
 #admin-button, #chapters-button, #logout-button{
     display: inline-block;
     margin-top: 10px;
     margin-left: 10px;
+}
+
+.userbar-buttons{
     float: right;
 }

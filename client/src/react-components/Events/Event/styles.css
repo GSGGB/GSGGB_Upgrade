@@ -4,6 +4,10 @@
     float: right;
 }
 
+#edit-event-button{
+    margin-right: 5px;
+}
+
 .event-card{
     margin-bottom: 50px;
     font-family: Tahoma, Geneva, sans-serif;

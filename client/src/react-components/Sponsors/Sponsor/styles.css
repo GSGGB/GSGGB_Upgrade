@@ -4,6 +4,10 @@
     float: right;
 }
 
+#edit-sponsor-button{
+    margin-right: 5px;
+}
+
 .sponsor-center{
     text-align: center;
 }
