@@ -11,6 +11,7 @@ const app = express();
 
 // mongoose and mongo connection
 const { mongoose } = require("./db/mongoose");
+mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
 const { User } = require("./models/user");
