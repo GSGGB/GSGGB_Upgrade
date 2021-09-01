@@ -17,6 +17,17 @@ class GetInvolved extends Component {
         document.title = "GSGGB U of T | Get Involved";
 
         this.state = {
+            resumeFile: "",
+            resumeId: "",
+            applicantFullName: "",
+            applicantEmail: "",
+            applicantYear: "Year 1", // Default option.
+            applicantProgram: "",
+            applicantFridays: "No", // Default option.
+            applicantTeam: "Affairs", // Default option.
+            applicantPosition: "",
+            applicantOtherPositions: "N/A", // Default option.
+            applicantStatement: "",
             affairsPositions: [],
             conferencePositions: [],
             eventsPositions: [],
@@ -32,20 +43,6 @@ class GetInvolved extends Component {
     componentDidMount(){
         addPositionOptions(this);
     }
-
-    state = {
-        resumeFile: "",
-        resumeId: "",
-        applicantFullName: "",
-        applicantEmail: "",
-        applicantYear: "Year 1", // Default option.
-        applicantProgram: "",
-        applicantFridays: "No", // Default option.
-        applicantTeam: "Affairs", // Default option.
-        applicantPosition: "",
-        applicantOtherPositions: "N/A", // Default option.
-        applicantStatement: ""
-    };
 
     // Display available positions for particular team after it has been chosen by the user.
     componentDidUpdate(prevState){
