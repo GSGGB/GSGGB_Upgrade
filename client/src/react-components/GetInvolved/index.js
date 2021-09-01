@@ -115,8 +115,8 @@ class GetInvolved extends Component {
         var techOptions = (this.state.techPositions).map((title) => { return (<option value={title}>{title}</option>) });
 
         const lastUpdatedText = (
-            "Last updated as of " + (new Date(this.state.lastUpdated)).toLocaleDateString('en-US', this.state.dateOptions) + " " +
-            (new Date(this.state.lastUpdated)).toLocaleTimeString('en-US', this.state.timeOptions)
+            "Positions last updated as of " + (new Date(this.state.lastUpdated)).toLocaleDateString('en-US', this.state.dateOptions) +
+            " " + (new Date(this.state.lastUpdated)).toLocaleTimeString('en-US', this.state.timeOptions)
         );
 
         return (
