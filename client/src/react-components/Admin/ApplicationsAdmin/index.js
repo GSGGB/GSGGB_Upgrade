@@ -103,7 +103,7 @@ class ApplicationsAdmin extends Component {
                                       <Dropdown.Item eventKey="Mentorship">Mentorship</Dropdown.Item>
                                       <Dropdown.Item eventKey="Tech & Innovations">Tech & Innovations</Dropdown.Item>
                                 </DropdownButton>
-                                <div class="applicant-team-selected">
+                                <div className="applicant-team-selected">
                                     {this.state.applicantTeam} Team selected
                                 </div>
                             </Row>

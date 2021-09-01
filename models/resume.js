@@ -12,6 +12,11 @@ const ResumeSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 1
+    },
+    resumePages: {
+        type: Number,
+        required: true,
+        minlength: 1
     }
 });
 

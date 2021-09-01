@@ -1176,6 +1176,7 @@ app.post("/resumeDatabase", multipartMiddleware, (req, res) => {
             var resume = new Resume({
                 resumeId: result.public_id, // image id on cloudinary server
                 resumeURL: result.url, // image url on cloudinary server
+                resumePages: result.pages // number of pages in resume
             });
 
             // Save image to the database

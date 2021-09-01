@@ -41,7 +41,7 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
                                   applicationsAdminComp={applicationsAdminComp}
                                   applicantId={applicant._id}
                                   resumeCloudinaryId={resumeJSON.resumeId}
-                                  resumeURL={resumeJSON.resumeURL}
+                                  resumePages={resumeJSON.resumePages}
                                   fullName={applicant.fullName}
                                   email={applicant.email}
                                   year={applicant.year}

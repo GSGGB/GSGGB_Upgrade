@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Row, Col, Button, Accordion, Card, Image } from "react-bootstrap";
+import { Row, Col, Button, Accordion, Card } from "react-bootstrap";
+import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { confirmAlert } from 'react-confirm-alert';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +13,6 @@ import "./styles-mobile.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class Applicant extends Component {
-
     state = {
         dateOptions: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
         timeOptions: { hour: '2-digit', minute:'2-digit' }
@@ -143,6 +143,18 @@ class Applicant extends Component {
             (new Date(this.props.submissionDate)).toLocaleTimeString('en-US', this.state.timeOptions)
         );
 
+        var renderedResume = []
+        for (let num = 1; num <= this.props.resumePages; num++){
+            renderedResume.push(
+                <div>
+                    <Image publicId={this.props.resumeCloudinaryId + ".png"} className="applicant-resume">
+                        <Transformation border="2px_solid_black" page={String(num)}/>
+                    </Image>
+                    <br/><br/>
+                </div>
+            )
+        }
+
         return (
             <BrowserRouter forceRefresh={true}>
                 <div>
@@ -185,7 +197,10 @@ class Applicant extends Component {
                                     <br/><br/>
                                     <span className="bold-applicant-text">Resume:</span>
                                     <br/><br/>
-                                    <Image id="resume-image" src={(this.props.resumeURL).replace(".pdf", ".png")} />
+
+                                    <CloudinaryContext cloudName="gsggb">
+                                        {renderedResume}
+                                    </CloudinaryContext>
                                 </div>
                             </Card.Body>
                         </Accordion.Collapse>
