@@ -82,8 +82,8 @@ const addPositionHelper = (positionsAdminComp, position) => {
     const newPosition = <Position
                             positionsAdminComp={positionsAdminComp}
                             positionId={position._id}
-                            positionTeam={position.team}
-                            positionTitle={position.title}
+                            team={position.team}
+                            title={position.title}
                             dateAdded={position.dateAdded}
                         ></Position>
 

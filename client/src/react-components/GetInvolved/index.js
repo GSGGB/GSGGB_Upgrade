@@ -22,7 +22,10 @@ class GetInvolved extends Component {
             eventsPositions: [],
             marketingPositions: [],
             mentorshipPositions: [],
-            techPositions: []
+            techPositions: [],
+            lastUpdated: "",
+            dateOptions: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
+            timeOptions: { hour: '2-digit', minute:'2-digit' }
         }
     }
 
@@ -41,10 +44,7 @@ class GetInvolved extends Component {
         applicantTeam: "Affairs", // Default option.
         applicantPosition: "",
         applicantOtherPositions: "N/A", // Default option.
-        applicantStatement: "",
-        lastUpdated: "",
-        dateOptions: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
-        timeOptions: { hour: '2-digit', minute:'2-digit' }
+        applicantStatement: ""
     };
 
     // Display available positions for particular team after it has been chosen by the user.

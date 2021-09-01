@@ -5,6 +5,7 @@ import { confirmAlert } from 'react-confirm-alert';
 
 import { deletePosition } from "../../../../actions/position";
 import "./styles.css";
+import "./styles-mobile.css";
 
 class Position extends Component {
     state = {
@@ -21,8 +22,7 @@ class Position extends Component {
             return (
                 <Button
                     id="delete-position-button"
-                    variant="outline-info"
-                    size="sm"
+                    variant="outline-danger"
                     onClick={() => {
                         confirmAlert({
                             message: 'Please confirm deletion of this position title.',
@@ -59,8 +59,8 @@ class Position extends Component {
                         <Card.Header>
                             <Row>
                                 <Col lg={7}>
-                                    <Accordion.Toggle eventKey={this.props.positionId}>
-                                        <span className="position-name">{this.props.position}</span>
+                                    <Accordion.Toggle>
+                                        <span className="position-title">{this.props.title}</span>
                                     </Accordion.Toggle>
                                     <small className="text-muted" id="position-added-date">{dateAddedText}</small>
                                 </Col>
@@ -69,8 +69,6 @@ class Position extends Component {
                                 </Col>
                             </Row>
                         </Card.Header>
-                        <Accordion.Collapse eventKey={this.props.positionId}>
-                        </Accordion.Collapse>
                     </Card>
                 </div>
             </BrowserRouter>
