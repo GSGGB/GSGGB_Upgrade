@@ -179,7 +179,7 @@ class Sponsors extends Component {
                             </Form.Group>
                             <br/>
                             <Form.Group>
-                                <Form.Label>Sponsor name</Form.Label>
+                                <Form.Label>Sponsor name (Alphanumeric and spaces only, no commas)</Form.Label>
                                 <Form.Control
                                     type="text"
                                     name="sponsorName"
