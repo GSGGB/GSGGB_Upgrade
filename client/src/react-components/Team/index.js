@@ -77,7 +77,7 @@ class Team extends Component {
                     <span className="team-photo-title">
                         Our Executive Team
                         <h3 className="team-photo-subtitle">
-                            (Fall 2020 - Winter 2021)
+                            (Fall 2021 - Winter 2022)
                             {addExecutiveButton}
                         </h3>
                     </span>

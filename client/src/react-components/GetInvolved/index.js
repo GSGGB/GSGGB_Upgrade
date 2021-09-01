@@ -6,6 +6,7 @@ import "./styles.css";
 import "./styles-mobile.css";
 import getInvolvedPhoto from "./static/getinvolved-photo.jpg";
 
+import { addPositionOptions } from "../../actions/position";
 import { updateApplicantForm, sendApplication } from "../../actions/applicant";
 import { updateResumeFile } from "../../actions/resume";
 
@@ -14,6 +15,19 @@ class GetInvolved extends Component {
         super(props);
         this.props.history.push("/get-involved");
         document.title = "GSGGB U of T | Get Involved";
+
+        this.state = {
+            affairsPositions: [],
+            conferencePositions: [],
+            eventsPositions: [],
+            marketingPositions: [],
+            mentorshipPositions: [],
+            techPositions: []
+        }
+    }
+
+    componentDidMount(){
+        addPositionOptions(this);
     }
 
     state = {
@@ -27,7 +41,10 @@ class GetInvolved extends Component {
         applicantTeam: "Affairs", // Default option.
         applicantPosition: "",
         applicantOtherPositions: "N/A", // Default option.
-        applicantStatement: ""
+        applicantStatement: "",
+        lastUpdated: "",
+        dateOptions: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
+        timeOptions: { hour: '2-digit', minute:'2-digit' }
     };
 
     // Display available positions for particular team after it has been chosen by the user.
@@ -92,6 +109,19 @@ class GetInvolved extends Component {
     }
 
     render() {
+        // Load position options for each team to populate in form.
+        var affairsOptions = (this.state.affairsPositions).map((title) => { return (<option value={title}>{title}</option>) });
+        var conferenceOptions = (this.state.conferencePositions).map((title) => { return (<option value={title}>{title}</option>) });
+        var eventsOptions = (this.state.eventsPositions).map((title) => { return (<option value={title}>{title}</option>) });
+        var marketingOptions = (this.state.marketingPositions).map((title) => { return (<option value={title}>{title}</option>) });
+        var mentorshipOptions = (this.state.mentorshipPositions).map((title) => { return (<option value={title}>{title}</option>) });
+        var techOptions = (this.state.techPositions).map((title) => { return (<option value={title}>{title}</option>) });
+
+        const lastUpdatedText = (
+            "Last updated as of " + (new Date(this.state.lastUpdated)).toLocaleDateString('en-US', this.state.dateOptions) + " " +
+            (new Date(this.state.lastUpdated)).toLocaleTimeString('en-US', this.state.timeOptions)
+        );
+
         return (
             <BrowserRouter forceRefresh={true}>
                 <div className="getinvolved-photo-container">
@@ -112,7 +142,7 @@ class GetInvolved extends Component {
                             We are one of the campus' largest Life Sciences organizations and we would like you to join our team!
                             Please complete this form and we'll contact you as soon as possible.
                             <br/><br/>
-                            <small className="text-muted">Last updated as of...</small>
+                            <small className="text-muted">{lastUpdatedText}</small>
                         </Card.Header>
                         <Card.Body>
                             <Form>
@@ -243,8 +273,7 @@ class GetInvolved extends Component {
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
                                                         <option value=""></option>
-                                                        <option value="Affairs Executive">Affairs Executive</option>
-                                                        <option value="Treasurer">Treasurer</option>
+                                                        {affairsOptions}
                                                     </Form.Control>
                                                 </td>
                                             </tr>
@@ -263,12 +292,7 @@ class GetInvolved extends Component {
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
                                                         <option value=""></option>
-                                                        <option value="Outreach Officer">Outreach Officer</option>
-                                                        <option value="Communications Officer">Communications Officer</option>
-                                                        <option value="Event Coordinator">Event Coordinator</option>
-                                                        <option value="Social Media Coordinator">Social Media Coordinator</option>
-                                                        <option value="Fundraising Event Coordinator">Fundraising Event Coordinator</option>
-                                                        <option value="Graphic Designer">Graphic Designer</option>
+                                                        {conferenceOptions}
                                                     </Form.Control>
                                                 </td>
                                             </tr>
@@ -288,11 +312,7 @@ class GetInvolved extends Component {
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
                                                         <option value=""></option>
-                                                        <option value="Social Events Coordinator">Social Events Coordinator</option>
-                                                        <option value="Fundraising Event Coordinator">Fundraising Event Coordinator</option>
-                                                        <option value="Academic Event Coordinator">Academic Event Coordinator</option>
-                                                        <option value="Event/Marketing Liaison">Event/Marketing Liaison</option>
-                                                        <option value="Event Team Member">Event Team Member</option>
+                                                        {eventsOptions}
                                                     </Form.Control>
                                                 </td>
                                             </tr>
@@ -310,12 +330,7 @@ class GetInvolved extends Component {
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
                                                         <option value=""></option>
-                                                        <option value="Graphic Designer">Graphic Designer</option>
-                                                        <option value="Social Media Coordinator">Social Media Coordinator</option>
-                                                        <option value="Academic Affairs Director">Academic Affairs Director</option>
-                                                        <option value="Videographer/Photographer">Videographer/Photographer</option>
-                                                        <option value="2nd Year Representative">2nd Year Representative</option>
-                                                        <option value="1st Year Representative">1st Year Representative</option>
+                                                        {marketingOptions}
                                                     </Form.Control>
                                                 </td>
                                             </tr>
@@ -336,7 +351,7 @@ class GetInvolved extends Component {
                                                       onChange={e => updateApplicantForm(this, e.target)}
                                                   >
                                                       <option value=""></option>
-                                                      <option value="Mentorship Associate">Mentorship Associate</option>
+                                                      {mentorshipOptions}
                                                   </Form.Control>
                                                 </td>
                                             </tr>
@@ -354,8 +369,7 @@ class GetInvolved extends Component {
                                                         onChange={e => updateApplicantForm(this, e.target)}
                                                     >
                                                         <option value=""></option>
-                                                        <option value="Web Developer/Webmaster">Web Developer/Webmaster</option>
-                                                        <option value="Workshop Organizer">Event/Workshop Organizer</option>
+                                                        {techOptions}
                                                     </Form.Control>
                                                 </td>
                                             </tr>

@@ -20,6 +20,7 @@ const { Research } = require("./models/research");
 const { Executive } = require("./models/executive");
 const { Event } = require("./models/event");
 const { Sponsor } = require("./models/sponsor");
+const { Position } = require("./models/position");
 const { Applicant } = require("./models/applicant");
 const { Image } = require("./models/image");
 const { Resume } = require("./models/resume");
@@ -940,6 +941,62 @@ app.delete("/sponsorDatabase/:id", (req, res) => {
         });
 });
 /** End of sponsor resource routes **/
+
+
+/** Start of position resource routes **/
+// A GET route to get ALL position titles in all teams.
+app.get("/positionDatabase", (req, res) => {
+    Position.find().then(
+        (positions) => {
+            res.send({ positions });
+        },
+        (error) => {
+            res.status(500).send(error); // Server error, could not get.
+        }
+    );
+});
+
+// A POST route to create a new position title.
+app.post("/positionDatabase", (req, res) => {
+    const position = new Position({
+        team: req.body.team,
+        title: req.body.title,
+        dateAdded: new Date()
+    });
+
+    // Save executive to the database.
+    position.save().then(
+        (result) => {
+            res.send(result);
+        },
+        (error) => {
+            res.status(400).send(error); // 400 for bad request.
+        }
+    );
+});
+
+// A DELETE route to delete a position title.
+app.delete("/positionDatabase/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    Position.findByIdAndRemove(id)
+        .then((position) => {
+            if (!position) {
+                res.status(404).send();
+            } else {
+                res.send(position);
+            }
+        })
+        .catch((error) => {
+            res.status(500).send(); // Server error, could not delete.
+        });
+});
+/** End of position resource routes **/
 
 
 /** Start of applicant resource routes **/

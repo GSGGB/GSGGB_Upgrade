@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
 import UsersAdmin from "./UsersAdmin";
+import PositionsAdmin from "./PositionsAdmin";
 import ApplicationsAdmin from "./ApplicationsAdmin";
 
 import "./styles.css";
 
 const tables = {
     users: <UsersAdmin></UsersAdmin>,
+    positions: <PositionsAdmin></PositionsAdmin>,
     applications: <ApplicationsAdmin></ApplicationsAdmin>
 };
 
@@ -41,6 +43,16 @@ class Admin extends Component {
                                     }
                                 >
                                     Users
+                                </Nav.Link>
+                                <Nav.Link
+                                    href="#positions"
+                                    onClick={() =>
+                                        this.setState({
+                                            displayedTable: "positions",
+                                        })
+                                    }
+                                >
+                                    Positions
                                 </Nav.Link>
                                 <Nav.Link
                                     href="#applications"

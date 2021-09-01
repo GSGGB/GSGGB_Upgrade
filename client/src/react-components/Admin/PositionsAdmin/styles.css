@@ -1,0 +1,23 @@
+.position-card-header{
+    background-color: ghostwhite;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #5BC0DE;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#position-team-dropdown{
+    margin-left: 20px !important;
+    display: inline-block !important;
+}
+
+.position-team-selected{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+}
+
+#add-position-button{
+    margin-left: 20px !important;
+}

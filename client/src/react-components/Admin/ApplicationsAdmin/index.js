@@ -9,7 +9,7 @@ import "./styles.css";
 
 class ApplicationsAdmin extends Component {
     state = {
-        applicantTeam: "Affairs", // Default value.
+        applicantTeamDropdown: "Affairs", // Default value.
         affairsApplicants: [],
         conferenceApplicants: [],
         eventsApplicants: [],
@@ -24,15 +24,15 @@ class ApplicationsAdmin extends Component {
 
     // Display applicants for particular team after selection by administrator.
     componentDidUpdate(prevState){
-        if (this.state.applicantTeam !== prevState.applicantTeam){
-            const affairs = document.querySelector("#affairs-accordion");
-            const conference = document.querySelector("#conference-accordion");
-            const events = document.querySelector("#events-accordion");
-            const marketing = document.querySelector("#marketing-accordion");
-            const mentorship = document.querySelector("#mentorship-accordion");
-            const tech = document.querySelector("#tech-accordion");
+        if (this.state.applicantTeamDropdown !== prevState.applicantTeamDropdown){
+            const affairs = document.querySelector("#affairs-applicant-accordion");
+            const conference = document.querySelector("#conference-applicant-accordion");
+            const events = document.querySelector("#events-applicant-accordion");
+            const marketing = document.querySelector("#marketing-applicant-accordion");
+            const mentorship = document.querySelector("#mentorship-applicant-accordion");
+            const tech = document.querySelector("#tech-applicant-accordion");
 
-            if (this.state.applicantTeam === "Affairs"){
+            if (this.state.applicantTeamDropdown === "Affairs"){
                 affairs.style.display = "block";
                 conference.style.display = "none";
                 events.style.display = "none";
@@ -40,7 +40,7 @@ class ApplicationsAdmin extends Component {
                 mentorship.style.display = "none";
                 tech.style.display = "none";
 
-            } else if (this.state.applicantTeam === "Conference Committee"){
+            } else if (this.state.applicantTeamDropdown === "Conference Committee"){
                 affairs.style.display = "none";
                 conference.style.display = "block";
                 events.style.display = "none";
@@ -48,7 +48,7 @@ class ApplicationsAdmin extends Component {
                 mentorship.style.display = "none";
                 tech.style.display = "none";
 
-            } else if (this.state.applicantTeam === "Events"){
+            } else if (this.state.applicantTeamDropdown === "Events"){
                 affairs.style.display = "none";
                 conference.style.display = "none";
                 events.style.display = "block";
@@ -56,7 +56,7 @@ class ApplicationsAdmin extends Component {
                 mentorship.style.display = "none";
                 tech.style.display = "none";
 
-            } else if (this.state.applicantTeam === "Marketing"){
+            } else if (this.state.applicantTeamDropdown === "Marketing"){
                 affairs.style.display = "none";
                 conference.style.display = "none";
                 events.style.display = "none";
@@ -64,7 +64,7 @@ class ApplicationsAdmin extends Component {
                 mentorship.style.display = "none";
                 tech.style.display = "none";
 
-            } else if (this.state.applicantTeam === "Mentorship"){
+            } else if (this.state.applicantTeamDropdown === "Mentorship"){
                 affairs.style.display = "none";
                 conference.style.display = "none";
                 events.style.display = "none";
@@ -72,7 +72,7 @@ class ApplicationsAdmin extends Component {
                 mentorship.style.display = "block";
                 tech.style.display = "none";
 
-            } else if (this.state.applicantTeam === "Tech & Innovations"){
+            } else if (this.state.applicantTeamDropdown === "Tech & Innovations"){
                 affairs.style.display = "none";
                 conference.style.display = "none";
                 events.style.display = "none";
@@ -94,7 +94,7 @@ class ApplicationsAdmin extends Component {
                                     variant="info"
                                     id="applicant-team-dropdown"
                                     title="FILTER: Choose team"
-                                    onSelect={e => this.setState({ applicantTeam: e })}
+                                    onSelect={e => this.setState({ applicantTeamDropdown: e })}
                                 >
                                       <Dropdown.Item eventKey="Affairs">Affairs</Dropdown.Item>
                                       <Dropdown.Item eventKey="Conference Committee">Conference Committee</Dropdown.Item>
@@ -104,32 +104,32 @@ class ApplicationsAdmin extends Component {
                                       <Dropdown.Item eventKey="Tech & Innovations">Tech & Innovations</Dropdown.Item>
                                 </DropdownButton>
                                 <div className="applicant-team-selected">
-                                    {this.state.applicantTeam} Team selected
+                                    {this.state.applicantTeamDropdown} Team selected
                                 </div>
                             </Row>
                         </Card.Header>
                         <Card.Body>
-                            <Accordion id="affairs-accordion">
+                            <Accordion id="affairs-applicant-accordion">
                                 {this.state.affairsApplicants}
                             </Accordion>
 
-                            <Accordion id="conference-accordion">
+                            <Accordion id="conference-applicant-accordion">
                                 {this.state.conferenceApplicants}
                             </Accordion>
 
-                            <Accordion id="events-accordion">
+                            <Accordion id="events-applicant-accordion">
                                 {this.state.eventsApplicants}
                             </Accordion>
 
-                            <Accordion id="marketing-accordion">
+                            <Accordion id="marketing-applicant-accordion">
                                 {this.state.marketingApplicants}
                             </Accordion>
 
-                            <Accordion id="mentorship-accordion">
+                            <Accordion id="mentorship-applicant-accordion">
                                 {this.state.mentorshipApplicants}
                             </Accordion>
 
-                            <Accordion id="tech-accordion">
+                            <Accordion id="tech-applicant-accordion">
                                 {this.state.techApplicants}
                             </Accordion>
                         </Card.Body>
