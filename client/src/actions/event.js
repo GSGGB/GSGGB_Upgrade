@@ -73,7 +73,7 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
             // Upcoming event.
             } else {
                 eventsComp.setState({
-                    upcomingEvents: [newEvent].concat(eventsComp.state.upcomingEvents)
+                    upcomingEvents: (eventsComp.state.upcomingEvents).concat([newEvent])
                 })
             }
 

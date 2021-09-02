@@ -8,6 +8,10 @@
     border-radius: 20%;
 }
 
+#edit-research-button{
+    margin-right: 5px;
+}
+
 #edit-research-button, #delete-research-button{
     display: inline-block;
     float: right;

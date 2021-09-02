@@ -40,23 +40,28 @@ class Chapters extends Component {
                                 </div>
                                 <br/>
                                 <div>
-                                    <Button
-                                        className="chapters-button"
-                                        id="mcmaster-button"
-                                    >
-                                        <Image id="mcmaster-logo-chapters" alt="McMaster Logo" src={mcmaster_logo} />
-                                        McMaster University
-                                    </Button>
+                                    <a href="https://www.facebook.com/McMasterGS/" target="_blank">
+                                        <Button
+                                            className="chapters-button"
+                                            id="mcmaster-button"
+                                        >
+
+                                            <Image id="mcmaster-logo-chapters" alt="McMaster Logo" src={mcmaster_logo} />
+                                            McMaster University
+                                        </Button>
+                                    </a>
                                 </div>
                                 <br/>
                                 <div>
-                                    <Button
-                                        className="chapters-button"
-                                        id="queens-button"
-                                    >
-                                        <Image id="queens-logo-chapters" alt="Queen's Logo" src={queens_logo} />
-                                        Queen's University
-                                    </Button>
+                                    <a href="https://www.facebook.com/GSGGB-Queens-University-Chapter-454851991601392/" target="_blank">
+                                        <Button
+                                            className="chapters-button"
+                                            id="queens-button"
+                                        >
+                                            <Image id="queens-logo-chapters" alt="Queen's Logo" src={queens_logo} />
+                                            Queen's University
+                                        </Button>
+                                    </a>
                                 </div>
                             </Col>
                         </Row>

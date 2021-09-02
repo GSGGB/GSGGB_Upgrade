@@ -9,3 +9,60 @@
         margin-bottom: 70px;
     }
 }
+
+@media (max-width: 576px){
+    /* Logos */
+    #gsggb-logo-chapters{
+        width: 250px;
+    }
+
+    #uoft-logo-chapters{
+        width: 50px;
+    }
+
+    #mcmaster-logo-chapters{
+        width: 60px;
+    }
+
+    #queens-logo-chapters{
+        width: 50px;
+    }
+    /* End of Logos */
+
+    /* Button for GSGGB Chapters */
+    .chapters-button{
+        width: 300px;
+        height: 60px;
+        font-size: 16px !important;
+    }
+    /* End of "Button for GSGGB Chapters" */
+}
+
+/* Really small phones */
+@media (max-width: 385px){
+    /* Logos */
+    #gsggb-logo-chapters{
+        width: 200px;
+    }
+
+    #uoft-logo-chapters{
+        width: 40px;
+    }
+
+    #mcmaster-logo-chapters{
+        width: 50px;
+    }
+
+    #queens-logo-chapters{
+        width: 40px;
+    }
+    /* End of Logos */
+
+    /* Button for GSGGB Chapters */
+    .chapters-button{
+        width: 240px;
+        height: 50px;
+        font-size: 14px !important;
+    }
+    /* End of "Button for GSGGB Chapters" */
+}

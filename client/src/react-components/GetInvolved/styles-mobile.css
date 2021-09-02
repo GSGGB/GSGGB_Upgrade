@@ -26,3 +26,13 @@
         font-size: 15px;
     }
 }
+
+@media (max-width: 450px){
+    .getinvolved-photo-title{
+        font-size: 20px;
+    }
+
+    .getinvolved-photo-subtitle{
+        font-size: 12px;
+    }
+}

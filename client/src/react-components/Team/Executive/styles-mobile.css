@@ -14,7 +14,7 @@
     }
 
     /* Centralize the executive photo, name and description in modals on mobile screens */
-    .name, .position, .biography{
+    .name, .position{
         text-align: center;
     }
 }

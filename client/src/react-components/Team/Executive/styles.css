@@ -4,6 +4,10 @@
     float: right;
 }
 
+#edit-executive-button{
+    margin-right: 5px;
+}
+
 .executive-card{
     width: 18rem;
     margin-bottom: 20px;
