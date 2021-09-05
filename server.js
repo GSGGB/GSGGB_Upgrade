@@ -3,6 +3,7 @@
 const log = console.log;
 
 const express = require("express");
+const serverless = require("serverless-http");
 // starting the express server
 const app = express();
 
@@ -1288,3 +1289,5 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
     log(`Listening on port ${port}...`);
 });
+
+module.exports.handler = serverless(app);
