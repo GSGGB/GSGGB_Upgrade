@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Create a session cookie
 app.use(
     session({
-        secret: process.env.COOKIE_SESSION_SECRET,
+        secret: "oursecret",
         resave: false,
         saveUninitialized: false,
         cookie: {
