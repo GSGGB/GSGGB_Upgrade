@@ -34,8 +34,6 @@ app.use(bodyParser.json());
 const session = require("express-session");
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const router = express.Router();
-
 /*** Session handling **************************************/
 // Create a session cookie
 app.use(
@@ -62,7 +60,16 @@ app.use("/resumeDatabase", resume);
 app.use("/sponsorDatabase", sponsor);
 app.use("/userDatabase", user);
 
-app.use("/.netlify/functions/server", router);  // path must route to lambda
+app.use("/.netlify/functions/announcement", announcement);
+app.use("/.netlify/functions/applicant", applicant);
+app.use("/.netlify/functions/event", gEvent);
+app.use("/.netlify/functions/executive", executive);
+app.use("/.netlify/functions/image", image);
+app.use("/.netlify/functions/position", position);
+app.use("/.netlify/functions/research", research);
+app.use("/.netlify/functions/resume", resume);
+app.use("/.netlify/functions/sponsor", sponsor);
+app.use("/.netlify/functions/user", user);
 
 /*** Webpage routes below **********************************/
 // Serve the build
@@ -80,5 +87,4 @@ app.listen(port, () => {
     log(`Listening on port ${port}...`);
 });
 
-module.exports = app;
 module.exports.handler = serverless(app);
