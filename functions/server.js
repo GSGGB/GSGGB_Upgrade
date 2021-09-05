@@ -1,6 +1,5 @@
 /* server.js for react-express-authentication */
 "use strict";
-const log = console.log;
 
 const express = require("express");
 const serverless = require("serverless-http");
@@ -11,20 +10,20 @@ const app = express();
 //app.use(cors());
 
 // mongoose and mongo connection
-const { mongoose } = require("./db/mongoose");
+const { mongoose } = require("../db/mongoose");
 mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // routes
-const announcement = require("./routes/announcement");
-const applicant = require("./routes/applicant");
-const gEvent = require("./routes/event");
-const executive = require("./routes/executive");
-const image = require("./routes/image");
-const position = require("./routes/position");
-const research = require("./routes/research");
-const resume = require("./routes/resume");
-const sponsor = require("./routes/sponsor");
-const user = require("./routes/user");
+const announcement = require("../routes/announcement");
+const applicant = require("../routes/applicant");
+const gEvent = require("../routes/event");
+const executive = require("../routes/executive");
+const image = require("../routes/image");
+const position = require("../routes/position");
+const research = require("../routes/research");
+const resume = require("../routes/resume");
+const sponsor = require("../routes/sponsor");
+const user = require("../routes/user");
 
 // body-parser: middleware for parsing HTTP JSON body into a usable object
 const bodyParser = require("body-parser");
@@ -73,19 +72,14 @@ app.use("/.netlify/functions/userDatabase", user);
 
 /*** Webpage routes below **********************************/
 // Serve the build
-app.use(express.static(__dirname + "/client/build"));
+app.use(express.static(__dirname + "/../client/build"));
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
-    res.sendFile(__dirname + "/client/build/index.html");
+    res.sendFile(__dirname + "/../client/build/index.html");
 });
 
 /*************************************************/
-// Express server listening...
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-    log(`Listening on port ${port}...`);
-});
 
 module.exports = app;
 module.exports.handler = serverless(app);

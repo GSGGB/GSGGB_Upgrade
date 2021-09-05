@@ -2,11 +2,11 @@
   "name": "gsggb_upgrade",
   "version": "1.0.0",
   "description": "GSGGB upgraded website",
-  "main": "server.js",
+  "main": "functions/server.js",
   "scripts": {
     "setup": "npm install && cd client && npm install && cd ..",
-    "build-run": "cd client && npm run build && cd .. && node server.js",
-    "start": "node server.js",
+    "build": "cd client && npm run build",
+    "start": "node server-local.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jedid Ahn & Justin Cheung",
