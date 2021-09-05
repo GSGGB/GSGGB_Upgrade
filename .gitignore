@@ -2,6 +2,6 @@
 node_modules/
 package-lock.json
 mongo-data/
-client/build/
+client/build/static
 client/package-lock.json
 client/node_modules/
