@@ -17,7 +17,7 @@ export const updateEventForm = (comp, field) => {
 
 // A function to delete the event image.
 const deleteImageHelper = async(gEvent) => {
-      const imageURL = "/imageDatabase/" + gEvent.imageId;
+      const imageURL = "/api/imageDatabase/" + gEvent.imageId;
       const imageRes = await fetch(imageURL);
 
       if (imageRes.status === 200) {
@@ -30,7 +30,7 @@ const deleteImageHelper = async(gEvent) => {
 // Helper function for getAllEvents and addEvent.
 const addEventHelper = async(eventsComp, gEvent, dateToday) => {
     // Retrieve user details including username.
-    const userURL = "/userDatabase/" + gEvent.userId;
+    const userURL = "/api/userDatabase/" + gEvent.userId;
 
     const userRes = await fetch(userURL);
 
@@ -38,7 +38,7 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
         const userJSON = await userRes.json();
 
         // Retrieve image cloudinary ID and URL.
-        const imageURL = "/imageDatabase/" + gEvent.imageId;
+        const imageURL = "/api/imageDatabase/" + gEvent.imageId;
 
         const imageRes = await fetch(imageURL);
 
@@ -88,7 +88,7 @@ const addEventHelper = async(eventsComp, gEvent, dateToday) => {
 
 // A function to get all events in the database.
 export const getAllEvents = (eventsComp) => {
-    const url = "/eventDatabase";
+    const url = "/api/eventDatabase";
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -119,7 +119,7 @@ export const getAllEvents = (eventsComp) => {
 
 // A function to get a specific event by their id to update.
 export const getEventById = (singleEventComp, id) => {
-    const url = "/eventDatabase/" + id;
+    const url = "/api/eventDatabase/" + id;
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -160,7 +160,7 @@ export const addEvent = (eventsComp) => {
     // 1) Add poster/image to cloudinary first.
     addImage(eventsComp, () => {
         // 2) Add event to MongoDB database.
-        const url = "/eventDatabase";
+        const url = "/api/eventDatabase";
 
         const gEvent = {
             imageId: eventsComp.state.imageId,
@@ -281,7 +281,7 @@ const editEventHelper = (singleEventComp, eventsComp, url, imageUpdated, imageCl
 
 // A function to edit a single event.
 export const editEvent = (singleEventComp, eventsComp, imageCloudinaryId, eventId) => {
-    const url = "/eventDatabase/" + eventId;
+    const url = "/api/eventDatabase/" + eventId;
 
     // 1) Check whether editor/administrator wants to update image.
     // If so, delete current image in cloudinary.
@@ -304,7 +304,7 @@ export const deleteEvent = (eventsComp, imageCloudinaryId, eventId) => {
     deleteImage(imageCloudinaryId);
 
     // 2) Remove event from MongoDB database.
-    const url = "/eventDatabase/" + eventId;
+    const url = "/api/eventDatabase/" + eventId;
 
     const request = new Request(url, {
         method: "DELETE",

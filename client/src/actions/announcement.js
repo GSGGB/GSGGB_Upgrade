@@ -6,7 +6,7 @@ import Announcement from "../react-components/HomePage/Announcement";
 // Helper function for getAllAnnouncements and addAnnouncement.
 const addAnnouncementHelper = async(homepageComp, announcement) => {
     // Retrieve user details including username and full name.
-    const userURL = "/userDatabase/" + announcement.userId;
+    const userURL = "/api/userDatabase/" + announcement.userId;
 
     const userRes = await fetch(userURL);
 
@@ -14,7 +14,7 @@ const addAnnouncementHelper = async(homepageComp, announcement) => {
         const userJSON = await userRes.json();
 
         // Retrieve image cloudinary ID and URL.
-        const imageURL = "/imageDatabase/" + userJSON.imageId;
+        const imageURL = "/api/imageDatabase/" + userJSON.imageId;
 
         const imageRes = await fetch(imageURL);
 
@@ -54,7 +54,7 @@ export const updateAnnouncementContent = (comp, field) => {
 
 // A function to get all announcements in the database.
 export const getAllAnnouncements = (homepageComp) => {
-    const url = "/announcementDatabase";
+    const url = "/api/announcementDatabase";
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -81,7 +81,7 @@ export const getAllAnnouncements = (homepageComp) => {
 
 // A function to get a specific announcement by their id to update.
 export const getAnnouncementById = (announcementComp, id) => {
-    const url = "/announcementDatabase/" + id;
+    const url = "/api/announcementDatabase/" + id;
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -111,7 +111,7 @@ export const addAnnouncement = (homepageComp) => {
         content: homepageComp.state.announcementContent
     };
 
-    const url = "/announcementDatabase";
+    const url = "/api/announcementDatabase";
 
     const request = new Request(url, {
         method: "POST",
@@ -149,7 +149,7 @@ export const addAnnouncement = (homepageComp) => {
 
 // A function to edit an announcement.
 export const editAnnouncement = (announcementComp, homepageComp, id) => {
-    const url = "/announcementDatabase/" + id;
+    const url = "/api/announcementDatabase/" + id;
 
     const updatedAnnouncement = {
         content: announcementComp.state.content
@@ -183,7 +183,7 @@ export const editAnnouncement = (announcementComp, homepageComp, id) => {
 
 // A function to delete an announcement.
 export const deleteAnnouncement = (homepageComp, id) => {
-    const url = "/announcementDatabase/" + id;
+    const url = "/api/announcementDatabase/" + id;
 
     const request = new Request(url, {
         method: "DELETE",

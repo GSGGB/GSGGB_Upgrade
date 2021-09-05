@@ -6,7 +6,7 @@ import { addImage, deleteImage } from "../actions/image";
 
 // A function to delete the user headshot.
 const deleteImageHelper = async(user) => {
-      const imageURL = "/imageDatabase/" + user.imageId;
+      const imageURL = "/api/imageDatabase/" + user.imageId;
       const imageRes = await fetch(imageURL);
 
       if (imageRes.status === 200) {
@@ -19,7 +19,7 @@ const deleteImageHelper = async(user) => {
 // Helper function for getAllUsers and addUser.
 const addUserHelper = async(usersAdminComp, user) => {
     // Retrieve image cloudinary ID and URL.
-    const imageURL = "/imageDatabase/" + user.imageId;
+    const imageURL = "/api/imageDatabase/" + user.imageId;
 
     const imageRes = await fetch(imageURL);
 
@@ -48,7 +48,7 @@ const addUserHelper = async(usersAdminComp, user) => {
 
 // A function to check if a user is logged in on the session cookie.
 export const readCookie = () => {
-    const url = "/userDatabase/check-session";
+    const url = "/api/userDatabase/check-session";
 
     fetch(url)
         .then(res => {
@@ -103,7 +103,7 @@ export const login = (loginComp) => {
     const deactivatedError = document.querySelector("#account-deactivated-error");
     deactivatedError.style.display = "none";
 
-    const url = "/userDatabase/login";
+    const url = "/api/userDatabase/login";
 
     const request = new Request(url, {
         method: "post",
@@ -152,7 +152,7 @@ export const login = (loginComp) => {
 
 // A function to send a GET request to logout the current user
 export const logout = (headerComp) => {
-    const url = "/userDatabase/logout";
+    const url = "/api/userDatabase/logout";
 
     fetch(url)
         .then(res => {
@@ -169,7 +169,7 @@ export const logout = (headerComp) => {
 
 // A function to get all users in the database.
 export const getAllUsers = (usersAdminComp) => {
-    const url = "/userDatabase";
+    const url = "/api/userDatabase";
 
     fetch(url)
         .then(res => {
@@ -194,7 +194,7 @@ export const getAllUsers = (usersAdminComp) => {
 
 // A function to get a specific user by their id to update.
 export const getUserById = (userComp, id) => {
-    const url = "/userDatabase/" + id;
+    const url = "/api/userDatabase/" + id;
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -231,7 +231,7 @@ export const addUser = (usersAdminComp) => {
     // 1) Add headshot to cloudinary first.
     addImage(usersAdminComp, () => {
         // 2) Add user to MongoDB database.
-        const url = "/userDatabase";
+        const url = "/api/userDatabase";
 
         const user = {
             imageId: usersAdminComp.state.imageId,
@@ -341,7 +341,7 @@ const editUserHelper = (userComp, usersAdminComp, url, imageUpdated, imageCloudi
 
 // A function to edit a user.
 export const editUser = (userComp, usersAdminComp, imageCloudinaryId, userId) => {
-    const url = "/userDatabase/" + userId;
+    const url = "/api/userDatabase/" + userId;
 
     // 1) Check whether administrator wants to update image.
     // If so, delete current image in cloudinary.
@@ -361,7 +361,7 @@ export const editUser = (userComp, usersAdminComp, imageCloudinaryId, userId) =>
 // A function to delete a user.
 export const deleteUser = async(userComp, usersAdminComp, imageCloudinaryId, userId) => {
     // 1) Remove executive from MongoDB database.
-    const url = "/userDatabase/" + userId;
+    const url = "/api/userDatabase/" + userId;
 
     const userRes = await fetch(url);
 
@@ -404,7 +404,7 @@ export const deleteUser = async(userComp, usersAdminComp, imageCloudinaryId, use
 
 // A function to update a user's password.
 export const updateUserPassword = async(userComp, usersAdminComp, id) => {
-    const getURL = "/userDatabase/" + id;
+    const getURL = "/api/userDatabase/" + id;
 
     const userRes = await fetch(getURL);
 
@@ -412,7 +412,7 @@ export const updateUserPassword = async(userComp, usersAdminComp, id) => {
         // Return a promise that resolves with the JSON body.
         const json = await userRes.json();
 
-        const patchURL = "/userDatabase/password/" + id;
+        const patchURL = "/api/userDatabase/password/" + id;
 
         const updatedUser = {
             imageId: json.imageId,
@@ -453,7 +453,7 @@ export const updateUserPassword = async(userComp, usersAdminComp, id) => {
 
 // A function to deactivate a user.
 export const deactivateUser = async(userComp, usersAdminComp, id) => {
-    const url = "/userDatabase/" + id;
+    const url = "/api/userDatabase/" + id;
 
     const userRes = await fetch(url);
 
@@ -500,7 +500,7 @@ export const deactivateUser = async(userComp, usersAdminComp, id) => {
 
 // A function to reactivate a user.
 export const reactivateUser = async(userComp, usersAdminComp, id) => {
-    const url = "/userDatabase/" + id;
+    const url = "/api/userDatabase/" + id;
 
     const userRes = await fetch(url);
 

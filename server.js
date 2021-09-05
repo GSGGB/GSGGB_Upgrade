@@ -1,7 +1,7 @@
 'use strict';
 const log = console.log;
 
-const app = require('./functions/server');
+const app = require('./functions/api');
 
 // Express server listening...
 const port = process.env.PORT || 5000;

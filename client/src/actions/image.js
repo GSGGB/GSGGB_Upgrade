@@ -12,7 +12,7 @@ export const addImage = (comp, callback) => {
     imageData.append("image", image);
 
     // the URL for the request
-    const url = "/imageDatabase";
+    const url = "/api/imageDatabase";
 
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
@@ -46,7 +46,7 @@ export const addImage = (comp, callback) => {
 
 // A function to send a DELETE request with an image PUBLIC id (id on cloudinary).
 export const deleteImage = (id) => {
-    const url = "/imageDatabase/" + id;
+    const url = "/api/imageDatabase/" + id;
 
     const request = new Request(url, {
         method: "DELETE",

@@ -17,7 +17,7 @@ export const updateSponsorForm = (comp, field) => {
 
 // A function to delete the sponsor logo.
 const deleteImageHelper = async(sponsor) => {
-      const imageURL = "/imageDatabase/" + sponsor.imageId;
+      const imageURL = "/api/imageDatabase/" + sponsor.imageId;
       const imageRes = await fetch(imageURL);
 
       if (imageRes.status === 200) {
@@ -30,7 +30,7 @@ const deleteImageHelper = async(sponsor) => {
 // Helper function for getAllSponsors and addSponsor.
 const addSponsorHelper = async(sponsorsComp, sponsor) => {
     // Retrieve user details including username.
-    const userURL = "/userDatabase/" + sponsor.userId;
+    const userURL = "/api/userDatabase/" + sponsor.userId;
 
     const userRes = await fetch(userURL);
 
@@ -38,7 +38,7 @@ const addSponsorHelper = async(sponsorsComp, sponsor) => {
         const userJSON = await userRes.json();
 
         // Retrieve image cloudinary ID and URL.
-        const imageURL = "/imageDatabase/" + sponsor.imageId;
+        const imageURL = "/api/imageDatabase/" + sponsor.imageId;
 
         const imageRes = await fetch(imageURL);
 
@@ -101,7 +101,7 @@ const addSponsorHelper = async(sponsorsComp, sponsor) => {
 
 // A function to get all sponsors in the database.
 export const getAllSponsors = (sponsorsComp) => {
-    const url = "/sponsorDatabase";
+    const url = "/api/sponsorDatabase";
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -135,7 +135,7 @@ export const getAllSponsors = (sponsorsComp) => {
 
 // A function to get a specific sponsor by their id to update.
 export const getSponsorById = (singleSponsorComp, id) => {
-    const url = "/sponsorDatabase/" + id;
+    const url = "/api/sponsorDatabase/" + id;
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -174,7 +174,7 @@ export const addSponsor = (sponsorsComp) => {
     // 1) Add poster/image to cloudinary first.
     addImage(sponsorsComp, () => {
         // 2) Add sponsor to MongoDB database.
-        const url = "/sponsorDatabase";
+        const url = "/api/sponsorDatabase";
 
         const sponsor = {
             imageId: sponsorsComp.state.imageId,
@@ -288,7 +288,7 @@ const editSponsorHelper = (singleSponsorComp, sponsorsComp, url, imageUpdated, i
 
 // A function to edit a single sponsor.
 export const editSponsor = (singleSponsorComp, sponsorsComp, imageCloudinaryId, sponsorId) => {
-    const url = "/sponsorDatabase/" + sponsorId;
+    const url = "/api/sponsorDatabase/" + sponsorId;
 
     // 1) Check whether editor/administrator wants to update image.
     // If so, delete current image in cloudinary.
@@ -311,7 +311,7 @@ export const deleteSponsor = (sponsorsComp, imageCloudinaryId, sponsorId) => {
     deleteImage(imageCloudinaryId);
 
     // 2) Remove sponsor from MongoDB database.
-    const url = "/sponsorDatabase/" + sponsorId;
+    const url = "/api/sponsorDatabase/" + sponsorId;
 
     const request = new Request(url, {
         method: "DELETE",

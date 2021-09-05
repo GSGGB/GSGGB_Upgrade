@@ -17,7 +17,7 @@ export const updateApplicantForm = (comp, field) => {
 
 // A function to delete an applicant's resume.
 const deleteResumeHelper = async(applicant) => {
-      const resumeURL = "/resumeDatabase/" + applicant.resumeId;
+      const resumeURL = "/api/resumeDatabase/" + applicant.resumeId;
       const resumeRes = await fetch(resumeURL);
 
       if (resumeRes.status === 200) {
@@ -30,7 +30,7 @@ const deleteResumeHelper = async(applicant) => {
 // Helper function for getAllApplicants and sendApplication.
 const addApplicantHelper = async(applicationsAdminComp, applicant) => {
     // Retrieve resume cloudinary ID and URL.
-    const resumeURL = "/resumeDatabase/" + applicant.resumeId;
+    const resumeURL = "/api/resumeDatabase/" + applicant.resumeId;
 
     const resumeRes = await fetch(resumeURL);
 
@@ -90,7 +90,7 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
 
 // A function to get all applicants in the database.
 export const getAllApplicants = (applicationsAdminComp) => {
-    const url = "/applicantDatabase";
+    const url = "/api/applicantDatabase";
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -127,7 +127,7 @@ export const sendApplication = (getInvolvedComp) => {
     // 1) Add resume to cloudinary first.
     addResume(getInvolvedComp, () => {
         // 2) Add application to MongoDB database.
-        const url = "/applicantDatabase";
+        const url = "/api/applicantDatabase";
 
         const applicant = {
             resumeId: getInvolvedComp.state.resumeId,
@@ -172,7 +172,7 @@ export const sendApplication = (getInvolvedComp) => {
 // A function to delete an application.
 export const deleteApplication = async(applicationsAdminComp, imageCloudinaryId, applicantId) => {
     // 1) Remove application from MongoDB database.
-    const url = "/applicantDatabase/" + applicantId;
+    const url = "/api/applicantDatabase/" + applicantId;
 
     const request = new Request(url, {
         method: "DELETE",
@@ -207,7 +207,7 @@ export const deleteApplication = async(applicationsAdminComp, imageCloudinaryId,
 
 // A function to flag an application.
 export const flagApplication = async(applicationsAdminComp, id) => {
-    const url = "/applicantDatabase/" + id;
+    const url = "/api/applicantDatabase/" + id;
 
     const applicantRes = await fetch(url);
 
@@ -257,7 +257,7 @@ export const flagApplication = async(applicationsAdminComp, id) => {
 
 // A function to unflag an application.
 export const unflagApplication = async(applicationsAdminComp, id) => {
-    const url = "/applicantDatabase/" + id;
+    const url = "/api/applicantDatabase/" + id;
 
     const applicantRes = await fetch(url);
 

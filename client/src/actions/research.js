@@ -6,7 +6,7 @@ import Research from "../react-components/HomePage/Research";
 // Helper function for getAllResearchPosts and addResearchPost.
 const addResearchPostHelper = async(homepageComp, researchPost) => {
     // Retrieve user details including username and full name.
-    const userURL = "/userDatabase/" + researchPost.userId;
+    const userURL = "/api/userDatabase/" + researchPost.userId;
 
     const userRes = await fetch(userURL);
 
@@ -14,7 +14,7 @@ const addResearchPostHelper = async(homepageComp, researchPost) => {
         const userJSON = await userRes.json();
 
         // Retrieve image cloudinary ID and URL.
-        const imageURL = "/imageDatabase/" + userJSON.imageId;
+        const imageURL = "/api/imageDatabase/" + userJSON.imageId;
 
         const imageRes = await fetch(imageURL);
 
@@ -54,7 +54,7 @@ export const updateResearchURL = (comp, field) => {
 
 // A function to get all research posts in the database.
 export const getAllResearchPosts = (homepageComp) => {
-    const url = "/researchDatabase";
+    const url = "/api/researchDatabase";
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -80,7 +80,7 @@ export const getAllResearchPosts = (homepageComp) => {
 
 // A function to get a specific research post by their id to update.
 export const getResearchPostById = (researchComp, id) => {
-    const url = "/researchDatabase/" + id;
+    const url = "/api/researchDatabase/" + id;
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -110,7 +110,7 @@ export const addResearchPost = (homepageComp) => {
         url: homepageComp.state.researchURL
     };
 
-    const url = "/researchDatabase";
+    const url = "/api/researchDatabase";
 
     const request = new Request(url, {
         method: "POST",
@@ -147,7 +147,7 @@ export const addResearchPost = (homepageComp) => {
 
 // A function to edit a research post.
 export const editResearchPost = (researchComp, homepageComp, id) => {
-    const url = "/researchDatabase/" + id;
+    const url = "/api/researchDatabase/" + id;
 
     const updatedResearchPost = {
         url: researchComp.state.url
@@ -180,7 +180,7 @@ export const editResearchPost = (researchComp, homepageComp, id) => {
 
 // A function to delete a research post.
 export const deleteResearchPost = (homepageComp, id) => {
-    const url = "/researchDatabase/" + id;
+    const url = "/api/researchDatabase/" + id;
 
     const request = new Request(url, {
         method: "DELETE",

@@ -15,7 +15,7 @@ export const updatePositionForm = (comp, field) => {
 
 // Exclusive function specifically to populate dropdowns in get involved page.
 export const addPositionOptions = (getInvolvedComp) => {
-    const url = "/positionDatabase";
+    const url = "/api/positionDatabase";
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -117,7 +117,7 @@ const addPositionHelper = (positionsAdminComp, position) => {
 
 // A function to get all positions in the database.
 export const getAllPositions = (positionsAdminComp) => {
-    const url = "/positionDatabase";
+    const url = "/api/positionDatabase";
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -156,7 +156,7 @@ export const addPosition = (positionsAdminComp) => {
         title: positionsAdminComp.state.positionTitle
     };
 
-    const url = "/positionDatabase";
+    const url = "/api/positionDatabase";
 
     const request = new Request(url, {
         method: "POST",
@@ -195,7 +195,7 @@ export const addPosition = (positionsAdminComp) => {
 
 // A function to delete a position.
 export const deletePosition = (positionsAdminComp, id) => {
-    const url = "/positionDatabase/" + id;
+    const url = "/api/positionDatabase/" + id;
 
     const request = new Request(url, {
         method: "DELETE",

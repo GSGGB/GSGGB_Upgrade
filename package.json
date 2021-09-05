@@ -2,7 +2,7 @@
   "name": "gsggb_upgrade",
   "version": "1.0.0",
   "description": "GSGGB upgraded website",
-  "main": "functions/server.js",
+  "main": "functions/api.js",
   "scripts": {
     "setup": "npm install && cd client && npm install && cd ..",
     "start": "netlify-lambda serve functions",
