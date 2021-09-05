@@ -13,8 +13,8 @@ const multipartMiddleware = multipart();
 const cloudinary = require("cloudinary");
 cloudinary.config({
     cloud_name: 'gsggb',
-    api_key: '289885175397897',
-    api_secret: 'FOR8MHeaag5E6_L5f9Xe7gHFVPE'
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 /** Start of resume resource routes **/
