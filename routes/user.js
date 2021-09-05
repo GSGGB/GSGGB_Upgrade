@@ -4,6 +4,12 @@ const router = express.Router();
 const { User } = require("../models/user");
 const { ObjectID } = require("mongodb"); // To validate object IDs
 
+const { Announcement } = require("../models/announcement");
+const { Research } = require("../models/research");
+const { Executive } = require("../models/executive");
+const { Event } = require("../models/event");
+const { Sponsor } = require("../models/sponsor");
+
 /** Start of user resource routes **/
 // A POST route to login and create a session.
 router.post("/login", (req, res) => {

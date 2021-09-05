@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Create a session cookie
 app.use(
     session({
-        secret: "oursecret",
+        secret: process.env.COOKIE_SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
@@ -76,4 +76,5 @@ app.listen(port, () => {
     log(`Listening on port ${port}...`);
 });
 
+module.exports = app;
 module.exports.handler = serverless(app);
