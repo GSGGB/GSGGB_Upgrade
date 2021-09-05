@@ -360,10 +360,7 @@ export const editUser = (userComp, usersAdminComp, imageCloudinaryId, userId) =>
 
 // A function to delete a user.
 export const deleteUser = async(userComp, usersAdminComp, imageCloudinaryId, userId) => {
-    // 1) Delete headshot in cloudinary.
-    deleteImage(imageCloudinaryId);
-
-    // 2) Remove executive from MongoDB database.
+    // 1) Remove executive from MongoDB database.
     const url = "/userDatabase/" + userId;
 
     const userRes = await fetch(url);
@@ -391,6 +388,9 @@ export const deleteUser = async(userComp, usersAdminComp, imageCloudinaryId, use
 
         if (deletedUserRes.status === 200) {
             alert("Successfully deleted user");
+
+            // 2) If credentials are correct, delete their headshot in cloudinary.
+            deleteImage(imageCloudinaryId);
         } else {
             alert("Failed to delete user. User may have already created content in a page.");
         }

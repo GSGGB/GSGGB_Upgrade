@@ -171,10 +171,7 @@ export const sendApplication = (getInvolvedComp) => {
 
 // A function to delete an application.
 export const deleteApplication = async(applicationsAdminComp, imageCloudinaryId, applicantId) => {
-    // 1) Delete resume in cloudinary.
-    deleteResume(imageCloudinaryId);
-
-    // 2) Remove application from MongoDB database.
+    // 1) Remove application from MongoDB database.
     const url = "/applicantDatabase/" + applicantId;
 
     const request = new Request(url, {
@@ -192,6 +189,9 @@ export const deleteApplication = async(applicationsAdminComp, imageCloudinaryId,
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
                 alert("Successfully deleted application");
+
+                // 2) Delete resume in cloudinary.
+                deleteResume(imageCloudinaryId);
             } else {
                 alert("Failed to delete application");
             }
