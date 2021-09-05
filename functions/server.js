@@ -59,16 +59,16 @@ app.use(
 // app.use("/sponsorDatabase", sponsor);
 // app.use("/userDatabase", user);
 
-app.use("/.netlify/functions/announcementDatabase", announcement);
-app.use("/.netlify/functions/applicantDatabase", applicant);
-app.use("/.netlify/functions/eventDatabase", gEvent);
-app.use("/.netlify/functions/executiveDatabase", executive);
-app.use("/.netlify/functions/imageDatabase", image);
-app.use("/.netlify/functions/positionDatabase", position);
-app.use("/.netlify/functions/researchDatabase", research);
-app.use("/.netlify/functions/resumeDatabase", resume);
-app.use("/.netlify/functions/sponsorDatabase", sponsor);
-app.use("/.netlify/functions/userDatabase", user);
+app.use("/.netlify/functions/server/announcementDatabase", announcement);
+app.use("/.netlify/functions/server/applicantDatabase", applicant);
+app.use("/.netlify/functions/server/eventDatabase", gEvent);
+app.use("/.netlify/functions/server/executiveDatabase", executive);
+app.use("/.netlify/functions/server/imageDatabase", image);
+app.use("/.netlify/functions/server/positionDatabase", position);
+app.use("/.netlify/functions/server/researchDatabase", research);
+app.use("/.netlify/functions/server/resumeDatabase", resume);
+app.use("/.netlify/functions/server/sponsorDatabase", sponsor);
+app.use("/.netlify/functions/server/userDatabase", user);
 
 /*** Webpage routes below **********************************/
 // Serve the build
