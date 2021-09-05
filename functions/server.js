@@ -49,16 +49,16 @@ app.use(
 
 // =============================================================================
 
-app.use("/announcementDatabase", announcement);
-app.use("/applicantDatabase", applicant);
-app.use("/eventDatabase", gEvent);
-app.use("/executiveDatabase", executive);
-app.use("/imageDatabase", image);
-app.use("/positionDatabase", position);
-app.use("/researchDatabase", research);
-app.use("/resumeDatabase", resume);
-app.use("/sponsorDatabase", sponsor);
-app.use("/userDatabase", user);
+// app.use("/announcementDatabase", announcement);
+// app.use("/applicantDatabase", applicant);
+// app.use("/eventDatabase", gEvent);
+// app.use("/executiveDatabase", executive);
+// app.use("/imageDatabase", image);
+// app.use("/positionDatabase", position);
+// app.use("/researchDatabase", research);
+// app.use("/resumeDatabase", resume);
+// app.use("/sponsorDatabase", sponsor);
+// app.use("/userDatabase", user);
 
 app.use("/.netlify/functions/announcementDatabase", announcement);
 app.use("/.netlify/functions/applicantDatabase", applicant);
