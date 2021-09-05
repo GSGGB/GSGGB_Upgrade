@@ -5,8 +5,8 @@
   "main": "functions/api.js",
   "scripts": {
     "setup": "npm install && cd client && npm install && cd ..",
-    "start": "netlify-lambda serve functions",
-    "build": "netlify-lambda build functions",
+    "build": "cd client && npm run build",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jedid Ahn & Justin Cheung",
