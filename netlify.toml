@@ -4,9 +4,6 @@
   command = "npm install && cd client && npm install && npm run build"
   functions = "functions"
 [[redirects]]
-    from = "/api/*"
-    to = "/.netlify/functions/api/:splat"
-[[redirects]]
-    from = "/*"
-    to = "/index.html"
-    status = 200
+  from = "/*"
+  to = "/index.html"
+  status = 200

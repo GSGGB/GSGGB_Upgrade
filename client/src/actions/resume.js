@@ -12,7 +12,7 @@ export const addResume = (comp, callback) => {
     resumeData.append("resume", resume);
 
     // the URL for the request
-    const url = "/api/resumeDatabase";
+    const url = "/.netlify/functions/api/resumeDatabase";
 
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
@@ -46,7 +46,7 @@ export const addResume = (comp, callback) => {
 
 // A function to send a DELETE request with a resume PUBLIC id (id on cloudinary).
 export const deleteResume = (id) => {
-    const url = "/api/resumeDatabase/" + id;
+    const url = "/.netlify/functions/api/resumeDatabase/" + id;
 
     const request = new Request(url, {
         method: "DELETE",

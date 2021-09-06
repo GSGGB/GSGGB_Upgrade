@@ -35,6 +35,6 @@
     "serverless-http": "^2.7.0"
   },
   "devDependencies": {
-    "netlify-cli": "^6.8.5"
+    "netlify-cli": "^2.51.0"
   }
 }

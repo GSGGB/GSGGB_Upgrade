@@ -49,17 +49,6 @@ app.use(
 
 // =============================================================================
 
-// app.use("/api/announcementDatabase", announcement);
-// app.use("/api/applicantDatabase", applicant);
-// app.use("/api/eventDatabase", gEvent);
-// app.use("/api/executiveDatabase", executive);
-// app.use("/api/imageDatabase", image);
-// app.use("/api/positionDatabase", position);
-// app.use("/api/researchDatabase", research);
-// app.use("/api/resumeDatabase", resume);
-// app.use("/api/sponsorDatabase", sponsor);
-// app.use("/api/userDatabase", user);
-
 app.use("/.netlify/functions/api/announcementDatabase", announcement);
 app.use("/.netlify/functions/api/applicantDatabase", applicant);
 app.use("/.netlify/functions/api/eventDatabase", gEvent);

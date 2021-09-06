@@ -17,7 +17,7 @@ export const updateExecutiveForm = (comp, field) => {
 
 // A function to delete the executive headshot.
 const deleteImageHelper = async(executive) => {
-      const imageURL = "/api/imageDatabase/" + executive.imageId;
+      const imageURL = "/.netlify/functions/api/imageDatabase/" + executive.imageId;
       const imageRes = await fetch(imageURL);
 
       if (imageRes.status === 200) {
@@ -30,7 +30,7 @@ const deleteImageHelper = async(executive) => {
 // Helper function for getAllExecutives and addExecutive.
 const addExecutiveHelper = async(teamComp, executive) => {
     // Retrieve user details including username.
-    const userURL = "/api/userDatabase/" + executive.userId;
+    const userURL = "/.netlify/functions/api/userDatabase/" + executive.userId;
 
     const userRes = await fetch(userURL);
 
@@ -38,7 +38,7 @@ const addExecutiveHelper = async(teamComp, executive) => {
         const userJSON = await userRes.json();
 
         // Retrieve image cloudinary ID and URL.
-        const imageURL = "/api/imageDatabase/" + executive.imageId;
+        const imageURL = "/.netlify/functions/api/imageDatabase/" + executive.imageId;
 
         const imageRes = await fetch(imageURL);
 
@@ -120,7 +120,7 @@ const addExecutiveHelper = async(teamComp, executive) => {
 
 // A function to get all executives in the database.
 export const getAllExecutives = (teamComp) => {
-    const url = "/api/executiveDatabase";
+    const url = "/.netlify/functions/api/executiveDatabase";
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -157,7 +157,7 @@ export const getAllExecutives = (teamComp) => {
 
 // A function to get a specific executive by their id to update.
 export const getExecutiveById = (executiveComp, id) => {
-    const url = "/api/executiveDatabase/" + id;
+    const url = "/.netlify/functions/api/executiveDatabase/" + id;
 
     // Since this is a GET request, simply call fetch on the URL.
     fetch(url)
@@ -194,7 +194,7 @@ export const addExecutive = (teamComp) => {
     // 1) Add headshot to cloudinary first.
     addImage(teamComp, () => {
         // 2) Add executive to MongoDB database.
-        const url = "/api/executiveDatabase";
+        const url = "/.netlify/functions/api/executiveDatabase";
 
         const executive = {
             imageId: teamComp.state.imageId,
@@ -302,7 +302,7 @@ const editExecutiveHelper = (executiveComp, teamComp, url, imageUpdated, imageCl
 
 // A function to edit a single executive.
 export const editExecutive = (executiveComp, teamComp, imageCloudinaryId, executiveId) => {
-    const url = "/api/executiveDatabase/" + executiveId;
+    const url = "/.netlify/functions/api/executiveDatabase/" + executiveId;
 
     // 1) Check whether editor/administrator wants to update image.
     // If so, delete current image in cloudinary.
@@ -325,7 +325,7 @@ export const deleteExecutive = (teamComp, imageCloudinaryId, executiveId) => {
     deleteImage(imageCloudinaryId);
 
     // 2) Remove executive from MongoDB database.
-    const url = "/api/executiveDatabase/" + executiveId;
+    const url = "/.netlify/functions/api/executiveDatabase/" + executiveId;
 
     const request = new Request(url, {
         method: "DELETE",
