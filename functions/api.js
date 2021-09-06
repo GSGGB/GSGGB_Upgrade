@@ -1,6 +1,7 @@
 /* server.js for react-express-authentication */
 "use strict";
 
+const path = require("path");
 const express = require("express");
 const serverless = require("serverless-http");
 // starting the express server
@@ -37,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Create a session cookie
 app.use(
     session({
-        secret: process.env.COOKIE_SESSION_SECRET,
+        secret: "secret", //process.env.COOKIE_SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
@@ -72,11 +73,11 @@ app.use("/.netlify/functions/api/userDatabase", user);
 
 /*** Webpage routes below **********************************/
 // Serve the build
-app.use(express.static(__dirname + "/../client/build"));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
-    res.sendFile("index.html", { root: "./client/build" });
+    res.sendFile("index.html", { root: path.join(__dirname, "../client/build") });
 });
 
 /*************************************************/
