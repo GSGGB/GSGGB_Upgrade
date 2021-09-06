@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Create a session cookie
 app.use(
     session({
-        secret: "oursecret", //process.env.COOKIE_SESSION_SECRET,
+        secret: process.env.COOKIE_SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
@@ -48,27 +48,27 @@ app.use(
 
 // =============================================================================
 
-// app.use("/announcementDatabase", announcement);
-// app.use("/applicantDatabase", applicant);
-// app.use("/eventDatabase", gEvent);
-// app.use("/executiveDatabase", executive);
-// app.use("/imageDatabase", image);
-// app.use("/positionDatabase", position);
-// app.use("/researchDatabase", research);
-// app.use("/resumeDatabase", resume);
-// app.use("/sponsorDatabase", sponsor);
-// app.use("/userDatabase", user);
+app.use("/api/announcementDatabase", announcement);
+app.use("/api/applicantDatabase", applicant);
+app.use("/api/eventDatabase", gEvent);
+app.use("/api/executiveDatabase", executive);
+app.use("/api/imageDatabase", image);
+app.use("/api/positionDatabase", position);
+app.use("/api/researchDatabase", research);
+app.use("/api/resumeDatabase", resume);
+app.use("/api/sponsorDatabase", sponsor);
+app.use("/api/userDatabase", user);
 
-app.use("/.netlify/functions/api/announcementDatabase", announcement);
-app.use("/.netlify/functions/api/applicantDatabase", applicant);
-app.use("/.netlify/functions/api/eventDatabase", gEvent);
-app.use("/.netlify/functions/api/executiveDatabase", executive);
-app.use("/.netlify/functions/api/imageDatabase", image);
-app.use("/.netlify/functions/api/positionDatabase", position);
-app.use("/.netlify/functions/api/researchDatabase", research);
-app.use("/.netlify/functions/api/resumeDatabase", resume);
-app.use("/.netlify/functions/api/sponsorDatabase", sponsor);
-app.use("/.netlify/functions/api/userDatabase", user);
+// app.use("/.netlify/functions/api/announcementDatabase", announcement);
+// app.use("/.netlify/functions/api/applicantDatabase", applicant);
+// app.use("/.netlify/functions/api/eventDatabase", gEvent);
+// app.use("/.netlify/functions/api/executiveDatabase", executive);
+// app.use("/.netlify/functions/api/imageDatabase", image);
+// app.use("/.netlify/functions/api/positionDatabase", position);
+// app.use("/.netlify/functions/api/researchDatabase", research);
+// app.use("/.netlify/functions/api/resumeDatabase", resume);
+// app.use("/.netlify/functions/api/sponsorDatabase", sponsor);
+// app.use("/.netlify/functions/api/userDatabase", user);
 
 /*** Webpage routes below **********************************/
 // Serve the build
@@ -76,7 +76,7 @@ app.use(express.static(__dirname + "/../client/build"));
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
-    res.sendFile(__dirname + "/../client/build/index.html");
+    res.sendFile("index.html", { root: "./client/build" });
 });
 
 /*************************************************/
