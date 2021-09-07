@@ -4,6 +4,15 @@ const router = express.Router();
 const { Position } = require("../models/position");
 const { ObjectID } = require("mongodb"); // To validate object IDs
 
+// Authentication middleware to check if user is logged in.
+function isAuthenticated(req, res, next) {
+    if (req.session.user) {
+        return next();
+    } else {
+        res.status(401).send();
+    }
+}
+
 /** Start of position resource routes **/
 // A GET route to get ALL position titles in all teams.
 router.get("/", (req, res) => {
@@ -18,7 +27,7 @@ router.get("/", (req, res) => {
 });
 
 // A POST route to create a new position title.
-router.post("/", (req, res) => {
+router.post("/", isAuthenticated, (req, res) => {
     const position = new Position({
         team: req.body.team,
         title: req.body.title,
@@ -37,7 +46,7 @@ router.post("/", (req, res) => {
 });
 
 // A DELETE route to delete a position title.
-router.delete("/:id", (req, res) => {
+router.delete("/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
 
     if (!ObjectID.isValid(id)) {

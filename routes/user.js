@@ -10,6 +10,15 @@ const { Executive } = require("../models/executive");
 const { Event } = require("../models/event");
 const { Sponsor } = require("../models/sponsor");
 
+// Authentication middleware to check if user is logged in.
+function isAuthenticated(req, res, next) {
+    if (req.session.user) {
+        return next();
+    } else {
+        res.status(401).send();
+    }
+}
+
 /** Start of user resource routes **/
 // A POST route to login and create a session.
 router.post("/login", (req, res) => {
@@ -49,7 +58,7 @@ router.get("/logout", (req, res) => {
     });
 });
 
-// A GET route to check if a use is logged in on the session cookie.
+// A GET route to check if a user is logged in on the session cookie.
 router.get("/check-session", (req, res) => {
     if (req.session.user) {
         res.send({ username: req.session.username });
@@ -60,7 +69,7 @@ router.get("/check-session", (req, res) => {
 
 
 // A GET route to get ALL users.
-router.get("/", (req, res) => {
+router.get("/", isAuthenticated, (req, res) => {
     User.find().then(
         (users) => {
             res.send({ users });
@@ -95,7 +104,7 @@ router.get("/:id", (req, res) => {
 });
 
 // A POST route to create a user account.
-router.post("/", (req, res) => {
+router.post("/", isAuthenticated, (req, res) => {
     // Create a new user using the User mongoose model
     const user = new User({
         imageId: req.body.imageId,
@@ -121,7 +130,7 @@ router.post("/", (req, res) => {
 });
 
 // A PATCH route to edit a user by their id.
-router.patch("/:id", (req, res) => {
+router.patch("/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
     const username = req.body.username;
     const password = req.body.password;
@@ -168,7 +177,7 @@ router.patch("/:id", (req, res) => {
 });
 
 // A PATCH route to update a user's password.
-router.patch("/password/:id", (req, res) => {
+router.patch("/password/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
     const username = req.body.username;
     const password = req.body.oldPassword;
@@ -215,7 +224,7 @@ router.patch("/password/:id", (req, res) => {
 });
 
 // A DELETE route to delete a user by their id.
-router.delete("/:id", async(req, res) => {
+router.delete("/:id", isAuthenticated, async(req, res) => {
     const id = req.params.id;
     const username = req.body.username;
     const password = req.body.password;

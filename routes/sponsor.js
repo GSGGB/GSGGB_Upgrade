@@ -4,6 +4,15 @@ const router = express.Router();
 const { Sponsor } = require("../models/sponsor");
 const { ObjectID } = require("mongodb"); // To validate object IDs
 
+// Authentication middleware to check if user is logged in.
+function isAuthenticated(req, res, next) {
+    if (req.session.user) {
+        return next();
+    } else {
+        res.status(401).send();
+    }
+}
+
 /** Start of sponsor resource routes **/
 // A GET route to get ALL sponsors.
 router.get("/", (req, res) => {
@@ -40,7 +49,7 @@ router.get("/:id", (req, res) => {
 });
 
 // A POST route to create a sponsor.
-router.post("/", (req, res) => {
+router.post("/", isAuthenticated, (req, res) => {
     const sponsor = new Sponsor({
         userId: req.session.user,
         imageId: req.body.imageId,
@@ -67,7 +76,7 @@ router.post("/", (req, res) => {
 });
 
 // A PATCH route to edit a sponsor by their id.
-router.patch("/:id", (req, res) => {
+router.patch("/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
 
     const body = {
@@ -102,7 +111,7 @@ router.patch("/:id", (req, res) => {
 });
 
 // A DELETE route to delete a sponsor by their id.
-router.delete("/:id", (req, res) => {
+router.delete("/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
 
     if (!ObjectID.isValid(id)) {

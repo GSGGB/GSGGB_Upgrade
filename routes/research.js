@@ -4,6 +4,15 @@ const router = express.Router();
 const { Research } = require("../models/research");
 const { ObjectID } = require("mongodb"); // To validate object IDs
 
+// Authentication middleware to check if user is logged in.
+function isAuthenticated(req, res, next) {
+    if (req.session.user) {
+        return next();
+    } else {
+        res.status(401).send();
+    }
+}
+
 /** Start of research post resource routes **/
 // A GET route to get ALL research posts.
 router.get("/", (req, res) => {
@@ -40,7 +49,7 @@ router.get("/:id", (req, res) => {
 });
 
 // A POST route to create a research post.
-router.post("/", (req, res) => {
+router.post("/", isAuthenticated, (req, res) => {
     const researchPost = new Research({
         userId: req.session.user,
         url: req.body.url
@@ -58,7 +67,7 @@ router.post("/", (req, res) => {
 });
 
 // A PATCH route to edit a research post by their id.
-router.patch("/:id", (req, res) => {
+router.patch("/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
 
     const { url } = req.body;
@@ -83,7 +92,7 @@ router.patch("/:id", (req, res) => {
 });
 
 // A DELETE route to delete a research post by their id.
-router.delete("/:id", (req, res) => {
+router.delete("/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
 
     if (!ObjectID.isValid(id)) {

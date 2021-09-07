@@ -4,9 +4,18 @@ const router = express.Router();
 const { Applicant } = require("../models/applicant");
 const { ObjectID } = require("mongodb"); // To validate object IDs
 
+// Authentication middleware to check if user is logged in.
+function isAuthenticated(req, res, next) {
+    if (req.session.user) {
+        return next();
+    } else {
+        res.status(401).send();
+    }
+}
+
 /** Start of applicant resource routes **/
 // A GET route to get ALL applications.
-router.get("/", (req, res) => {
+router.get("/", isAuthenticated, (req, res) => {
     Applicant.find().then(
         (applicants) => {
             res.send({ applicants });
@@ -18,7 +27,7 @@ router.get("/", (req, res) => {
 });
 
 // A GET route to get an application by their id.
-router.get("/:id", (req, res) => {
+router.get("/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
 
     if (!ObjectID.isValid(id)) {
@@ -68,7 +77,7 @@ router.post("/", (req, res) => {
 });
 
 // A PATCH route to edit an application by their id.
-router.patch("/:id", (req, res) => {
+router.patch("/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
 
     const body = {
@@ -105,7 +114,7 @@ router.patch("/:id", (req, res) => {
 });
 
 // A DELETE route to delete an application by their id.
-router.delete("/:id", (req, res) => {
+router.delete("/:id", isAuthenticated, (req, res) => {
     const id = req.params.id;
 
     if (!ObjectID.isValid(id)) {
