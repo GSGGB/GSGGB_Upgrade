@@ -34,16 +34,16 @@ app.use(bodyParser.json());
 const session = require("express-session");
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const MongoStore = require("connect-mongo");
+// Get the URI of the local database, or the one specified on deployment.
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/GSGGB_API'
+
 /*** Session handling **************************************/
 // Create a session cookie
 app.use(
     session({
         secret: process.env.COOKIE_SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            httpOnly: true
-        }
+        store: MongoStore.create({ mongoUrl: mongoURI })
     })
 );
 
