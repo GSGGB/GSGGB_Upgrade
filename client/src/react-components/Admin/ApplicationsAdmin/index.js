@@ -15,7 +15,8 @@ class ApplicationsAdmin extends Component {
         eventsApplicants: [],
         marketingApplicants: [],
         mentorshipApplicants: [],
-        techApplicants: []
+        techApplicants: [],
+        jiggApplicants: []
     };
 
     componentDidMount(){
@@ -31,6 +32,7 @@ class ApplicationsAdmin extends Component {
             const marketing = document.querySelector("#marketing-applicant-accordion");
             const mentorship = document.querySelector("#mentorship-applicant-accordion");
             const tech = document.querySelector("#tech-applicant-accordion");
+            const jigg = document.querySelector("#jigg-applicant-accordion");
 
             if (this.state.applicantTeamDropdown === "Affairs"){
                 affairs.style.display = "block";
@@ -39,6 +41,7 @@ class ApplicationsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.applicantTeamDropdown === "Conference Committee"){
                 affairs.style.display = "none";
@@ -47,6 +50,7 @@ class ApplicationsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.applicantTeamDropdown === "Events"){
                 affairs.style.display = "none";
@@ -55,6 +59,7 @@ class ApplicationsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.applicantTeamDropdown === "Marketing"){
                 affairs.style.display = "none";
@@ -63,6 +68,7 @@ class ApplicationsAdmin extends Component {
                 marketing.style.display = "block";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.applicantTeamDropdown === "Mentorship"){
                 affairs.style.display = "none";
@@ -71,6 +77,7 @@ class ApplicationsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "block";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.applicantTeamDropdown === "Tech & Innovations"){
                 affairs.style.display = "none";
@@ -79,6 +86,17 @@ class ApplicationsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "block";
+                jigg.style.display = "none";
+
+            } else if (this.state.applicantTeamDropdown === "JIGG"){
+                affairs.style.display = "none";
+                conference.style.display = "none";
+                events.style.display = "none";
+                marketing.style.display = "none";
+                mentorship.style.display = "none";
+                tech.style.display = "none";
+                jigg.style.display = "block";
+
             }
         }
     }
@@ -102,6 +120,7 @@ class ApplicationsAdmin extends Component {
                                       <Dropdown.Item eventKey="Marketing">Marketing</Dropdown.Item>
                                       <Dropdown.Item eventKey="Mentorship">Mentorship</Dropdown.Item>
                                       <Dropdown.Item eventKey="Tech & Innovations">Tech & Innovations</Dropdown.Item>
+                                      <Dropdown.Item eventKey="JIGG">JIGG</Dropdown.Item>
                                 </DropdownButton>
                                 <div className="applicant-team-selected">
                                     {this.state.applicantTeamDropdown} Team selected
@@ -131,6 +150,10 @@ class ApplicationsAdmin extends Component {
 
                             <Accordion id="tech-applicant-accordion">
                                 {this.state.techApplicants}
+                            </Accordion>
+
+                            <Accordion id="jigg-applicant-accordion">
+                                {this.state.jiggApplicants}
                             </Accordion>
                         </Card.Body>
                     </Card>

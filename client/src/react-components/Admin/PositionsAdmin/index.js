@@ -17,6 +17,7 @@ class PositionsAdmin extends Component {
         marketingPositions: [],
         mentorshipPositions: [],
         techPositions: [],
+        jiggPositions: [],
         displayPositionModal: false,
         positionTeam: "Affairs", // Default value.
         positionTitle: ""
@@ -35,6 +36,7 @@ class PositionsAdmin extends Component {
             const marketing = document.querySelector("#marketing-position-accordion");
             const mentorship = document.querySelector("#mentorship-position-accordion");
             const tech = document.querySelector("#tech-position-accordion");
+            const jigg = document.querySelector("#jigg-position-accordion");
 
             if (this.state.positionTeamDropdown === "Affairs"){
                 affairs.style.display = "block";
@@ -43,6 +45,7 @@ class PositionsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.positionTeamDropdown === "Conference Committee"){
                 affairs.style.display = "none";
@@ -51,6 +54,7 @@ class PositionsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.positionTeamDropdown === "Events"){
                 affairs.style.display = "none";
@@ -59,6 +63,7 @@ class PositionsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.positionTeamDropdown === "Marketing"){
                 affairs.style.display = "none";
@@ -67,6 +72,7 @@ class PositionsAdmin extends Component {
                 marketing.style.display = "block";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.positionTeamDropdown === "Mentorship"){
                 affairs.style.display = "none";
@@ -75,6 +81,7 @@ class PositionsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "block";
                 tech.style.display = "none";
+                jigg.style.display = "none";
 
             } else if (this.state.positionTeamDropdown === "Tech & Innovations"){
                 affairs.style.display = "none";
@@ -83,6 +90,17 @@ class PositionsAdmin extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "block";
+                jigg.style.display = "none";
+
+            } else if (this.state.positionTeamDropdown === "JIGG"){
+                affairs.style.display = "none";
+                conference.style.display = "none";
+                events.style.display = "none";
+                marketing.style.display = "none";
+                mentorship.style.display = "none";
+                tech.style.display = "none";
+                jigg.style.display = "block";
+
             }
         }
     }
@@ -106,6 +124,7 @@ class PositionsAdmin extends Component {
                                       <Dropdown.Item eventKey="Marketing">Marketing</Dropdown.Item>
                                       <Dropdown.Item eventKey="Mentorship">Mentorship</Dropdown.Item>
                                       <Dropdown.Item eventKey="Tech & Innovations">Tech & Innovations</Dropdown.Item>
+                                      <Dropdown.Item eventKey="JIGG">JIGG</Dropdown.Item>
                                 </DropdownButton>
 
                                 <div className="position-team-selected">
@@ -145,6 +164,10 @@ class PositionsAdmin extends Component {
                             <Accordion id="tech-position-accordion">
                                 {this.state.techPositions}
                             </Accordion>
+
+                            <Accordion id="jigg-position-accordion">
+                                {this.state.jiggPositions}
+                            </Accordion>
                         </Card.Body>
                     </Card>
                 </div>
@@ -177,6 +200,7 @@ class PositionsAdmin extends Component {
                                     <option value="Marketing">Marketing</option>
                                     <option value="Mentorship">Mentorship</option>
                                     <option value="Tech & Innovations">Tech & Innovations</option>
+                                    <option value="JIGG">JIGG</option>
                                 </Form.Control>
                             </Form.Group>
                             <br/>

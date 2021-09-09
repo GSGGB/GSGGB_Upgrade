@@ -34,7 +34,8 @@ export const addPositionOptions = (getInvolvedComp) => {
                 eventsPositions: [],
                 marketingPositions: [],
                 mentorshipPositions: [],
-                techPositions: []
+                techPositions: [],
+                jiggPositions: []
             })
 
             for (let position of json.positions) {
@@ -62,6 +63,10 @@ export const addPositionOptions = (getInvolvedComp) => {
                 } else if (position.team === "Tech & Innovations"){
                     getInvolvedComp.setState({
                         techPositions: [position.title].concat(getInvolvedComp.state.techPositions)
+                    })
+                } else if (position.team === "JIGG"){
+                    getInvolvedComp.setState({
+                        jiggPositions: [position.title].concat(getInvolvedComp.state.jiggPositions)
                     })
                 }
             }
@@ -112,6 +117,10 @@ const addPositionHelper = (positionsAdminComp, position) => {
         positionsAdminComp.setState({
             techPositions: [newPosition].concat(positionsAdminComp.state.techPositions)
         })
+    } else if (position.team === "JIGG"){
+        positionsAdminComp.setState({
+            jiggPositions: [newPosition].concat(positionsAdminComp.state.jiggPositions)
+        })
     }
 };
 
@@ -136,7 +145,8 @@ export const getAllPositions = (positionsAdminComp) => {
                 eventsPositions: [],
                 marketingPositions: [],
                 mentorshipPositions: [],
-                techPositions: []
+                techPositions: [],
+                jiggPositions: []
             })
 
             for (let position of json.positions) {
