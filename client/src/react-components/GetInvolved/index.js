@@ -118,7 +118,7 @@ class GetInvolved extends Component {
                 mentorship.style.display = "none";
                 tech.style.display = "none";
                 jigg.style.display = "block";
-                
+
             }
         }
     }
@@ -203,11 +203,11 @@ class GetInvolved extends Component {
                                                 onChange={e => updateApplicantForm(this, e.target)}
                                                 required
                                             >
-                                                <option value="1">Year 1</option>
-                                                <option value="2">Year 2</option>
-                                                <option value="3">Year 3</option>
-                                                <option value="4">Year 4</option>
-                                                <option value="5">Year 5</option>
+                                                <option value="Year 1">Year 1</option>
+                                                <option value="Year 2">Year 2</option>
+                                                <option value="Year 3">Year 3</option>
+                                                <option value="Year 4">Year 4</option>
+                                                <option value="Year 5">Year 5</option>
                                                 <option value="Masters">Masters</option>
                                                 <option value="PhD">PhD</option>
                                                 <option value="Other">Other</option>
