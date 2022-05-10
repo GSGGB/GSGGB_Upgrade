@@ -28,7 +28,6 @@ class Team extends Component {
         mentorshipExecs: [],
         eventsExecs: [],
         techExecs: [],
-        jiggExecs: [],
         alumniExecs: [],
         displayExecModal: false,
         imageFile: "",
@@ -77,7 +76,7 @@ class Team extends Component {
                     <span className="team-photo-title">
                         Our Executive Team
                         <h3 className="team-photo-subtitle">
-                            (Fall 2021 - Winter 2022)
+                            (Fall 2020 - Winter 2021)
                             {addExecutiveButton}
                         </h3>
                     </span>
@@ -161,18 +160,6 @@ class Team extends Component {
 
                     <hr className="team-section-separator" />
                     <br /><br />
-                    <h3 className="team-name" id="jigg">JIGG</h3>
-                    <br />
-                    <div className="container" id="team-members">
-                        <Row>
-                            {this.state.jiggExecs}
-                        </Row>
-                    </div>
-                    <br />
-
-
-                    <hr className="team-section-separator" />
-                    <br /><br />
                     <h3 className="team-name" id="alumni">ALUMNI</h3>
                     <br />
                     <div className="container" id="team-members">
@@ -244,7 +231,6 @@ class Team extends Component {
                                     <option>Mentorship</option>
                                     <option>Events</option>
                                     <option>Tech & Innovations</option>
-                                    <option>JIGG</option>
                                     <option>Alumni</option>
                                 </Form.Control>
                             </Form.Group>

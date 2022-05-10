@@ -99,10 +99,6 @@ const addExecutiveHelper = async(teamComp, executive) => {
                 teamComp.setState({
                     techExecs: (teamComp.state.techExecs).concat([newExecutive])
                 })
-            } else if (executive.team === "JIGG"){
-                teamComp.setState({
-                    jiggExecs: (teamComp.state.jiggExecs).concat([newExecutive])
-                })
             } else if (executive.team === "Alumni"){
                 teamComp.setState({
                     alumniExecs: (teamComp.state.alumniExecs).concat([newExecutive])
@@ -141,7 +137,6 @@ export const getAllExecutives = (teamComp) => {
                 mentorshipExecs: [],
                 eventsExecs: [],
                 techExecs: [],
-                jiggExecs: [],
                 alumniExecs: []
             })
 

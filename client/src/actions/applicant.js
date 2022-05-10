@@ -80,10 +80,6 @@ const addApplicantHelper = async(applicationsAdminComp, applicant) => {
             applicationsAdminComp.setState({
                 techApplicants: [newApplicant].concat(applicationsAdminComp.state.techApplicants)
             })
-        } else if (applicant.team === "JIGG"){
-            applicationsAdminComp.setState({
-                jiggApplicants: [newApplicant].concat(applicationsAdminComp.state.jiggApplicants)
-            })
         }
 
     } else {
@@ -113,8 +109,7 @@ export const getAllApplicants = (applicationsAdminComp) => {
                 eventsApplicants: [],
                 marketingApplicants: [],
                 mentorshipApplicants: [],
-                techApplicants: [],
-                jiggApplicants: []
+                techApplicants: []
             })
 
             for (let applicant of json.applicants) {

@@ -161,13 +161,6 @@ class Header extends Component {
                                       }}>
                                           TECH &amp; INNOVATIONS
                                       </NavDropdown.Item>
-                                      <NavDropdown.Item href = "/team#jigg" id="dropdown-item"
-                                      style={{
-                                          backgroundColor: this.state.backgroundColor,
-                                          fontSize: this.state.fontSize
-                                      }}>
-                                          JIGG
-                                      </NavDropdown.Item>
                                       <NavDropdown.Item href = "/team#alumni" id="dropdown-item"
                                       style={{
                                           backgroundColor: this.state.backgroundColor,

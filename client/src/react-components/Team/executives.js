@@ -269,28 +269,6 @@ export const TECH_INNOVATIONS = [
     }
 ]
 
-/* JIGG */
-export const JIGG = [
-    {name: "Aisha Faruqui",
-     image: require("./static/headshots/aisha.jpg"),
-     position: "JIGG Editor In Chief",
-     biography: "Aisha Faruqui is a fourth year undergrad student pursuing majors in neuroscience and ecology & evolutionary biology. She previously held an NSERC award to research proteins involved with DNA repair and Huntington’s Disease in the Pearson Lab at the Hospital for Sick Children. In the past year, Aisha has conducted independent research projects in the Rollinson Lab and Sled lab, where she investigated the evolution of temperature-dependent sex determination and lizard neuroanatomy, respectively. After graduating, Aisha hopes to enroll in an MD/PhD program to pursue Indigenous health. Being a passionate supporter of arts programs, Aisha teaches piano and has been the pianist for the Hart House Jazz Ensemble since her first year at U of T. She loves cats, camping, biking, snowboarding, bug-collecting, bird watching, and meeting new people. Aisha has a passion for supporting others and she loves meeting new people - feel free to reach out at aisha.faruqui@mail.utoronto.ca !",
-     firstname: "Aisha",
-     linkedin: "https:://www.linkedin.com",
-     email: "aisha.faruqui@mail.utoronto.ca",
-     id: "aishaf-2"
-    },
-    {name: "Pamela Alamilla",
-     image: require("./static/headshots/pamela.jpg"),
-     position: "JIGG Editor",
-     biography: "Pamela Alamilla is a second-year student at the University of Toronto, majoring in Fundamental Genetics and Molecular Cell Biology and minoring in Immunology. In 2019, she interned in the lab of Dr. Jeff Wrana at the Lunenfeld-Tanenbaum Research Institute, where she assisted researchers in studying the role of the Hippo pathway in development and cancer. Her research interests include molecular genetics, virology, microbiology, and bioinformatics, which she intends to study further in graduate school. Pamela currently works as an Assistant Surgical Technician in the Surgical Skills Centre at Mount Sinai Hospital. Outside of school, you can find her writing science articles for the Varsity, reading, drawing, and playing her guitar. She speaks English, French, and Spanish.",
-     firstname: "Pamela",
-     linkedin: "https:://www.linkedin.com",
-     email: "pamela.alamilla@mail.utoronto.ca",
-     id: "pamelaa"
-    }
-]
-
 /* ALUMNI */
 export const ALUMNI = [
     {name: "Robert Koucheki",

@@ -194,7 +194,7 @@ class Executive extends Component {
                         </Modal.Body>
                     </Modal>
                 </Col>
-                
+
                 <Modal
                     show={this.state.displayModal}
                     onHide={() => this.setState({ displayModal: false })}
@@ -267,7 +267,6 @@ class Executive extends Component {
                                     <option>Mentorship</option>
                                     <option>Events</option>
                                     <option>Tech & Innovations</option>
-                                    <option>JIGG</option>
                                     <option>Alumni</option>
                                 </Form.Control>
                             </Form.Group>

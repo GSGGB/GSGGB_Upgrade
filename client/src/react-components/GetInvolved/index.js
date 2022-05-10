@@ -34,7 +34,6 @@ class GetInvolved extends Component {
             marketingPositions: [],
             mentorshipPositions: [],
             techPositions: [],
-            jiggPositions: [],
             lastUpdated: "",
             dateOptions: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
             timeOptions: { hour: '2-digit', minute:'2-digit' }
@@ -54,7 +53,6 @@ class GetInvolved extends Component {
             const marketing = document.querySelector("#marketing-applicant-positions");
             const mentorship = document.querySelector("#mentorship-applicant-positions");
             const tech = document.querySelector("#tech-applicant-positions");
-            const jigg = document.querySelector("#jigg-applicant-positions");
 
             if (this.state.applicantTeam === "Affairs"){
                 affairs.style.display = "block";
@@ -63,7 +61,6 @@ class GetInvolved extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
-                jigg.style.display = "none";
 
             } else if (this.state.applicantTeam === "Conference Committee"){
                 affairs.style.display = "none";
@@ -72,7 +69,6 @@ class GetInvolved extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
-                jigg.style.display = "none";
 
             } else if (this.state.applicantTeam === "Events"){
                 affairs.style.display = "none";
@@ -81,7 +77,6 @@ class GetInvolved extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
-                jigg.style.display = "none";
 
             } else if (this.state.applicantTeam === "Marketing"){
                 affairs.style.display = "none";
@@ -90,7 +85,6 @@ class GetInvolved extends Component {
                 marketing.style.display = "block";
                 mentorship.style.display = "none";
                 tech.style.display = "none";
-                jigg.style.display = "none";
 
             } else if (this.state.applicantTeam === "Mentorship"){
                 affairs.style.display = "none";
@@ -99,7 +93,6 @@ class GetInvolved extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "block";
                 tech.style.display = "none";
-                jigg.style.display = "none";
 
             } else if (this.state.applicantTeam === "Tech & Innovations"){
                 affairs.style.display = "none";
@@ -108,16 +101,6 @@ class GetInvolved extends Component {
                 marketing.style.display = "none";
                 mentorship.style.display = "none";
                 tech.style.display = "block";
-                jigg.style.display = "none";
-
-            } else if (this.state.applicantTeam === "JIGG"){
-                affairs.style.display = "none";
-                conference.style.display = "none";
-                events.style.display = "none";
-                marketing.style.display = "none";
-                mentorship.style.display = "none";
-                tech.style.display = "none";
-                jigg.style.display = "block";
 
             }
         }
@@ -131,7 +114,6 @@ class GetInvolved extends Component {
         var marketingOptions = (this.state.marketingPositions).map((title) => { return (<option value={title}>{title}</option>) });
         var mentorshipOptions = (this.state.mentorshipPositions).map((title) => { return (<option value={title}>{title}</option>) });
         var techOptions = (this.state.techPositions).map((title) => { return (<option value={title}>{title}</option>) });
-        var jiggOptions = (this.state.jiggPositions).map((title) => { return (<option value={title}>{title}</option>) });
 
         const lastUpdatedText = (
             "Positions last updated as of " + (new Date(this.state.lastUpdated)).toLocaleDateString('en-US', this.state.dateOptions) +
@@ -266,7 +248,6 @@ class GetInvolved extends Component {
                                         <option value="Marketing">Marketing</option>
                                         <option value="Mentorship">Mentorship</option>
                                         <option value="Tech & Innovations">Tech & Innovations</option>
-                                        <option value="JIGG">JIGG</option>
                                     </Form.Control>
                                 </Form.Group>
 
@@ -387,25 +368,6 @@ class GetInvolved extends Component {
                                                     >
                                                         <option value=""></option>
                                                         {techOptions}
-                                                    </Form.Control>
-                                                </td>
-                                            </tr>
-
-                                            <tr id="jigg-applicant-positions">
-                                                <td className="col-sm-2"><b>JIGG</b></td>
-                                                <td className="col-sm-7">
-                                                    The editorial team for the Journal of Innovations in Genetics and Genome Biology (JIGG)
-                                                    receives undergraduate journal submissions and publishes a JIGG issue at the end of the
-                                                    year. JIGG editors advertise the journal and review journal submissions.
-                                                </td>
-                                                <td className="col-sm-3">
-                                                    <Form.Control
-                                                        as="select"
-                                                        name="applicantPosition"
-                                                        onChange={e => updateApplicantForm(this, e.target)}
-                                                    >
-                                                        <option value=""></option>
-                                                        {jiggOptions}
                                                     </Form.Control>
                                                 </td>
                                             </tr>
