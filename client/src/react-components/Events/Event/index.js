@@ -190,7 +190,8 @@ class Event extends Component {
             (new Date(this.props.lastUpdated)).toLocaleTimeString('en-US', this.state.timeOptions)
         );
 
-        const date = (new Date(this.props.date + " EDT")).toLocaleDateString('en-US', this.state.dateOptions);
+        const utcDate = new Date(this.props.date);
+        const date = (new Date(utcDate.getTime() + utcDate.getTimezoneOffset() * 60000)).toLocaleDateString('en-US', this.state.dateOptions);
         const time = this.getFormattedTime(this.props.startTime) + " - " + this.getFormattedTime(this.props.endTime) + " (EST)";
 
         const fbIcon = this.getFacebookIcon(this.props.fbEventLink);
