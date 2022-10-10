@@ -49,7 +49,7 @@ class Footer extends Component {
                                 </span>
                             </a>
                             <p className="copyright-text">
-                                Copyright © 2021{" "}
+                                Copyright © 2022{" "}
                                 <b>
                                     Global Society for Genetics and Genome
                                     Biology.
